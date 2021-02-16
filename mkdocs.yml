@@ -1,2 +1,13 @@
 site_name: My Docs
+site_author: Paul Chauvet
+site_description: Guide for deploying Apereo CAS 6 - with LDAP & Delegated Azure Authentication, and Apache Tomcat.
+site_url: https://paulchauvet.github.io/deploying-cas/
+copyright: Copyright &copy ; 2021 Paul Chauvet, State University of New York at New Paltz
+
 theme: ivory
+
+nav:
+  - About:
+    - 'about-new-paltz.md'
+    - 'author-information.md'
+    - 'architecture.md'
