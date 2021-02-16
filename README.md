@@ -16,7 +16,7 @@ All documentation content is Copyright &copy; 2021, SUNY New Paltz. It is licens
 
 #### Site Template
 
-This site was created with MkDocs using the [Ivory Theme](https://github.com/daizutabi/mkdocs-ivory)
+This site was created with MkDocs using the [Ivory Theme](https://github.com/daizutabi/mkdocs-ivory).
 
 
 ### Author Information
