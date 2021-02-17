@@ -22,12 +22,29 @@ markdown_extensions:
 nav:
   - Main: index.md
   - About:
-    - About this project: about/about-new-paltz.md
+    - About SUNY New Paltz: about/about-new-paltz.md
     - About the author: about/author-information.md
     - Architecture/design: about/architecture.md
   - Setting up the Environment:
     - Overview: setting-up-the-environment/overview.md
+    - Configure time synchronization: setting-up-the-environment/time-synchronization.md
     - Build Environment: setting-up-the-environment/build-environment.md
-    - Tomcat setup via Ansible: setting-up-the-environment/tomcat.md
+    - Tomcat:
+      - Architecture: setting-up-the-environment/tomcat/tomcat-architecture.md
+      - Install an entropy daemon: setting-up-the-environment/tomcat/entropy-daemon.md
+      - Install Java: setting-up-the-environment/tomcat/java.md
+      - Install Tomcat: setting-up-the-environment/tomcat/tomcat-install.md
+      - Install Tomcat dependencies: setting-up-the-environment/tomcat/tomcat-dependencies.md
+      - Organize the installation: setting-up-the-environment/tomcat/tomcat-organize.md
+      - Harden the installation: setting-up-the-environment/tomcat/tomcat-harden.md
+      - Configure asynchronous request support: setting-up-the-environment/tomcat/asynch-request-support.md
+      - Configure X-Forwarded-For header processing: setting-up-the-environment/tomcat/config-x-forwarded.md
+      - Tune resource caching settings: setting-up-the-environment/tomcat/resource-caching.md
+      - Configure asynchronous logging support: setting-up-the-environment/tomcat/configure-async-logging.md
+      - Configure systemd to start tomcat: setting-up-the-environment/tomcat/systemd-service.md
+      - Using Ansible to put it all together: setting-up-the-environment/tomcat/ansible-role-tomcat.md
+    - Apache HTTPD:
+      - Open port 443 in firewall: setting-up-the-environment/httpd/open-firewall.md
+      
 
 

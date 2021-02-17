@@ -2,7 +2,8 @@
 
 ## Components
 
-!!! Summary: Before beginning the CAS build and configuration process, you will want to plan out your server environment.  Below is how we have things setup - but by no means is the only way.
+!!! tip "Summary"
+  Before beginning the CAS build and configuration process, you will want to plan out your server environment.  Below is how we have things setup - but by no means is the only way.
 
 We at New Paltz have a three-tiered CAS consisting of:
 
@@ -13,17 +14,19 @@ We at New Paltz have a three-tiered CAS consisting of:
 Within each tier, you will want one or more servers.  We do something similar to:
 
 * Development
-  * CAS6Dev1
-  * CAS6Dev2
-  * logindev: Public-facing load balanced virtual host
+    * CAS6Dev1
+    * CAS6Dev2
+    * logindev: Public-facing load balanced virtual host
+
 * Test
-  * CAS6Test1
-  * CAS6Test2
-  * logintest: Public-facing load balanced virtual host
+    * CAS6Test1
+    * CAS6Test2
+    * logintest: Public-facing load balanced virtual host
+
 * Production
-  * CAS6Prod1
-  * CAS6Prod2
-  * login: Public-facing load balanced virtual host
+    * CAS6Prod1
+    * CAS6Prod2
+    * login: Public-facing load balanced virtual host
 
 Each of these servers for us are RHEL 8 hosts, with:
 

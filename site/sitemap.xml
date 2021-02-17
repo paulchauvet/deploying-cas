@@ -20,11 +20,67 @@
      <lastmod>2021-02-17</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/time-synchronization/</loc>
+     <lastmod>2021-02-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/build-environment/</loc>
      <lastmod>2021-02-17</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/</loc>
+     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/tomcat-architecture/</loc>
+     <lastmod>2021-02-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/entropy-daemon/</loc>
+     <lastmod>2021-02-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/java/</loc>
+     <lastmod>2021-02-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/tomcat-install/</loc>
+     <lastmod>2021-02-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/tomcat-dependencies/</loc>
+     <lastmod>2021-02-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/tomcat-organize/</loc>
+     <lastmod>2021-02-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/tomcat-harden/</loc>
+     <lastmod>2021-02-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/asynch-request-support/</loc>
+     <lastmod>2021-02-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/config-x-forwarded/</loc>
+     <lastmod>2021-02-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/resource-caching/</loc>
+     <lastmod>2021-02-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/configure-async-logging/</loc>
+     <lastmod>2021-02-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/systemd-service/</loc>
+     <lastmod>2021-02-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/ansible-role-tomcat/</loc>
+     <lastmod>2021-02-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/httpd/open-firewall/</loc>
      <lastmod>2021-02-17</lastmod>
      <changefreq>daily</changefreq>
     </url>

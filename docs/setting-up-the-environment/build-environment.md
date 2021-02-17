@@ -32,7 +32,7 @@ If you're deploying via Ansible, or just using SCP/SFTP to copy files over, you'
 ### From the master server:
 
 <figure>
-  <img src="/images/ssh-keygen.png" alt="Screenshot showing ssh public key generation.  Command used is ssh-keygen with no arguments.  All options are the default."/>
+  <img src="https://paulchauvet.github.io/deploying-cas/images/ssh-keygen.png" alt="Screenshot showing ssh public key generation.  Command used is ssh-keygen with no arguments.  All options are the default."/>
 </figure>
 
 When done - view the contents of the public key (by default in /home/username/.ssh/id_rsa.pub) - you'll need it in the next step.
