@@ -12,10 +12,22 @@ theme:
 extra_css:
   - stylesheets/newpaltz.css
 
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences
+  - pymdownx.highlight  
+  - pymdownx.betterem:
+      smart_enable: all
 
 nav:
+  - Main: index.md
   - About:
     - About this project: about/about-new-paltz.md
     - About the author: about/author-information.md
     - Architecture/design: about/architecture.md
-  - Main: index.md
+  - Setting up the Environment:
+    - Overview: setting-up-the-environment/overview.md
+    - Build Environment: setting-up-the-environment/build-environment.md
+    - Tomcat setup via Ansible: setting-up-the-environment/tomcat.md
+
+

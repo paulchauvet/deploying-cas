@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
+     <loc>https://paulchauvet.github.io/deploying-cas/</loc>
+     <lastmod>2021-02-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>https://paulchauvet.github.io/deploying-cas/about/about-new-paltz/</loc>
-     <lastmod>2021-02-16</lastmod>
+     <lastmod>2021-02-17</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://paulchauvet.github.io/deploying-cas/about/author-information/</loc>
-     <lastmod>2021-02-16</lastmod>
+     <lastmod>2021-02-17</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://paulchauvet.github.io/deploying-cas/about/architecture/</loc>
-     <lastmod>2021-02-16</lastmod>
+     <lastmod>2021-02-17</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://paulchauvet.github.io/deploying-cas/</loc>
-     <lastmod>2021-02-16</lastmod>
+     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/overview/</loc>
+     <lastmod>2021-02-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/build-environment/</loc>
+     <lastmod>2021-02-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/</loc>
+     <lastmod>2021-02-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>

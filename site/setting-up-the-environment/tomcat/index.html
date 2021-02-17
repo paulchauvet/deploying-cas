@@ -13,19 +13,21 @@
         <meta name="author" content="Paul Chauvet">
       
       
-      <link rel="shortcut icon" href="/deploying-cas/images/favicon.ico">
+        <link rel="canonical" href="https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/">
+      
+      <link rel="shortcut icon" href="../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
     
     
       
-        <title>Deploying Apereo CAS 6</title>
+        <title>Tomcat setup via Ansible - Deploying Apereo CAS 6</title>
       
     
     
-      <link rel="stylesheet" href="/deploying-cas/assets/stylesheets/main.cb6bc1d0.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.cb6bc1d0.min.css">
       
         
-        <link rel="stylesheet" href="/deploying-cas/assets/stylesheets/palette.39b8e14a.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.39b8e14a.min.css">
         
       
     
@@ -40,7 +42,7 @@
     
     
     
-      <link rel="stylesheet" href="/deploying-cas/stylesheets/newpaltz.css">
+      <link rel="stylesheet" href="../../stylesheets/newpaltz.css">
     
     
       
@@ -63,6 +65,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#installing-and-maintaining-tomcat-via-ansible" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -74,7 +81,7 @@
   <nav class="md-header-nav md-grid" aria-label="Header">
     <a href="https://paulchauvet.github.io/deploying-cas/" title="Deploying Apereo CAS 6" class="md-header-nav__button md-logo" aria-label="Deploying Apereo CAS 6">
       
-  <img src="/deploying-cas/images/newpaltz-logo.jpg" alt="logo">
+  <img src="../../images/newpaltz-logo.jpg" alt="logo">
 
     </a>
     <label class="md-header-nav__button md-icon" for="__drawer">
@@ -90,7 +97,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              
+              Tomcat setup via Ansible
             
           </span>
         </div>
@@ -153,7 +160,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="https://paulchauvet.github.io/deploying-cas/" title="Deploying Apereo CAS 6" class="md-nav__button md-logo" aria-label="Deploying Apereo CAS 6">
       
-  <img src="/deploying-cas/images/newpaltz-logo.jpg" alt="logo">
+  <img src="../../images/newpaltz-logo.jpg" alt="logo">
 
     </a>
     Deploying Apereo CAS 6
@@ -169,7 +176,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/deploying-cas/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         Main
       </a>
     </li>
@@ -206,7 +213,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/deploying-cas/about/about-new-paltz/" class="md-nav__link">
+      <a href="../../about/about-new-paltz/" class="md-nav__link">
         About this project
       </a>
     </li>
@@ -218,7 +225,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/deploying-cas/about/author-information/" class="md-nav__link">
+      <a href="../../about/author-information/" class="md-nav__link">
         About the author
       </a>
     </li>
@@ -230,7 +237,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/deploying-cas/about/architecture/" class="md-nav__link">
+      <a href="../../about/architecture/" class="md-nav__link">
         Architecture/design
       </a>
     </li>
@@ -249,12 +256,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
       
       <label class="md-nav__link" for="nav-3">
         Setting up the Environment
@@ -273,7 +282,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/deploying-cas/setting-up-the-environment/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -285,7 +294,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/deploying-cas/setting-up-the-environment/build-environment/" class="md-nav__link">
+      <a href="../build-environment/" class="md-nav__link">
         Build Environment
       </a>
     </li>
@@ -295,11 +304,45 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="/deploying-cas/setting-up-the-environment/tomcat/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Tomcat setup via Ansible
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Tomcat setup via Ansible
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installing-and-maintaining-tomcat-via-ansible" class="md-nav__link">
+    Installing and maintaining Tomcat via Ansible
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -317,11 +360,49 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installing-and-maintaining-tomcat-via-ansible" class="md-nav__link">
+    Installing and maintaining Tomcat via Ansible
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
-  <h1>404 - Not found</h1>
+                
+                
+                  <h1>Tomcat setup via Ansible</h1>
+                
+                <h2 id="installing-and-maintaining-tomcat-via-ansible">Installing and maintaining Tomcat via Ansible</h2>
+                
+              
+              
+                
+
 
               
             </article>
@@ -331,6 +412,27 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../build-environment/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Build Environment
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -352,15 +454,15 @@
       
     </div>
     
-      <script src="/deploying-cas/assets/javascripts/vendor.18f0862e.min.js"></script>
-      <script src="/deploying-cas/assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
-          base: "/deploying-cas/",
+          base: "../..",
           features: [],
           search: Object.assign({
-            worker: "/deploying-cas/assets/javascripts/worker/search.9c0e82ba.min.js"
+            worker: "../../assets/javascripts/worker/search.9c0e82ba.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
