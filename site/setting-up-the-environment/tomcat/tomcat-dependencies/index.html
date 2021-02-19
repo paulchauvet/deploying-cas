@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#heading" class="md-skip">
+        <a href="#tomcat-dependencies" class="md-skip">
           Skip to content
         </a>
       
@@ -342,8 +342,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../tomcat-architecture/" class="md-nav__link">
-        Architecture
+      <a href="../tomcat-overview/" class="md-nav__link">
+        Tomcat Overview
       </a>
     </li>
   
@@ -421,8 +421,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#to-be-added" class="md-nav__link">
-    To be added
+  <a href="#apache-portable-runtime" class="md-nav__link">
+    Apache Portable Runtime
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tomcat-native-library" class="md-nav__link">
+    Tomcat Native Library
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apache-commons-daemon-jsvc" class="md-nav__link">
+    Apache Commons Daemon (jsvc)
   </a>
   
 </li>
@@ -519,13 +533,89 @@
   
 
           
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5" >
+      
+      <label class="md-nav__link" for="nav-3-5">
+        Tomcat and Ansible
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tomcat and Ansible" data-md-level="2">
+        <label class="md-nav__title" for="nav-3-5">
+          <span class="md-nav__icon md-icon"></span>
+          Tomcat and Ansible
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
             
   
   
   
     <li class="md-nav__item">
-      <a href="../ansible-role-tomcat/" class="md-nav__link">
-        Using Ansible to put it all together
+      <a href="../../tomcat-ansible/tomcat-ansible-overview/" class="md-nav__link">
+        Ansible and Tomcat - Initial Steps
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/variables/" class="md-nav__link">
+        Setup Variables
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/templates/" class="md-nav__link">
+        Setup Templates
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/tasks/" class="md-nav__link">
+        Creating tasks
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/running-the-play/" class="md-nav__link">
+        Running the play
       </a>
     </li>
   
@@ -545,14 +635,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6" >
       
-      <label class="md-nav__link" for="nav-3-5">
+      <label class="md-nav__link" for="nav-3-6">
         Apache HTTPD
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Apache HTTPD" data-md-level="2">
-        <label class="md-nav__title" for="nav-3-5">
+        <label class="md-nav__title" for="nav-3-6">
           <span class="md-nav__icon md-icon"></span>
           Apache HTTPD
         </label>
@@ -564,8 +654,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../httpd/open-firewall/" class="md-nav__link">
-        Open port 443 in firewall
+      <a href="../../httpd/ajp-proxy/" class="md-nav__link">
+        Use AJP to communicate with Tomcat
       </a>
     </li>
   
@@ -608,8 +698,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#to-be-added" class="md-nav__link">
-    To be added
+  <a href="#apache-portable-runtime" class="md-nav__link">
+    Apache Portable Runtime
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tomcat-native-library" class="md-nav__link">
+    Tomcat Native Library
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apache-commons-daemon-jsvc" class="md-nav__link">
+    Apache Commons Daemon (jsvc)
   </a>
   
 </li>
@@ -627,9 +731,75 @@
               
                 
                 
-                <h1 id="heading">Heading</h1>
-<h2 id="to-be-added">To be added</h2>
-<p>This will be added later.</p>
+                <h1 id="tomcat-dependencies">Tomcat Dependencies</h1>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The steps below are for the CAS servers - not the build server.  That being said - if you are going to install and maintain via Ansible - you don't need to do this manually, though it is worth seeing how to do it manually.</p>
+</div>
+<p>As discussed in the <a href="https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/tomcat-overview/">Tomcat Overview</a>, we will be installing:</p>
+<ul>
+<li><a href="https://apr.apache.org">Apache Portable Runtime (APR)</a> - as per Apache, "Tomcat can use the Apache Portable Runtime to provide superior scalability, performance, and better integration with native server technologies"</li>
+<li><a href="http://tomcat.apache.org/native-doc/">Tomcat Native Library</a> - this is best described on the Apache site as "an optional component for use with Apache Tomcat that allows Tomcat to use certain native resources for performance, compatibility, etc."</li>
+<li><a href="https://commons.apache.org/proper/commons-daemon/">Apache Commons Daemon</a> - this allows Apache to be started as root to perform some privileged operations, then switch to a non-privileged user.</li>
+</ul>
+<p>The Tomcat Native Library and Commons Daemon are shipped with Tomcat but need to be compiled.  APR is downloaded and installed separately from Apache.</p>
+<h2 id="apache-portable-runtime">Apache Portable Runtime</h2>
+<p>The Tomcat Native Library, which will be installed later here, depends on the Apache Portable Runtime (APR) library.  As with Tomcat itself, we'll be installing APR within /opt/apr - with a symlink to the latest version.</p>
+<p>To download, compile, and install this, see the following:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Your URL in the wget command below will differ depending on which mirror you are getting from the <a href="https://apr.apache.org/download.cgi">APR Download</a> page, and which specific version of APR you are downloading (1.7.0 was released in April 2019 and it does not change in version nearly as much as Apache Tomcat).  Replace <mark class="critic">1.7.0</mark> with the latest version.</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="gp">[root@login6devb ~]# </span>mkdir -p /opt/apr/apr-1.7.0
+<span class="gp">[root@login6devb ~]# </span>ln -s /opt/apr/apr-1.7.0 /opt/apr/latest
+<span class="gp">[root@login6devb ~]# </span><span class="nb">cd</span> /tmp/
+<span class="gp">[root@login6devb tmp]# </span>wget https://mirrors.ocf.berkeley.edu/apache//apr/apr-1.7.0.tar.gz
+<span class="go">    (download progress will show)</span>
+<span class="gp">[root@login6devb tmp]# </span>tar xzf apr-1.7.0.tar.gz
+<span class="go">    (There will be a lot of output - look for errors.  There may be an error of &quot;rm: cannot remove &#39;libtoolT&#39;: No such file or directory&quot; which appears harmless.  If you get an error like &#39;no acceptable C compiler found in $PATH&#39; - make sure gcc is installed.  This is listed in the prerequisies section of the tomcat-overview.)</span>
+<span class="gp">[root@login6devb tmp]# </span><span class="nb">cd</span> apr-1.7.0
+<span class="gp">[root@login6devb apr-1.7.0]# </span>make
+<span class="go">    (There will be a lot of output - look for errors.)</span>
+<span class="gp">[root@login6devb apr-1.7.0]# </span>make <span class="nb">test</span>
+<span class="go">    (There will be a lot of output and it may take a while to run - look for errors.)</span>
+<span class="gp">[root@login6devb apr-1.7.0]# </span>make install
+<span class="go">    (There will be a lot of output - look for errors.)</span>
+<span class="gp">[root@login6devb tmp]# </span>rm -rf /tmp/apr-1.7.0 /tmp/apr-1.7.0.tar.gz
+</code></pre></div>
+<p>When it's done - you'll have /opt/apr/apr-1.7.0 (or whatever version) installed and with /opt/apr/latest as a symlink to the latest version.  This way you can update APR to a later version without having to recompile other applications that use it.</p>
+<h2 id="tomcat-native-library">Tomcat Native Library</h2>
+<p>The source for Tomcat Native Library is included in the Tomcat version that was downloaded in the previous page.  It has to be extracted, compiled, and installed.  Note: The tomcat native version may change between Tomcat minor releases.  For example, it is <mark class="critic">1.2.26</mark> as of Tomcat <mark class="critic">9.0.43</mark>.</p>
+<p>To do so:</p>
+<div class="highlight"><pre><span></span><code><span class="gp">[root@login6devb ~]# </span><span class="nb">cd</span> /opt/tomcat/latest/bin/
+<span class="gp">[root@login6devb bin]# </span>tar xzf tomcat-native.tar.gz 
+<span class="gp">[root@login6devb bin]# </span><span class="nb">cd</span> tomcat-native-*-src/native
+<span class="gp">[root@login6devb native]# </span>./configure <span class="se">\</span>
+<span class="gp">&gt; </span> --with-java-home<span class="o">=</span>/usr/lib/jvm/java-openjdk <span class="se">\</span>
+<span class="gp">&gt; </span> --with-apr<span class="o">=</span>/opt/apr/latest/bin/apr-1-config <span class="se">\</span>
+<span class="gp">&gt; </span> --prefix<span class="o">=</span>/opt/tomcat/apache-tomcat-9.0.43
+<span class="go">    (There will be a lot of output - look for errors.)</span>
+<span class="gp">[root@login6devb native]# </span>make
+<span class="go">    (There will be a lot of output - look for errors.  You&#39;re probably tired of me saying this though!)</span>
+<span class="gp">[root@login6devb native]# </span>make install
+<span class="go">    (There will be a lot of output - look for errors.)</span>
+<span class="gp">[root@login6devb native]# </span><span class="nb">cd</span> ../..
+<span class="gp">[root@login6devb bin]# </span>rm -rf tomcat-native-*-src
+</code></pre></div>
+<p>When done - the Tomcat Native Library will be installed in the <mark class="critic">lib</mark> directory of the version of Tomcat you're working in.  You can see the 'libtcnative' files there.</p>
+<h2 id="apache-commons-daemon-jsvc">Apache Commons Daemon (jsvc)</h2>
+<p>The Apache Commons Daemon (jsvc) allows Tomcat to be started as root to perform some privileged operations (such as binding to ports below 1024) and then switch identity to run as a non-privileged user, which is better from a security perspective. Like the Tomcat Native Library, the Commons Daemon is included as part of the Tomcat distribution; it just needs to be extracted, compiled, and installed.  Note: Like the tomcat native, library, the apache commons daemon version may change between Tomcat minor releases.  For example, it is <mark class="critic">1.2.26</mark> as of Tomcat <mark class="critic">9.0.43</mark>.</p>
+<p>To do so:</p>
+<div class="highlight"><pre><span></span><code><span class="gp">[root@login6devb ~]# </span><span class="nb">cd</span> /opt/tomcat/latest/bin/
+<span class="gp">[root@login6devb bin]# </span>tar xzf commons-daemon-native.tar.gz
+<span class="gp">[root@login6devb bin]# </span><span class="nb">cd</span> commons-daemon-*-native-src/unix
+<span class="gp">[root@login6devb unix]# </span>./configure --with-java<span class="o">=</span>/usr/lib/jvm/java-openjdk
+<span class="go">    (There will be a lot of output - look for errors.)</span>
+<span class="gp">[root@login6devb unix]# </span>make
+<span class="gp">[root@login6devb unix]# </span>mv jsvc ../..
+<span class="gp">[root@login6devb unix]# </span><span class="nb">cd</span> ../..
+<span class="gp">[root@login6devb unix]# </span>rm -rf commons-daemon-*-native-src
+</code></pre></div>
+<p>This installs the <mark class="critic">jsvc</mark> binary within the bin directory of the version of Tomcat you're working in.</p>
                 
               
               

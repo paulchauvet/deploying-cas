@@ -397,13 +397,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#configure-a-hosts-file-for-ansible" class="md-nav__link">
-    Configure a hosts file for Ansible
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -439,8 +432,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../tomcat/tomcat-architecture/" class="md-nav__link">
-        Architecture
+      <a href="../tomcat/tomcat-overview/" class="md-nav__link">
+        Tomcat Overview
       </a>
     </li>
   
@@ -578,13 +571,89 @@
   
 
           
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5" >
+      
+      <label class="md-nav__link" for="nav-3-5">
+        Tomcat and Ansible
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tomcat and Ansible" data-md-level="2">
+        <label class="md-nav__title" for="nav-3-5">
+          <span class="md-nav__icon md-icon"></span>
+          Tomcat and Ansible
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
             
   
   
   
     <li class="md-nav__item">
-      <a href="../tomcat/ansible-role-tomcat/" class="md-nav__link">
-        Using Ansible to put it all together
+      <a href="../tomcat-ansible/tomcat-ansible-overview/" class="md-nav__link">
+        Ansible and Tomcat - Initial Steps
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tomcat-ansible/variables/" class="md-nav__link">
+        Setup Variables
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tomcat-ansible/templates/" class="md-nav__link">
+        Setup Templates
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tomcat-ansible/tasks/" class="md-nav__link">
+        Creating tasks
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tomcat-ansible/running-the-play/" class="md-nav__link">
+        Running the play
       </a>
     </li>
   
@@ -604,14 +673,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6" >
       
-      <label class="md-nav__link" for="nav-3-5">
+      <label class="md-nav__link" for="nav-3-6">
         Apache HTTPD
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Apache HTTPD" data-md-level="2">
-        <label class="md-nav__title" for="nav-3-5">
+        <label class="md-nav__title" for="nav-3-6">
           <span class="md-nav__icon md-icon"></span>
           Apache HTTPD
         </label>
@@ -623,8 +692,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../httpd/open-firewall/" class="md-nav__link">
-        Open port 443 in firewall
+      <a href="../httpd/ajp-proxy/" class="md-nav__link">
+        Use AJP to communicate with Tomcat
       </a>
     </li>
   
@@ -727,13 +796,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#configure-a-hosts-file-for-ansible" class="md-nav__link">
-    Configure a hosts file for Ansible
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -782,21 +844,6 @@ Place the contents of the public key in that file.</p>
 <div class="highlight"><pre><span></span><code>ssh root@cas6dev1
 </code></pre></div>
 <p>If successful - you'll be logged in without a username or password.  If this is the first time you are connecting via SSH from the build host to the CAS host, you'll be warned that the authenticity of the host cannot be established, and you'll be prompted to enter <em>yes</em> to continue connecting.</p>
-<h2 id="configure-a-hosts-file-for-ansible">Configure a hosts file for Ansible</h2>
-<p>You will need a hosts file for Ansible.  This file can have simply the hostname, or it could have some variables as well.  We at New Paltz put a few things there such as the hostname, the VM name (in vCenter), the folder (in vCenter), and the Tomcat version (so I can roll out updates to Tomcat in some environments earlier than others).</p>
-<p>An example of this for CAS servers is below.  This file would be in /etc/ansible/hosts:</p>
-<div class="highlight"><pre><span></span><code>[CAS_DEV]
-cas6dev1 vmware_name=&quot;CAS 6 Test 1&quot;  vmware_folder=&quot;/Computer Services/vm/CAS Authentication Servers&quot; tomcat_major_ver=9.0 tomcat_ver=9.0.41 jdk_version=11
-cas6dev2 vmware_name=&quot;CAS 6 Test 2&quot;  vmware_folder=&quot;/Computer Services/vm/CAS Authentication Servers&quot; tomcat_major_ver=9.0 tomcat_ver=9.0.41 jdk_version=11
-
-[CAS_TEST]
-cas6test1 vmware_name=&quot;CAS 6 Test 1&quot; vmware_folder=&quot;/Computer Services/vm/CAS Authentication Servers&quot; tomcat_major_ver=9.0 tomcat_ver=9.0.41 jdk_version=11
-cas6test2 vmware_name=&quot;CAS 6 Test 2&quot; vmware_folder=&quot;/Computer Services/vm/CAS Authentication Servers&quot; tomcat_major_ver=9.0 tomcat_ver=9.0.41 jdk_version=11
-
-[CAS_PROD]
-cas6prod1 vmware_name=&quot;CAS 6 Test 1&quot; vmware_folder=&quot;/Computer Services/vm/CAS Authentication Servers&quot; tomcat_major_ver=9.0 tomcat_ver=9.0.41 jdk_version=11
-cas6prod2 vmware_name=&quot;CAS 6 Test 2&quot; vmware_folder=&quot;/Computer Services/vm/CAS Authentication Servers&quot; tomcat_major_ver=9.0 tomcat_ver=9.0.41 jdk_version=11
-</code></pre></div>
                 
               
               
@@ -830,13 +877,13 @@ cas6prod2 vmware_name=&quot;CAS 6 Test 2&quot; vmware_folder=&quot;/Computer Ser
           </a>
         
         
-          <a href="../tomcat/tomcat-architecture/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../tomcat/tomcat-overview/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Architecture
+                Tomcat Overview
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

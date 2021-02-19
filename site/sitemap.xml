@@ -1,87 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
      <loc>https://paulchauvet.github.io/deploying-cas/</loc>
-     <lastmod>2021-02-17</lastmod>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://paulchauvet.github.io/deploying-cas/about/about-new-paltz/</loc>
-     <lastmod>2021-02-17</lastmod>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://paulchauvet.github.io/deploying-cas/about/author-information/</loc>
-     <lastmod>2021-02-17</lastmod>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://paulchauvet.github.io/deploying-cas/about/architecture/</loc>
-     <lastmod>2021-02-17</lastmod>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/overview/</loc>
-     <lastmod>2021-02-17</lastmod>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/time-synchronization/</loc>
-     <lastmod>2021-02-17</lastmod>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/build-environment/</loc>
-     <lastmod>2021-02-17</lastmod>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/tomcat-architecture/</loc>
-     <lastmod>2021-02-17</lastmod>
+     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/tomcat-overview/</loc>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/entropy-daemon/</loc>
-     <lastmod>2021-02-17</lastmod>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/java/</loc>
-     <lastmod>2021-02-17</lastmod>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/tomcat-install/</loc>
-     <lastmod>2021-02-17</lastmod>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/tomcat-dependencies/</loc>
-     <lastmod>2021-02-17</lastmod>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/tomcat-organize/</loc>
-     <lastmod>2021-02-17</lastmod>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/tomcat-harden/</loc>
-     <lastmod>2021-02-17</lastmod>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/asynch-request-support/</loc>
-     <lastmod>2021-02-17</lastmod>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/config-x-forwarded/</loc>
-     <lastmod>2021-02-17</lastmod>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/resource-caching/</loc>
-     <lastmod>2021-02-17</lastmod>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/configure-async-logging/</loc>
-     <lastmod>2021-02-17</lastmod>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/systemd-service/</loc>
-     <lastmod>2021-02-17</lastmod>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/ansible-role-tomcat/</loc>
-     <lastmod>2021-02-17</lastmod>
+     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat-ansible/tomcat-ansible-overview/</loc>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/httpd/open-firewall/</loc>
-     <lastmod>2021-02-17</lastmod>
+     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat-ansible/variables/</loc>
+     <lastmod>2021-02-19</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat-ansible/templates/</loc>
+     <lastmod>2021-02-19</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat-ansible/tasks/</loc>
+     <lastmod>2021-02-19</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat-ansible/running-the-play/</loc>
+     <lastmod>2021-02-19</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/httpd/ajp-proxy/</loc>
+     <lastmod>2021-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>

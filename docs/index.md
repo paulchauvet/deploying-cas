@@ -1,10 +1,10 @@
 ## Deploying Apereo CAS
 
-***Deploying Apereo CAS*** provides step-by-step instructions for setting up Apereo CAS 6 with a goal of deploying and maintaining both CAS and the application server (Tomcat) via Ansible.  The goal of this is to make deploying and maintaining CAS and Tomcat easy.  The documentation is based on the [documentation for CAS 5 created by David Curry of The New School](https://dacurry-tns.github.io/deploying-apereo-cas).  It is meant to supplement, not replace, the documentation created by Apereo for CAS.
+***Deploying Apereo CAS*** provides step-by-step instructions for setting up Apereo CAS 6 with a goal of deploying and maintaining both CAS and the application server (Tomcat) via Ansible.  The goal of this is to make deploying and maintaining CAS and Tomcat easy.  The idea for creating this (and some of the content) is based on the amazing [Deploying Apereo CAS](https://dacurry-tns.github.io/deploying-apereo-cas) documentation created for CAS 5, created by David Curry of The New School.  It is meant to supplement, not replace, the documentation created by Apereo for CAS.
 
- This is my first foray into using Github pages, or making documentation for deploying an application like this (my documentation has either been end user facing or for internal staff up until now) - so apologies for any rough edges on it.  It's horribly incomplete as of now but my goal is to document as I deploy into test and later into production.
+ This is my first foray into using Github pages, or making documentation for deploying an application like this (my documentation has either been end user facing or for internal staff up until now) - so apologies for any rough edges on it.  It's incomplete as of now but my goal is to document as I deploy into test and later into production.  It should be *mostly* complete by the end of March 2021.
 
- It was created in my work at the State University of New York at New Paltz but I wanted to give back to the CAS community for the great information I've found from the New School and others.
+ It was created in my work at the State University of New York at New Paltz but I wanted to give back to the CAS community for the great information I've found from so many.
 
 ### Copyright and Licensing
 

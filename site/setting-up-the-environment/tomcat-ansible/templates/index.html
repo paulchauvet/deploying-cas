@@ -13,14 +13,14 @@
         <meta name="author" content="Paul Chauvet">
       
       
-        <link rel="canonical" href="https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/tomcat-architecture/">
+        <link rel="canonical" href="https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat-ansible/templates/">
       
       <link rel="shortcut icon" href="../../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
     
     
       
-        <title>Architecture - Deploying Apereo CAS 6</title>
+        <title>Setup Templates - Deploying Apereo CAS 6</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#installing-and-maintaining-tomcat-via-ansible" class="md-skip">
+        <a href="#ansible-templates-for-tomcat" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              Architecture
+              Setup Templates
             
           </span>
         </div>
@@ -316,14 +316,12 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4" >
       
       <label class="md-nav__link" for="nav-3-4">
         Tomcat
@@ -340,62 +338,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Architecture
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        Architecture
+    <li class="md-nav__item">
+      <a href="../../tomcat/tomcat-overview/" class="md-nav__link">
+        Tomcat Overview
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tomcat-architecture" class="md-nav__link">
-    Tomcat architecture
-  </a>
-  
-    <nav class="md-nav" aria-label="Tomcat architecture">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#components" class="md-nav__link">
-    Components:
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -405,7 +352,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../entropy-daemon/" class="md-nav__link">
+      <a href="../../tomcat/entropy-daemon/" class="md-nav__link">
         Install an entropy daemon
       </a>
     </li>
@@ -417,7 +364,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../java/" class="md-nav__link">
+      <a href="../../tomcat/java/" class="md-nav__link">
         Install Java
       </a>
     </li>
@@ -429,7 +376,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tomcat-install/" class="md-nav__link">
+      <a href="../../tomcat/tomcat-install/" class="md-nav__link">
         Install Tomcat
       </a>
     </li>
@@ -441,7 +388,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tomcat-dependencies/" class="md-nav__link">
+      <a href="../../tomcat/tomcat-dependencies/" class="md-nav__link">
         Install Tomcat dependencies
       </a>
     </li>
@@ -453,7 +400,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tomcat-organize/" class="md-nav__link">
+      <a href="../../tomcat/tomcat-organize/" class="md-nav__link">
         Organize the installation
       </a>
     </li>
@@ -465,7 +412,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tomcat-harden/" class="md-nav__link">
+      <a href="../../tomcat/tomcat-harden/" class="md-nav__link">
         Harden the installation
       </a>
     </li>
@@ -477,7 +424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../asynch-request-support/" class="md-nav__link">
+      <a href="../../tomcat/asynch-request-support/" class="md-nav__link">
         Configure asynchronous request support
       </a>
     </li>
@@ -489,7 +436,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config-x-forwarded/" class="md-nav__link">
+      <a href="../../tomcat/config-x-forwarded/" class="md-nav__link">
         Configure X-Forwarded-For header processing
       </a>
     </li>
@@ -501,7 +448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../resource-caching/" class="md-nav__link">
+      <a href="../../tomcat/resource-caching/" class="md-nav__link">
         Tune resource caching settings
       </a>
     </li>
@@ -513,7 +460,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configure-async-logging/" class="md-nav__link">
+      <a href="../../tomcat/configure-async-logging/" class="md-nav__link">
         Configure asynchronous logging support
       </a>
     </li>
@@ -525,8 +472,50 @@
   
   
     <li class="md-nav__item">
-      <a href="../systemd-service/" class="md-nav__link">
+      <a href="../../tomcat/systemd-service/" class="md-nav__link">
         Configure systemd to start tomcat
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5" checked>
+      
+      <label class="md-nav__link" for="nav-3-5">
+        Tomcat and Ansible
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tomcat and Ansible" data-md-level="2">
+        <label class="md-nav__title" for="nav-3-5">
+          <span class="md-nav__icon md-icon"></span>
+          Tomcat and Ansible
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tomcat-ansible-overview/" class="md-nav__link">
+        Ansible and Tomcat - Initial Steps
       </a>
     </li>
   
@@ -537,8 +526,53 @@
   
   
     <li class="md-nav__item">
-      <a href="../ansible-role-tomcat/" class="md-nav__link">
-        Using Ansible to put it all together
+      <a href="../variables/" class="md-nav__link">
+        Setup Variables
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Setup Templates
+      </a>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tasks/" class="md-nav__link">
+        Creating tasks
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../running-the-play/" class="md-nav__link">
+        Running the play
       </a>
     </li>
   
@@ -558,14 +592,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6" >
       
-      <label class="md-nav__link" for="nav-3-5">
+      <label class="md-nav__link" for="nav-3-6">
         Apache HTTPD
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Apache HTTPD" data-md-level="2">
-        <label class="md-nav__title" for="nav-3-5">
+        <label class="md-nav__title" for="nav-3-6">
           <span class="md-nav__icon md-icon"></span>
           Apache HTTPD
         </label>
@@ -577,8 +611,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../httpd/open-firewall/" class="md-nav__link">
-        Open port 443 in firewall
+      <a href="../../httpd/ajp-proxy/" class="md-nav__link">
+        Use AJP to communicate with Tomcat
       </a>
     </li>
   
@@ -614,34 +648,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tomcat-architecture" class="md-nav__link">
-    Tomcat architecture
-  </a>
-  
-    <nav class="md-nav" aria-label="Tomcat architecture">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#components" class="md-nav__link">
-    Components:
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -653,21 +659,15 @@
               
                 
                 
-                <h1 id="installing-and-maintaining-tomcat-via-ansible">Installing and maintaining Tomcat via Ansible</h1>
-<h2 id="tomcat-architecture">Tomcat architecture</h2>
-<p>For our Tomcat installation, I don't like to rely on the Red Hat distributed versions.  This is since with RHEL 7 - they only provided Tomcat 8.0.x from their repositories, and with RHEL 8 - it's only provided as part of JBoss.</p>
-<p>Using this method - you get an easy to maintain environment, which relies on symlinks to keep the 'important' stuff (configurations, log files, servlets) outside of the installation directories.</p>
-<p>When done - you will have /opt/tomcat - and within that you'll have a directory for each Tomcat install you have (for example, /opt/tomcat/apache-tomcat-9.0.39 or /opt/tomcat/apache-tomcat-9.0.43), and a symlink (/opt/tomcat/latest) which points to the in-use version.  This allows for a quick upgrade and rollback if there are issues.</p>
-<h3 id="components">Components:</h3>
+                <h1 id="ansible-templates-for-tomcat">Ansible Templates for Tomcat</h1>
+<p>The following are the relative template files for Tomcat.  They don't include the Apache HTTPD or CAS configs - this is JUST for Tomcat.  When dealing with some things that have private keys or other sensitive info, you'll want to use Ansible vault.</p>
 <ul>
-<li><a href="https://fedoraproject.org/wiki/EPEL">EPEL (Extra Packages for Enterprise Linux)</a> - which is needed for a couple packages.</li>
-<li><a href="https://www.issihosts.com/haveged/">Haveged</a> - for better entropy in random number generation than what is included by default</li>
-<li><a href="https://www.openssl.org">OpenSSL</a></li>
-<li><a href="https://apr.apache.org">Apache Portable Runtime</a></li>
-<li><a href="http://tomcat.apache.org/native-doc/">Tomcat Native Library</a></li>
-<li><a href="https://commons.apache.org/proper/commons-daemon/">Apache Commons Daemon</a></li>
-<li><a href="https://openjdk.java.net/">OpenJDK</a></li>
-<li><a href="https://httpd.apache.org/">Apache HTTPD</a> - since I hate doing SSL/TLS in Apache Tomcat directly</li>
+<li><a href="https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat-ansible/templates/cas6-catalina.properties.j2">cas6-catalina.properties.j2</a> (destination is /etc/tomcat/context.xml)</li>
+<li><a href="https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat-ansible/templates/cas6-context.xml.j2">cas6-context.xml.j2</a> (destination is /etc/tomcat/context.xml)</li>
+<li><a href="https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat-ansible/templates/cas6-server.xml.j2">cas6-server.xml.j2</a> (destination is /etc/tomcat/server.xml)</li>
+<li><a href="https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat-ansible/templates/cas6-web.xml.j2">cas6-web.xml.j2</a> (destination is /etc/tomcat/web.xml)</li>
+<li><a href="https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat-ansible/templates/tomcat.service.j2">tomcat.service.j2</a> (destination is /etc/systemd/system/tomcat.service)</li>
+<li>Note: This doesn't have 'cas' in the file name since it is not CAS specific - it's the same for all our Tomcat installs.  When I have a template specific to only one application/server/system - I indicate that in the file name.</li>
 </ul>
                 
               
@@ -687,7 +687,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../../build-environment/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../variables/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -696,19 +696,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Build Environment
+                Setup Variables
               </div>
             </div>
           </a>
         
         
-          <a href="../entropy-daemon/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../tasks/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Install an entropy daemon
+                Creating tasks
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

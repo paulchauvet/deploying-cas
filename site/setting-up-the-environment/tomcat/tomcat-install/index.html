@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#heading" class="md-skip">
+        <a href="#tomcat-installation" class="md-skip">
           Skip to content
         </a>
       
@@ -342,8 +342,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../tomcat-architecture/" class="md-nav__link">
-        Architecture
+      <a href="../tomcat-overview/" class="md-nav__link">
+        Tomcat Overview
       </a>
     </li>
   
@@ -386,38 +386,9 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Install Tomcat
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         Install Tomcat
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#to-be-added" class="md-nav__link">
-    To be added
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -519,13 +490,89 @@
   
 
           
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5" >
+      
+      <label class="md-nav__link" for="nav-3-5">
+        Tomcat and Ansible
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tomcat and Ansible" data-md-level="2">
+        <label class="md-nav__title" for="nav-3-5">
+          <span class="md-nav__icon md-icon"></span>
+          Tomcat and Ansible
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
             
   
   
   
     <li class="md-nav__item">
-      <a href="../ansible-role-tomcat/" class="md-nav__link">
-        Using Ansible to put it all together
+      <a href="../../tomcat-ansible/tomcat-ansible-overview/" class="md-nav__link">
+        Ansible and Tomcat - Initial Steps
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/variables/" class="md-nav__link">
+        Setup Variables
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/templates/" class="md-nav__link">
+        Setup Templates
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/tasks/" class="md-nav__link">
+        Creating tasks
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/running-the-play/" class="md-nav__link">
+        Running the play
       </a>
     </li>
   
@@ -545,14 +592,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6" >
       
-      <label class="md-nav__link" for="nav-3-5">
+      <label class="md-nav__link" for="nav-3-6">
         Apache HTTPD
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Apache HTTPD" data-md-level="2">
-        <label class="md-nav__title" for="nav-3-5">
+        <label class="md-nav__title" for="nav-3-6">
           <span class="md-nav__icon md-icon"></span>
           Apache HTTPD
         </label>
@@ -564,8 +611,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../httpd/open-firewall/" class="md-nav__link">
-        Open port 443 in firewall
+      <a href="../../httpd/ajp-proxy/" class="md-nav__link">
+        Use AJP to communicate with Tomcat
       </a>
     </li>
   
@@ -601,21 +648,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#to-be-added" class="md-nav__link">
-    To be added
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -627,9 +659,25 @@
               
                 
                 
-                <h1 id="heading">Heading</h1>
-<h2 id="to-be-added">To be added</h2>
-<p>This will be added later.</p>
+                <h1 id="tomcat-installation">Tomcat Installation</h1>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The steps below are for the CAS servers - not the build server.  That being said - if you are going to install and maintain via Ansible - you don't need to do this manually, though it is worth seeing how to do it manually.</p>
+</div>
+<p>As mentioned in the [architecture] section, RHEL 8 doesn't package Tomcat (and RHEL 7 only packaged Tomcat 8.0.x) so this is both how I've had Tomcat managed in RHEL 7 for CAS 5, as well as how I'm installing and maintaining Tomcat 9.0.x on RHEL 8.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Your URL in the wget command below will differ depending on which mirror you are getting from the <a href="https://tomcat.apache.org/download-90.cgi">Tomcat Download</a> page, and which specific version of Tomcat you are downloading (9.0.43 was the latest in the 9.0.x branch when this page was last updated.)</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="gp">[root@login6devb ~]# </span>mkdir -p /opt/tomcat
+<span class="gp">[root@login6devb ~]# </span><span class="nb">cd</span> /opt/tomcat
+<span class="gp">[root@login6devb tomcat]# </span>wget https://mirrors.ocf.berkeley.edu/apache/tomcat/tomcat-9/v9.0.43/bin/apache-tomcat-9.0.43.tar.gz
+<span class="go">    (download progress will show)</span>
+<span class="gp">[root@login6devb tomcat]# </span>tar xzf apache-tomcat-9.0.43.tar.gz
+<span class="gp">[root@login6devb tomcat]# </span>ln -s /opt/tomcat/apache-tomcat-9.0.43 latest
+<span class="gp">[root@login6devb tomcat]# </span>rm -f apache-tomcat-9.0.43.tar.gz
+<span class="gp">[root@login6devb tomcat]# </span>
+</code></pre></div>
                 
               
               

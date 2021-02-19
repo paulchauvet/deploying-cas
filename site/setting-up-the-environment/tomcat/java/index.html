@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#heading" class="md-skip">
+        <a href="#install-java" class="md-skip">
           Skip to content
         </a>
       
@@ -342,8 +342,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../tomcat-architecture/" class="md-nav__link">
-        Architecture
+      <a href="../tomcat-overview/" class="md-nav__link">
+        Tomcat Overview
       </a>
     </li>
   
@@ -374,38 +374,9 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Install Java
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         Install Java
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#to-be-added" class="md-nav__link">
-    To be added
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -519,13 +490,89 @@
   
 
           
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5" >
+      
+      <label class="md-nav__link" for="nav-3-5">
+        Tomcat and Ansible
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tomcat and Ansible" data-md-level="2">
+        <label class="md-nav__title" for="nav-3-5">
+          <span class="md-nav__icon md-icon"></span>
+          Tomcat and Ansible
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
             
   
   
   
     <li class="md-nav__item">
-      <a href="../ansible-role-tomcat/" class="md-nav__link">
-        Using Ansible to put it all together
+      <a href="../../tomcat-ansible/tomcat-ansible-overview/" class="md-nav__link">
+        Ansible and Tomcat - Initial Steps
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/variables/" class="md-nav__link">
+        Setup Variables
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/templates/" class="md-nav__link">
+        Setup Templates
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/tasks/" class="md-nav__link">
+        Creating tasks
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/running-the-play/" class="md-nav__link">
+        Running the play
       </a>
     </li>
   
@@ -545,14 +592,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6" >
       
-      <label class="md-nav__link" for="nav-3-5">
+      <label class="md-nav__link" for="nav-3-6">
         Apache HTTPD
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Apache HTTPD" data-md-level="2">
-        <label class="md-nav__title" for="nav-3-5">
+        <label class="md-nav__title" for="nav-3-6">
           <span class="md-nav__icon md-icon"></span>
           Apache HTTPD
         </label>
@@ -564,8 +611,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../httpd/open-firewall/" class="md-nav__link">
-        Open port 443 in firewall
+      <a href="../../httpd/ajp-proxy/" class="md-nav__link">
+        Use AJP to communicate with Tomcat
       </a>
     </li>
   
@@ -601,21 +648,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#to-be-added" class="md-nav__link">
-    To be added
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -627,9 +659,14 @@
               
                 
                 
-                <h1 id="heading">Heading</h1>
-<h2 id="to-be-added">To be added</h2>
-<p>This will be added later.</p>
+                <h1 id="install-java">Install Java</h1>
+<p>CAS 6 requires Java 11 or later.  Due to the licensing changes from Oracle, I have only used <a href="https://openjdk.java.net/">OpenJDK</a> for the last several years.  If you have the licensing from Oracle and prefer their version, go ahead!  Likewise there's also <a href="https://adoptopenjdk.net/">AdoptOpenJDK</a> but I only have direct experience using OpenJDK with CAS 5 or 6.</p>
+<p>OpenJDK has the advantage of being directly in the RHEL repositories, so it's one less thing to manage outside of the OS package management.  This is needed on the build servers, and all the CAS servers.</p>
+<div class="highlight"><pre><span></span><code><span class="go">dnf install java-11-openjdk java-11-openjdk-devel</span>
+</code></pre></div>
+<p>You can have multiple Java versions installed, but you will want to have JDK 11 as the default (or will have to make sure it's the default for Tomcat at least).  To check which is the default, use:</p>
+<div class="highlight"><pre><span></span><code><span class="go">java --version</span>
+</code></pre></div>
                 
               
               

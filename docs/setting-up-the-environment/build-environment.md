@@ -49,23 +49,3 @@ ssh root@cas6dev1
 ```
 
 If successful - you'll be logged in without a username or password.  If this is the first time you are connecting via SSH from the build host to the CAS host, you'll be warned that the authenticity of the host cannot be established, and you'll be prompted to enter *yes* to continue connecting.
-
-
-## Configure a hosts file for Ansible
-You will need a hosts file for Ansible.  This file can have simply the hostname, or it could have some variables as well.  We at New Paltz put a few things there such as the hostname, the VM name (in vCenter), the folder (in vCenter), and the Tomcat version (so I can roll out updates to Tomcat in some environments earlier than others).
-
-An example of this for CAS servers is below.  This file would be in /etc/ansible/hosts:
-
-```
-[CAS_DEV]
-cas6dev1 vmware_name="CAS 6 Test 1"  vmware_folder="/Computer Services/vm/CAS Authentication Servers" tomcat_major_ver=9.0 tomcat_ver=9.0.41 jdk_version=11
-cas6dev2 vmware_name="CAS 6 Test 2"  vmware_folder="/Computer Services/vm/CAS Authentication Servers" tomcat_major_ver=9.0 tomcat_ver=9.0.41 jdk_version=11
-
-[CAS_TEST]
-cas6test1 vmware_name="CAS 6 Test 1" vmware_folder="/Computer Services/vm/CAS Authentication Servers" tomcat_major_ver=9.0 tomcat_ver=9.0.41 jdk_version=11
-cas6test2 vmware_name="CAS 6 Test 2" vmware_folder="/Computer Services/vm/CAS Authentication Servers" tomcat_major_ver=9.0 tomcat_ver=9.0.41 jdk_version=11
-
-[CAS_PROD]
-cas6prod1 vmware_name="CAS 6 Test 1" vmware_folder="/Computer Services/vm/CAS Authentication Servers" tomcat_major_ver=9.0 tomcat_ver=9.0.41 jdk_version=11
-cas6prod2 vmware_name="CAS 6 Test 2" vmware_folder="/Computer Services/vm/CAS Authentication Servers" tomcat_major_ver=9.0 tomcat_ver=9.0.41 jdk_version=11
-```

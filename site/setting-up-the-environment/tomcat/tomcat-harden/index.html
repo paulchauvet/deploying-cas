@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#heading" class="md-skip">
+        <a href="#harden-the-installation" class="md-skip">
           Skip to content
         </a>
       
@@ -342,8 +342,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../tomcat-architecture/" class="md-nav__link">
-        Architecture
+      <a href="../tomcat-overview/" class="md-nav__link">
+        Tomcat Overview
       </a>
     </li>
   
@@ -445,8 +445,36 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#to-be-added" class="md-nav__link">
-    To be added
+  <a href="#create-a-tomcat-user-and-group" class="md-nav__link">
+    Create a tomcat user and group
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-file-ownership-and-permissions" class="md-nav__link">
+    Set file ownership and permissions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remove-example-webapps" class="md-nav__link">
+    Remove example webapps
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#to-do" class="md-nav__link">
+    To do
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
   </a>
   
 </li>
@@ -519,13 +547,89 @@
   
 
           
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5" >
+      
+      <label class="md-nav__link" for="nav-3-5">
+        Tomcat and Ansible
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tomcat and Ansible" data-md-level="2">
+        <label class="md-nav__title" for="nav-3-5">
+          <span class="md-nav__icon md-icon"></span>
+          Tomcat and Ansible
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
             
   
   
   
     <li class="md-nav__item">
-      <a href="../ansible-role-tomcat/" class="md-nav__link">
-        Using Ansible to put it all together
+      <a href="../../tomcat-ansible/tomcat-ansible-overview/" class="md-nav__link">
+        Ansible and Tomcat - Initial Steps
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/variables/" class="md-nav__link">
+        Setup Variables
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/templates/" class="md-nav__link">
+        Setup Templates
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/tasks/" class="md-nav__link">
+        Creating tasks
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/running-the-play/" class="md-nav__link">
+        Running the play
       </a>
     </li>
   
@@ -545,14 +649,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6" >
       
-      <label class="md-nav__link" for="nav-3-5">
+      <label class="md-nav__link" for="nav-3-6">
         Apache HTTPD
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Apache HTTPD" data-md-level="2">
-        <label class="md-nav__title" for="nav-3-5">
+        <label class="md-nav__title" for="nav-3-6">
           <span class="md-nav__icon md-icon"></span>
           Apache HTTPD
         </label>
@@ -564,8 +668,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../httpd/open-firewall/" class="md-nav__link">
-        Open port 443 in firewall
+      <a href="../../httpd/ajp-proxy/" class="md-nav__link">
+        Use AJP to communicate with Tomcat
       </a>
     </li>
   
@@ -608,8 +712,36 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#to-be-added" class="md-nav__link">
-    To be added
+  <a href="#create-a-tomcat-user-and-group" class="md-nav__link">
+    Create a tomcat user and group
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-file-ownership-and-permissions" class="md-nav__link">
+    Set file ownership and permissions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remove-example-webapps" class="md-nav__link">
+    Remove example webapps
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#to-do" class="md-nav__link">
+    To do
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
   </a>
   
 </li>
@@ -627,9 +759,76 @@
               
                 
                 
-                <h1 id="heading">Heading</h1>
-<h2 id="to-be-added">To be added</h2>
-<p>This will be added later.</p>
+                <h1 id="harden-the-installation">Harden the installation</h1>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The steps below are for the CAS servers - not the build server.  That being said - if you are going to install and maintain via Ansible - you don't need to do this manually, though it is worth seeing how to do it manually.</p>
+</div>
+<p>The <a href="https://tomcat.apache.org/tomcat-9.0-doc/security-howto.html">Tomcat Security Considerations</a> document makes several recommendations for hardening a Tomcat installation:</p>
+<ul>
+<li>
+<p>Tomcat should not be run as the root user; it should be run as a dedicated user (usually named tomcat) that has minimum operating system permissions. It should not be possible to log in remotely as the tomcat user.</p>
+</li>
+<li>
+<p>All Tomcat files should be owned by user root and group tomcat (the tomcat user’s default group should be group tomcat). File/directory permissions should be set to owner read/write, group read only, and world none. The exceptions are the logs, temp, and work directories, which should be owned by the tomcat user instead of root.</p>
+</li>
+<li>
+<p>The default and example web applications included with the Tomcat distribution should be removed if they are not needed.</p>
+</li>
+<li>
+<p>Auto-deployment should be disabled, and web applications should be deployed as exploded directories rather than web application archives (WAR files).</p>
+</li>
+</ul>
+<p>Implementing these recommendations means that, even if an attacker compromises the Tomcat process, he or she cannot change the Tomcat configuration, deploy new web applications, or modify existing web applications.</p>
+<h2 id="create-a-tomcat-user-and-group">Create a tomcat user and group</h2>
+<div class="highlight"><pre><span></span><code><span class="gp">[root@login6devb ~]# </span>groupadd -r tomcat
+<span class="gp">[root@login6devb ~]# </span>useradd -r -d /opt/tomcat -g tomcat -s /sbin/nologin tomcat
+<span class="go">    (This gives a &#39;shell&#39; of /sbin/nologin which prevents the user from logging in)</span>
+</code></pre></div>
+<h2 id="set-file-ownership-and-permissions">Set file ownership and permissions</h2>
+<p>Some of these should be owned by user:root and group:tomcat (conf and webapps).  Others (logs temp work) should be owned by user/group:tomcat.
+<div class="highlight"><pre><span></span><code>mkdir -p /opt/tomcat/latest/conf/Catalina/localhost
+
+<span class="nb">cd</span> /opt/tomcat/latest/conf
+chown -R root:tomcat .
+chmod -R u+rwX,g+rX,o<span class="o">=</span> .
+chmod -R g-w .
+
+<span class="nb">cd</span> /opt/tomcat/latest/webapps
+chown -R root:tomcat .
+chmod -R u+rwX,g+rX,o<span class="o">=</span> .
+chmod -R g-w .
+
+<span class="nb">cd</span> /opt/tomcat/latest/logs
+chown -R tomcat:tomcat .
+chmod -R u+rwX,g+rX,o<span class="o">=</span> .
+chmod -R g-w .
+
+<span class="nb">cd</span> /opt/tomcat/latest/temp
+chown -R tomcat:tomcat .
+chmod -R u+rwX,g+rX,o<span class="o">=</span> .
+chmod -R g-w .
+
+<span class="nb">cd</span> /opt/tomcat/latest/work
+chown -R tomcat:tomcat .
+chmod -R u+rwX,g+rX,o<span class="o">=</span> .
+chmod -R g-w .
+</code></pre></div></p>
+<h2 id="remove-example-webapps">Remove example webapps</h2>
+<p>Unless you have a good reason, these should all be removed.  If you do need to keep these, you'll want to heavily restrict access to them.</p>
+<div class="highlight"><pre><span></span><code><span class="gp">[root@login6devb ~]# </span><span class="nb">cd</span> /opt/tomcat/latest/
+<span class="gp">[root@login6devb latest]# </span>rm -rf temp/* work/*
+<span class="gp">[root@login6devb latest]# </span><span class="nb">cd</span> webapps/
+<span class="gp">[root@login6devb webapps]# </span>rm -rf docs examples host-manager manager
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Important: The command above does not remove the ROOT web application from the webapps directory because it can be useful in a development/test environment to quickly determine whether Tomcat is working properly. However, when deploying Tomcat to production servers, the ROOT application should be removed along with the rest of the default web applications.</p>
+</div>
+<h2 id="to-do">To do</h2>
+<p>Still need to add guidance on other aspects of the Tomcat Security Considerations document, such as server.xml configuration.</p>
+<h2 id="references">References</h2>
+<p><a href="https://tomcat.apache.org/tomcat-9.0-doc/security-howto.html">Tomcat Security Considerations</a></p>
                 
               
               

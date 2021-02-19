@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#heading" class="md-skip">
+        <a href="#configure-asynchronous-logging-support" class="md-skip">
           Skip to content
         </a>
       
@@ -342,8 +342,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../tomcat-architecture/" class="md-nav__link">
-        Architecture
+      <a href="../tomcat-overview/" class="md-nav__link">
+        Tomcat Overview
       </a>
     </li>
   
@@ -470,38 +470,9 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Configure asynchronous logging support
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         Configure asynchronous logging support
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#to-be-added" class="md-nav__link">
-    To be added
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -514,18 +485,6 @@
     <li class="md-nav__item">
       <a href="../systemd-service/" class="md-nav__link">
         Configure systemd to start tomcat
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ansible-role-tomcat/" class="md-nav__link">
-        Using Ansible to put it all together
       </a>
     </li>
   
@@ -548,11 +507,99 @@
         <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5" >
       
       <label class="md-nav__link" for="nav-3-5">
+        Tomcat and Ansible
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tomcat and Ansible" data-md-level="2">
+        <label class="md-nav__title" for="nav-3-5">
+          <span class="md-nav__icon md-icon"></span>
+          Tomcat and Ansible
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/tomcat-ansible-overview/" class="md-nav__link">
+        Ansible and Tomcat - Initial Steps
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/variables/" class="md-nav__link">
+        Setup Variables
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/templates/" class="md-nav__link">
+        Setup Templates
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/tasks/" class="md-nav__link">
+        Creating tasks
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/running-the-play/" class="md-nav__link">
+        Running the play
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6" >
+      
+      <label class="md-nav__link" for="nav-3-6">
         Apache HTTPD
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Apache HTTPD" data-md-level="2">
-        <label class="md-nav__title" for="nav-3-5">
+        <label class="md-nav__title" for="nav-3-6">
           <span class="md-nav__icon md-icon"></span>
           Apache HTTPD
         </label>
@@ -564,8 +611,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../httpd/open-firewall/" class="md-nav__link">
-        Open port 443 in firewall
+      <a href="../../httpd/ajp-proxy/" class="md-nav__link">
+        Use AJP to communicate with Tomcat
       </a>
     </li>
   
@@ -601,21 +648,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#to-be-added" class="md-nav__link">
-    To be added
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -627,9 +659,26 @@
               
                 
                 
-                <h1 id="heading">Heading</h1>
-<h2 id="to-be-added">To be added</h2>
-<p>This will be added later.</p>
+                <h1 id="configure-asynchronous-logging-support">Configure asynchronous logging support</h1>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The steps below are for the CAS servers - not the build server.  That being said - if you are going to install and maintain via Ansible - you don't need to do this manually, though it is worth seeing how to do it manually.  With Ansible, the catalina.properties file will be a template pushed from Ansible.</p>
+</div>
+<p>CAS 6’s logging subsystem automatically inserts itself into the runtime application context at startup time, and is designed to clean up the logging context when Tomcat shuts down. Unfortunately, the default Tomcat JarScanner configuration skips over JAR files named log4j*.jar, which prevents this feature from working.</p>
+<p>To correct this problem, edit the file <mark class="critic">/etc/tomcat/catalina.properties</mark> and locate the lines defining the jarsToSkip property (starting around line 108), and then the specific line of that definition that includes log4j*.jar (around line 161):</p>
+<p><div class="highlight"><pre><span></span><code>tomcat.util.scan.StandardJarScanFilter.jarsToSkip=\
+annotations-api.jar,\
+ant-junit*.jar,\
+ant-launcher.jar,\
+    (snip
+junit.jar,\
+<span class="hll">log4j*.jar,\
+</span>mail*.jar,\
+    (snip)
+xmlParserAPIs.jar,\
+xom-*.jar
+</code></pre></div>
+Remove <mark class="critic">the log4j*.jar, \</mark> line completely.</p>
                 
               
               

@@ -18,6 +18,7 @@ markdown_extensions:
   - pymdownx.highlight  
   - pymdownx.betterem:
       smart_enable: all
+  - pymdownx.critic
 
 nav:
   - Main: index.md
@@ -30,7 +31,7 @@ nav:
     - Configure time synchronization: setting-up-the-environment/time-synchronization.md
     - Build Environment: setting-up-the-environment/build-environment.md
     - Tomcat:
-      - Architecture: setting-up-the-environment/tomcat/tomcat-architecture.md
+      - Tomcat Overview: setting-up-the-environment/tomcat/tomcat-overview.md
       - Install an entropy daemon: setting-up-the-environment/tomcat/entropy-daemon.md
       - Install Java: setting-up-the-environment/tomcat/java.md
       - Install Tomcat: setting-up-the-environment/tomcat/tomcat-install.md
@@ -42,9 +43,14 @@ nav:
       - Tune resource caching settings: setting-up-the-environment/tomcat/resource-caching.md
       - Configure asynchronous logging support: setting-up-the-environment/tomcat/configure-async-logging.md
       - Configure systemd to start tomcat: setting-up-the-environment/tomcat/systemd-service.md
-      - Using Ansible to put it all together: setting-up-the-environment/tomcat/ansible-role-tomcat.md
+    - Tomcat and Ansible:
+      - Ansible and Tomcat - Initial Steps: setting-up-the-environment/tomcat-ansible/tomcat-ansible-overview.md
+      - Setup Variables: setting-up-the-environment/tomcat-ansible/variables.md
+      - Setup Templates: setting-up-the-environment/tomcat-ansible/templates.md
+      - Creating tasks: setting-up-the-environment/tomcat-ansible/tasks.md
+      - Running the play: setting-up-the-environment/tomcat-ansible/running-the-play.md
     - Apache HTTPD:
-      - Open port 443 in firewall: setting-up-the-environment/httpd/open-firewall.md
+      - Use AJP to communicate with Tomcat: setting-up-the-environment/httpd/ajp-proxy.md
       
 
 

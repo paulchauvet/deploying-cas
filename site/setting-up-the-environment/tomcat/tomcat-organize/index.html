@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#heading" class="md-skip">
+        <a href="#organize-the-installation" class="md-skip">
           Skip to content
         </a>
       
@@ -342,8 +342,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../tomcat-architecture/" class="md-nav__link">
-        Architecture
+      <a href="../tomcat-overview/" class="md-nav__link">
+        Tomcat Overview
       </a>
     </li>
   
@@ -433,8 +433,49 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#to-be-added" class="md-nav__link">
-    To be added
+  <a href="#move-the-configuration-conf-directory-to-etctomcat" class="md-nav__link">
+    Move the configuration (conf) directory to /etc/tomcat
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#move-the-logs-directory-to-varlogtomcat" class="md-nav__link">
+    Move the logs directory to /var/log/tomcat
+  </a>
+  
+    <nav class="md-nav" aria-label="Move the logs directory to /var/log/tomcat">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#move-the-webapps-directory-to-varlibtomcat" class="md-nav__link">
+    Move the webapps directory to /var/lib/tomcat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#move-the-work-directory-to-varcachetomcatwork" class="md-nav__link">
+    Move the work directory to /var/cache/tomcat/work
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#move-the-temp-directory-to-varcachetomcattemp" class="md-nav__link">
+    Move the temp directory to /var/cache/tomcat/temp
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-layout" class="md-nav__link">
+    Final layout
   </a>
   
 </li>
@@ -519,13 +560,89 @@
   
 
           
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5" >
+      
+      <label class="md-nav__link" for="nav-3-5">
+        Tomcat and Ansible
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tomcat and Ansible" data-md-level="2">
+        <label class="md-nav__title" for="nav-3-5">
+          <span class="md-nav__icon md-icon"></span>
+          Tomcat and Ansible
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
             
   
   
   
     <li class="md-nav__item">
-      <a href="../ansible-role-tomcat/" class="md-nav__link">
-        Using Ansible to put it all together
+      <a href="../../tomcat-ansible/tomcat-ansible-overview/" class="md-nav__link">
+        Ansible and Tomcat - Initial Steps
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/variables/" class="md-nav__link">
+        Setup Variables
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/templates/" class="md-nav__link">
+        Setup Templates
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/tasks/" class="md-nav__link">
+        Creating tasks
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/running-the-play/" class="md-nav__link">
+        Running the play
       </a>
     </li>
   
@@ -545,14 +662,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6" >
       
-      <label class="md-nav__link" for="nav-3-5">
+      <label class="md-nav__link" for="nav-3-6">
         Apache HTTPD
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Apache HTTPD" data-md-level="2">
-        <label class="md-nav__title" for="nav-3-5">
+        <label class="md-nav__title" for="nav-3-6">
           <span class="md-nav__icon md-icon"></span>
           Apache HTTPD
         </label>
@@ -564,8 +681,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../httpd/open-firewall/" class="md-nav__link">
-        Open port 443 in firewall
+      <a href="../../httpd/ajp-proxy/" class="md-nav__link">
+        Use AJP to communicate with Tomcat
       </a>
     </li>
   
@@ -608,8 +725,49 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#to-be-added" class="md-nav__link">
-    To be added
+  <a href="#move-the-configuration-conf-directory-to-etctomcat" class="md-nav__link">
+    Move the configuration (conf) directory to /etc/tomcat
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#move-the-logs-directory-to-varlogtomcat" class="md-nav__link">
+    Move the logs directory to /var/log/tomcat
+  </a>
+  
+    <nav class="md-nav" aria-label="Move the logs directory to /var/log/tomcat">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#move-the-webapps-directory-to-varlibtomcat" class="md-nav__link">
+    Move the webapps directory to /var/lib/tomcat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#move-the-work-directory-to-varcachetomcatwork" class="md-nav__link">
+    Move the work directory to /var/cache/tomcat/work
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#move-the-temp-directory-to-varcachetomcattemp" class="md-nav__link">
+    Move the temp directory to /var/cache/tomcat/temp
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-layout" class="md-nav__link">
+    Final layout
   </a>
   
 </li>
@@ -627,9 +785,54 @@
               
                 
                 
-                <h1 id="heading">Heading</h1>
-<h2 id="to-be-added">To be added</h2>
-<p>This will be added later.</p>
+                <h1 id="organize-the-installation">Organize the installation</h1>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The steps below are for the CAS servers - not the build server.  That being said - if you are going to install and maintain via Ansible - you don't need to do this manually, though it is worth seeing how to do it manually.</p>
+</div>
+<p>To make it easier to upgrade (and if needed, downgrade) Tomcat without having to reapply configuration file changes, or reinstall web applications, it's better (in my opinion) to pull certain directories outside of Tomcat's own directory, them symlink them from the Tomcat directory to a more permanent place on the operating system.</p>
+<p>You should still review release notes for upgrades, in case there are any configuration changes which could cause issues.</p>
+<h2 id="move-the-configuration-conf-directory-to-etctomcat">Move the configuration (conf) directory to /etc/tomcat</h2>
+<p>The conf directory has Tomcat's configuration files.  If you're like me - you prefer to manage your configuration for applications from /etc.  We'll be initially moving the conf directory to /etc/tomcat to give it a starting point, but then will create a symlink to point /opt/tomcat/latest/conf to /etc/tomcat</p>
+<div class="highlight"><pre><span></span><code><span class="gp">[root@login6devb ~]# </span><span class="nb">cd</span> /opt/tomcat/latest/
+<span class="gp">[root@login6devb latest]# </span>cp -pR conf /etc/tomcat
+<span class="gp">[root@login6devb latest]# </span>rm -rf conf
+<span class="gp">[root@login6devb latest]# </span>ln -s /etc/tomcat conf
+</code></pre></div>
+<h2 id="move-the-logs-directory-to-varlogtomcat">Move the logs directory to /var/log/tomcat</h2>
+<p>We'll be doing the same with the logs directory as with configuration.  This way your log files persist across versions (and you don't have to go hunt down the version that was running when you need logs from day 'x').  You may also keep /var/log or /var as separate partitions to avoid log files filling up the root filesystem. </p>
+<div class="highlight"><pre><span></span><code><span class="gp">[root@login6devb ~]# </span><span class="nb">cd</span> /opt/tomcat/latest/
+<span class="gp">[root@login6devb latest]# </span>cp -pR logs /var/log/tomcat
+<span class="gp">[root@login6devb latest]# </span>rm -rf logs
+<span class="gp">[root@login6devb latest]# </span>ln -s /var/log/tomcat logs
+</code></pre></div>
+<h3 id="move-the-webapps-directory-to-varlibtomcat">Move the webapps directory to /var/lib/tomcat</h3>
+<p>Same drill as the last two - best to keep the webapps directory in a more permanent location.  This way you don't have to move /opt/tomcat/apache-tomcat-{versionx}/webapps/cas.war to /opt/tomcat/apache-tomcat-{versiony}/webapps/ after each upgrade of Tomcat.</p>
+<div class="highlight"><pre><span></span><code><span class="gp">[root@login6devb ~]# </span><span class="nb">cd</span> /opt/tomcat/latest/
+<span class="gp">[root@login6devb latest]# </span>cp -pR webapps /var/lib/tomcat
+<span class="gp">[root@login6devb latest]# </span>rm -rf webapps
+<span class="gp">[root@login6devb latest]# </span>ln -s /var/lib/tomcat webapps
+</code></pre></div>
+<h3 id="move-the-work-directory-to-varcachetomcatwork">Move the work directory to /var/cache/tomcat/work</h3>
+<p>Tomcat’s work directory is where translated servlet source files and JSP/JSF classes are stored. Its contents are created automatically, but don’t need to be recreated unless the application has been changed. To reduce startup time, the contents of this directory should be preserved across application restarts and system reboots. Linux systems provide the /var/cache directory for just that purpose, so we can put the work directory there.  To do this:</p>
+<div class="highlight"><pre><span></span><code><span class="gp">[root@login6devb ~]# </span><span class="nb">cd</span> /opt/tomcat/latest/
+<span class="gp">[root@login6devb latest]# </span>mkdir /var/cache/tomcat
+<span class="gp">[root@login6devb latest]# </span>cp -pR work /var/cache/tomcat/work
+<span class="gp">[root@login6devb latest]# </span>rm -rf work
+<span class="gp">[root@login6devb latest]# </span>ln -s /var/cache/tomcat/work work
+</code></pre></div>
+<h3 id="move-the-temp-directory-to-varcachetomcattemp">Move the temp directory to /var/cache/tomcat/temp</h3>
+<p>Tomcat provides a temp directory for web applications to store temporary files in. But like log files, temporary files can sometimes be very large, so storing them in /opt is probably not a good practice. But /tmp and /var/tmp are not the best places either, because we want to be able to limit access to Tomcat’s temporary files (see Harden the installation). Therefore, we will create a new temp directory under /var/cache/tomcat.  To do this:</p>
+<div class="highlight"><pre><span></span><code><span class="gp">[root@login6devb ~]# </span><span class="nb">cd</span> /opt/tomcat/latest/
+<span class="gp">[root@login6devb latest]# </span>cp -pR temp /var/cache/tomcat/temp
+<span class="gp">[root@login6devb latest]# </span>rm -rf temp
+<span class="gp">[root@login6devb latest]# </span>ln -s /var/cache/tomcat/temp temp
+</code></pre></div>
+<h2 id="final-layout">Final layout</h2>
+<p>Your layout should look like the following:</p>
+<figure>
+  <img src="https://paulchauvet.github.io/deploying-cas/images/tomcat-symlinks.png" alt="Screenshot showing output of ls -l /opt/tomcat/latest/ - confirming the symlinks we created."/>
+</figure>
                 
               
               

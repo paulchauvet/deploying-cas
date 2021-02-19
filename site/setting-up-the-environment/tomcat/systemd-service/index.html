@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#heading" class="md-skip">
+        <a href="#configure-systemd-to-start-tomcat" class="md-skip">
           Skip to content
         </a>
       
@@ -342,8 +342,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../tomcat-architecture/" class="md-nav__link">
-        Architecture
+      <a href="../tomcat-overview/" class="md-nav__link">
+        Tomcat Overview
       </a>
     </li>
   
@@ -505,8 +505,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#to-be-added" class="md-nav__link">
-    To be added
+  <a href="#definte-tomcat-as-a-service-unit" class="md-nav__link">
+    Definte Tomcat as a service unit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enable-the-tomcat-service" class="md-nav__link">
+    Enable the Tomcat service
   </a>
   
 </li>
@@ -515,18 +522,6 @@
   
 </nav>
       
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ansible-role-tomcat/" class="md-nav__link">
-        Using Ansible to put it all together
-      </a>
     </li>
   
 
@@ -548,11 +543,99 @@
         <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5" >
       
       <label class="md-nav__link" for="nav-3-5">
+        Tomcat and Ansible
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tomcat and Ansible" data-md-level="2">
+        <label class="md-nav__title" for="nav-3-5">
+          <span class="md-nav__icon md-icon"></span>
+          Tomcat and Ansible
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/tomcat-ansible-overview/" class="md-nav__link">
+        Ansible and Tomcat - Initial Steps
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/variables/" class="md-nav__link">
+        Setup Variables
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/templates/" class="md-nav__link">
+        Setup Templates
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/tasks/" class="md-nav__link">
+        Creating tasks
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tomcat-ansible/running-the-play/" class="md-nav__link">
+        Running the play
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6" >
+      
+      <label class="md-nav__link" for="nav-3-6">
         Apache HTTPD
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Apache HTTPD" data-md-level="2">
-        <label class="md-nav__title" for="nav-3-5">
+        <label class="md-nav__title" for="nav-3-6">
           <span class="md-nav__icon md-icon"></span>
           Apache HTTPD
         </label>
@@ -564,8 +647,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../httpd/open-firewall/" class="md-nav__link">
-        Open port 443 in firewall
+      <a href="../../httpd/ajp-proxy/" class="md-nav__link">
+        Use AJP to communicate with Tomcat
       </a>
     </li>
   
@@ -608,8 +691,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#to-be-added" class="md-nav__link">
-    To be added
+  <a href="#definte-tomcat-as-a-service-unit" class="md-nav__link">
+    Definte Tomcat as a service unit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enable-the-tomcat-service" class="md-nav__link">
+    Enable the Tomcat service
   </a>
   
 </li>
@@ -627,9 +717,68 @@
               
                 
                 
-                <h1 id="heading">Heading</h1>
-<h2 id="to-be-added">To be added</h2>
-<p>This will be added later.</p>
+                <h1 id="configure-systemd-to-start-tomcat">Configure systemd to start Tomcat</h1>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The steps below are for the CAS servers - not the build server.  That being said - if you are going to install and maintain via Ansible - you don't need to do this manually, though it is worth seeing how to do it manually.  With Ansible, the unit file will be an Ansible template that it will push out and enable.</p>
+</div>
+<p>RHEL, since version 7, has used systemd (instead of old sysv init scripts) to manage system resources.  A <em>unit</em> in systemd is any resource systemd knows how to operate on and manage.  This will give you a basic unit file with the ability to start/stop/restart the service (including on boot).</p>
+<h2 id="definte-tomcat-as-a-service-unit">Definte Tomcat as a service unit</h2>
+<p>Create a new file: <mark class="critic">/etc/systemd/system/tomcat.service</mark> with the contents below:</p>
+<div class="highlight"><pre><span></span><code>[Unit]
+Description=Apache Tomcat Web Application Container
+After=network.target
+
+[Service]
+Type=forking
+PIDFile=/var/run/tomcat.pid
+UMask=0007
+
+# Tomcat variables
+Environment=&#39;JAVA_HOME=/usr/lib/jvm/java-openjdk&#39;
+Environment=&#39;CATALINA_PID=/var/run/tomcat.pid&#39;
+Environment=&#39;CATALINA_HOME=/opt/tomcat/latest&#39;
+Environment=&#39;CATALINA_BASE=/opt/tomcat/latest&#39;
+Environment=&#39;CATALINA_OPTS=-Xms512M -Xmx2048M -XX:+UseParallelGC -server&#39;
+
+# Needed to make use of Tomcat Native Library
+Environment=&#39;LD_LIBRARY_PATH=/opt/tomcat/latest/lib&#39;
+
+ExecStart=/opt/tomcat/latest/bin/jsvc \
+            -Dcatalina.home=${CATALINA_HOME} \
+            -Dcatalina.base=${CATALINA_BASE} \
+            -Djava.awt.headless=true \
+            -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager \
+            -Djava.util.logging.config.file=${CATALINA_BASE}/conf/logging.properties \
+            -cp ${CATALINA_HOME}/bin/commons-daemon.jar:${CATALINA_HOME}/bin/bootstrap.jar:${CATALINA_HOME}/bin/tomcat-juli.jar \
+            -pidfile ${CATALINA_PID} \
+            -java-home ${JAVA_HOME} \
+            -user tomcat \
+            $CATALINA_OPTS \
+            org.apache.catalina.startup.Bootstrap
+
+ExecStop=/opt/tomcat/latest/bin/jsvc \
+            -pidfile ${CATALINA_PID} \
+            -stop \
+            org.apache.catalina.startup.Bootstrap
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></div>
+<h2 id="enable-the-tomcat-service">Enable the Tomcat service</h2>
+<p>Set the appropriate SELinux file context and file permissions:
+<div class="highlight"><pre><span></span><code><span class="go">restorecon /etc/systemd/system/tomcat.service</span>
+<span class="go">chmod 644 /etc/systemd/system/tomcat.service</span>
+</code></pre></div></p>
+<p>Enable the service - which will cause Tomcat to be started at boot.
+<div class="highlight"><pre><span></span><code><span class="go">systemctl enable tomcat.service</span>
+</code></pre></div></p>
+<p>You can then stop/start/restart and check the status of Tomcat
+<div class="highlight"><pre><span></span><code>systemctl start tomcat
+systemctl stop tomcat
+systemctl restart tomcat
+systemctl status tomcat
+</code></pre></div></p>
                 
               
               
@@ -663,13 +812,13 @@
           </a>
         
         
-          <a href="../ansible-role-tomcat/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../tomcat-ansible/tomcat-ansible-overview/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Using Ansible to put it all together
+                Ansible and Tomcat - Initial Steps
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
