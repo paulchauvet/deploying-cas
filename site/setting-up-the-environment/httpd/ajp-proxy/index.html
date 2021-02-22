@@ -548,6 +548,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../tomcat-ansible/handlers/" class="md-nav__link">
+        Setup Handlers
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../tomcat-ansible/tasks/" class="md-nav__link">
         Creating tasks
       </a>
@@ -666,6 +678,207 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+      
+      <label class="md-nav__link" for="nav-4">
+        Building CAS
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Building CAS" data-md-level="1">
+        <label class="md-nav__title" for="nav-4">
+          <span class="md-nav__icon md-icon"></span>
+          Building CAS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../building-cas/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../building-cas/create-gradle-overlay/" class="md-nav__link">
+        Create Gradle Overlay
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../building-cas/initial-cas-config/" class="md-nav__link">
+        Initial CAS config
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../building-cas/cas-log-config/" class="md-nav__link">
+        Configure CAS logs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../building-cas/ansible-cas/" class="md-nav__link">
+        Ansible playbook setup
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
+      
+      <label class="md-nav__link" for="nav-5">
+        Service Configuration
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Service Configuration" data-md-level="1">
+        <label class="md-nav__title" for="nav-5">
+          <span class="md-nav__icon md-icon"></span>
+          Service Configuration
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../service-config/overview/" class="md-nav__link">
+        Service Overview
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" >
+      
+      <label class="md-nav__link" for="nav-6">
+        Building CAS client
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Building CAS client" data-md-level="1">
+        <label class="md-nav__title" for="nav-6">
+          <span class="md-nav__icon md-icon"></span>
+          Building CAS client
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cas-client/overview/" class="md-nav__link">
+        CAS client overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cas-client/httpd-cas-client/" class="md-nav__link">
+        Configure httpd to use CAS
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cas-client/test-cas-client/" class="md-nav__link">
+        Test the application
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -718,8 +931,8 @@
                 
                 
                 <h1 id="setting-up-apache-httpd-in-front-of-tomcat">Setting up Apache HTTPD in front of Tomcat</h1>
-<p>I prefer, for a number of reasons, to put Apache httpd in front of Tomcat (even though there's a load balancer in front of the CAS servers as well.  I'm sure there's ways around this, but I like the flexibility that it provides me, and I also have had other applications on the CAS servers that are NOT running on Tomcat.</p>
-<p>For now, I'm not going to go over full configuration of Apache httpd here.  I will eventually (hopefully by end of March 2021) put up my steps and Ansible playbooks to get httpd running, but for now - I'll mention the Tomcat/httpd specific portion.</p>
+<p>I prefer, for a number of reasons, to put Apache httpd in front of Tomcat (even though there's a load balancer in front of the CAS servers as well.  I'm sure there's ways around this, but I like the flexibility that it provides me, and I also have had other applications on the CAS servers that are not running on Tomcat and still need to be accessible (including SimpleSAML for applications we haven't moved to Azure or directly into CAS yet).</p>
+<p>For now, I'm not going to go over full configuration of Apache httpd here.  I will <em>eventually</em> (hopefully by end of March 2021) put up my steps and Ansible playbooks to get httpd running, but for now - I'll mention the Tomcat/httpd specific portion.</p>
 <p>We use AJP for communication between Apache httpd and Apache Tomcat.  Configuring this is in two steps, one on the httpd server and one on Tomcat.</p>
 <h2 id="on-the-httpd-server">On the httpd server</h2>
 <p>Create a configuration file in /etc/httpd/conf.d.  We call ours 'cas-ajp.conf' but it doesn't matter as long as it ends in .conf.  The contents of which are below:</p>
@@ -772,6 +985,20 @@ ProxyPassReverse        /cas    ajp://localhost:8009/cas
             </div>
           </a>
         
+        
+          <a href="../../../building-cas/overview/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Overview
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
         
       </nav>
     </div>

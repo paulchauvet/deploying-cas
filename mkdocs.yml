@@ -47,10 +47,25 @@ nav:
       - Ansible and Tomcat - Initial Steps: setting-up-the-environment/tomcat-ansible/tomcat-ansible-overview.md
       - Setup Variables: setting-up-the-environment/tomcat-ansible/variables.md
       - Setup Templates: setting-up-the-environment/tomcat-ansible/templates.md
+      - Setup Handlers: setting-up-the-environment/tomcat-ansible/handlers.md      
       - Creating tasks: setting-up-the-environment/tomcat-ansible/tasks.md
       - Running the play: setting-up-the-environment/tomcat-ansible/running-the-play.md
     - Apache HTTPD:
       - Use AJP to communicate with Tomcat: setting-up-the-environment/httpd/ajp-proxy.md
+  - Building CAS:
+    - Overview: building-cas/overview.md
+    - Create Gradle Overlay: building-cas/create-gradle-overlay.md
+    - Initial CAS config: building-cas/initial-cas-config.md
+    - Configure CAS logs: building-cas/cas-log-config.md
+    - Ansible playbook setup: building-cas/ansible-cas.md
+  - Service Configuration: 
+    - Service Overview: service-config/overview.md
+  - Building CAS client:
+    - CAS client overview: cas-client/overview.md
+    - Configure httpd to use CAS: cas-client/httpd-cas-client.md
+    - Test the application: cas-client/test-cas-client.md
+
+
       
 
 

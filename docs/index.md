@@ -24,3 +24,13 @@ Information Security Officer<br/>
 State University of New York at New Paltz<br/>
 chauvetp@newpaltz.edu<br/>
 
+
+!!! danger "DISCLAIMER"    
+
+    The instructions and settings provided in this document may not be the only way to do things.  They are the way that has worked for us at New Paltz, and I've tried to document them as well as possible - but there may be better/cleaner ways of doing things.  They may not work at all for your environment.  Heck - I may have made some big mistakes here.
+    
+    As always - test test test.  You should not go running into this on a production environment without ample testing AND understanding of the setup (both Tomcat, and CAS).
+    
+    No warranty express or implied.  No support guaranteed.
+    
+    If you use this - and find it useful - let me know!  If you use it and find errors or would suggest changes - sure - let me know those too!  If you have suggestions as to how to do this (insert some completely different way) - you may want to fork this or create your own site from scratch for it.

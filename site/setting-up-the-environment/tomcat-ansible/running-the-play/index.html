@@ -550,6 +550,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../handlers/" class="md-nav__link">
+        Setup Handlers
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../tasks/" class="md-nav__link">
         Creating tasks
       </a>
@@ -595,6 +607,13 @@
         <li class="md-nav__item">
   <a href="#before-running-check-that-you-have-the-following-ready" class="md-nav__link">
     Before running - check that you have the following ready:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-playbook" class="md-nav__link">
+    Running the playbook
   </a>
   
 </li>
@@ -659,6 +678,207 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+      
+      <label class="md-nav__link" for="nav-4">
+        Building CAS
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Building CAS" data-md-level="1">
+        <label class="md-nav__title" for="nav-4">
+          <span class="md-nav__icon md-icon"></span>
+          Building CAS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../building-cas/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../building-cas/create-gradle-overlay/" class="md-nav__link">
+        Create Gradle Overlay
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../building-cas/initial-cas-config/" class="md-nav__link">
+        Initial CAS config
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../building-cas/cas-log-config/" class="md-nav__link">
+        Configure CAS logs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../building-cas/ansible-cas/" class="md-nav__link">
+        Ansible playbook setup
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
+      
+      <label class="md-nav__link" for="nav-5">
+        Service Configuration
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Service Configuration" data-md-level="1">
+        <label class="md-nav__title" for="nav-5">
+          <span class="md-nav__icon md-icon"></span>
+          Service Configuration
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../service-config/overview/" class="md-nav__link">
+        Service Overview
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" >
+      
+      <label class="md-nav__link" for="nav-6">
+        Building CAS client
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Building CAS client" data-md-level="1">
+        <label class="md-nav__title" for="nav-6">
+          <span class="md-nav__icon md-icon"></span>
+          Building CAS client
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cas-client/overview/" class="md-nav__link">
+        CAS client overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cas-client/httpd-cas-client/" class="md-nav__link">
+        Configure httpd to use CAS
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cas-client/test-cas-client/" class="md-nav__link">
+        Test the application
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -690,6 +910,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#running-the-playbook" class="md-nav__link">
+    Running the playbook
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -706,20 +933,22 @@
                 <h1 id="running-the-play-to-install-or-upgrade-tomcat">Running the play to install or upgrade Tomcat</h1>
 <h2 id="before-running-check-that-you-have-the-following-ready">Before running - check that you have the following ready:</h2>
 <ul>
-<li>The variables within the role's vars directory</li>
-<li>The templates within the role's templates directory</li>
-<li>The tasks directory including main.yml and all sub-tasks that it calls in the role's tasks directory</li>
-<li>The ssh public key from the .ssh directory of the user on your ansible host, has been copied to the authorized_keys file of your target host</li>
+<li>The variables within the role's vars directory (see <a href="http://127.0.0.1:8000/setting-up-the-environment/tomcat-ansible/variables/">Setup Templates</a>)</li>
+<li>The templates within the role's templates directory (see <a href="https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat-ansible/templates/">Setup Templates</a>)</li>
+<li>The tasks directory including main.yml and all sub-tasks that it calls in the role's tasks directory (see <a href="http://127.0.0.1:8000/setting-up-the-environment/tomcat-ansible/tasks/">Creating Tasks</a>)</li>
+<li>The ssh public key from the .ssh directory of the user on your ansible host, has been copied to the authorized_keys file of your target host (see <a href="http://127.0.0.1:8000/setting-up-the-environment/build-environment/#set-up-ssh-public-key-authentication">Setup SSH public key authentication</a>)</li>
 </ul>
+<h2 id="running-the-playbook">Running the playbook</h2>
 <p>Once you have your Tomcat role ready (see the remaining pages) out - you would run it as follows:
-<div class="highlight"><pre><span></span><code><span class="go">ansible site.yml --limit &lt;yourCasServer&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="go">ansible-playbook site.yml --limit &lt;yourCasServer&gt;</span>
 
 <span class="gp"># </span>Example - assuming CAS6_DEV is a grouping <span class="k">in</span> site.yml of your CAS dev environment:
-<span class="go">ansible site.yml --limit CAS6_DEV </span>
+<span class="go">ansible-playbook site.yml --limit CAS6_DEV </span>
 
 <span class="gp"># </span>Or just one server:
-<span class="go">ansible site.yml --limit login6devb</span>
+<span class="go">ansible-playbook site.yml --limit login6devb</span>
 </code></pre></div></p>
+<p>You may get warnings or errors.  You will have to review those.</p>
                 
               
               

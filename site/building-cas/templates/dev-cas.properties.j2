@@ -1,0 +1,126 @@
+# Replace this with your public facing cas server name.  If you're using a load balancer
+# This will be the virtual host within that load balancer, not the servers being the load balancer.
+cas.server.name=https://yourserver.domain.edu
+cas.server.prefix=${cas.server.name}/cas
+
+logging.config: file:/etc/cas/config/log4j2.xml
+
+# JSON Service Registry
+cas.serviceRegistry.json.location=file:/etc/cas/services
+
+cas.tgc.secure:                         true
+cas.tgc.crypto.signing.key:             <REDACTED>
+cas.tgc.crypto.encryption.key:          <REDACTED>
+
+cas.webflow.crypto.signing.key:         <REDACTED>
+cas.webflow.crypto.encryption.key:      <REDACTED>
+
+# Default handler - enable only for testing - leave blank (not commented out) to disable
+cas.authn.accept.users=
+
+
+
+# Pac4j Authentication Handler to Azure AD
+# CAS docs for Pac4j: https://apereo.github.io/cas/6.2.x/integration/Delegate-Authentication.html
+# CAS Properties for Pac4j OpenID Connect AzureAD: https://apereo.github.io/cas/6.2.x/configuration/Configuration-Properties.html#azure-ad
+# CAS Common Properties for Delegated OpenID Connect Authn: https://apereo.github.io/cas/6.2.x/configuration/Configuration-Properties-Common.html#delegated-authentication-openid-connect-settings
+# Pac4j can use OpenID Connect authentication mechanism: http://www.pac4j.org/docs/clients/openid-connect.html
+# Pac4j OpenID Connect supports AzureAD:
+#   - https://github.com/pac4j/pac4j/blob/master/pac4j-oidc/src/main/java/org/pac4j/oidc/client/AzureAdClient.java
+#   - https://github.com/pac4j/pac4j/blob/master/pac4j-oidc/src/main/java/org/pac4j/oidc/profile/azuread/AzureAdProfile.java
+# Azure AD docs for OpenID Connect:
+#   - https://docs.microsoft.com/en-us/azure/active-directory/develop/v1-protocols-openid-connect-code
+#   - https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-protocols-oidc
+
+# This is your main domain within Azure that your users on Office 365 are on.
+cas.authn.pac4j.oidc[0].azure.tenant=yourdomain.edu
+
+# This is labeled as "Application (client) ID" within the "Overview" tab of the application in Azure AD.
+cas.authn.pac4j.oidc[0].azure.id=<REDACTED>
+
+# This is what you create within Azure AD in the app.  It is within
+# "Certificates and Secrets" -> "Client Secrets",  in Azure AD.
+# Note: once you create the secret, it is masked within Azure.  If you didn't otherwise save it, you'll
+# Have to create a new secret.
+cas.authn.pac4j.oidc[0].azure.secret=<REDACTED>
+
+# This is the application name in Azure
+cas.authn.pac4j.oidc[0].azure.clientName=CAS6Dev
+
+# This is available from the app in Azure.  Go to Overview -> Click "Endpoints" and get
+# the link under "OpenID Connect metadata document"
+cas.authn.pac4j.oidc[0].azure.discoveryUri=<REDACTED>
+
+# upn = User Principal Name
+cas.authn.pac4j.oidc[0].azure.principalAttributeId=upn
+
+# If you are ONLY using Azure delegated authentication, and not any other local Authentication
+# such as AD or LDAP, you can set this to 'true'.  As soon as a client hits the CAS page (directly or
+# when redirected from a service) the client would automatically be redirected to Azure.
+cas.authn.pac4j.oidc[0].azure.autoRedirect=false
+
+
+
+# In our environment - haven't yet disabled the on-prem authentication against Active Directory.
+# Active Directory is listed twice for us as we have two different user contexts, one for
+# active users (faculty, staff, students) and one for alumni.
+cas.authn.ldap[0].order=0
+cas.authn.ldap[0].name=Active Directory
+cas.authn.ldap[0].type=AD
+cas.authn.ldap[0].ldapUrl=ldaps://yourAD-server.domain.edu
+cas.authn.ldap[0].validatePeriod=270
+cas.authn.ldap[0].poolPassivator:       NONE
+cas.authn.ldap[0].searchFilter:         cn={user}
+cas.authn.ldap[0].baseDn:               dc=subdomaindomain,dc=yourschool,dc=edu
+cas.authn.ldap[0].dnFormat:             CN=%s,OU=active,DC=newpaltz,DC=edu
+
+# These are the LDAP server setups - second is alumni users (ou=npalum)
+cas.authn.ldap[1].order=1
+cas.authn.ldap[1].name=Active Directory
+cas.authn.ldap[1].type=AD
+cas.authn.ldap[1].ldapUrl=ldaps:/yourAD-server.domain.edu
+cas.authn.ldap[1].validatePeriod=270
+cas.authn.ldap[1].poolPassivator=NONE
+cas.authn.ldap[1].searchFilter=cn={user}
+cas.authn.ldap[1].baseDn=dc=active,dc=newpaltz,dc=edu
+cas.authn.ldap[1].dnFormat=CN=%s,OU=alumni,DC=newpaltz,DC=edu
+
+# These are for attribute release - for active users
+cas.authn.attributeRepository.ldap[0].order=0
+cas.authn.attributeRepository.ldap[0].ldapUrl=ldaps://yourAD-server.domain.edu
+cas.authn.attributeRepository.ldap[0].validatePeriod=270
+cas.authn.attributeRepository.ldap[0].searchFilter=cn={user}
+cas.authn.attributeRepository.ldap[0].baseDn=OU=active,DC=yourdomain,DC=edu
+cas.authn.attributeRepository.ldap[0].bindDn=<REDACTED - full distinguished name of a bind user>
+cas.authn.attributeRepository.ldap[0].bindCredential=<REDACTED - password for that user>
+cas.authn.attributeRepository.ldap[0].attributes.campusCode=campusCode
+cas.authn.attributeRepository.ldap[0].attributes.campusPersonLegalName=campusPersonLegalName
+cas.authn.attributeRepository.ldap[0].attributes.cn=cn
+cas.authn.attributeRepository.ldap[0].attributes.displayName=displayName
+cas.authn.attributeRepository.ldap[0].attributes.eduPersonPrimaryAffiliation=eduPersonPrimaryAffiliation
+cas.authn.attributeRepository.ldap[0].attributes.eduPersonPrincipalName=eduPersonPrincipalName
+cas.authn.attributeRepository.ldap[0].attributes.eduPersonTargetedID=UDC_IDENTIFIER
+cas.authn.attributeRepository.ldap[0].attributes.givenName=givenName
+cas.authn.attributeRepository.ldap[0].attributes.mail=mail
+cas.authn.attributeRepository.ldap[0].attributes.memberOf=memberOf
+cas.authn.attributeRepository.ldap[0].attributes.sn=sn
+
+# These are for attribute release - for alumni
+cas.authn.attributeRepository.ldap[1].order=0
+cas.authn.attributeRepository.ldap[1].ldapUrl=ldaps://yourAD-server.domain.edu
+cas.authn.attributeRepository.ldap[1].validatePeriod=270
+cas.authn.attributeRepository.ldap[1].searchFilter=cn={user}
+cas.authn.attributeRepository.ldap[1].baseDn=OU=alumni,DC=yourdomain,DC=edu
+cas.authn.attributeRepository.ldap[1].bindDn=<REDACTED - full distinguished name of a bind user>
+cas.authn.attributeRepository.ldap[1].bindCredential=<REDACTED - password for that user>
+cas.authn.attributeRepository.ldap[1].attributes.campusCode=campusCode
+cas.authn.attributeRepository.ldap[1].attributes.campusPersonLegalName=campusPersonLegalName
+cas.authn.attributeRepository.ldap[1].attributes.cn=cn
+cas.authn.attributeRepository.ldap[1].attributes.displayName=displayName
+cas.authn.attributeRepository.ldap[1].attributes.eduPersonPrimaryAffiliation=eduPersonPrimaryAffiliation
+cas.authn.attributeRepository.ldap[1].attributes.eduPersonPrincipalName=eduPersonPrincipalName
+cas.authn.attributeRepository.ldap[1].attributes.eduPersonTargetedID=UDC_IDENTIFIER
+cas.authn.attributeRepository.ldap[1].attributes.givenName=givenName
+cas.authn.attributeRepository.ldap[1].attributes.mail=mail
+cas.authn.attributeRepository.ldap[1].attributes.memberOf=memberOf
+cas.authn.attributeRepository.ldap[1].attributes.sn=sn
