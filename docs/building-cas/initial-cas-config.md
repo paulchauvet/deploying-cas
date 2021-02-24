@@ -14,7 +14,7 @@ Before we start - let's create a new role for cas6 - just like we did for apache
 ``` console
 [chauvetp@ansible ~]$ cd ansible/roles/
 [chauvetp@ansible roles]$ ansible-galaxy init cas6
-- Role cas was created successfully
+- Role cas6 was created successfully
 [chauvetp@ansible roles]$ ls cas6/
 defaults  files  handlers  meta  README.md  tasks  templates  tests  vars
 ```

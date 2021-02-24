@@ -31,6 +31,16 @@ In each case - the hosts sit behind a load balancer (in our case, F5 Big IP, tho
 
 The load balancer is split in multiple locations, as are the application servers.  This gives us resilience if a single site on-campus is down but does NOT give resilience against a full outage on-campus.  This is one reason why we are looking to have as many services as possible authenticate directly against Azure instead of CAS.
 
-Using CAS to delegate authentication to Azure, we can make this transition as streamlined as possible without having people enter login credentials more than once.  This will also let us make our transition of existing CAS apps to SAML gradually instead of having to deal with a ton of internal and external service providers all at once.
+Using CAS to delegate authentication to Azure, we can:
 
+* make this transition as streamlined as possible (and avoiding the need for people to have to login twice through two separate SSO systems)
+* will let us make the transition of existing CAS apps to SAML on Azure (if they support SAML) gradual, so we don't have to change 30 services (involving both internal and external service providers) over a weekend.
+* and will let us keep applications that only support CAS on CAS.
+* centralize logins for almost all college systems in a single place making incident response, and troubleshooting, easier.
 
+Limitations:
+
+* Any application still authenticating against CAS will still have CAS as a point of failure.  You can reduce this by having CAS load balanced and in multiple sites (on-prem, off-site, in the cloud, etc.).
+* Since Azure will see CAS as a single application, you are left to either:
+   * exclude CAS from Azure conditional access policies and use CAS to implement MFA
+   * include CAS from Azure conditional access policies but there are no 'exceptions' (i.e. that one service that really doesn't do anything sensitive or important and you don't want to turn MFA on for will still have it)

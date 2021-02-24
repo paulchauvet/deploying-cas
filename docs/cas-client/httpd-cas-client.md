@@ -1,1 +1,218 @@
 # Configuring HTTPD to use CAS
+
+The mod_auth_cas plugin allows an Apache web server to interact with a CAS server via the CAS protocol.  Red Hat does not offer this plugin for installation via yum however, so it must be downloaded and built from source code.   We'll build the plugin via Ansible as we've done for other tasks.  To start with, we'll (you guessed it) build another role so that this can be applied independently of the CAS servers.
+
+## Create Ansible role
+
+``` console
+[chauvetp@ansible ~]$ cd ansible/roles/
+[chauvetp@ansible roles]$ ansible-galaxy init cas-client
+- Role cas-client was created successfully
+[chauvetp@ansible roles]$ ls casclient/
+defaults  files  handlers  meta  README.md  tasks  templates  tests  vars
+```
+
+## Variable setup
+The only variable we're using here is {{ CAS_DEV_URL }}, though you can fill in the rest if you're using it on other hosts.  If your cas servers are behind a load balancer, this is the load balancer's virtual host, not the individual servers.
+
+``` yaml
+CAS_DEV_URL: your_dev_hostname.domain.edu
+CAS_TEST_URL: your_test_hostname.domain.edu
+CAS_PROD_URL: your_prod_hostname.domain.edu
+```
+
+## Template setup
+The only template we need is for the cas.conf which will be within /etc/httpd/conf.d.  We're only doing this for the development environment, but if you need CAS clients for prod or test, you can include a separate file for each.  Only the server name for the CAS server will differ here.
+
+### dev-cas-client.conf.j2
+``` apacheconf
+LoadModule auth_cas_module modules/mod_auth_cas.so
+
+<Directory "/var/www/html/secured-by-cas">
+    <IfModule mod_auth_cas.c>
+        AuthType CAS
+    </IfModule>
+
+    Require valid-user
+</Directory>
+
+<IfModule mod_auth_cas.c>
+    CASLoginUrl           https://{{ CAS_DEV_URL }}/cas/login
+    CASValidateUrl        https://{{ CAS_DEV_URL }}/cas/serviceValidate
+    CASCookiePath         /var/cache/httpd/mod_auth_cas/
+    CASSSOEnabled         On
+    CASDebug              Off
+</IfModule>
+```
+
+
+## Handler setup
+The only handler needed here is to reload apache.  It's placed within the handlers/main.yml file.
+
+``` yaml
+---
+# handlers file for cas-client
+     
+  - name: reload httpd
+    service:
+      name: "httpd"
+      state: "reloaded"
+
+```
+
+## Task setup
+
+This is a small task - but I still prefer to use sub-tasks in my main.yml file.  It makes it easier to expand it later.
+
+``` yaml
+---
+# tasks file for cas-client
+- include_tasks: setup-cas-client.yml
+- include_tasks: setup-test-pages.yml
+```
+
+### setup-cas-client.yml task
+
+Then you'll create 'setup-cas-client.yml'.  It will do the following:
+
+* Ensure the prerequisite packages to build the CAS client are installed
+  * Yes - some of these were installed by earlier playbooks, but you may want to have the CAS client installed on places other than the CAS server.
+* Check if the CAS client is already installed (if so - the rest is ignored via the when statements)
+* Download the source from Apereo's github, unpack it, configure and compile it
+* Runs *make install* (to put mod_auth_cas.so in the httpd modules directory)
+* Places the *cas-client.conf* into /etc/httpd/conf.d
+* Reloads Apache httpd (if necessary)
+
+``` yaml
+---
+
+- name: Setup prerequisite dnf packages
+  dnf:
+    name:
+      - gcc
+      - httpd
+      - httpd-devel
+      - libcurl-devel
+      - libtool
+      - make
+      - openssl-devel
+      - pcre-devel
+      - php
+      - redhat-rpm-config
+    state: present
+
+- name: Check if CAS client is already installed
+  stat:
+    path: /etc/httpd/modules/mod_auth_cas.so
+  register: cas_client
+
+- name: Check if cas client zip file exists
+  stat:
+    path: "/tmp/cas-client.zip"
+  register: cas_client_zip
+
+# Only download source zip if it isn't already downloaded
+# and the CAS client isn't already installed
+- name: Download source zip when it doesn't already exist
+  get_url:
+    url: https://github.com/apereo/mod_auth_cas/archive/master.zip
+    dest: /tmp/cas-client.zip
+    mode: 0600
+  when: cas_client_zip.stat.exists == False and cas_client.stat.exists == False
+
+# Only unpack archive if the cas_client isn't already installed
+# and the CAS client isn't already installed
+- name: Unpack cas-client source archive
+  unarchive:
+    src: "/tmp/cas-client.zip"
+    dest: /tmp/
+    remote_src: yes
+  when: cas_client.stat.exists == False and cas_client.stat.exists == False
+
+# Only do this if the cas_client isn't already installed
+- name: Run autoreconf for CAS client
+  command: "autoreconf -ivf"
+  args:
+    chdir: "/tmp/mod_auth_cas-master"
+  when: cas_client.stat.exists == False
+
+- name: Run configure for CAS client
+  command: "./configure"
+  args:
+    chdir: "/tmp/mod_auth_cas-master"
+  when: cas_client.stat.exists == False
+
+- name: Run make for CAS client
+  command: "make"
+  args:
+    chdir: "/tmp/mod_auth_cas-master"
+  when: cas_client.stat.exists == False
+
+- name: Install CAS client
+  command: "make install"
+  args:
+    chdir: "/tmp/mod_auth_cas-master"
+  when: cas_client.stat.exists == False
+  notify: reload httpd
+
+- name: Ensure CAS cookie directory exists
+  file:
+    path: /var/cache/httpd/mod_auth_cas
+    state: directory
+    owner: apache
+    group: apache
+    mode: 0700
+
+# Replace "login6dev" with whatever you are using in your dev hosts
+# We use login6deva and login6devb as our dev cas servers so it will catch both of those
+- name: Setup Apache CAS config file
+  template:
+    src: dev-cas-client.conf.j2
+    dest: /etc/httpd/conf.d/cas-client.conf
+    mode: 0644
+    owner: root
+    group: root
+  when: ("login6dev" in inventory_hostname)
+  notify: reload httpd
+
+
+```
+
+### setup-test-pages.yml task
+
+The following are the contents of setup-test-pages.yml, which will setup the php pages that we're going to use to test the CAS client.  All it's doing is ensuring one directory and two files exist.
+
+``` yaml
+---
+
+- name: Setup CAS test index page
+  template:
+    src: main-index.php
+    dest: /var/www/html/index.php
+    mode: 0755
+    owner: root
+    group: root
+  when: ("login6dev" in inventory_hostname)
+
+- name: Ensure secured-by-cas directory exists
+  file:
+    path: /var/www/html/secured-by-cas
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  when: ("login6dev" in inventory_hostname)
+
+- name: Setup basic 'secured-by-cas' test index page
+  template:
+    src: basic-cas-check-index.php
+    dest: /var/www/html/secured-by-cas/index.php
+    mode: 0755
+    owner: root
+    group: root
+  when: ("login6dev" in inventory_hostname)
+```
+
+
+## References
+* [Apereo's mod_auth_cas client](https://github.com/apereo/mod_auth_cas)
