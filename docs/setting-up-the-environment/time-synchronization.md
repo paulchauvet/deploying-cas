@@ -36,7 +36,7 @@ If you don't have chrony installed, you can install it via
 ## Configure chrony
 Chrony by default is configured via /etc/chrony.conf.  The default file from RedHat is below, though most options are commented out by default.  The only change I've ever made to it is including our on-prem NTP servers.  If you want to do that, remove the ntp.org servers from the list and replace or supplement them with your own server(s).
 
-```
+``` yaml
 # Use public servers from the pool.ntp.org project.
 # Please consider joining the pool (http://www.pool.ntp.org/join.html).
 server 0.rhel.pool.ntp.org iburst

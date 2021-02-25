@@ -3,7 +3,9 @@
 
 ## Main task file
 
-To keep things cleaner, I include chunks of the role in separate files.  All must be referenced by the main.yml file within the role (ansible/roles/apache-tomcat/tasks/main.yml).  They are called in order by main.yml:
+To keep things cleaner, I include chunks of the role in separate files.  All must be referenced by the main.yml file within the role (ansible/roles/apache-tomcat/tasks/main.yml).  They are called in order by main.yml.
+
+**roles/apache-tomcat/tasks/main.yml:**
 
 ``` yaml
 # tasks file for apache-tomcat
@@ -18,7 +20,7 @@ To keep things cleaner, I include chunks of the role in separate files.  All mus
 ```
 
 !!! tip
-  If you haven't used ansible - you may want to look up idempotency and what it means.  An operation is idempotent if the result of performing it once is exactly the same as the result of performing it repeatedly without any intervening actions.  For example in these playbooks, there are tasks to create users, create directories, or apply a config template.  If Ansible detects that these are already right - it will just mosey right along and not change anything for those steps.
+    If you haven't used ansible - you may want to look up *idempotency* and what it means.  An operation is idempotent if the result of performing it once is exactly the same as the result of performing it repeatedly without any intervening actions.  For example in these playbooks, there are tasks to create users, create directories, or apply a config template.  If Ansible detects that these are already in the desired - it will just mosey right along (indicating "OK" when that task is being processed).
 
 
 ## Setup Prerequisites
@@ -29,7 +31,8 @@ The Tomcat user and group are created as well at the bottom.
 
 If you use this, the 'jdk_version" needs to be specified in your ansible hosts file, or some variable file.  The ansible_distribution and ansible_distribution_major_version don't need to be specified as Ansible reads those from the hosts it connects to.
 
-``` yaml hl_lines="1-13 43-54"
+**roles/apache-tomcat/tasks/setup-prerequisites.yml:**
+``` yaml
 
 - name: Setup prerequisite dnf packages (RHEL 8 & JDK 11)
   dnf:
@@ -45,34 +48,6 @@ If you use this, the 'jdk_version" needs to be specified in your ansible hosts f
     state: present
   when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '8' and jdk_version == 11
 
-- name: Setup prerequisite yum packages (RHEL 7 & JDK 11)
-  yum:
-    name:
-      - epel-release
-      - java-11-openjdk
-      - java-11-openjdk-devel
-      - haveged
-      - gcc
-      - libtool
-      - make
-      - policycoreutils-python
-    state: present
-  when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '7' and jdk_version == 11
-
-- name: Setup prerequisite yum packages (RHEL 7 & JDK 8)
-  yum:
-    name: 
-      - epel-release
-      - java-1.8.0-openjdk
-      - java-1.8.0-openjdk-devel
-      - haveged
-      - gcc
-      - libtool
-      - make
-      - policycoreutils-python
-    state: present
-  when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '7' and jdk_version == 8
-
 - name: Add tomcat group
   group:
     name: tomcat
@@ -86,6 +61,12 @@ If you use this, the 'jdk_version" needs to be specified in your ansible hosts f
     createhome: yes
     system: yes
 
+- name: Make sure haveged is running and set to start on boot
+  ansible.builtin.systemd:
+    name: haveged
+    state: started
+    enabled: yes
+    masked: no
 ```
 
 
@@ -93,6 +74,7 @@ If you use this, the 'jdk_version" needs to be specified in your ansible hosts f
 
 The following section checks if the target version of APR is already installed.  If not, it will download, unpack, compile, and install it.
 
+**roles/apache-tomcat/tasks/setup-apr.yml:**
 ``` yaml
 
 - name: Check if APR {{ apr_ver }} is already installed
@@ -188,6 +170,7 @@ If this is the first time Tomcat is being deployed on the target system (or the 
 It will also setup the systemd unit file so it can eventually be started and set to start on boot.
 
 
+**roles/apache-tomcat/tasks/install.yml:**
 
 ``` yaml
 - name: Check if Tomcat {{ tomcat_ver }} directory exists
@@ -430,6 +413,7 @@ It will also setup the systemd unit file so it can eventually be started and set
 
 This is where the Tomcat Native Library (if not already installed) gets unpacked, configured, compiled, and installed.
 
+**roles/apache-tomcat/tasks/setup-tomcat-native.yml:**
 ``` yaml
 - name: Check if Tomcat Native Library {{ tomcat_native_ver }} is already installed
   stat:
@@ -445,22 +429,6 @@ This is where the Tomcat Native Library (if not already installed) gets unpacked
     group: tomcat
     remote_src: yes
   when: tomcat_native_library.stat.exists == False
-
-
-# Only configure if the Tomcat Native Library directory for the version didn't already exist
-- name: Configure Tomcat Native Library (RHEL7 & JDK 11)
-  command: "./configure --with-java-home={{ JAVA_HOME }} --with-apr=/opt/apr/latest/bin/apr-1-config --prefix=/opt/tomcat/apache-tomcat-{{ tomcat_ver }}"
-  args:
-    chdir: "/opt/tomcat/apache-tomcat-{{ tomcat_ver }}/bin/tomcat-native-{{ tomcat_native_ver }}-src/native"
-  when: tomcat_native_library.stat.exists == False and ansible_distribution == 'RedHat' and ansible_distribution_major_version == '7' and jdk_version == 11
-
-# Only configure if the Tomcat Native Library directory for the version didn't already exist
-- name: Configure Tomcat Native Library (RHEL7 & JDK 8)
-  command: "./configure --with-java-home={{ JAVA_8_HOME }} --with-apr=/opt/apr/latest/bin/apr-1-config --prefix=/opt/tomcat/apache-tomcat-{{ tomcat_ver }}"
-  args:
-    chdir: "/opt/tomcat/apache-tomcat-{{ tomcat_ver }}/bin/tomcat-native-{{ tomcat_native_ver }}-src/native"
-  when: tomcat_native_library.stat.exists == False and ansible_distribution == 'RedHat' and ansible_distribution_major_version == '7' and jdk_version == 8
-
 
 # Only configure if the Tomcat Native Library directory for the version didn't already exist
 - name: Configure Tomcat Native Library (RHEL8)
@@ -488,6 +456,7 @@ This is where the Tomcat Native Library (if not already installed) gets unpacked
 
 This is where the Tomcat Commons Daemon (if not already installed) gets unpacked, configured, compiled, and installed.
 
+**roles/apache-tomcat/tasks/setup-commons-daemon.yml:**
 ``` yaml
 - name: Check if Apache Tomcat Commons Daemon {{ commons_daemon_ver }} is already installed
   stat:
@@ -550,7 +519,8 @@ This is where we take the template files that were created earlier for web.xml, 
 
 This is basically just configuring the various files in /etc/tomcat.  To initially create these files - download copies of them from a default Tomcat install to your Ansible host's roles/apache-tomcat/templates directory and alter them as needed.  I will have copies of these files uploaded as well.
 
-### To do - add links to the documents where these file changes are done.
+
+**roles/apache-tomcat/tasks/configure-tomcat.yml:**
 
 ``` yaml
 
@@ -599,7 +569,7 @@ This is basically just configuring the various files in /etc/tomcat.  To initial
 ## Post installation tasks
 If the installation fails (errors, not warnings) at any point - it won't get to here, so it shouldn't move the symlink and restart tomcat unless the install completed.  It also won't 'notify' tomcat to restart if they didn't even have to create the symlink (or if the config files changed earlier)
 
-
+**roles/apache-tomcat/tasks/post-install.yml:**
 ``` yaml
 
 - name: Setup Apache Tomcat {{ tomcat_ver }} symlink

@@ -818,7 +818,19 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cas-client/httpd-cas-client/" class="md-nav__link">
+      <a href="../../../cas-client/cas-client-pages/" class="md-nav__link">
+        Create test/example pages
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cas-client/build-cas-client/" class="md-nav__link">
         Configure httpd to use CAS
       </a>
     </li>
@@ -839,6 +851,21 @@
           
         </ul>
       </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/future-tasks/" class="md-nav__link">
+        Future tasks
+      </a>
     </li>
   
 
@@ -874,6 +901,7 @@
                 
                 <h1 id="ansible-variable-setup-for-tomcat">Ansible Variable setup for Tomcat</h1>
 <p>I don't have a lot of variables for Tomcat on it's own, and none are 'sensitive'.  They're basically version information so I don't have to hard code versions into the plays.  If you ever have sensitive info that needs to go into a variables file, you'll want to use <a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html">Ansible Vault</a> so it isn't plain text.</p>
+<p><strong>roles/apache-tomcat/vars/main.yml</strong>
 <div class="highlight"><pre><span></span><code><span class="c1"># where the Tomcat archive file gets downloaded</span>
 <span class="nt">tomcat_archive_dest</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/root/apache-tomcat-{{ tomcat_ver }}.tar.gz</span>
 
@@ -884,11 +912,6 @@
 <span class="nt">apr_archive_url</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http://apache.cs.utah.edu//apr/apr-{{ apr_ver }}.tar.gz</span>
 <span class="nt">apr_archive_dest</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/root/apr-{{ apr_ver }}.tar.gz</span>
 
-<span class="c1"># Legacy - for RHEL7/CAS5 servers - this is not needed for CAS 6.</span>
-<span class="nt">openssl_ver</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.1.1j</span>
-<span class="nt">openssl_archive_url</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://www.openssl.org/source/openssl-{{ openssl_ver }}.tar.gz</span>
-<span class="nt">openssl_archive_dest</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/root/openssl-{{ openssl_ver }}.tar.gz</span>
-
 <span class="c1"># Unfortunately - without reading release notes, or unpacking Tomcat to test when a new version comes out,</span>
 <span class="c1"># you won&#39;t know what version of the Commons Daemon or Tomcat Native Library are in that Tomcat version.</span>
 <span class="c1"># My practice is when upgrading to a new version for the first time - I will download that version,</span>
@@ -898,10 +921,7 @@
 <span class="nt">commons_daemon_ver</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.2.3</span>
 
 <span class="nt">JAVA_HOME</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/usr/lib/jvm/java-11-openjdk</span>
-
-<span class="c1"># Legacy - for some older systems - not for CAS 6.</span>
-<span class="nt">JAVA_8_HOME</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/usr/lib/jvm/java-1.8.0</span>    
-</code></pre></div>
+</code></pre></div></p>
                 
               
               

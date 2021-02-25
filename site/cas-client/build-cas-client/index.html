@@ -13,14 +13,14 @@
         <meta name="author" content="Paul Chauvet">
       
       
-        <link rel="canonical" href="https://paulchauvet.github.io/deploying-cas/service-config/overview/">
+        <link rel="canonical" href="https://paulchauvet.github.io/deploying-cas/cas-client/build-cas-client/">
       
       <link rel="shortcut icon" href="../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
     
     
       
-        <title>Service Overview - Deploying Apereo CAS 6</title>
+        <title>Configure httpd to use CAS - Deploying Apereo CAS 6</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#service-configuration" class="md-skip">
+        <a href="#building-cas-client" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              Service Overview
+              Configure httpd to use CAS
             
           </span>
         </div>
@@ -726,14 +726,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
       
       <label class="md-nav__link" for="nav-5">
         Service Configuration
@@ -750,117 +748,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Service Overview
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../service-config/overview/" class="md-nav__link">
         Service Overview
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#editing-buildgradle" class="md-nav__link">
-    Editing build.gradle
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#update-your-casproperties" class="md-nav__link">
-    Update your cas.properties
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-a-test-service-definition-file" class="md-nav__link">
-    Create a test service definition file
-  </a>
-  
-    <nav class="md-nav" aria-label="Create a test service definition file">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#wait-whered-those-crazy-number-come-from" class="md-nav__link">
-    Wait - where'd those crazy number come from?
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#getting-your-services-from-ansible-to-cas" class="md-nav__link">
-    Getting your services from Ansible to CAS
-  </a>
-  
-    <nav class="md-nav" aria-label="Getting your services from Ansible to CAS">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#update-your-tasks" class="md-nav__link">
-    Update your tasks
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#configure-the-service-config-task" class="md-nav__link">
-    Configure the service config task
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rebuild-and-redeploy-cas" class="md-nav__link">
-    Rebuild and redeploy CAS
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    References
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -877,12 +769,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
       
       <label class="md-nav__link" for="nav-6">
         Building CAS client
@@ -901,7 +795,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cas-client/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         CAS client overview
       </a>
     </li>
@@ -913,7 +807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cas-client/cas-client-pages/" class="md-nav__link">
+      <a href="../cas-client-pages/" class="md-nav__link">
         Create test/example pages
       </a>
     </li>
@@ -923,11 +817,103 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../cas-client/build-cas-client/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Configure httpd to use CAS
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Configure httpd to use CAS
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#template-setup" class="md-nav__link">
+    Template setup
+  </a>
+  
+    <nav class="md-nav" aria-label="Template setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup-certificate" class="md-nav__link">
+    Setup certificate
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-setup" class="md-nav__link">
+    Task setup
+  </a>
+  
+    <nav class="md-nav" aria-label="Task setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup-cas-clientyml-task" class="md-nav__link">
+    setup-cas-client.yml task
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup-test-pagesyml-task" class="md-nav__link">
+    setup-test-pages.yml task
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup-non-commercial-cert-task" class="md-nav__link">
+    setup non-commercial-cert task
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -937,7 +923,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cas-client/test-cas-client/" class="md-nav__link">
+      <a href="../test-cas-client/" class="md-nav__link">
         Test the application
       </a>
     </li>
@@ -990,30 +976,16 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#editing-buildgradle" class="md-nav__link">
-    Editing build.gradle
+  <a href="#template-setup" class="md-nav__link">
+    Template setup
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#update-your-casproperties" class="md-nav__link">
-    Update your cas.properties
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-a-test-service-definition-file" class="md-nav__link">
-    Create a test service definition file
-  </a>
-  
-    <nav class="md-nav" aria-label="Create a test service definition file">
+    <nav class="md-nav" aria-label="Template setup">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#wait-whered-those-crazy-number-come-from" class="md-nav__link">
-    Wait - where'd those crazy number come from?
+  <a href="#setup-certificate" class="md-nav__link">
+    Setup certificate
   </a>
   
 </li>
@@ -1024,36 +996,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#getting-your-services-from-ansible-to-cas" class="md-nav__link">
-    Getting your services from Ansible to CAS
+  <a href="#task-setup" class="md-nav__link">
+    Task setup
   </a>
   
-    <nav class="md-nav" aria-label="Getting your services from Ansible to CAS">
+    <nav class="md-nav" aria-label="Task setup">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#update-your-tasks" class="md-nav__link">
-    Update your tasks
+  <a href="#setup-cas-clientyml-task" class="md-nav__link">
+    setup-cas-client.yml task
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#configure-the-service-config-task" class="md-nav__link">
-    Configure the service config task
+  <a href="#setup-test-pagesyml-task" class="md-nav__link">
+    setup-test-pages.yml task
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup-non-commercial-cert-task" class="md-nav__link">
+    setup non-commercial-cert task
   </a>
   
 </li>
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rebuild-and-redeploy-cas" class="md-nav__link">
-    Rebuild and redeploy CAS
-  </a>
   
 </li>
       
@@ -1077,128 +1049,206 @@
               
                 
                 
-                <h1 id="service-configuration">Service configuration</h1>
-<p>Services within CAS are where you define a policy per-service.  For example you may want to:</p>
-<ul>
-<li>Release certain attributes to one service (name, email, eduPerson values, etc.)</li>
-<li>Require a user to be in one or more groups in Active Directory, or to have a certain eduPersonPrimaryAffiliation before they can access a particular service.</li>
-<li>Use a multi-factor authentication policy on a given service.</li>
-</ul>
-<p>Each service can be different.  You can combine functions in the JSON service to accomplish various tasks.  We'll get to more of those later.</p>
-<p>There are several ways to handle service registries, including the CAS <a href="https://apereo.github.io/cas/6.2.x/services/Installing-ServicesMgmt-Webapp.html">Services Management Webapp</a>.  Because I deploy and maintain CAS via Ansible, I prefer to define my services via JSON files within /etc/cas/services and deploy via Ansible instead of using a web application.  This helps preserve history (via git) of service changes.  It's all up to you though.  This documentation will assume you're using JSON files here.</p>
-<p>To use the JSON service registry, you're going to want to edit your <strong>build.gradle</strong> file within your cas-overlay-template directory.</p>
-<h2 id="editing-buildgradle">Editing build.gradle</h2>
-<p>Look for this section, around line 72 in the build.gradle file</p>
-<div class="highlight"><pre><span></span><code>dependencies {
-    // Other CAS dependencies/modules may be listed here...
-    // implementation &quot;org.apereo.cas:cas-server-support-json-service-registry:${casServerVersion}&quot;
-}
-</code></pre></div>
-<p>Add the dependency <mark class="critic">compile "org.apereo.cas:cas-server-support-json-service-registry:${project.'cas.version'}"</mark> as follows there:</p>
-<div class="highlight"><pre><span></span><code>dependencies {
-    // Other CAS dependencies/modules may be listed here...
-    // implementation &quot;org.apereo.cas:cas-server-support-json-service-registry:${casServerVersion}&quot;
-    compile &quot;org.apereo.cas:cas-server-support-json-service-registry:${project.&#39;cas.version&#39;}&quot;
-}
-</code></pre></div>
-<h2 id="update-your-casproperties">Update your cas.properties</h2>
-<p>Go to your dev-cas.properties.j2 file in your ansible templates directory (or update the file cas.properties file directly if you're not using ansible) and make sure the following entry exists (it should be from our initial CAS config):</p>
-<div class="highlight"><pre><span></span><code># JSON Service Registry
-cas.serviceRegistry.json.location=file:/etc/cas/services
-</code></pre></div>
-<h2 id="create-a-test-service-definition-file">Create a test service definition file</h2>
-<p>Within the templates directory (in your CAS Ansible role), create a subdirectory called <strong>dev-services</strong>.</p>
-<p>For simplicity (and to avoid worrying about the details of the service registry for the moment), create a “wildcard” service definition that will allow any HTTPS based service to make use of the CAS server.  Create a file in the <strong>dev-services</strong> directory with the following contents:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-  <span class="err">/*</span>
-   <span class="err">*</span> <span class="err">Wildcard</span> <span class="err">service</span> <span class="err">de</span><span class="kc">f</span><span class="err">i</span><span class="kc">n</span><span class="err">i</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span> <span class="kc">t</span><span class="err">ha</span><span class="kc">t</span> <span class="err">applies</span> <span class="kc">t</span><span class="err">o</span> <span class="err">a</span><span class="kc">n</span><span class="err">y</span> <span class="err">h</span><span class="kc">tt</span><span class="err">ps</span> <span class="err">or</span> <span class="err">imaps</span> <span class="err">url.</span>
-   <span class="err">*</span> <span class="err">Do</span> <span class="kc">n</span><span class="err">o</span><span class="kc">t</span> <span class="err">use</span> <span class="kc">t</span><span class="err">his</span> <span class="err">de</span><span class="kc">f</span><span class="err">i</span><span class="kc">n</span><span class="err">i</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span> <span class="err">i</span><span class="kc">n</span> <span class="err">a</span> <span class="err">produc</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span> <span class="err">e</span><span class="kc">n</span><span class="err">viro</span><span class="kc">n</span><span class="err">me</span><span class="kc">nt</span><span class="err">.</span>
-   <span class="err">*/</span>
-  <span class="nt">&quot;@class&quot;</span> <span class="p">:</span>            <span class="s2">&quot;org.apereo.cas.services.RegexRegisteredService&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;serviceId&quot;</span> <span class="p">:</span>         <span class="s2">&quot;^https://.*&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;name&quot;</span> <span class="p">:</span>              <span class="s2">&quot;HTTPS wildcard&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;id&quot;</span> <span class="p">:</span>                <span class="mi">1614029117</span><span class="p">,</span>
-  <span class="nt">&quot;evaluationOrder&quot;</span> <span class="p">:</span>   <span class="mi">99999</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>The CAS documentation recommends the following naming convention for JSON service definition files:</p>
-<div class="highlight"><pre><span></span><code>JSON filename = serviceName + &quot;-&quot; + serviceNumericId + &quot;.json&quot;
-</code></pre></div>
-<p>Therefore, the filename for the wildcard service definition above should be: <strong>HTTPSWildcard-1614029117.json</strong></p>
-<h3 id="wait-whered-those-crazy-number-come-from">Wait - where'd those crazy number come from?</h3>
-<p>Techincally the id number just needs to be something unique.  One way to do this is with the <mark class="critic">date +%s</mark> command in Linux, which will give you the date/time as the number of seconds in the unix epoch.  The 'evaluationOrder' is set really high here since it will process anything here - but you want a wildcard like this to run last.</p>
-<p>The fields we've used so far are defined as:</p>
-<table>
-<thead>
-<tr>
-<th align="left">Field</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">'serviceId'</td>
-<td align="left">A regular expression describing the URL(s) where a service or services are located. Care should be taken to avoid patterns that match more than just the desired URL(s), as this can create security vulnerabilities.</td>
-</tr>
-<tr>
-<td align="left">'name'</td>
-<td align="left">A name for the service. Note that because the service definition filename is created based on this name (see above), the value of this field should never contain <a href="https://en.wikipedia.org/wiki/Filename#Reserved_characters_and_words">characters that are not allowed in filenames</a>.</td>
-</tr>
-<tr>
-<td align="left">'id'</td>
-<td align="left">Unique numeric identifier for the service definition. An easy way to ensure that these identifiers are unique is to use the date and time the service definition was created. This can be represented as YYYYMMDDhhmmss or, for a more “anonymous” representation, as a timestamp (number of seconds since the epoch), which can be obtained with the command <mark class="critic">date +%s</mark>.</td>
-</tr>
-<tr>
-<td align="left">'evaluationOrder'</td>
-<td align="left">A value that determines the relative evaluation order of registered services (lower values come before higher values). This is especially important when more than one serviceId expression can match the same service; evalutionOrder deterines which expression is evaluated first.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="getting-your-services-from-ansible-to-cas">Getting your services from Ansible to CAS</h2>
-<p>As listed earlier, I recommend creating a separate service directory for each tier (prod, test, dev) within your templates directory.  I've created one called <em>dev-services</em> (within the templates directory of your Ansible CAS role).</p>
-<p>Place your newly created service file from above into this directory.</p>
-<h3 id="update-your-tasks">Update your tasks</h3>
-<p>Within the tasks directory, create a new file called <em>service-config.yml</em> (or something similar).  Reference that file within your existing cas role's main.yml.  Your main.yml should look like the one below now.</p>
-<p><strong>roles/cas6/tasks/main.yml:</strong>
-<div class="highlight"><pre><span></span><code><span class="nn">---</span>
-<span class="c1"># main tasks file for cas6</span>
-<span class="p p-Indicator">-</span> <span class="nt">include_tasks</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">base-cas-config.yml</span>
-<span class="p p-Indicator">-</span> <span class="nt">include_tasks</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cas-ajp-proxy.yml</span>
-<span class="p p-Indicator">-</span> <span class="nt">include_tasks</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">service-config.yml</span>
+                <h1 id="building-cas-client">Building CAS client</h1>
+<h2 id="template-setup">Template setup</h2>
+<p>We will have three templates for this.  Two are the index.php pages that were discussed on the previous page.  The third is hte cas.conf file which will be placed within /etc/httpd/conf.d/.</p>
+<p>We're only doing this for the development environment, but if you need CAS clients for prod or test, you can include a separate file for each.  Only the CAS server name, or possibly the Certificate section at the end, will differ here.</p>
+<p><strong>roles/cas-client/templates/dev-cas-client.conf.j2:</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">LoadModule</span> auth_cas_module modules/mod_auth_cas.so
+
+<span class="nt">&lt;Directory</span> <span class="s">&quot;/var/www/html/secured-by-cas&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;IfModule</span> <span class="s">mod_auth_cas.c</span><span class="nt">&gt;</span>
+        <span class="nb">AuthType</span> CAS
+    <span class="nt">&lt;/IfModule&gt;</span>
+
+    <span class="nb">Require</span> valid-user
+<span class="nt">&lt;/Directory&gt;</span>
+
+<span class="nt">&lt;IfModule</span> <span class="s">mod_auth_cas.c</span><span class="nt">&gt;</span>
+    <span class="nb">CASLoginUrl</span>           https://{{ CAS_DEV_URL }}/cas/login
+    <span class="nb">CASValidateUrl</span>        https://{{ CAS_DEV_URL }}/cas/serviceValidate
+    <span class="nb">CASCookiePath</span>         <span class="sx">/var/cache/httpd/mod_auth_cas/</span>
+    <span class="nb">CASSSOEnabled</span>         <span class="k">On</span>
+    <span class="nb">CASDebug</span>              <span class="k">Off</span>
+
+    <span class="c"># Set the following instead you&#39;re having issues:</span>
+    <span class="nb">LogLevel</span>          <span class="k">Debug</span>
+    <span class="nb">CASDebug</span>              <span class="k">On</span>
+
+    <span class="c"># Set the following if you&#39;re using a self-signed or other non-commercially signed cert</span>
+    <span class="c"># such as from a local CA</span>
+    <span class="nb">CASCertificatePath</span>      <span class="sx">/etc/pki/tls/certs/dev-cas.crt</span>
+<span class="nt">&lt;/IfModule&gt;</span>
 </code></pre></div></p>
-<h3 id="configure-the-service-config-task">Configure the service config task</h3>
-<p>This will ensure whatever is in your templates/dev-services directory will be replicated in the CAS servers when the playbook runs.</p>
-<p><strong>roles/cas6/tasks/service-config.yml:</strong>
+<h3 id="setup-certificate">Setup certificate</h3>
+<p>If you're using a non-commercially signed certificate - you'll need to tell the CAS client where it is.  Easiest way to do this is to download that into the template directory and have a task ensure it is referenced in the CAS config.</p>
+<p>If you're using a self-signed cert, or a local certificate authority, copy that certificate to your templates directory as <em>dev-cas.crt</em> (it will have to be referenced by name in <em>dev-cas-client.conf.j2</em>.</p>
+<h2 id="task-setup">Task setup</h2>
+<p>This is a small task - but I still prefer to use sub-tasks in my main.yml file.  It makes it easier to expand it later.</p>
+<p><strong>roles/cas-client/tasks/main.yml:</strong>
+<div class="highlight"><pre><span></span><code><span class="nn">---</span>
+<span class="c1"># tasks file for cas-client</span>
+<span class="p p-Indicator">-</span> <span class="nt">include_tasks</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">setup-cas-client.yml</span>
+<span class="p p-Indicator">-</span> <span class="nt">include_tasks</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">setup-test-pages.yml</span>
+<span class="c1"># The following is only needed if you are using a non-commercially signed cert in</span>
+<span class="c1"># your development or test environments.</span>
+<span class="p p-Indicator">-</span> <span class="nt">include_tasks</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">non-commercial-cert.yml</span>
+</code></pre></div></p>
+<h3 id="setup-cas-clientyml-task">setup-cas-client.yml task</h3>
+<p>Then you'll create 'setup-cas-client.yml'.  It will do the following:</p>
+<ul>
+<li>Ensure the prerequisite packages to build the CAS client are installed</li>
+<li>Yes - some of these were installed by earlier playbooks, but you may want to have the CAS client installed on places other than the CAS server.</li>
+<li>Check if the CAS client is already installed (if so - the rest is ignored via the when statements)</li>
+<li>Download the source from Apereo's github, unpack it, configure and compile it</li>
+<li>Runs <em>make install</em> (to put mod_auth_cas.so in the httpd modules directory)</li>
+<li>Places the <em>cas-client.conf</em> into /etc/httpd/conf.d</li>
+<li>Reloads Apache httpd (if necessary)</li>
+</ul>
+<p><strong>roles/cas-client/tasks/setup-cas-client.yml:</strong>
 <div class="highlight"><pre><span></span><code><span class="nn">---</span>
 
-<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ensure service files are populated from templates</span>
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Setup prerequisite dnf packages</span>
+  <span class="nt">dnf</span><span class="p">:</span>
+    <span class="nt">name</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">gcc</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">httpd</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">httpd-devel</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">libcurl-devel</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">libtool</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">make</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">openssl-devel</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pcre-devel</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">php</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">redhat-rpm-config</span>
+    <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Check if CAS client is already installed</span>
+  <span class="nt">stat</span><span class="p">:</span>
+    <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/httpd/modules/mod_auth_cas.so</span>
+  <span class="nt">register</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cas_client</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Check if cas client zip file exists</span>
+  <span class="nt">stat</span><span class="p">:</span>
+    <span class="nt">path</span><span class="p">:</span> <span class="s">&quot;/tmp/cas-client.zip&quot;</span>
+  <span class="nt">register</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cas_client_zip</span>
+
+<span class="c1"># Only download source zip if it isn&#39;t already downloaded</span>
+<span class="c1"># and the CAS client isn&#39;t already installed</span>
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Download source zip when it doesn&#39;t already exist</span>
+  <span class="nt">get_url</span><span class="p">:</span>
+    <span class="nt">url</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://github.com/apereo/mod_auth_cas/archive/master.zip</span>
+    <span class="nt">dest</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/tmp/cas-client.zip</span>
+    <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0600</span>
+  <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cas_client_zip.stat.exists == False and cas_client.stat.exists == False</span>
+
+<span class="c1"># Only unpack archive if the cas_client isn&#39;t already installed</span>
+<span class="c1"># and the CAS client isn&#39;t already installed</span>
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Unpack cas-client source archive</span>
+  <span class="nt">unarchive</span><span class="p">:</span>
+    <span class="nt">src</span><span class="p">:</span> <span class="s">&quot;/tmp/cas-client.zip&quot;</span>
+    <span class="nt">dest</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/tmp/</span>
+    <span class="nt">remote_src</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+  <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cas_client.stat.exists == False and cas_client.stat.exists == False</span>
+
+<span class="c1"># Only do this if the cas_client isn&#39;t already installed</span>
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Run autoreconf for CAS client</span>
+  <span class="nt">command</span><span class="p">:</span> <span class="s">&quot;autoreconf</span><span class="nv"> </span><span class="s">-ivf&quot;</span>
+  <span class="nt">args</span><span class="p">:</span>
+    <span class="nt">chdir</span><span class="p">:</span> <span class="s">&quot;/tmp/mod_auth_cas-master&quot;</span>
+  <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cas_client.stat.exists == False</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Run configure for CAS client</span>
+  <span class="nt">command</span><span class="p">:</span> <span class="s">&quot;./configure&quot;</span>
+  <span class="nt">args</span><span class="p">:</span>
+    <span class="nt">chdir</span><span class="p">:</span> <span class="s">&quot;/tmp/mod_auth_cas-master&quot;</span>
+  <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cas_client.stat.exists == False</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Run make for CAS client</span>
+  <span class="nt">command</span><span class="p">:</span> <span class="s">&quot;make&quot;</span>
+  <span class="nt">args</span><span class="p">:</span>
+    <span class="nt">chdir</span><span class="p">:</span> <span class="s">&quot;/tmp/mod_auth_cas-master&quot;</span>
+  <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cas_client.stat.exists == False</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Install CAS client</span>
+  <span class="nt">command</span><span class="p">:</span> <span class="s">&quot;make</span><span class="nv"> </span><span class="s">install&quot;</span>
+  <span class="nt">args</span><span class="p">:</span>
+    <span class="nt">chdir</span><span class="p">:</span> <span class="s">&quot;/tmp/mod_auth_cas-master&quot;</span>
+  <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cas_client.stat.exists == False</span>
+  <span class="nt">notify</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">reload httpd</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ensure CAS cookie directory exists</span>
+  <span class="nt">file</span><span class="p">:</span>
+    <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/cache/httpd/mod_auth_cas</span>
+    <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">directory</span>
+    <span class="nt">owner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">apache</span>
+    <span class="nt">group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">apache</span>
+    <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0700</span>
+
+<span class="c1"># Replace &quot;login6dev&quot; with whatever you are using in your dev hosts</span>
+<span class="c1"># We use login6deva and login6devb as our dev cas servers so it will catch both of those</span>
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Setup Apache CAS config file</span>
   <span class="nt">template</span><span class="p">:</span>
-    <span class="nt">src</span><span class="p">:</span> <span class="s">&#39;{{</span><span class="nv"> </span><span class="s">item.src</span><span class="nv"> </span><span class="s">}}&#39;</span>
-    <span class="nt">dest</span><span class="p">:</span> <span class="s">&#39;/etc/cas/services/{{</span><span class="nv"> </span><span class="s">item.path</span><span class="nv"> </span><span class="s">}}&#39;</span>
+    <span class="nt">src</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dev-cas-client.conf.j2</span>
+    <span class="nt">dest</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/httpd/conf.d/cas-client.conf</span>
+    <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0644</span>
     <span class="nt">owner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
-    <span class="nt">group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
-  <span class="nt">with_filetree</span><span class="p">:</span> <span class="s">&#39;../templates/dev-services&#39;</span>
-  <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">item.state == &#39;file&#39; and &#39;login6dev&#39; in inventory_hostname</span>
+    <span class="nt">group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+  <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">(&quot;login6dev&quot; in inventory_hostname)</span>
+  <span class="nt">notify</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">reload httpd</span>
 </code></pre></div></p>
-<p>This is a way of getting a whole directory copied over instead of a single file.  Otherwise you'd have to define an ansible template for each service you have - which could get pretty large (though is okay if you prefer it!).</p>
-<p>With this in place - any services that are defined in the dev-services directory will be copied over.  Note: it will not DELETE services.  This is still to be done.</p>
-<h2 id="rebuild-and-redeploy-cas">Rebuild and redeploy CAS</h2>
-<p>To rebuild CAS with this dependency built in, you'll want to go to the cas-overlay-template directory and run the following and wait a moment for it to be complete:
-<div class="highlight"><pre><span></span><code>./gradlew clean build
+<h3 id="setup-test-pagesyml-task">setup-test-pages.yml task</h3>
+<p>The following are the contents of setup-test-pages.yml, which were created on the previous page.  It will just ensure the 'secured-by-cas' directory exists, and the two index.php files are placed (one in /var/www/html, one in /var/www/html/secured-by-cas)</p>
+<p><strong>roles/cas-client/tasks/setup-test-pages.yml:</strong>
+<div class="highlight"><pre><span></span><code><span class="nn">---</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Setup CAS test index page</span>
+  <span class="nt">template</span><span class="p">:</span>
+    <span class="nt">src</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">main-index.php</span>
+    <span class="nt">dest</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/www/html/index.php</span>
+    <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0755</span>
+    <span class="nt">owner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+    <span class="nt">group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+  <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">(&quot;login6dev&quot; in inventory_hostname)</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ensure secured-by-cas directory exists</span>
+  <span class="nt">file</span><span class="p">:</span>
+    <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/www/html/secured-by-cas</span>
+    <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">directory</span>
+    <span class="nt">owner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+    <span class="nt">group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+    <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0755</span>
+  <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">(&quot;login6dev&quot; in inventory_hostname)</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Setup basic &#39;secured-by-cas&#39; test index page</span>
+  <span class="nt">template</span><span class="p">:</span>
+    <span class="nt">src</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">basic-cas-check-index.php</span>
+    <span class="nt">dest</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/www/html/secured-by-cas/index.php</span>
+    <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0755</span>
+    <span class="nt">owner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+    <span class="nt">group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+  <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">(&quot;login6dev&quot; in inventory_hostname)</span>
 </code></pre></div></p>
-<p>Your cas.war file will have been updated.  You can either copy it to your CAS server directly (but where's the fun in that!) or update it in your <em>files</em> directory in your CAS Ansible role.  If you update it in your Ansible role, you can just rerun the playbook.</p>
-<div class="highlight"><pre><span></span><code><span class="p p-Indicator">[</span><span class="nv">chauvetp@ansible templates</span><span class="p p-Indicator">]</span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook ~/ansible/site.yml --ask-vault-pass --limit &lt;your_CAS_server&gt;</span>
-<span class="l l-Scalar l-Scalar-Plain">Vault password</span><span class="p p-Indicator">:</span> 
+<h3 id="setup-non-commercial-cert-task">setup non-commercial-cert task</h3>
+<p>If you're using a commercially signed cert, you can ignore this section.  Otherwise, you'll need to do get the the public certificate of your local certificate authority or the self-signed cert of your CAS server (or load balancer), and store it in templates/.</p>
+<p>You'll need to reference the file name variable in CAS_DEV_CERT_FILE in vars/main.yml</p>
+<p><strong>roles/cas-client/tasks/non-commercial-cert.yml:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># The &#39;source&#39; here - should be your self signed cert if you&#39;re using one</span>
+<span class="c1"># In our case here - this is our local certificate authority</span>
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Setup self-signed cert</span>
+  <span class="nt">template</span><span class="p">:</span>
+    <span class="c1"># Make sure to define CAS_DEV_CERT_FILE in vars/main.yml</span>
+    <span class="nt">src</span><span class="p">:</span> <span class="p p-Indicator">{{</span> <span class="nv">CAS_DEV_CERT_FILE</span> <span class="p p-Indicator">}}</span><span class="l l-Scalar l-Scalar-Plain">.crt</span>
+    <span class="nt">dest</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/pki/tls/certs/{{ CAS_DEV_CERT_FILE }}.crt</span>
+    <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0644</span>
+    <span class="nt">owner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+    <span class="nt">group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+  <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">(&quot;login6dev&quot; in inventory_hostname)</span>
+  <span class="nt">notify</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">reload httpd</span>
 </code></pre></div>
-<p>It won't have to rebuild or reinstall Tomcat, since it's idempotent.  It will only alter what is different from our templates/files/playbook.  In fact, when you run it, it will say 'ok' or 'skipped' for every task except the following (assuming you didn't change anything else), where it will say <em>changed</em>:</p>
-<ul>
-<li>TASK [cas6 : Configure cas.properties file (dev)]</li>
-<li>TASK [cas6 : Copy CAS war file]</li>
-<li>RUNNING HANDLER [cas6 : restart tomcat] </li>
-</ul>
 <h2 id="references">References</h2>
 <ul>
-<li><a href="https://apereo.github.io/cas/6.2.x/services/Service-Management.html#service-management">CAS Services Management</a></li>
+<li><a href="https://github.com/apereo/mod_auth_cas">Apereo's mod_auth_cas client</a></li>
 </ul>
                 
               
@@ -1218,7 +1268,7 @@ cas.serviceRegistry.json.location=file:/etc/cas/services
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../../building-cas/ansible-cas/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../cas-client-pages/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1227,19 +1277,19 @@ cas.serviceRegistry.json.location=file:/etc/cas/services
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Ansible playbook setup
+                Create test/example pages
               </div>
             </div>
           </a>
         
         
-          <a href="../../cas-client/overview/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../test-cas-client/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                CAS client overview
+                Test the application
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

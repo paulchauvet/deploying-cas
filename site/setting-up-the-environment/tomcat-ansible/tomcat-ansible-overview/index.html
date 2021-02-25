@@ -861,7 +861,19 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cas-client/httpd-cas-client/" class="md-nav__link">
+      <a href="../../../cas-client/cas-client-pages/" class="md-nav__link">
+        Create test/example pages
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cas-client/build-cas-client/" class="md-nav__link">
         Configure httpd to use CAS
       </a>
     </li>
@@ -882,6 +894,21 @@
           
         </ul>
       </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/future-tasks/" class="md-nav__link">
+        Future tasks
+      </a>
     </li>
   
 
@@ -946,9 +973,17 @@
                 
                 <h1 id="using-ansible-to-put-it-all-together">Using Ansible to put it all together</h1>
 <p>Okay - now that I've covered all the steps that are done to get Tomcat working - you should realize I never do them manually anymore.  I have way too much to do to be manually doing all that.  When I initially started doing this for CAS 5, I had a combination of shell and python scripts to streamline this - but as I've gotten to use Ansible more over the past few years, I moved it all there.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Before you start with Ansible - you will really want to think about how to lock it down.  Your Ansible host - whether you use it for CAS servers alone, or for managing other applications, OS updates, etc., has a LOT of access.  Consider at the very least ensuring your Ansible hosts are only accessible inbound from a VPN - or possibly even dedicated bastion hosts - and is configured with Duo or some other form of MFA for SSH access.  You don't want your system management tool to be a vector for attack.</p>
+</div>
 <h2 id="ansible-hosts-file">Ansible hosts file</h2>
-<p>You have to have an Ansible hosts file created.  You can start with a very small config for a single server even:</p>
-<div class="highlight"><pre><span></span><code>[test_phase2]
+<p>You have to have an Ansible hosts file created.  You can start with a very small config for a single server even.  I always split my CAS servers (or any set of systems where multiples are active at a time) into different phases for when I patch, so a pair of CAS servers below are listed like the following:</p>
+<div class="highlight"><pre><span></span><code>[test_phase1]
+login6deva ansible_python_interpreter=/usr/libexec/platform-python tomcat_major_ver=9.0 tomcat_ver=9.0.41 jdk_version=11
+
+
+[test_phase2]
 login6devb ansible_python_interpreter=/usr/libexec/platform-python tomcat_major_ver=9.0 tomcat_ver=9.0.41 jdk_version=11
 </code></pre></div>
 <p>What I've defined here is:</p>
@@ -959,8 +994,9 @@ login6devb ansible_python_interpreter=/usr/libexec/platform-python tomcat_major_
 <li><em>jdk_version</em> (likewise, I have systems which are using OpenJDK 8 and others with OpenJDK 11, and I want to have my plays handle these.)</li>
 </ul>
 <h2 id="define-a-siteyml-file">Define a site.yml file</h2>
-<p>This is where you can associate roles with systems.  As an example, here's my development CAS hosts, where I have three separate roles (one for security hardening, based on the <a href="https://www.cisecurity.org/cis-benchmarks/">Center for Internet Security</a> benchmarks, one for Apache Tomcat, and one for Apache httpd.</p>
+<p>This is where you can associate roles with systems.  As an example, here's my development CAS hosts, where I have several roles:  (one for security hardening, based on the <a href="https://www.cisecurity.org/cis-benchmarks/">Center for Internet Security</a> benchmarks, one for Apache Tomcat, and one for Apache httpd.  There are two CAS related roles which we'll be building later (I've commented them out for now - you'll uncomment them as they are needed).</p>
 <p>It should be within your main ansible directory</p>
+<p><strong>ansible/site.yml</strong>
 <div class="highlight"><pre><span></span><code><span class="nn">---</span>
 
 <span class="c1"># CAS 6</span>
@@ -969,7 +1005,9 @@ login6devb ansible_python_interpreter=/usr/libexec/platform-python tomcat_major_
     <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">security-hardening-rhel8</span>
     <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">apache-tomcat</span>
     <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">apache-httpd</span>
-</code></pre></div>
+    <span class="c1">#- cas6</span>
+    <span class="c1">#- cas-client</span>
+</code></pre></div></p>
 <h2 id="create-a-role-for-tomcat">Create a role for Tomcat</h2>
 <p>If you don't already have a 'roles' directory within your main ansible directory, create one.  Mine sits within my own user directory on my Ansible/build server.</p>
 <p>Once that is created, go to the roles directory and initialize a new role for apache-tomcat:</p>

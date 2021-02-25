@@ -845,7 +845,19 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cas-client/httpd-cas-client/" class="md-nav__link">
+      <a href="../../cas-client/cas-client-pages/" class="md-nav__link">
+        Create test/example pages
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cas-client/build-cas-client/" class="md-nav__link">
         Configure httpd to use CAS
       </a>
     </li>
@@ -866,6 +878,21 @@
           
         </ul>
       </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/future-tasks/" class="md-nav__link">
+        Future tasks
+      </a>
     </li>
   
 
@@ -918,8 +945,8 @@
 <h2 id="components">Components</h2>
 <div class="admonition tip">
 <p class="admonition-title">Summary</p>
-</div>
 <p>Before beginning the CAS build and configuration process, you will want to plan out your server environment.  Below is how we have things setup - but by no means is the only way.</p>
+</div>
 <p>We at New Paltz have a three-tiered CAS consisting of:</p>
 <ul>
 <li>Development: This is used exclusively for deploying/configuring/testing CAS itself - no end users use this.</li>
@@ -931,24 +958,24 @@
 <li>
 <p>Development</p>
 <ul>
-<li>CAS6Dev1</li>
-<li>CAS6Dev2</li>
+<li>login6deva</li>
+<li>login6devb</li>
 <li>logindev: Public-facing load balanced virtual host</li>
 </ul>
 </li>
 <li>
 <p>Test</p>
 <ul>
-<li>CAS6Test1</li>
-<li>CAS6Test2</li>
+<li>login6testa</li>
+<li>login6testb</li>
 <li>logintest: Public-facing load balanced virtual host</li>
 </ul>
 </li>
 <li>
 <p>Production</p>
 <ul>
-<li>CAS6Prod1</li>
-<li>CAS6Prod2</li>
+<li>login6proda</li>
+<li>login6proda</li>
 <li>login: Public-facing load balanced virtual host</li>
 </ul>
 </li>
@@ -956,7 +983,7 @@
 <p>Each of these servers for us are RHEL 8 hosts, with:</p>
 <ul>
 <li>2 virtual CPUs for production, 1 for test/dev</li>
-<li>4 GB memory (though can probably get away with less)</li>
+<li>4 GB memory (though you may need more or less depending on load)</li>
 <li>25 GB disk</li>
 </ul>
 <p>For the official requirements, see the Apereo CAS <a href="https://apereo.github.io/cas/6.2.x/planning/Installation-Requirements.html">Installation Requirements</a> document.</p>

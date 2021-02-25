@@ -2,10 +2,18 @@
 
 Okay - now that I've covered all the steps that are done to get Tomcat working - you should realize I never do them manually anymore.  I have way too much to do to be manually doing all that.  When I initially started doing this for CAS 5, I had a combination of shell and python scripts to streamline this - but as I've gotten to use Ansible more over the past few years, I moved it all there.
 
+!!! danger
+    Before you start with Ansible - you will really want to think about how to lock it down.  Your Ansible host - whether you use it for CAS servers alone, or for managing other applications, OS updates, etc., has a LOT of access.  Consider at the very least ensuring your Ansible hosts are only accessible inbound from a VPN - or possibly even dedicated bastion hosts - and is configured with Duo or some other form of MFA for SSH access.  You don't want your system management tool to be a vector for attack.
+
+
 ## Ansible hosts file
-You have to have an Ansible hosts file created.  You can start with a very small config for a single server even:
+You have to have an Ansible hosts file created.  You can start with a very small config for a single server even.  I always split my CAS servers (or any set of systems where multiples are active at a time) into different phases for when I patch, so a pair of CAS servers below are listed like the following:
 
 ```
+[test_phase1]
+login6deva ansible_python_interpreter=/usr/libexec/platform-python tomcat_major_ver=9.0 tomcat_ver=9.0.41 jdk_version=11
+
+
 [test_phase2]
 login6devb ansible_python_interpreter=/usr/libexec/platform-python tomcat_major_ver=9.0 tomcat_ver=9.0.41 jdk_version=11
 ```
@@ -19,10 +27,11 @@ What I've defined here is:
 
 
 ## Define a site.yml file
-This is where you can associate roles with systems.  As an example, here's my development CAS hosts, where I have three separate roles (one for security hardening, based on the [Center for Internet Security](https://www.cisecurity.org/cis-benchmarks/) benchmarks, one for Apache Tomcat, and one for Apache httpd.
+This is where you can associate roles with systems.  As an example, here's my development CAS hosts, where I have several roles:  (one for security hardening, based on the [Center for Internet Security](https://www.cisecurity.org/cis-benchmarks/) benchmarks, one for Apache Tomcat, and one for Apache httpd.  There are two CAS related roles which we'll be building later (I've commented them out for now - you'll uncomment them as they are needed).
 
 It should be within your main ansible directory
 
+**ansible/site.yml**
 ``` yaml
 ---
 
@@ -32,6 +41,8 @@ It should be within your main ansible directory
     - security-hardening-rhel8
     - apache-tomcat
     - apache-httpd
+    #- cas6
+    #- cas-client
 ```
 
 ## Create a role for Tomcat

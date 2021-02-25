@@ -3,7 +3,7 @@
 ## Components
 
 !!! tip "Summary"
-  Before beginning the CAS build and configuration process, you will want to plan out your server environment.  Below is how we have things setup - but by no means is the only way.
+    Before beginning the CAS build and configuration process, you will want to plan out your server environment.  Below is how we have things setup - but by no means is the only way.
 
 We at New Paltz have a three-tiered CAS consisting of:
 
@@ -14,24 +14,24 @@ We at New Paltz have a three-tiered CAS consisting of:
 Within each tier, you will want one or more servers.  We do something similar to:
 
 * Development
-    * CAS6Dev1
-    * CAS6Dev2
+    * login6deva
+    * login6devb
     * logindev: Public-facing load balanced virtual host
 
 * Test
-    * CAS6Test1
-    * CAS6Test2
+    * login6testa
+    * login6testb
     * logintest: Public-facing load balanced virtual host
 
 * Production
-    * CAS6Prod1
-    * CAS6Prod2
+    * login6proda
+    * login6proda
     * login: Public-facing load balanced virtual host
 
 Each of these servers for us are RHEL 8 hosts, with:
 
 * 2 virtual CPUs for production, 1 for test/dev
-* 4 GB memory (though can probably get away with less)
+* 4 GB memory (though you may need more or less depending on load)
 * 25 GB disk
 
 For the official requirements, see the Apereo CAS [Installation Requirements](https://apereo.github.io/cas/6.2.x/planning/Installation-Requirements.html) document.

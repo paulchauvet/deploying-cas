@@ -10,6 +10,8 @@ We use AJP for communication between Apache httpd and Apache Tomcat.  Configurin
 ## On the httpd server
 Create a configuration file in /etc/httpd/conf.d.  We call ours 'cas-ajp.conf' but it doesn't matter as long as it ends in .conf.  The contents of which are below:
 
+
+**roles/apache-tomcat/templates/cas-ajp.conf
 ``` apacheconf
 ProxyRequests Off
 <Proxy *>

@@ -1,30 +1,12 @@
-# Configuring HTTPD to use CAS
+# Building CAS client
 
-The mod_auth_cas plugin allows an Apache web server to interact with a CAS server via the CAS protocol.  Red Hat does not offer this plugin for installation via yum however, so it must be downloaded and built from source code.   We'll build the plugin via Ansible as we've done for other tasks.  To start with, we'll (you guessed it) build another role so that this can be applied independently of the CAS servers.
-
-## Create Ansible role
-
-``` console
-[chauvetp@ansible ~]$ cd ansible/roles/
-[chauvetp@ansible roles]$ ansible-galaxy init cas-client
-- Role cas-client was created successfully
-[chauvetp@ansible roles]$ ls casclient/
-defaults  files  handlers  meta  README.md  tasks  templates  tests  vars
-```
-
-## Variable setup
-The only variable we're using here is {{ CAS_DEV_URL }}, though you can fill in the rest if you're using it on other hosts.  If your cas servers are behind a load balancer, this is the load balancer's virtual host, not the individual servers.
-
-``` yaml
-CAS_DEV_URL: your_dev_hostname.domain.edu
-CAS_TEST_URL: your_test_hostname.domain.edu
-CAS_PROD_URL: your_prod_hostname.domain.edu
-```
 
 ## Template setup
-The only template we need is for the cas.conf which will be within /etc/httpd/conf.d.  We're only doing this for the development environment, but if you need CAS clients for prod or test, you can include a separate file for each.  Only the server name for the CAS server will differ here.
+We will have three templates for this.  Two are the index.php pages that were discussed on the previous page.  The third is hte cas.conf file which will be placed within /etc/httpd/conf.d/.
 
-### dev-cas-client.conf.j2
+We're only doing this for the development environment, but if you need CAS clients for prod or test, you can include a separate file for each.  Only the CAS server name, or possibly the Certificate section at the end, will differ here.
+
+**roles/cas-client/templates/dev-cas-client.conf.j2:**
 ``` apacheconf
 LoadModule auth_cas_module modules/mod_auth_cas.so
 
@@ -42,33 +24,38 @@ LoadModule auth_cas_module modules/mod_auth_cas.so
     CASCookiePath         /var/cache/httpd/mod_auth_cas/
     CASSSOEnabled         On
     CASDebug              Off
+
+    # Set the following instead you're having issues:
+    LogLevel		  Debug
+    CASDebug              On
+
+    # Set the following if you're using a self-signed or other non-commercially signed cert
+    # such as from a local CA
+    CASCertificatePath      /etc/pki/tls/certs/dev-cas.crt
 </IfModule>
 ```
 
 
-## Handler setup
-The only handler needed here is to reload apache.  It's placed within the handlers/main.yml file.
 
-``` yaml
----
-# handlers file for cas-client
-     
-  - name: reload httpd
-    service:
-      name: "httpd"
-      state: "reloaded"
+### Setup certificate
+If you're using a non-commercially signed certificate - you'll need to tell the CAS client where it is.  Easiest way to do this is to download that into the template directory and have a task ensure it is referenced in the CAS config.
 
-```
+If you're using a self-signed cert, or a local certificate authority, copy that certificate to your templates directory as *dev-cas.crt* (it will have to be referenced by name in *dev-cas-client.conf.j2*.
+
 
 ## Task setup
 
 This is a small task - but I still prefer to use sub-tasks in my main.yml file.  It makes it easier to expand it later.
 
+**roles/cas-client/tasks/main.yml:**
 ``` yaml
 ---
 # tasks file for cas-client
 - include_tasks: setup-cas-client.yml
 - include_tasks: setup-test-pages.yml
+# The following is only needed if you are using a non-commercially signed cert in
+# your development or test environments.
+- include_tasks: non-commercial-cert.yml
 ```
 
 ### setup-cas-client.yml task
@@ -83,6 +70,7 @@ Then you'll create 'setup-cas-client.yml'.  It will do the following:
 * Places the *cas-client.conf* into /etc/httpd/conf.d
 * Reloads Apache httpd (if necessary)
 
+**roles/cas-client/tasks/setup-cas-client.yml:**
 ``` yaml
 ---
 
@@ -180,8 +168,9 @@ Then you'll create 'setup-cas-client.yml'.  It will do the following:
 
 ### setup-test-pages.yml task
 
-The following are the contents of setup-test-pages.yml, which will setup the php pages that we're going to use to test the CAS client.  All it's doing is ensuring one directory and two files exist.
+The following are the contents of setup-test-pages.yml, which were created on the previous page.  It will just ensure the 'secured-by-cas' directory exists, and the two index.php files are placed (one in /var/www/html, one in /var/www/html/secured-by-cas)
 
+**roles/cas-client/tasks/setup-test-pages.yml:**
 ``` yaml
 ---
 
@@ -211,6 +200,30 @@ The following are the contents of setup-test-pages.yml, which will setup the php
     owner: root
     group: root
   when: ("login6dev" in inventory_hostname)
+```
+
+### setup non-commercial-cert task
+If you're using a commercially signed cert, you can ignore this section.  Otherwise, you'll need to do get the the public certificate of your local certificate authority or the self-signed cert of your CAS server (or load balancer), and store it in templates/.
+
+You'll need to reference the file name variable in CAS_DEV_CERT_FILE in vars/main.yml
+
+**roles/cas-client/tasks/non-commercial-cert.yml:**
+
+``` yaml
+# The 'source' here - should be your self signed cert if you're using one
+# In our case here - this is our local certificate authority
+- name: Setup self-signed cert
+  template:
+    # Make sure to define CAS_DEV_CERT_FILE in vars/main.yml
+    src: {{ CAS_DEV_CERT_FILE }}.crt
+    dest: /etc/pki/tls/certs/{{ CAS_DEV_CERT_FILE }}.crt
+    mode: 0644
+    owner: root
+    group: root
+  when: ("login6dev" in inventory_hostname)
+  notify: reload httpd
+
+
 ```
 
 

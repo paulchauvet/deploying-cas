@@ -14,11 +14,11 @@ Once you have your Tomcat role ready (see the remaining pages) out - you would r
 ``` console
 ansible-playbook site.yml --limit <yourCasServer>
 
-# Example - assuming CAS6_DEV is a grouping in site.yml of your CAS dev environment:
-ansible-playbook site.yml --limit CAS6_DEV 
-
-# Or just one server:
+# Example, to run on one server
 ansible-playbook site.yml --limit login6devb
+
+# Example, to run on more than one
+ansible-playbook site.yml --limit login6deva,login6devb
 ```
 
 You may get warnings or errors.  You will have to review those.

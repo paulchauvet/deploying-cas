@@ -62,9 +62,10 @@ nav:
     - Service Overview: service-config/overview.md
   - Building CAS client:
     - CAS client overview: cas-client/overview.md
-    - Configure httpd to use CAS: cas-client/httpd-cas-client.md
+    - Create test/example pages: cas-client/cas-client-pages.md
+    - Configure httpd to use CAS: cas-client/build-cas-client.md
     - Test the application: cas-client/test-cas-client.md
-
+  - Future tasks: about/future-tasks.md
 
       
 

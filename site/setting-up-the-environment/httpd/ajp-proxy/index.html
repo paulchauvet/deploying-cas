@@ -854,7 +854,19 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cas-client/httpd-cas-client/" class="md-nav__link">
+      <a href="../../../cas-client/cas-client-pages/" class="md-nav__link">
+        Create test/example pages
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cas-client/build-cas-client/" class="md-nav__link">
         Configure httpd to use CAS
       </a>
     </li>
@@ -875,6 +887,21 @@
           
         </ul>
       </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/future-tasks/" class="md-nav__link">
+        Future tasks
+      </a>
     </li>
   
 
@@ -936,15 +963,16 @@
 <p>We use AJP for communication between Apache httpd and Apache Tomcat.  Configuring this is in two steps, one on the httpd server and one on Tomcat.</p>
 <h2 id="on-the-httpd-server">On the httpd server</h2>
 <p>Create a configuration file in /etc/httpd/conf.d.  We call ours 'cas-ajp.conf' but it doesn't matter as long as it ends in .conf.  The contents of which are below:</p>
-<div class="highlight"><pre><span></span><code>ProxyRequests Off
-&lt;Proxy *&gt;
-        Order allow,deny
-        Allow from all
-&lt;/Proxy&gt;
+<p>**roles/apache-tomcat/templates/cas-ajp.conf
+<div class="highlight"><pre><span></span><code><span class="nb">ProxyRequests</span> <span class="k">Off</span>
+<span class="nt">&lt;Proxy</span> <span class="s">*</span><span class="nt">&gt;</span>
+        <span class="nb">Order</span> allow,deny
+        <span class="nb">Allow</span> from <span class="k">all</span>
+<span class="nt">&lt;/Proxy&gt;</span>
 
-ProxyPass               /cas    ajp://localhost:8009/cas
-ProxyPassReverse        /cas    ajp://localhost:8009/cas
-</code></pre></div>
+<span class="nb">ProxyPass</span>               <span class="sx">/cas</span>    ajp://localhost:8009/cas
+<span class="nb">ProxyPassReverse</span>        <span class="sx">/cas</span>    ajp://localhost:8009/cas
+</code></pre></div></p>
 <h2 id="on-the-tomcat-server">On the Tomcat server</h2>
 <p>Edit /etc/tomcat/server.xml and define an AJP port:</p>
 <div class="highlight"><pre><span></span><code>    <span class="c">&lt;!-- Define an AJP 1.3 Connector on port 8009</span>

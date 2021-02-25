@@ -803,9 +803,59 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          CAS client overview
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         CAS client overview
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-httpd-to-use-cas" class="md-nav__link">
+    Configuring HTTPD to use CAS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-ansible-role" class="md-nav__link">
+    Create Ansible role
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variable-setup" class="md-nav__link">
+    Variable setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#handler-setup" class="md-nav__link">
+    Handler setup
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -816,7 +866,19 @@
   
   
     <li class="md-nav__item">
-      <a href="../httpd-cas-client/" class="md-nav__link">
+      <a href="../cas-client-pages/" class="md-nav__link">
+        Create test/example pages
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../build-cas-client/" class="md-nav__link">
         Configure httpd to use CAS
       </a>
     </li>
@@ -841,6 +903,21 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/future-tasks/" class="md-nav__link">
+        Future tasks
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -859,6 +936,42 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-httpd-to-use-cas" class="md-nav__link">
+    Configuring HTTPD to use CAS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-ansible-role" class="md-nav__link">
+    Create Ansible role
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variable-setup" class="md-nav__link">
+    Variable setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#handler-setup" class="md-nav__link">
+    Handler setup
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -871,6 +984,44 @@
                 
                 
                 <h1 id="cas-client-overview">CAS Client Overview</h1>
+<p>To make it easier to develop and test CAS - we should have a CAS client application.  For my development environment, I just install this on our CAS development servers, within Apache httpd.</p>
+<p>We'll use this CAS client to test as we go along - including as we build out extra functionality such as MFA, attribute release, service restrictions by group or other attributes, etc.</p>
+<div class="admonition note">
+<p>As you probably noticed - I'm assuming you're using Ansible at this point.  My hope is that even if you're not - what I'm providing here is still usable (and you can still read what the Ansible tasks are doing)</p>
+</div>
+<h2 id="configuring-httpd-to-use-cas">Configuring HTTPD to use CAS</h2>
+<p>The mod_auth_cas plugin allows an Apache web server to interact with a CAS server via the CAS protocol.  Red Hat does not offer this plugin for installation via yum however, so it must be downloaded and built from source code.   We'll build the plugin via Ansible as we've done for other tasks.  To start with, we'll (you guessed it) build another role so that this can be applied independently of the CAS servers.</p>
+<h2 id="create-ansible-role">Create Ansible role</h2>
+<div class="highlight"><pre><span></span><code><span class="gp">[chauvetp@ansible ~]$ </span><span class="nb">cd</span> ansible/roles/
+<span class="gp">[chauvetp@ansible roles]$ </span>ansible-galaxy init cas-client
+<span class="go">- Role cas-client was created successfully</span>
+<span class="gp">[chauvetp@ansible roles]$ </span>ls casclient/
+<span class="go">defaults  files  handlers  meta  README.md  tasks  templates  tests  vars</span>
+</code></pre></div>
+<h2 id="variable-setup">Variable setup</h2>
+<p>The only variable we're using here is {{ CAS_DEV_URL }}, though you can fill in the rest if you're using it on other hosts.  If your cas servers are behind a load balancer, this is the load balancer's virtual host, not the individual servers.</p>
+<p><strong>roles/cas-client/vars/main.yml:</strong>
+<div class="highlight"><pre><span></span><code><span class="nt">CAS_DEV_URL</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">your_dev_hostname.domain.edu</span>
+<span class="nt">CAS_TEST_URL</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">your_test_hostname.domain.edu</span>
+<span class="nt">CAS_PROD_URL</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">your_prod_hostname.domain.edu</span>
+
+<span class="c1"># The following is needed if you&#39;re using self-signed or other non-commercially signed certs</span>
+<span class="c1"># for your dev CAS server or the load balancer in front of it</span>
+<span class="nt">CAS_DEV_CERT_FILE</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">your_cert_file_name</span> 
+</code></pre></div></p>
+<h2 id="handler-setup">Handler setup</h2>
+<p><strong>roles/cas-client/handlers/main.yml:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># handlers file for cas-client</span>
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">restart httpd</span>
+    <span class="nt">service</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;httpd&quot;</span>
+      <span class="nt">state</span><span class="p">:</span> <span class="s">&quot;restarted&quot;</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">reload httpd</span>
+    <span class="nt">service</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;httpd&quot;</span>
+      <span class="nt">state</span><span class="p">:</span> <span class="s">&quot;reloaded&quot;</span>
+</code></pre></div></p>
                 
               
               
@@ -904,13 +1055,13 @@
           </a>
         
         
-          <a href="../httpd-cas-client/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../cas-client-pages/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Configure httpd to use CAS
+                Create test/example pages
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

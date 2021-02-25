@@ -1,6 +1,10 @@
 ## Setup variables
-If you setup the four variables we needed in the encrypted vault file, you're ready.  Those variables are setup like the following (the actual valus shown here are not those in use in my environment):
+If you setup the four variables we needed in the encrypted vault file, you're ready.  Those variables are setup like the following.
 
+!!! warning
+    Make sure not to ever let your real values for these end up in a public git repo.  The ones shown here I generated just for this article and are not what are in use in my environment.
+
+**roles/cas6/vars/cas-vault.yml:**
 ``` yaml
 dev_tgc_signing_key: dYffipMGbhIoyUsSHwzEDcBk5nbETZtH-lR3R776wNavS4koAHyQkDdK_rJIWrYYgZZ2TsLW5NXfcDI_Ivn4Uw
 dev_tgc_encryption_key: Gpy6fxMnh5RhmFUJWVcJL9WIAuFODzTlPIaQOTq9-jM
@@ -16,11 +20,11 @@ To start - the only template files we need are:
 
 ## Setup handlers
 
-You can copy over the handlers/main.yml file from the Apache Tomcat role since you'll need it here.  Contents are the same, just:
+You can copy over the handlers/main.yml file from the Apache Tomcat role since you'll need it here, but we'll also need one to reload httpd (once the AJP proxy config is added to httpd):
 
+**roles/cas6/handlers/main.yml:**
 ``` yaml
-# handlers file for apache-tomcat
-# All that's really here for now is just commands to start, stop, and restart tomcat.
+# handlers file for cas6
 - name: stop tomcat
   ansible.builtin.systemd:
     name: tomcat
@@ -36,26 +40,34 @@ You can copy over the handlers/main.yml file from the Apache Tomcat role since y
     name: tomcat
     state: restarted
 
+- name: reload httpd
+  ansible.builtin.systemd:
+    name: httpd
+    state: reloaded
+
 ```
 
 
 ## Create tasks
 
-We're going to have multiple plays within the CAS6 role, so we'll break them up like we did for Tomcat, but to start with, it's just a single include for 'base-cas-config.yml'.
+We're going to have multiple plays within the CAS6 role, so we'll break them up like we did for Tomcat, but to start with, it's just two includes for 'base-cas-config.yml'.
 
-The tasks are:
+**roles/cas6/tasks/main.yml:**
+``` yaml
+- include_tasks: base-cas-config.yml
+- include_tasks: service-config.yml
+- include_tasks: cas-ajp-proxy.yml
+```
+
+### Base CAS Config tasks ###
+For the first include, the only tasks are:
 
 * Make sure the cas config and services directories exist
 * Make sure that the cas.properties file we have in our templates directory matches the one in /etc/cas/config (and if not - update it and use notify to restart Tomcat when the play is done).
 * Make sure that the log4j2.xml file we have in our files directory matches the one in /etc/cas/config (and if not - update it and use notify to restart Tomcat when the play is done).
-
 * Make sure that the cas.war file we have in our files directory matches the one in /opt/tomcat/latest/webapps (and if not - update it and use notify to restart Tomcat when the play is done).
 
-``` yaml
-- include_tasks: base-cas-config.yml
-```
-
-within base-cas-config.yml:
+**roles/cas6/tasks/base-cas-config.yml:**
 ``` yaml
 ---
 
@@ -77,6 +89,13 @@ within base-cas-config.yml:
     owner: root
     group: tomcat
 
+- name: Ensure base CAS log directory exists
+  file:
+    path: /var/log/cas
+    state: directory
+    mode: 0750
+    owner: tomcat
+    group: tomcat
 
 # Note: This is for dev specifically.  If we have multiple environments, there's
 # a different config file for each.  The 'when' on inventory_hostname is used to
@@ -113,13 +132,29 @@ within base-cas-config.yml:
     src: cas.war
     dest: /opt/tomcat/latest/webapps/cas.war
     mode: 0750
-    owner: root
+    owner: tomcat
     group: tomcat
   when: ("login6dev" in inventory_hostname)
   notify: restart tomcat
 ```
 
+### Setup AJP proxy between Tomcat and httpd
+This is what handles the connections on Apache httpd's side from Apache Tomcat.  We setup the AJP proxy on the Tomcat side earlier.
 
+**roles/cas6/tasks/cas-ajp-proxy.yml:**
+
+``` yaml
+---
+
+- name: "Copy CAS Apache AJP proxy config"
+  template:
+    src: cas-ajp.conf.j2
+    dest: /etc/httpd/conf.d/cas-ajp.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: reload httpd
+```
 
 ## Run the play
 

@@ -761,6 +761,26 @@
     Create tasks
   </a>
   
+    <nav class="md-nav" aria-label="Create tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base-cas-config-tasks" class="md-nav__link">
+    Base CAS Config tasks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup-ajp-proxy-between-tomcat-and-httpd" class="md-nav__link">
+    Setup AJP proxy between Tomcat and httpd
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -876,7 +896,19 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cas-client/httpd-cas-client/" class="md-nav__link">
+      <a href="../../cas-client/cas-client-pages/" class="md-nav__link">
+        Create test/example pages
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cas-client/build-cas-client/" class="md-nav__link">
         Configure httpd to use CAS
       </a>
     </li>
@@ -897,6 +929,21 @@
           
         </ul>
       </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/future-tasks/" class="md-nav__link">
+        Future tasks
+      </a>
     </li>
   
 
@@ -949,6 +996,26 @@
     Create tasks
   </a>
   
+    <nav class="md-nav" aria-label="Create tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base-cas-config-tasks" class="md-nav__link">
+    Base CAS Config tasks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup-ajp-proxy-between-tomcat-and-httpd" class="md-nav__link">
+    Setup AJP proxy between Tomcat and httpd
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -981,12 +1048,17 @@
                   <h1>Ansible playbook setup</h1>
                 
                 <h2 id="setup-variables">Setup variables</h2>
-<p>If you setup the four variables we needed in the encrypted vault file, you're ready.  Those variables are setup like the following (the actual valus shown here are not those in use in my environment):</p>
+<p>If you setup the four variables we needed in the encrypted vault file, you're ready.  Those variables are setup like the following.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Make sure not to ever let your real values for these end up in a public git repo.  The ones shown here I generated just for this article and are not what are in use in my environment.</p>
+</div>
+<p><strong>roles/cas6/vars/cas-vault.yml:</strong>
 <div class="highlight"><pre><span></span><code><span class="nt">dev_tgc_signing_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dYffipMGbhIoyUsSHwzEDcBk5nbETZtH-lR3R776wNavS4koAHyQkDdK_rJIWrYYgZZ2TsLW5NXfcDI_Ivn4Uw</span>
 <span class="nt">dev_tgc_encryption_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Gpy6fxMnh5RhmFUJWVcJL9WIAuFODzTlPIaQOTq9-jM</span>
 <span class="nt">dev_webflow_signing_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">xoWJ9S2vmTgvB_CdZeddb1qmqPihBGIw5Op27MsNxfR8KWgPgrx4VXpssTTM3IcXkLJVoxTylg_hSxvH65M88g</span>
 <span class="nt">dev_webflow_encryption_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">qnHUX0kyFHc718oh/f+ebw==</span>
-</code></pre></div>
+</code></pre></div></p>
 <h2 id="setup-templates">Setup templates</h2>
 <p>To start - the only template files we need are:</p>
 <ul>
@@ -994,9 +1066,9 @@
 <li><a href="https://paulchauvet.github.io/deploying-cas/building-cas/templates/log4j2.xml">log4j2.xml</a> (which will be /etc/cas/config/log4j2.xml on the CAS systems, as so far I haven't had a reason to have a different log4j2 config on DEV/TEST/PROD like I have for cas.properties).</li>
 </ul>
 <h2 id="setup-handlers">Setup handlers</h2>
-<p>You can copy over the handlers/main.yml file from the Apache Tomcat role since you'll need it here.  Contents are the same, just:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># handlers file for apache-tomcat</span>
-<span class="c1"># All that&#39;s really here for now is just commands to start, stop, and restart tomcat.</span>
+<p>You can copy over the handlers/main.yml file from the Apache Tomcat role since you'll need it here, but we'll also need one to reload httpd (once the AJP proxy config is added to httpd):</p>
+<p><strong>roles/cas6/handlers/main.yml:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># handlers file for cas6</span>
 <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">stop tomcat</span>
   <span class="nt">ansible.builtin.systemd</span><span class="p">:</span>
     <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
@@ -1011,23 +1083,28 @@
   <span class="nt">ansible.builtin.systemd</span><span class="p">:</span>
     <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
     <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">restarted</span>
-</code></pre></div>
+
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">reload httpd</span>
+  <span class="nt">ansible.builtin.systemd</span><span class="p">:</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">httpd</span>
+    <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">reloaded</span>
+</code></pre></div></p>
 <h2 id="create-tasks">Create tasks</h2>
-<p>We're going to have multiple plays within the CAS6 role, so we'll break them up like we did for Tomcat, but to start with, it's just a single include for 'base-cas-config.yml'.</p>
-<p>The tasks are:</p>
+<p>We're going to have multiple plays within the CAS6 role, so we'll break them up like we did for Tomcat, but to start with, it's just two includes for 'base-cas-config.yml'.</p>
+<p><strong>roles/cas6/tasks/main.yml:</strong>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">include_tasks</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">base-cas-config.yml</span>
+<span class="p p-Indicator">-</span> <span class="nt">include_tasks</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">service-config.yml</span>
+<span class="p p-Indicator">-</span> <span class="nt">include_tasks</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cas-ajp-proxy.yml</span>
+</code></pre></div></p>
+<h3 id="base-cas-config-tasks">Base CAS Config tasks</h3>
+<p>For the first include, the only tasks are:</p>
 <ul>
 <li>Make sure the cas config and services directories exist</li>
 <li>Make sure that the cas.properties file we have in our templates directory matches the one in /etc/cas/config (and if not - update it and use notify to restart Tomcat when the play is done).</li>
-<li>
-<p>Make sure that the log4j2.xml file we have in our files directory matches the one in /etc/cas/config (and if not - update it and use notify to restart Tomcat when the play is done).</p>
-</li>
-<li>
-<p>Make sure that the cas.war file we have in our files directory matches the one in /opt/tomcat/latest/webapps (and if not - update it and use notify to restart Tomcat when the play is done).</p>
-</li>
+<li>Make sure that the log4j2.xml file we have in our files directory matches the one in /etc/cas/config (and if not - update it and use notify to restart Tomcat when the play is done).</li>
+<li>Make sure that the cas.war file we have in our files directory matches the one in /opt/tomcat/latest/webapps (and if not - update it and use notify to restart Tomcat when the play is done).</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">include_tasks</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">base-cas-config.yml</span>
-</code></pre></div>
-<p>within base-cas-config.yml:
+<p><strong>roles/cas6/tasks/base-cas-config.yml:</strong>
 <div class="highlight"><pre><span></span><code><span class="nn">---</span>
 
 <span class="p p-Indicator">-</span> <span class="nt">include_vars</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cas-vault.yml</span>
@@ -1048,6 +1125,13 @@
     <span class="nt">owner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
     <span class="nt">group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
 
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ensure base CAS log directory exists</span>
+  <span class="nt">file</span><span class="p">:</span>
+    <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/log/cas</span>
+    <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">directory</span>
+    <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0750</span>
+    <span class="nt">owner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
+    <span class="nt">group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
 
 <span class="c1"># Note: This is for dev specifically.  If we have multiple environments, there&#39;s</span>
 <span class="c1"># a different config file for each.  The &#39;when&#39; on inventory_hostname is used to</span>
@@ -1084,11 +1168,25 @@
     <span class="nt">src</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cas.war</span>
     <span class="nt">dest</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/opt/tomcat/latest/webapps/cas.war</span>
     <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0750</span>
-    <span class="nt">owner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+    <span class="nt">owner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
     <span class="nt">group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
   <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">(&quot;login6dev&quot; in inventory_hostname)</span>
   <span class="nt">notify</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">restart tomcat</span>
 </code></pre></div></p>
+<h3 id="setup-ajp-proxy-between-tomcat-and-httpd">Setup AJP proxy between Tomcat and httpd</h3>
+<p>This is what handles the connections on Apache httpd's side from Apache Tomcat.  We setup the AJP proxy on the Tomcat side earlier.</p>
+<p><strong>roles/cas6/tasks/cas-ajp-proxy.yml:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nn">---</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Copy</span><span class="nv"> </span><span class="s">CAS</span><span class="nv"> </span><span class="s">Apache</span><span class="nv"> </span><span class="s">AJP</span><span class="nv"> </span><span class="s">proxy</span><span class="nv"> </span><span class="s">config&quot;</span>
+  <span class="nt">template</span><span class="p">:</span>
+    <span class="nt">src</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cas-ajp.conf.j2</span>
+    <span class="nt">dest</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/httpd/conf.d/cas-ajp.conf</span>
+    <span class="nt">owner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+    <span class="nt">group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+    <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0644</span>
+  <span class="nt">notify</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">reload httpd</span>
+</code></pre></div>
 <h2 id="run-the-play">Run the play</h2>
 <p>In this example below, I'm running the play but limiting it to only one host.</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">[</span><span class="nv">chauvetp@ansible templates</span><span class="p p-Indicator">]</span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook ~/ansible/site.yml --ask-vault-pass --limit login6devb</span>

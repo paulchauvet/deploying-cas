@@ -87,18 +87,22 @@ As listed earlier, I recommend creating a separate service directory for each ti
 Place your newly created service file from above into this directory.
 
 ### Update your tasks
-Within the tasks directory, create a new file called *service-config.yml* (or something similar).  Reference that file within your main.yml - which should now look like:
+Within the tasks directory, create a new file called *service-config.yml* (or something similar).  Reference that file within your existing cas role's main.yml.  Your main.yml should look like the one below now.
 
+**roles/cas6/tasks/main.yml:**
 ``` yaml
 ---
-# tasks file for cas6
+# main tasks file for cas6
 - include_tasks: base-cas-config.yml
+- include_tasks: cas-ajp-proxy.yml
 - include_tasks: service-config.yml
 
 ```
 
-Your service-config.yml should look like the following:
+### Configure the service config task
+This will ensure whatever is in your templates/dev-services directory will be replicated in the CAS servers when the playbook runs.
 
+**roles/cas6/tasks/service-config.yml:**
 ``` yaml
 ---
 
@@ -110,10 +114,11 @@ Your service-config.yml should look like the following:
     group: tomcat
   with_filetree: '../templates/dev-services'
   when: item.state == 'file' and 'login6dev' in inventory_hostname
-
 ```
 
 This is a way of getting a whole directory copied over instead of a single file.  Otherwise you'd have to define an ansible template for each service you have - which could get pretty large (though is okay if you prefer it!).
+
+With this in place - any services that are defined in the dev-services directory will be copied over.  Note: it will not DELETE services.  This is still to be done.
 
 
 ## Rebuild and redeploy CAS

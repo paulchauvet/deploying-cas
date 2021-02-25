@@ -639,19 +639,6 @@
     Configure Tomcat
   </a>
   
-    <nav class="md-nav" aria-label="Configure Tomcat">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#to-do-add-links-to-the-documents-where-these-file-changes-are-done" class="md-nav__link">
-    To do - add links to the documents where these file changes are done.
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -909,7 +896,19 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cas-client/httpd-cas-client/" class="md-nav__link">
+      <a href="../../../cas-client/cas-client-pages/" class="md-nav__link">
+        Create test/example pages
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cas-client/build-cas-client/" class="md-nav__link">
         Configure httpd to use CAS
       </a>
     </li>
@@ -930,6 +929,21 @@
           
         </ul>
       </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/future-tasks/" class="md-nav__link">
+        Future tasks
+      </a>
     </li>
   
 
@@ -1005,19 +1019,6 @@
     Configure Tomcat
   </a>
   
-    <nav class="md-nav" aria-label="Configure Tomcat">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#to-do-add-links-to-the-documents-where-these-file-changes-are-done" class="md-nav__link">
-    To do - add links to the documents where these file changes are done.
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1042,7 +1043,8 @@
                 
                 <h1 id="task-setup">Task setup</h1>
 <h2 id="main-task-file">Main task file</h2>
-<p>To keep things cleaner, I include chunks of the role in separate files.  All must be referenced by the main.yml file within the role (ansible/roles/apache-tomcat/tasks/main.yml).  They are called in order by main.yml:</p>
+<p>To keep things cleaner, I include chunks of the role in separate files.  All must be referenced by the main.yml file within the role (ansible/roles/apache-tomcat/tasks/main.yml).  They are called in order by main.yml.</p>
+<p><strong>roles/apache-tomcat/tasks/main.yml:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="c1"># tasks file for apache-tomcat</span>
 <span class="p p-Indicator">-</span> <span class="nt">include_tasks</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">setup-prerequisites.yml</span>
 <span class="c1"># on RHEL7 - I have a playbook to download/compile OpenSSL as well but that&#39;s not needed on RHEL8.  RHEL7 had a really old version of OpenSSL.</span>
@@ -1055,28 +1057,15 @@
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
+<p>If you haven't used ansible - you may want to look up <em>idempotency</em> and what it means.  An operation is idempotent if the result of performing it once is exactly the same as the result of performing it repeatedly without any intervening actions.  For example in these playbooks, there are tasks to create users, create directories, or apply a config template.  If Ansible detects that these are already in the desired - it will just mosey right along (indicating "OK" when that task is being processed).</p>
 </div>
-<p>If you haven't used ansible - you may want to look up idempotency and what it means.  An operation is idempotent if the result of performing it once is exactly the same as the result of performing it repeatedly without any intervening actions.  For example in these playbooks, there are tasks to create users, create directories, or apply a config template.  If Ansible detects that these are already right - it will just mosey right along and not change anything for those steps.</p>
 <h2 id="setup-prerequisites">Setup Prerequisites</h2>
 <p>I've left some of my older stuff in here for example's sake (since again, I still have to maintain some RHEL 7 and JDK 8 systems).  I've highlighted the revelant portions for this.  The example isn't the cleanest, but you can see how you can alter packages based on different needs (in thise case, dnf is used for RHEL 8 and yum for RHEL 7.).</p>
 <p>The Tomcat user and group are created as well at the bottom.</p>
 <p>If you use this, the 'jdk_version" needs to be specified in your ansible hosts file, or some variable file.  The ansible_distribution and ansible_distribution_major_version don't need to be specified as Ansible reads those from the hosts it connects to.</p>
-<div class="highlight"><pre><span></span><code><span class="hll"><span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Setup prerequisite dnf packages (RHEL 8 &amp; JDK 11)</span>
-</span><span class="hll">  <span class="nt">dnf</span><span class="p">:</span>
-</span><span class="hll">    <span class="nt">name</span><span class="p">:</span>
-</span><span class="hll">      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">epel-release</span>
-</span><span class="hll">      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">java-11-openjdk</span>
-</span><span class="hll">      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">java-11-openjdk-devel</span>
-</span><span class="hll">      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">haveged</span>
-</span><span class="hll">      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">gcc</span>
-</span><span class="hll">      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">libtool</span>
-</span><span class="hll">      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">make</span>
-</span><span class="hll">      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">openssl-devel</span>
-</span><span class="hll">    <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
-</span><span class="hll">  <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ansible_distribution == &#39;RedHat&#39; and ansible_distribution_major_version == &#39;8&#39; and jdk_version == 11</span>
-</span>
-<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Setup prerequisite yum packages (RHEL 7 &amp; JDK 11)</span>
-  <span class="nt">yum</span><span class="p">:</span>
+<p><strong>roles/apache-tomcat/tasks/setup-prerequisites.yml:</strong>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Setup prerequisite dnf packages (RHEL 8 &amp; JDK 11)</span>
+  <span class="nt">dnf</span><span class="p">:</span>
     <span class="nt">name</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">epel-release</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">java-11-openjdk</span>
@@ -1085,39 +1074,33 @@
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">gcc</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">libtool</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">make</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">policycoreutils-python</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">openssl-devel</span>
     <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
-  <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ansible_distribution == &#39;RedHat&#39; and ansible_distribution_major_version == &#39;7&#39; and jdk_version == 11</span>
+  <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ansible_distribution == &#39;RedHat&#39; and ansible_distribution_major_version == &#39;8&#39; and jdk_version == 11</span>
 
-<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Setup prerequisite yum packages (RHEL 7 &amp; JDK 8)</span>
-  <span class="nt">yum</span><span class="p">:</span>
-    <span class="nt">name</span><span class="p">:</span> 
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">epel-release</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">java-1.8.0-openjdk</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">java-1.8.0-openjdk-devel</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">haveged</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">gcc</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">libtool</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">make</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">policycoreutils-python</span>
-    <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
-  <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ansible_distribution == &#39;RedHat&#39; and ansible_distribution_major_version == &#39;7&#39; and jdk_version == 8</span>
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Add tomcat group</span>
+  <span class="nt">group</span><span class="p">:</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
 
-<span class="hll"><span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Add tomcat group</span>
-</span><span class="hll">  <span class="nt">group</span><span class="p">:</span>
-</span><span class="hll">    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
-</span><span class="hll">
-</span><span class="hll"><span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Add tomcat user</span>
-</span><span class="hll">  <span class="nt">user</span><span class="p">:</span>
-</span><span class="hll">    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
-</span><span class="hll">    <span class="nt">group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
-</span><span class="hll">    <span class="nt">home</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/opt/tomcat</span>
-</span><span class="hll">    <span class="nt">shell</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/sbin/nologin</span>
-</span><span class="hll">    <span class="nt">createhome</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
-</span><span class="hll">    <span class="nt">system</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
-</span></code></pre></div>
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Add tomcat user</span>
+  <span class="nt">user</span><span class="p">:</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
+    <span class="nt">group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
+    <span class="nt">home</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/opt/tomcat</span>
+    <span class="nt">shell</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/sbin/nologin</span>
+    <span class="nt">createhome</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+    <span class="nt">system</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Make sure haveged is running and set to start on boot</span>
+  <span class="nt">ansible.builtin.systemd</span><span class="p">:</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">haveged</span>
+    <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">started</span>
+    <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+    <span class="nt">masked</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">no</span>
+</code></pre></div></p>
 <h2 id="setup-apache-portable-runtime-apr">Setup Apache Portable Runtime (APR)</h2>
 <p>The following section checks if the target version of APR is already installed.  If not, it will download, unpack, compile, and install it.</p>
+<p><strong>roles/apache-tomcat/tasks/setup-apr.yml:</strong>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Check if APR {{ apr_ver }} is already installed</span>
   <span class="nt">stat</span><span class="p">:</span>
     <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/opt/apr/apr-{{ apr_ver }}/bin/apr-1-config</span>
@@ -1199,11 +1182,12 @@
   <span class="nt">file</span><span class="p">:</span>
     <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/root/apr-{{ apr_ver }}.tar.gz</span>
     <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">absent</span>
-</code></pre></div>
+</code></pre></div></p>
 <h2 id="install-apache-tomcat">Install Apache Tomcat</h2>
 <p>This section checks if the target version Tomcat is already installed.  If not - it will download Tomcat, unpack the archive, and ensure the various directory symlinks (conf, log, temp, webapps, work) are already setup.</p>
 <p>If this is the first time Tomcat is being deployed on the target system (or the /etc/tomcat directory is otherwise empty), the contents of 'conf' from the downloaded tarball will be copied to /etc/tomcat.</p>
 <p>It will also setup the systemd unit file so it can eventually be started and set to start on boot.</p>
+<p><strong>roles/apache-tomcat/tasks/install.yml:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Check if Tomcat {{ tomcat_ver }} directory exists</span>
   <span class="nt">stat</span><span class="p">:</span>
     <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/opt/tomcat/apache-tomcat-{{ tomcat_ver }}</span>
@@ -1440,6 +1424,7 @@
 </code></pre></div>
 <h2 id="setup-tomcat-native-library">Setup Tomcat Native Library</h2>
 <p>This is where the Tomcat Native Library (if not already installed) gets unpacked, configured, compiled, and installed.</p>
+<p><strong>roles/apache-tomcat/tasks/setup-tomcat-native.yml:</strong>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Check if Tomcat Native Library {{ tomcat_native_ver }} is already installed</span>
   <span class="nt">stat</span><span class="p">:</span>
     <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/opt/tomcat/apache-tomcat-{{ tomcat_ver }}/lib/libtcnative-1.so</span>
@@ -1454,22 +1439,6 @@
     <span class="nt">group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
     <span class="nt">remote_src</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
   <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat_native_library.stat.exists == False</span>
-
-
-<span class="c1"># Only configure if the Tomcat Native Library directory for the version didn&#39;t already exist</span>
-<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Configure Tomcat Native Library (RHEL7 &amp; JDK 11)</span>
-  <span class="nt">command</span><span class="p">:</span> <span class="s">&quot;./configure</span><span class="nv"> </span><span class="s">--with-java-home={{</span><span class="nv"> </span><span class="s">JAVA_HOME</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">--with-apr=/opt/apr/latest/bin/apr-1-config</span><span class="nv"> </span><span class="s">--prefix=/opt/tomcat/apache-tomcat-{{</span><span class="nv"> </span><span class="s">tomcat_ver</span><span class="nv"> </span><span class="s">}}&quot;</span>
-  <span class="nt">args</span><span class="p">:</span>
-    <span class="nt">chdir</span><span class="p">:</span> <span class="s">&quot;/opt/tomcat/apache-tomcat-{{</span><span class="nv"> </span><span class="s">tomcat_ver</span><span class="nv"> </span><span class="s">}}/bin/tomcat-native-{{</span><span class="nv"> </span><span class="s">tomcat_native_ver</span><span class="nv"> </span><span class="s">}}-src/native&quot;</span>
-  <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat_native_library.stat.exists == False and ansible_distribution == &#39;RedHat&#39; and ansible_distribution_major_version == &#39;7&#39; and jdk_version == 11</span>
-
-<span class="c1"># Only configure if the Tomcat Native Library directory for the version didn&#39;t already exist</span>
-<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Configure Tomcat Native Library (RHEL7 &amp; JDK 8)</span>
-  <span class="nt">command</span><span class="p">:</span> <span class="s">&quot;./configure</span><span class="nv"> </span><span class="s">--with-java-home={{</span><span class="nv"> </span><span class="s">JAVA_8_HOME</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">--with-apr=/opt/apr/latest/bin/apr-1-config</span><span class="nv"> </span><span class="s">--prefix=/opt/tomcat/apache-tomcat-{{</span><span class="nv"> </span><span class="s">tomcat_ver</span><span class="nv"> </span><span class="s">}}&quot;</span>
-  <span class="nt">args</span><span class="p">:</span>
-    <span class="nt">chdir</span><span class="p">:</span> <span class="s">&quot;/opt/tomcat/apache-tomcat-{{</span><span class="nv"> </span><span class="s">tomcat_ver</span><span class="nv"> </span><span class="s">}}/bin/tomcat-native-{{</span><span class="nv"> </span><span class="s">tomcat_native_ver</span><span class="nv"> </span><span class="s">}}-src/native&quot;</span>
-  <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat_native_library.stat.exists == False and ansible_distribution == &#39;RedHat&#39; and ansible_distribution_major_version == &#39;7&#39; and jdk_version == 8</span>
-
 
 <span class="c1"># Only configure if the Tomcat Native Library directory for the version didn&#39;t already exist</span>
 <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Configure Tomcat Native Library (RHEL8)</span>
@@ -1490,9 +1459,10 @@
   <span class="nt">file</span><span class="p">:</span>
     <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/opt/tomcat/apache-tomcat-{{ tomcat_ver }}/bin/tomcat-native-{{ tomcat_native_ver }}-src</span>
     <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">absent</span>
-</code></pre></div>
+</code></pre></div></p>
 <h2 id="setup-apache-tomcat-commons-daemon">Setup Apache Tomcat Commons Daemon</h2>
 <p>This is where the Tomcat Commons Daemon (if not already installed) gets unpacked, configured, compiled, and installed.</p>
+<p><strong>roles/apache-tomcat/tasks/setup-commons-daemon.yml:</strong>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Check if Apache Tomcat Commons Daemon {{ commons_daemon_ver }} is already installed</span>
   <span class="nt">stat</span><span class="p">:</span>
     <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/opt/tomcat/apache-tomcat-{{ tomcat_ver }}/bin/jsvc</span>
@@ -1546,11 +1516,11 @@
   <span class="nt">file</span><span class="p">:</span>
     <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/opt/tomcat/apache-tomcat-{{ tomcat_ver }}/bin/commons-daemon-{{ commons_daemon_ver }}-native-src</span>
     <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">absent</span>
-</code></pre></div>
+</code></pre></div></p>
 <h2 id="configure-tomcat">Configure Tomcat</h2>
 <p>This is where we take the template files that were created earlier for web.xml, server.xml, etc., and make sure they are copied over to the server.  If any are updated, it will notify Tomcat to restart when done.</p>
 <p>This is basically just configuring the various files in /etc/tomcat.  To initially create these files - download copies of them from a default Tomcat install to your Ansible host's roles/apache-tomcat/templates directory and alter them as needed.  I will have copies of these files uploaded as well.</p>
-<h3 id="to-do-add-links-to-the-documents-where-these-file-changes-are-done">To do - add links to the documents where these file changes are done.</h3>
+<p><strong>roles/apache-tomcat/tasks/configure-tomcat.yml:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Setup catalina.properties</span>
   <span class="nt">template</span><span class="p">:</span>
     <span class="nt">src</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cas6-catalina.properties.j2</span>
@@ -1593,6 +1563,7 @@
 </code></pre></div>
 <h2 id="post-installation-tasks">Post installation tasks</h2>
 <p>If the installation fails (errors, not warnings) at any point - it won't get to here, so it shouldn't move the symlink and restart tomcat unless the install completed.  It also won't 'notify' tomcat to restart if they didn't even have to create the symlink (or if the config files changed earlier)</p>
+<p><strong>roles/apache-tomcat/tasks/post-install.yml:</strong>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Setup Apache Tomcat {{ tomcat_ver }} symlink</span>
   <span class="nt">file</span><span class="p">:</span>
     <span class="nt">src</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/opt/tomcat/apache-tomcat-{{ tomcat_ver }}</span>
@@ -1607,7 +1578,7 @@
   <span class="nt">file</span><span class="p">:</span>
     <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/root/apache-tomcat-{{ tomcat_ver }}.tar.gz</span>
     <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">absent</span>
-</code></pre></div>
+</code></pre></div></p>
                 
               
               

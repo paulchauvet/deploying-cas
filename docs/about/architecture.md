@@ -25,7 +25,7 @@ Authentication will be against either:
 
 * On-prem Active Directory (for alumni)
 * Azure Active Directory (for active faculty/staff/students, and retirees)
-   * (we may eventually have all alumni in Azure - but that's for a later date.  For now - they are only on-prem and really are only kept active for a couple systems)
+      * Note: we may eventually have all alumni in Azure - but that's for a later date.  For now - they are only on-prem and really are only kept active for a couple systems
 
 In each case - the hosts sit behind a load balancer (in our case, F5 Big IP, though HA Proxy or basically any other load balancer should work.  We're not doing anything crazy at the LB level).
 
@@ -42,5 +42,5 @@ Limitations:
 
 * Any application still authenticating against CAS will still have CAS as a point of failure.  You can reduce this by having CAS load balanced and in multiple sites (on-prem, off-site, in the cloud, etc.).
 * Since Azure will see CAS as a single application, you are left to either:
-   * exclude CAS from Azure conditional access policies and use CAS to implement MFA
-   * include CAS from Azure conditional access policies but there are no 'exceptions' (i.e. that one service that really doesn't do anything sensitive or important and you don't want to turn MFA on for will still have it)
+      * exclude CAS from Azure conditional access policies and use CAS to implement MFA
+      * include CAS from Azure conditional access policies but there are no 'exceptions' (i.e. that one service that really doesn't do anything sensitive or important and you don't want to turn MFA on for will still have it)

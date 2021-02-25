@@ -847,7 +847,19 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cas-client/httpd-cas-client/" class="md-nav__link">
+      <a href="../../../cas-client/cas-client-pages/" class="md-nav__link">
+        Create test/example pages
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cas-client/build-cas-client/" class="md-nav__link">
         Configure httpd to use CAS
       </a>
     </li>
@@ -868,6 +880,21 @@
           
         </ul>
       </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/future-tasks/" class="md-nav__link">
+        Future tasks
+      </a>
     </li>
   
 
@@ -918,6 +945,7 @@
                 
                 <h1 id="ansible-handlers-setup-for-tomcat">Ansible Handlers setup for Tomcat</h1>
 <p>Handlers in Ansible are used to run operations based on a change.  For example, a template command in a playbook could have a 'notify: restart apache' section at the end.  This would be run (at the end of the playbook) if that template command <em>changes</em> something.  If nothing changes, with that specific template command at least, then that notify command wouldn't be triggered.</p>
+<p><strong>roles/apache-tomcat/handlers/main.yml</strong>
 <div class="highlight"><pre><span></span><code><span class="c1"># handlers file for apache-tomcat</span>
 <span class="c1"># All that&#39;s really here for now is just commands to start, stop, and restart tomcat.</span>
 <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">stop tomcat</span>
@@ -934,7 +962,7 @@
   <span class="nt">ansible.builtin.systemd</span><span class="p">:</span>
     <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
     <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">restarted</span>
-</code></pre></div>
+</code></pre></div></p>
 <h2 id="references">References</h2>
 <ul>
 <li><a href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/systemd_module.html">Ansible systemd module</a></li>
