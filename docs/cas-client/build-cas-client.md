@@ -24,10 +24,11 @@ LoadModule auth_cas_module modules/mod_auth_cas.so
     CASCookiePath         /var/cache/httpd/mod_auth_cas/
     CASSSOEnabled         On
     CASDebug              Off
+    CASAttributePreffix   CAS-
 
     # Set the following instead you're having issues:
-    LogLevel		  Debug
-    CASDebug              On
+    #LogLevel		  Debug
+    #CASDebug              On
 
     # Set the following if you're using a self-signed or other non-commercially signed cert
     # such as from a local CA

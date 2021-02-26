@@ -860,6 +860,109 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" >
+      
+      <label class="md-nav__link" for="nav-7">
+        Adding AD support
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Adding AD support" data-md-level="1">
+        <label class="md-nav__title" for="nav-7">
+          <span class="md-nav__icon md-icon"></span>
+          Adding AD support
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/configure-ldap-auth/" class="md-nav__link">
+        AD authentication
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/ldap-attribute-release/" class="md-nav__link">
+        AD attribute release
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/update-service-registry/" class="md-nav__link">
+        Update service registry
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/update-cas-client/" class="md-nav__link">
+        Update CAS client
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/test-cas-client/" class="md-nav__link">
+        Test CAS client
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../about/future-tasks/" class="md-nav__link">
         Future tasks
@@ -901,12 +1004,17 @@
 <p>You're ready to test - just go to the root of your development CAS server (https://your-cas-server.domain.edu).</p>
 <p>If it works, when you click "here" on the index.php page you'll see something like:</p>
 <figure>
-  <img src="https://paulchauvet.github.io/deploying-cas/images/basic-cas-login-wildcard.png" alt="Screenshot showing output of systemctl status chronyd where the service is running"/>
+  <img src="https://paulchauvet.github.io/deploying-cas/images/basic-cas-login-wildcard.png" alt="Screenshot showing the basic CAS login page - with the service name shown (as defined in the .json file)"/>
 </figure>
 
+<hr>
+
+<p>If the login works - you'll see the following (with whatever your test user is):</p>
 <figure>
-  <img src="https://paulchauvet.github.io/deploying-cas/images/basic-cas-response-test.png" alt="Screenshot showing output of systemctl status chronyd where the service is running"/>
+  <img src="https://paulchauvet.github.io/deploying-cas/images/basic-cas-response-test.png" alt="Screenshot showing output from our CAS test php page, with the logged in user shown."/>
 </figure>
+
+<p>If you get unauthorized messages, set the debug options in your CAS client config in /etc/httpd/conf.d and restart Apache, then look at the Apache logs.  When I was creating these docs with a new CAS server - I had forgotten to add the locally signed cert and was getting an unauthorized message due to that (the Apache CAS client was refusing to communicate with the CAS server since it had a non-commercial cert it had no idea about).</p>
                 
               
               
@@ -940,13 +1048,13 @@
           </a>
         
         
-          <a href="../../about/future-tasks/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../active-directory/overview/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Future tasks
+                Overview
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

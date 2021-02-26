@@ -2,10 +2,10 @@
 
 ## Clone the CAS overlay template from Apereo's GitHub
 
-We're going to use git to clone the Apereo GitHub repository.  In the command below - I'm specifically choosing the 6.2.x branch.  The master branch of deployment is 6.3.x now - but could move forward at any time. I recommend being explicit with the branch you choose.
+We're going to use git to clone the Apereo GitHub repository.  In the command below - I'm specifically choosing the 6.3.x branch.  The master branch of deployment is 6.3.x now - but could move forward at any time. I recommend being explicit with the branch you choose so you aren't surprised.
 
 ```
-git clone --branch 6.2 https://github.com/apereo/cas-overlay-template.git
+git clone --branch 6.3 https://github.com/apereo/cas-overlay-template.git
 ```
 
 This will create a 'cas-overlay-template' in your home or build directory.
@@ -46,4 +46,4 @@ Once you do that, if Tomcat is running and you wait a minute or two, you'll have
 
 
 ## References
-* [CAS 6.2.x deployment - WAR Overlays](https://apereo.github.io/2019/11/03/cas62-gettingstarted-overlay/)
+* [CAS 6.3.x deployment - WAR Overlays](https://apereo.github.io/2019/11/03/cas62-gettingstarted-overlay/)

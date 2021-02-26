@@ -34,6 +34,6 @@ Each of these servers for us are RHEL 8 hosts, with:
 * 4 GB memory (though you may need more or less depending on load)
 * 25 GB disk
 
-For the official requirements, see the Apereo CAS [Installation Requirements](https://apereo.github.io/cas/6.2.x/planning/Installation-Requirements.html) document.
+For the official requirements, see the Apereo CAS [Installation Requirements](https://apereo.github.io/cas/6.3.x/planning/Installation-Requirements.html) document.
 
 I will document both how to set these up manually, as well as my Ansible playbooks which handle deployment (of Apache, Apache Tomcat, and CAS itself).

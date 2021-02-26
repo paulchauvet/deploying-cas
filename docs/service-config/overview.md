@@ -8,7 +8,7 @@ Services within CAS are where you define a policy per-service.  For example you 
 
 Each service can be different.  You can combine functions in the JSON service to accomplish various tasks.  We'll get to more of those later.
 
-There are several ways to handle service registries, including the CAS [Services Management Webapp](https://apereo.github.io/cas/6.2.x/services/Installing-ServicesMgmt-Webapp.html).  Because I deploy and maintain CAS via Ansible, I prefer to define my services via JSON files within /etc/cas/services and deploy via Ansible instead of using a web application.  This helps preserve history (via git) of service changes.  It's all up to you though.  This documentation will assume you're using JSON files here.
+There are several ways to handle service registries, including the CAS [Services Management Webapp](https://apereo.github.io/cas/6.3.x/services/Installing-ServicesMgmt-Webapp.html).  Because I deploy and maintain CAS via Ansible, I prefer to define my services via JSON files within /etc/cas/services and deploy via Ansible instead of using a web application.  This helps preserve history (via git) of service changes.  It's all up to you though.  This documentation will assume you're using JSON files here.
 
 To use the JSON service registry, you're going to want to edit your **build.gradle** file within your cas-overlay-template directory.
 
@@ -142,4 +142,4 @@ It won't have to rebuild or reinstall Tomcat, since it's idempotent.  It will on
 
 
 ## References
-* [CAS Services Management](https://apereo.github.io/cas/6.2.x/services/Service-Management.html#service-management)
+* [CAS Services Management](https://apereo.github.io/cas/6.3.x/services/Service-Management.html#service-management)

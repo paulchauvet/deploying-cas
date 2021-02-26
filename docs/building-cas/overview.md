@@ -26,4 +26,4 @@ On your build server, you'll want to have installed:
     I may have forgotten some prerequisites since I'm doing this on an existing server.   I will be going back to replicate this in the future on a clean server and will catch anything I missed there.
 
 ## References
-* [CAS 6.2.x deployment - WAR Overlays](https://apereo.github.io/2019/11/03/cas62-gettingstarted-overlay/)
+* [CAS 6.3.x deployment - WAR Overlays](https://apereo.github.io/2019/11/03/cas62-gettingstarted-overlay/)

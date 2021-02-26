@@ -65,6 +65,16 @@ nav:
     - Create test/example pages: cas-client/cas-client-pages.md
     - Configure httpd to use CAS: cas-client/build-cas-client.md
     - Test the application: cas-client/test-cas-client.md
+  - Adding AD support:
+    - Overview: active-directory/overview.md
+    - AD authentication: active-directory/configure-ldap-auth.md
+    - AD attribute release: active-directory/ad-attribute-release.md
+    - Update service registry: active-directory/update-service-registry.md
+    - Update CAS client: active-directory/update-cas-client.md
+    - Test CAS client: active-directory/test-cas-client.md
+  - Duo MFA support:
+    - Overview: duo-mfa/overview.md
+    - Overview: duo-mfa/update-cas-client.md
   - Future tasks: about/future-tasks.md
 
       

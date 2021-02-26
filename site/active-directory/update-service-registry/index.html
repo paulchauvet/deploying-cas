@@ -1,0 +1,1255 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Guide for deploying Apereo CAS 6 - with LDAP & Delegated Azure Authentication, and Apache Tomcat.">
+      
+      
+      
+        <meta name="author" content="Paul Chauvet">
+      
+      
+        <link rel="canonical" href="https://paulchauvet.github.io/deploying-cas/active-directory/update-service-registry/">
+      
+      <link rel="shortcut icon" href="../../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
+    
+    
+      
+        <title>Update service registry - Deploying Apereo CAS 6</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.cb6bc1d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.39b8e14a.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/newpaltz.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#update-the-service-registry-for-attribute-release" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://paulchauvet.github.io/deploying-cas/" title="Deploying Apereo CAS 6" class="md-header-nav__button md-logo" aria-label="Deploying Apereo CAS 6">
+      
+  <img src="../../images/newpaltz-logo.jpg" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Deploying Apereo CAS 6
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Update service registry
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://paulchauvet.github.io/deploying-cas/" title="Deploying Apereo CAS 6" class="md-nav__button md-logo" aria-label="Deploying Apereo CAS 6">
+      
+  <img src="../../images/newpaltz-logo.jpg" alt="logo">
+
+    </a>
+    Deploying Apereo CAS 6
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Main
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+      
+      <label class="md-nav__link" for="nav-2">
+        About
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="nav-2">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/about-new-paltz/" class="md-nav__link">
+        About SUNY New Paltz
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/author-information/" class="md-nav__link">
+        About the author
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/architecture/" class="md-nav__link">
+        Architecture/design
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+      
+      <label class="md-nav__link" for="nav-3">
+        Setting up the Environment
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Setting up the Environment" data-md-level="1">
+        <label class="md-nav__title" for="nav-3">
+          <span class="md-nav__icon md-icon"></span>
+          Setting up the Environment
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/time-synchronization/" class="md-nav__link">
+        Configure time synchronization
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/build-environment/" class="md-nav__link">
+        Build Environment
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4" >
+      
+      <label class="md-nav__link" for="nav-3-4">
+        Tomcat
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tomcat" data-md-level="2">
+        <label class="md-nav__title" for="nav-3-4">
+          <span class="md-nav__icon md-icon"></span>
+          Tomcat
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat/tomcat-overview/" class="md-nav__link">
+        Tomcat Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat/entropy-daemon/" class="md-nav__link">
+        Install an entropy daemon
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat/java/" class="md-nav__link">
+        Install Java
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat/tomcat-install/" class="md-nav__link">
+        Install Tomcat
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat/tomcat-dependencies/" class="md-nav__link">
+        Install Tomcat dependencies
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat/tomcat-organize/" class="md-nav__link">
+        Organize the installation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat/tomcat-harden/" class="md-nav__link">
+        Harden the installation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat/asynch-request-support/" class="md-nav__link">
+        Configure asynchronous request support
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat/config-x-forwarded/" class="md-nav__link">
+        Configure X-Forwarded-For header processing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat/resource-caching/" class="md-nav__link">
+        Tune resource caching settings
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat/configure-async-logging/" class="md-nav__link">
+        Configure asynchronous logging support
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat/systemd-service/" class="md-nav__link">
+        Configure systemd to start tomcat
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5" >
+      
+      <label class="md-nav__link" for="nav-3-5">
+        Tomcat and Ansible
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tomcat and Ansible" data-md-level="2">
+        <label class="md-nav__title" for="nav-3-5">
+          <span class="md-nav__icon md-icon"></span>
+          Tomcat and Ansible
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat-ansible/tomcat-ansible-overview/" class="md-nav__link">
+        Ansible and Tomcat - Initial Steps
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat-ansible/variables/" class="md-nav__link">
+        Setup Variables
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat-ansible/templates/" class="md-nav__link">
+        Setup Templates
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat-ansible/handlers/" class="md-nav__link">
+        Setup Handlers
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat-ansible/tasks/" class="md-nav__link">
+        Creating tasks
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat-ansible/running-the-play/" class="md-nav__link">
+        Running the play
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6" >
+      
+      <label class="md-nav__link" for="nav-3-6">
+        Apache HTTPD
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Apache HTTPD" data-md-level="2">
+        <label class="md-nav__title" for="nav-3-6">
+          <span class="md-nav__icon md-icon"></span>
+          Apache HTTPD
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/httpd/ajp-proxy/" class="md-nav__link">
+        Use AJP to communicate with Tomcat
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+      
+      <label class="md-nav__link" for="nav-4">
+        Building CAS
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Building CAS" data-md-level="1">
+        <label class="md-nav__title" for="nav-4">
+          <span class="md-nav__icon md-icon"></span>
+          Building CAS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-cas/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-cas/create-gradle-overlay/" class="md-nav__link">
+        Create Gradle Overlay
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-cas/initial-cas-config/" class="md-nav__link">
+        Initial CAS config
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-cas/cas-log-config/" class="md-nav__link">
+        Configure CAS logs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-cas/ansible-cas/" class="md-nav__link">
+        Ansible playbook setup
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
+      
+      <label class="md-nav__link" for="nav-5">
+        Service Configuration
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Service Configuration" data-md-level="1">
+        <label class="md-nav__title" for="nav-5">
+          <span class="md-nav__icon md-icon"></span>
+          Service Configuration
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../service-config/overview/" class="md-nav__link">
+        Service Overview
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" >
+      
+      <label class="md-nav__link" for="nav-6">
+        Building CAS client
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Building CAS client" data-md-level="1">
+        <label class="md-nav__title" for="nav-6">
+          <span class="md-nav__icon md-icon"></span>
+          Building CAS client
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cas-client/overview/" class="md-nav__link">
+        CAS client overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cas-client/cas-client-pages/" class="md-nav__link">
+        Create test/example pages
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cas-client/build-cas-client/" class="md-nav__link">
+        Configure httpd to use CAS
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cas-client/test-cas-client/" class="md-nav__link">
+        Test the application
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" checked>
+      
+      <label class="md-nav__link" for="nav-7">
+        Adding AD support
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Adding AD support" data-md-level="1">
+        <label class="md-nav__title" for="nav-7">
+          <span class="md-nav__icon md-icon"></span>
+          Adding AD support
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configure-ldap-auth/" class="md-nav__link">
+        AD authentication
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ldap-attribute-release/" class="md-nav__link">
+        AD attribute release
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Update service registry
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Update service registry
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-return-all-service-definition" class="md-nav__link">
+    Create a Return All service definition
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-return-mapped-attributes-service-definition" class="md-nav__link">
+    Create a Return Mapped Attributes service definition
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../update-cas-client/" class="md-nav__link">
+        Update CAS client
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../test-cas-client/" class="md-nav__link">
+        Test CAS client
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/future-tasks/" class="md-nav__link">
+        Future tasks
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-return-all-service-definition" class="md-nav__link">
+    Create a Return All service definition
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-return-mapped-attributes-service-definition" class="md-nav__link">
+    Create a Return Mapped Attributes service definition
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="update-the-service-registry-for-attribute-release">Update the service registry for attribute release</h1>
+<p>Attribute release policies are defined on a per-service basis in the service registry.  There are four basic attribute release policies:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Policy</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Return All</td>
+<td align="left">Return all resolved attributes to the service.</td>
+</tr>
+<tr>
+<td align="left">Deny All</td>
+<td align="left">Do not return any attributes to the service. This will also prevent the release of the default attribute pool.</td>
+</tr>
+<tr>
+<td align="left">Return Allowed</td>
+<td align="left">Only return the attributes specifically allowed by the policy. This policy includes a list of the attributes to release.</td>
+</tr>
+<tr>
+<td align="left">Return Mapped</td>
+<td align="left">Only return the attributes specifically allowed by the policy, but also allow them to be renamed at the individual service level. Useful when a particular service insists on having specific attribute names not used by other services.</td>
+</tr>
+</tbody>
+</table>
+<p>The syntax for defining the above policies is defined in the CAS 6 Attribute Release Policies documentation. That document also describes a number of script-based policies that will call a Groovy, JavaScript, or Python script to decide how to release attributes (these policies are beyond the scope of this document).</p>
+<p>I've only used "Return All" for testing purposes like we're doing here.  I typically use ReturnAllowedAttributeReleasePolicy but have used ReturnMappedAttributePolicy as well a few times.  I've never had a reason (yet) to use Deny All.  Since I don't use a 'default' attribute release policy (mentioned below) I haven't had a need to.  I prefer everything that is released to be explicit. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note: The cas.authn.attributeRepository.defaultAttributesToRelease property can be set in cas.properties to a comma-separated list of attributes that should be released to all services, without having to list them in every service definition. We are not using this feature in our installation, because it makes it harder to determine which attributes are released to a particular service (by requiring the administrator to look in more than one location).</p>
+</div>
+<h2 id="create-a-return-all-service-definition">Create a Return All service definition</h2>
+<p>When we initially created our service registry, we used a wildcard.  We explicitly put that wildcard service with a <em>really</em> high evaluationOrder (99999), so we could ensure all other policies we put in would be triggered if they are hit first.</p>
+<p>We're going to add a new service - with another high evaluation order (95000).</p>
+<p>To follow the naming scheme we used <a href="https://paulchauvet.github.io/deploying-cas/service-config/overview/#create-a-test-service-definition-file">earlier</a>, you'll first need a unique ID.  As with last time, its recommended that you use the <mark class="critic">date +%s</mark> command to get the datetime in unix epoch format.  For my example, I have 1614354496 as that ID.  I'm thus calling my service file <em>ApacheTestReleaseAll-1614354496.json</em> and placing it in the roles/cas6/templates/dev-services directory.</p>
+<p>You'll need to make sure the serviceID matches the host with your CAS client and the id is updated to match what you have in your file name.  We're using the <em>ReturnAllAttributeReleasePolicy</em> here (which again - you may not want or need to use in production).</p>
+<p><strong>roles/cas6/templates/dev-services/ApacheTestReleaseAll-1614354496.json:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;@class&quot;</span> <span class="p">:</span> <span class="s2">&quot;org.apereo.cas.services.RegexRegisteredService&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;serviceId&quot;</span> <span class="p">:</span> <span class="s2">&quot;^https://logindev.domain.edu/return-all(\\z|/.*)&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Apache Test - full attribute release&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;id&quot;</span> <span class="p">:</span> <span class="mi">1614354496</span><span class="p">,</span>
+  <span class="nt">&quot;description&quot;</span> <span class="p">:</span> <span class="s2">&quot;CAS development Apache mod_auth_cas server with username/password protection&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;attributeReleasePolicy&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;@class&quot;</span> <span class="p">:</span> <span class="s2">&quot;org.apereo.cas.services.ReturnAllAttributeReleasePolicy&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;evaluationOrder&quot;</span> <span class="p">:</span> <span class="mi">95000</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>This service definition uses a serviceId regular expression that matches only the URL for the return-all directory on the cas client server. The (\z|/.*) syntax at the end matches either the empty string (\z) or a slash (‘/’) followed by anything (/.*), meaning that the following will match:</p>
+<div class="highlight"><pre><span></span><code>https://logindev.domain.edu/return-all
+https://logindev.domain.edu/return-all/
+https://logindev.domain.edu/return-all/index.php
+https://logindev.domain.edu/return-all/subdir/file.html
+</code></pre></div>
+<p>but the following will not:</p>
+<div class="highlight"><pre><span></span><code>https://logindev.domain.edu/return-all-and-something-else
+https://logindev.domain.edu/some/completely/unrelated/path
+https://logintest.domain.edu/return-all
+</code></pre></div>
+<h2 id="create-a-return-mapped-attributes-service-definition">Create a Return Mapped Attributes service definition</h2>
+<p>You may want to only return certain attributes.  This is the most common way to use it in production.  Let's say you have an external service that only needs the person's givenName and sn (surname) - why release other attributes that they don't need to them?</p>
+<p>As with the last service, get output of <mark class="critic">date +%s</mark> for the filename and id.  For this example, I've created <em>ApacheTestReturnMapped-1614355136.json</em> and placed it in the roles/cas6/templates/dev-services directory.</p>
+<p><strong>roles/cas6/templates/dev-services/ApacheTestReturnMapped-1614355136.json:</strong></p>
+<p><div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;@class&quot;</span> <span class="p">:</span> <span class="s2">&quot;org.apereo.cas.services.RegexRegisteredService&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;serviceId&quot;</span> <span class="p">:</span> <span class="s2">&quot;^https://logindev.domain.edu/return-mapped(\\z|/.*)&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Return Mapped Test&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;id&quot;</span> <span class="p">:</span> <span class="mi">1614355136</span><span class="p">,</span>
+  <span class="nt">&quot;description&quot;</span> <span class="p">:</span> <span class="s2">&quot;Display results of a Return Mapped attribute release policy&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;attributeReleasePolicy&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;@class&quot;</span> <span class="p">:</span> <span class="s2">&quot;org.apereo.cas.services.ReturnMappedAttributeReleasePolicy&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;allowedAttributes&quot;</span> <span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;@class&quot;</span> <span class="p">:</span> <span class="s2">&quot;java.util.TreeMap&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;cn&quot;</span> <span class="p">:</span> <span class="s2">&quot;cn&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;displayName&quot;</span> <span class="p">:</span> <span class="s2">&quot;fullName&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;mail&quot;</span> <span class="p">:</span> <span class="s2">&quot;EmailAddress&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;memberOf&quot;</span> <span class="p">:</span> <span class="s2">&quot;memberOf&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;sn&quot;</span> <span class="p">:</span> <span class="s2">&quot;sn&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;uid&quot;</span> <span class="p">:</span> <span class="s2">&quot;uid&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;UDC_IDENTIFIER&quot;</span><span class="p">:</span> <span class="s2">&quot;UDC_IDENTIFIER&quot;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;evaluationOrder&quot;</span> <span class="p">:</span> <span class="mi">90000</span>
+<span class="p">}</span>
+</code></pre></div>
+The 'allowedAttributes' section is needed when you use the ReturnMappedAttributeReleasePolicy as shown above, to define which attributes are released.</p>
+<p>Feel free to put your own attributes here - just make sure they've been listed in cas.properties.  You can alter them though on a per service basis.  Let's say service provider 'x' wants the displayName attribute as fullName - you can do so as I've done above.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://apereo.github.io/cas/6.2.x/integration/Attribute-Release-Policies.html#attribute-release-policies">CAS 6: Attribute Release Policies</a></li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../ldap-attribute-release/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                AD attribute release
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../update-cas-client/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Update CAS client
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2021 Paul Chauvet, State University of New York at New Paltz
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.9c0e82ba.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

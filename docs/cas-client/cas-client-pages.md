@@ -14,7 +14,7 @@ The following should be called 'main-index.php' and placed in the templates dire
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>CAS test page</title>
+    <title>CAS test links</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -35,7 +35,7 @@ The following should be called 'basic-cas-check-index.php' and should also be pl
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Hello, World!</title>
+    <title>CAS basic test page</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -55,7 +55,7 @@ The following should be called 'basic-cas-check-index.php' and should also be pl
 
         $headers = getallheaders();
         foreach ($headers as $key => $value) {
-            if (strpos($key, 'CAS_') === 0) {
+            if (strpos($key, 'Cas-') === 0) {
                 echo substr($key, 4) . " = " . $value . "<br>";
             }
         }

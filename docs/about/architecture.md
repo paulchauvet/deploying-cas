@@ -4,7 +4,7 @@
 
 This document was created to reflect the environment in use at New Paltz for CAS.
 
-* [Apereo CAS 6.2.x](https://apereo.github.io/cas/6.2.x/index.html)
+* [Apereo CAS 6.3.x](https://apereo.github.io/cas/6.3.x/index.html)
 * [Red Hat Enterprise Linux 8](https://redhat.com)
 * [Apache Tomcat 9.0.x](https://tomcat.apache.org)
 * [Apache httpd](https://httpd.apache.com)
@@ -12,9 +12,9 @@ This document was created to reflect the environment in use at New Paltz for CAS
 * [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/)
 * Microsoft Active Directory
 * [Duo](https://duo.com) for Multifactor authentication
-* [Hazelcast Ticket Registry](https://apereo.github.io/cas/6.2.x/ticketing/Hazelcast-Ticket-Registry.html) for ticket storage between systems.
+* [Hazelcast Ticket Registry](https://apereo.github.io/cas/6.3.x/ticketing/Hazelcast-Ticket-Registry.html) for ticket storage between systems.
 
-If you want to use another version of CAS 6.x - it may or may not have significant changes.  I'll be moving from CAS 6.2 to 6.3 and will document any issues as I come across them, at least in our environment.
+If you want to use another version of CAS 6.x - it may or may not have significant changes.  I started with CAS 6.2 for these documents and our own install, but ran into issues with the Duo MFA module, so moved to 6.3.
 
 If you are going to use another operating system, web server, or java servlet container, I'd imagine the CAS portion of the instructions will be relatively similar - though the Ansible deployments for Tomcat may be less similar or useful.
 

@@ -85,4 +85,4 @@ To implement this edit /etc/tomcat/web.xml and look for the definition of the *j
 ```
 
 ## References
-* [CAS 6: Servlet Container Configuration](https://apereo.github.io/cas/6.2.x/installation/Configuring-Servlet-Container.html)
+* [CAS 6: Servlet Container Configuration](https://apereo.github.io/cas/6.3.x/installation/Configuring-Servlet-Container.html)
