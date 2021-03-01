@@ -13,23 +13,24 @@ There are several ways to handle service registries, including the CAS [Services
 To use the JSON service registry, you're going to want to edit your **build.gradle** file within your cas-overlay-template directory.
 
 ## Editing build.gradle
-Look for this section, around line 72 in the build.gradle file
+Look for this section, around line 84 in the build.gradle file
 
 ```
 dependencies {
     // Other CAS dependencies/modules may be listed here...
-    // implementation "org.apereo.cas:cas-server-support-json-service-registry:${casServerVersion}"
+    implementation "org.apereo.cas:cas-server-webapp-init:${casServerVersion}"
+
 }
 ```
 
-Add the dependency {==compile "org.apereo.cas:cas-server-support-json-service-registry:${project.'cas.version'}"==} as follows there:
+Add the dependency {==implementation "org.apereo.cas:cas-server-support-json-service-registry:${casServerVersion}"==} as follows there:
 
 
 ```
 dependencies {
     // Other CAS dependencies/modules may be listed here...
     // implementation "org.apereo.cas:cas-server-support-json-service-registry:${casServerVersion}"
-    compile "org.apereo.cas:cas-server-support-json-service-registry:${project.'cas.version'}"
+    implementation "org.apereo.cas:cas-server-support-json-service-registry:${casServerVersion}"
 }
 ```
 

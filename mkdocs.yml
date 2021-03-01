@@ -74,7 +74,11 @@ nav:
     - Test CAS client: active-directory/test-cas-client.md
   - Duo MFA support:
     - Overview: duo-mfa/overview.md
-    - Overview: duo-mfa/update-cas-client.md
+    - Update CAS client: duo-mfa/update-cas-client.md
+    - Test Duo MFA: duo-mfa/testing-mfa.md
+  - Ticket Registry:
+    - Hazelcast Overview: ticket-registry/hazelcast-overview.md
+    - MongoDB Overview: ticket-registry/mongodb-overview.md
   - Future tasks: about/future-tasks.md
 
       

@@ -4,7 +4,7 @@
     If you've followed the other steps, then you'll already have one or more Tomcat servers ready to go.
 
 ## Overview
-We will be building from source, using the Gradle WAR overlay method.  As per Misagh Moayyed's [Getting Started]((https://apereo.github.io/2019/11/03/cas62-gettingstarted-overlay/)) document:
+We will be building from source, using the Gradle WAR overlay method.  As per Misagh Moayyed's [Getting Started](https://fawnoos.com/2020/11/09/cas63-gettingstarted-overlay/) document:
 
 !!! quote "CAS 6.0.x Deployment - WAR Overlays"
     Overlays are a strategy to combat repetitive code and/or resources. Rather than downloading the CAS codebase and building it from source, overlays allow you to download a pre-built vanilla CAS web application server provided by the project itself, override/insert specific behavior into it and then merge it all back together to produce the final (web application) artifact.
@@ -26,4 +26,4 @@ On your build server, you'll want to have installed:
     I may have forgotten some prerequisites since I'm doing this on an existing server.   I will be going back to replicate this in the future on a clean server and will catch anything I missed there.
 
 ## References
-* [CAS 6.3.x deployment - WAR Overlays](https://apereo.github.io/2019/11/03/cas62-gettingstarted-overlay/)
+* [CAS 6.3.x deployment - WAR Overlays](https://fawnoos.com/2020/11/09/cas63-gettingstarted-overlay/)

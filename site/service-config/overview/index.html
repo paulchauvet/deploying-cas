@@ -1004,7 +1004,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../active-directory/ldap-attribute-release/" class="md-nav__link">
+      <a href="../../active-directory/ad-attribute-release/" class="md-nav__link">
         AD attribute release
       </a>
     </li>
@@ -1042,6 +1042,73 @@
     <li class="md-nav__item">
       <a href="../../active-directory/test-cas-client/" class="md-nav__link">
         Test CAS client
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" >
+      
+      <label class="md-nav__link" for="nav-8">
+        Duo MFA support
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Duo MFA support" data-md-level="1">
+        <label class="md-nav__title" for="nav-8">
+          <span class="md-nav__icon md-icon"></span>
+          Duo MFA support
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../duo-mfa/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../duo-mfa/update-cas-client/" class="md-nav__link">
+        Update CAS client
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../duo-mfa/testing-mfa/" class="md-nav__link">
+        Test Duo MFA
       </a>
     </li>
   
@@ -1188,7 +1255,7 @@
 <li>Use a multi-factor authentication policy on a given service.</li>
 </ul>
 <p>Each service can be different.  You can combine functions in the JSON service to accomplish various tasks.  We'll get to more of those later.</p>
-<p>There are several ways to handle service registries, including the CAS <a href="https://apereo.github.io/cas/6.2.x/services/Installing-ServicesMgmt-Webapp.html">Services Management Webapp</a>.  Because I deploy and maintain CAS via Ansible, I prefer to define my services via JSON files within /etc/cas/services and deploy via Ansible instead of using a web application.  This helps preserve history (via git) of service changes.  It's all up to you though.  This documentation will assume you're using JSON files here.</p>
+<p>There are several ways to handle service registries, including the CAS <a href="https://apereo.github.io/cas/6.3.x/services/Installing-ServicesMgmt-Webapp.html">Services Management Webapp</a>.  Because I deploy and maintain CAS via Ansible, I prefer to define my services via JSON files within /etc/cas/services and deploy via Ansible instead of using a web application.  This helps preserve history (via git) of service changes.  It's all up to you though.  This documentation will assume you're using JSON files here.</p>
 <p>To use the JSON service registry, you're going to want to edit your <strong>build.gradle</strong> file within your cas-overlay-template directory.</p>
 <h2 id="editing-buildgradle">Editing build.gradle</h2>
 <p>Look for this section, around line 72 in the build.gradle file</p>
@@ -1301,7 +1368,7 @@ cas.serviceRegistry.json.location=file:/etc/cas/services
 </ul>
 <h2 id="references">References</h2>
 <ul>
-<li><a href="https://apereo.github.io/cas/6.2.x/services/Service-Management.html#service-management">CAS Services Management</a></li>
+<li><a href="https://apereo.github.io/cas/6.3.x/services/Service-Management.html#service-management">CAS Services Management</a></li>
 </ul>
                 
               

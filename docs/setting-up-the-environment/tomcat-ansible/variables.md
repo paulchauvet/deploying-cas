@@ -19,9 +19,14 @@ apr_archive_dest: /root/apr-{{ apr_ver }}.tar.gz
 # you won't know what version of the Commons Daemon or Tomcat Native Library are in that Tomcat version.
 # My practice is when upgrading to a new version for the first time - I will download that version,
 # unpack it, and unpack the Tomcat Native Library and Commons Daemon to check their version.
+# For example, Tomcat 9.0.43 had 1.2.26 for the Tomcat Native Library, where Tomcat 9.0.41 had 1.2.25.
+# When my playbook 'failed' on this - I just went and updated the variable.
+# Same was true where the commons daemon version updated from 1.2.3 to 1.2.4 with Tomcat 9.0.43.
+# If you're going to have multiple versions of Tomcat running for a while, you may want to define
+# these in your /etc/ansible/hosts file instead.
 
-tomcat_native_ver: 1.2.25
-commons_daemon_ver: 1.2.3
+tomcat_native_ver: 1.2.26
+commons_daemon_ver: 1.2.4
 
 JAVA_HOME: /usr/lib/jvm/java-11-openjdk
   

@@ -943,7 +943,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../active-directory/ldap-attribute-release/" class="md-nav__link">
+      <a href="../../active-directory/ad-attribute-release/" class="md-nav__link">
         AD attribute release
       </a>
     </li>
@@ -981,6 +981,73 @@
     <li class="md-nav__item">
       <a href="../../active-directory/test-cas-client/" class="md-nav__link">
         Test CAS client
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" >
+      
+      <label class="md-nav__link" for="nav-8">
+        Duo MFA support
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Duo MFA support" data-md-level="1">
+        <label class="md-nav__title" for="nav-8">
+          <span class="md-nav__icon md-icon"></span>
+          Duo MFA support
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../duo-mfa/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../duo-mfa/update-cas-client/" class="md-nav__link">
+        Update CAS client
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../duo-mfa/testing-mfa/" class="md-nav__link">
+        Test Duo MFA
       </a>
     </li>
   
@@ -1062,7 +1129,7 @@
 <h2 id="components">Components</h2>
 <p>This document was created to reflect the environment in use at New Paltz for CAS.</p>
 <ul>
-<li><a href="https://apereo.github.io/cas/6.2.x/index.html">Apereo CAS 6.2.x</a></li>
+<li><a href="https://apereo.github.io/cas/6.3.x/index.html">Apereo CAS 6.3.x</a></li>
 <li><a href="https://redhat.com">Red Hat Enterprise Linux 8</a></li>
 <li><a href="https://tomcat.apache.org">Apache Tomcat 9.0.x</a></li>
 <li><a href="https://httpd.apache.com">Apache httpd</a></li>
@@ -1070,9 +1137,9 @@
 <li><a href="https://azure.microsoft.com/en-us/services/active-directory/">Azure Active Directory</a></li>
 <li>Microsoft Active Directory</li>
 <li><a href="https://duo.com">Duo</a> for Multifactor authentication</li>
-<li><a href="https://apereo.github.io/cas/6.2.x/ticketing/Hazelcast-Ticket-Registry.html">Hazelcast Ticket Registry</a> for ticket storage between systems.</li>
+<li><a href="https://apereo.github.io/cas/6.3.x/ticketing/Hazelcast-Ticket-Registry.html">Hazelcast Ticket Registry</a> for ticket storage between systems.</li>
 </ul>
-<p>If you want to use another version of CAS 6.x - it may or may not have significant changes.  I'll be moving from CAS 6.2 to 6.3 and will document any issues as I come across them, at least in our environment.</p>
+<p>If you want to use another version of CAS 6.x - it may or may not have significant changes.  I started with CAS 6.2 for these documents and our own install, but ran into issues with the Duo MFA module, so moved to 6.3.</p>
 <p>If you are going to use another operating system, web server, or java servlet container, I'd imagine the CAS portion of the instructions will be relatively similar - though the Ansible deployments for Tomcat may be less similar or useful.</p>
 <h2 id="design">Design</h2>
 <p>We have three levels of CAS here at New Paltz, Production, Test, and Development.  Test is used for non-production applications that still need SSO (for example Banner test).  Development is exclusively used for building, and testing, new versions or configuration changes for CAS.</p>

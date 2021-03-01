@@ -46,4 +46,4 @@ Once you do that, if Tomcat is running and you wait a minute or two, you'll have
 
 
 ## References
-* [CAS 6.3.x deployment - WAR Overlays](https://apereo.github.io/2019/11/03/cas62-gettingstarted-overlay/)
+* [CAS 6.3.x deployment - WAR Overlays](https://fawnoos.com/2020/11/09/cas63-gettingstarted-overlay/)

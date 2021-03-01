@@ -957,7 +957,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../active-directory/ldap-attribute-release/" class="md-nav__link">
+      <a href="../../active-directory/ad-attribute-release/" class="md-nav__link">
         AD attribute release
       </a>
     </li>
@@ -995,6 +995,73 @@
     <li class="md-nav__item">
       <a href="../../active-directory/test-cas-client/" class="md-nav__link">
         Test CAS client
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" >
+      
+      <label class="md-nav__link" for="nav-8">
+        Duo MFA support
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Duo MFA support" data-md-level="1">
+        <label class="md-nav__title" for="nav-8">
+          <span class="md-nav__icon md-icon"></span>
+          Duo MFA support
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../duo-mfa/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../duo-mfa/update-cas-client/" class="md-nav__link">
+        Update CAS client
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../duo-mfa/testing-mfa/" class="md-nav__link">
+        Test Duo MFA
       </a>
     </li>
   
@@ -1088,8 +1155,8 @@
                 
                 <h1 id="create-a-gradle-war-overlay-project">Create a Gradle WAR overlay project</h1>
 <h2 id="clone-the-cas-overlay-template-from-apereos-github">Clone the CAS overlay template from Apereo's GitHub</h2>
-<p>We're going to use git to clone the Apereo GitHub repository.  In the command below - I'm specifically choosing the 6.2.x branch.  The master branch of deployment is 6.3.x now - but could move forward at any time. I recommend being explicit with the branch you choose.</p>
-<div class="highlight"><pre><span></span><code>git clone --branch 6.2 https://github.com/apereo/cas-overlay-template.git
+<p>We're going to use git to clone the Apereo GitHub repository.  In the command below - I'm specifically choosing the 6.3.x branch.  The master branch of deployment is 6.3.x now - but could move forward at any time. I recommend being explicit with the branch you choose so you aren't surprised.</p>
+<div class="highlight"><pre><span></span><code>git clone --branch 6.3 https://github.com/apereo/cas-overlay-template.git
 </code></pre></div>
 <p>This will create a 'cas-overlay-template' in your home or build directory.</p>
 <h2 id="create-a-local-branch">Create a local branch</h2>
@@ -1118,7 +1185,7 @@
 
 <h2 id="references">References</h2>
 <ul>
-<li><a href="https://apereo.github.io/2019/11/03/cas62-gettingstarted-overlay/">CAS 6.2.x deployment - WAR Overlays</a></li>
+<li><a href="https://fawnoos.com/2020/11/09/cas63-gettingstarted-overlay/">CAS 6.3.x deployment - WAR Overlays</a></li>
 </ul>
                 
               

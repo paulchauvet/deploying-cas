@@ -164,6 +164,11 @@ Then you'll create 'setup-cas-client.yml'.  It will do the following:
   when: ("login6dev" in inventory_hostname)
   notify: reload httpd
 
+- name: "Ensure php-fpm is set to start on boot"
+  ansible.builtin.systemd:
+    name: php-fpm
+    state: started
+    enabled: yes
 
 ```
 

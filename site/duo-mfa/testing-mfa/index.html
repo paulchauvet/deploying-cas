@@ -13,14 +13,14 @@
         <meta name="author" content="Paul Chauvet">
       
       
-        <link rel="canonical" href="https://paulchauvet.github.io/deploying-cas/active-directory/ldap-attribute-release/">
+        <link rel="canonical" href="https://paulchauvet.github.io/deploying-cas/duo-mfa/testing-mfa/">
       
       <link rel="shortcut icon" href="../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
     
     
       
-        <title>AD attribute release - Deploying Apereo CAS 6</title>
+        <title>Test Duo MFA - Deploying Apereo CAS 6</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#configuring-ad-attribute-resolution-and-release" class="md-skip">
+        <a href="#testing-duo-mfa" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              AD attribute release
+              Test Duo MFA
             
           </span>
         </div>
@@ -848,14 +848,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" >
       
       <label class="md-nav__link" for="nav-7">
         Adding AD support
@@ -865,6 +863,111 @@
         <label class="md-nav__title" for="nav-7">
           <span class="md-nav__icon md-icon"></span>
           Adding AD support
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/configure-ldap-auth/" class="md-nav__link">
+        AD authentication
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/ad-attribute-release/" class="md-nav__link">
+        AD attribute release
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/update-service-registry/" class="md-nav__link">
+        Update service registry
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/update-cas-client/" class="md-nav__link">
+        Update CAS client
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/test-cas-client/" class="md-nav__link">
+        Test CAS client
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" checked>
+      
+      <label class="md-nav__link" for="nav-8">
+        Duo MFA support
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Duo MFA support" data-md-level="1">
+        <label class="md-nav__title" for="nav-8">
+          <span class="md-nav__icon md-icon"></span>
+          Duo MFA support
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -886,8 +989,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../configure-ldap-auth/" class="md-nav__link">
-        AD authentication
+      <a href="../update-cas-client/" class="md-nav__link">
+        Update CAS client
       </a>
     </li>
   
@@ -906,103 +1009,10 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          AD attribute release
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
-        AD attribute release
+        Test Duo MFA
       </a>
       
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#add-the-saml-11-dependency" class="md-nav__link">
-    Add the SAML 1.1 dependency
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configure-attribute-resolution" class="md-nav__link">
-    Configure attribute resolution
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#variable-setup" class="md-nav__link">
-    Variable setup
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#attribute-merging" class="md-nav__link">
-    Attribute Merging
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    References
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../update-service-registry/" class="md-nav__link">
-        Update service registry
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../update-cas-client/" class="md-nav__link">
-        Update CAS client
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../test-cas-client/" class="md-nav__link">
-        Test CAS client
-      </a>
     </li>
   
 
@@ -1046,49 +1056,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#add-the-saml-11-dependency" class="md-nav__link">
-    Add the SAML 1.1 dependency
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configure-attribute-resolution" class="md-nav__link">
-    Configure attribute resolution
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#variable-setup" class="md-nav__link">
-    Variable setup
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#attribute-merging" class="md-nav__link">
-    Attribute Merging
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    References
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1100,95 +1067,27 @@
               
                 
                 
-                <h1 id="configuring-ad-attribute-resolution-and-release">Configuring AD attribute resolution and release</h1>
-<p>To enable client applications to obtain information about authenticated users, the CAS server must be configured to resolve attributes and release them to the clients.</p>
-<p>Version 3 of the CAS protocol, which was first supported by CAS 4.0, contains native support for returning authentication/user attributes to clients.  Version 2 of the CAS protocol, the version implemented by CAS 3.x, did not support attribute release; the SAML 1.1 protocol was used for that purpose.  Most CAS clients have not yet been updated to support Version 3 of the protocol, so it’s still necessary to configure SAML 1.1-based attribute release.</p>
-<h2 id="add-the-saml-11-dependency">Add the SAML 1.1 dependency</h2>
-<p>To add SAML 1.1 support to the CAS server, edit the <mark class="critic">build.gradle</mark> file within the cas-overlay-template directory on your build host.  We're going to add a single depency to the one we already added for the json service registry.  See the highlighted line below for the addition.</p>
-<div class="highlight"><pre><span></span><code><span class="err">depe</span><span class="kc">n</span><span class="err">de</span><span class="kc">n</span><span class="err">cies</span> <span class="p">{</span>
-    <span class="err">//</span> <span class="err">O</span><span class="kc">t</span><span class="err">her</span> <span class="err">CAS</span> <span class="err">depe</span><span class="kc">n</span><span class="err">de</span><span class="kc">n</span><span class="err">cies/modules</span> <span class="err">may</span> <span class="err">be</span> <span class="err">lis</span><span class="kc">te</span><span class="err">d</span> <span class="err">here...</span>
-    <span class="err">//</span> <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-json-service-registry:${casServerVersion}&quot;</span>
+                <h1 id="testing-duo-mfa">Testing Duo MFA</h1>
+<p>First - go to your CAS client index page and select the <em>Duo MFA</em> test link.</p>
+<figure>
+  <img src="https://paulchauvet.github.io/deploying-cas/images/duo-mfa-0.png" alt="Screenshot showing CAS test client index page"/>
+</figure>
 
-    <span class="err">compile</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-json-service-registry:${project.&#39;cas.version&#39;}&quot;</span>
-    <span class="err">compile</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-ldap:${project.&#39;cas.version&#39;}&quot;</span>
-<span class="hll">    <span class="err">compile</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-saml:${project.&#39;cas.version&#39;}&quot;</span>
-</span><span class="p">}</span>
-</code></pre></div>
-<h2 id="configure-attribute-resolution">Configure attribute resolution</h2>
-<p>Add the following settings to roles/cas6/templates/dev-cas.properties.j2 in the cas-overlay-template directory on your Ansible server, after the ones we added for active directory authentication earlier.  As with there, we've set some of these as variables which will be updated with those we will store in our encrypted vault.</p>
-<p>You'll see both common attributes which are most likely in every AD (givenName, sn for surname, memberOf for groups), as well as schema extensions which you may or may not have like eduPerson, or even some that are specific to your school (for example, we have campusCode).  You'll want to define both a bind user that can look at these attributes, as well as the attributes you will need to release.  Note: just bacause you are giving CAS access to an attribute does not mean that a service will have access to it if you don't specify it.</p>
-<p>You can also 'rename' an attribute.  For example, our AD has 'eduPersonTargetedID' but CAS is set to present this as 'UDC_IDENTIFIER' for Banner.</p>
-<div class="highlight"><pre><span></span><code># These are for attribute release
-cas.authn.attributeRepository.ldap[0].order=0
-cas.authn.attributeRepository.ldap[0].ldapUrl=ldaps://{{ AD_SERVER_0 }}
-cas.authn.attributeRepository.ldap[0].validatePeriod=270
-cas.authn.attributeRepository.ldap[0].searchFilter=cn={user}
-cas.authn.attributeRepository.ldap[0].baseDn={{ AD_BASE_DN_0 }}
-cas.authn.attributeRepository.ldap[0].bindDn={{ AD_BIND_USER_0 }}
-cas.authn.attributeRepository.ldap[0].bindCredential={{ AD_BIND_PASSWORD_0 }}
-cas.authn.attributeRepository.ldap[0].attributes.cn=cn
-cas.authn.attributeRepository.ldap[0].attributes.displayName=displayName
-cas.authn.attributeRepository.ldap[0].attributes.givenName=givenName
-cas.authn.attributeRepository.ldap[0].attributes.mail=mail
-cas.authn.attributeRepository.ldap[0].attributes.sn=sn
-cas.authn.attributeRepository.ldap[0].attributes.memberOf=memberOf
-cas.authn.attributeRepository.ldap[0].attributes.campusCode=campusCode
-cas.authn.attributeRepository.ldap[0].attributes.eduPersonPrimaryAffiliation=eduPersonPrimaryAffiliation
-cas.authn.attributeRepository.ldap[0].attributes.eduPersonPrincipalName=eduPersonPrincipalName
-cas.authn.attributeRepository.ldap[0].attributes.eduPersonTargetedID=UDC_IDENTIFIER
+<p>Then, login with a user that exists in your directory and exists in Duo.  You should note the specific Duo test service name (<em>Apache Test - Duo MFA</em> in my example).  If you don't see that - you may have an error in your service or in your Apache config, causing another service to pick up instead.</p>
+<figure>
+  <img src="https://paulchauvet.github.io/deploying-cas/images/duo-mfa-1.png" alt="Screenshot showing CAS login page"/>
+</figure>
 
+<p>You should, if all is working correctly, see the Duo prompt framed within the CAS window.  In the screenshot below, I'm prompted for three options of second factor.
+* Send me a push - this will send a push notice to my phone with the Duo app installed.  I can click "Approve" or "Deny" there.  Note: If you use this option, the Duo app will show the client name that we called this within the Duo admin panel.
+* Enter a passcode - this is a passcode either from the Duo app or a one-time-passcode (OTP) token
+* The blue "Use your Security Key to login" message is because I also have a Yubikey Security Key, acting as a Fido U2F (Universal Two Factor).  </p>
+<p>I can use any of these to login - but what options you or your users have depends on how you are using Duo.</p>
+<figure>
+  <img src="https://paulchauvet.github.io/deploying-cas/images/duo-mfa-2.png" alt="Screenshot of Duo client"/>
+</figure>
 
-cas.authn.attributeRepository.ldap[1].order=1
-cas.authn.attributeRepository.ldap[1].ldapUrl=ldaps://{{ AD_SERVER_1 }}
-cas.authn.attributeRepository.ldap[1].validatePeriod=270
-cas.authn.attributeRepository.ldap[1].searchFilter=cn={user}
-cas.authn.attributeRepository.ldap[1].baseDn={{ AD_BASE_DN_1 }}
-cas.authn.attributeRepository.ldap[1].bindDn={{ AD_BIND_USER_1 }}
-cas.authn.attributeRepository.ldap[1].bindCredential={{ AD_BIND_PASSWORD_1 }}
-cas.authn.attributeRepository.ldap[1].attributes.cn=cn
-cas.authn.attributeRepository.ldap[1].attributes.displayName=displayName
-cas.authn.attributeRepository.ldap[1].attributes.givenName=givenName
-cas.authn.attributeRepository.ldap[1].attributes.mail=mail
-cas.authn.attributeRepository.ldap[1].attributes.sn=sn
-cas.authn.attributeRepository.ldap[1].attributes.memberOf=memberOf
-cas.authn.attributeRepository.ldap[1].attributes.campusCode=campusCode
-cas.authn.attributeRepository.ldap[1].attributes.eduPersonPrimaryAffiliation=eduPersonPrimaryAffiliation
-cas.authn.attributeRepository.ldap[1].attributes.eduPersonPrincipalName=eduPersonPrincipalName
-cas.authn.attributeRepository.ldap[1].attributes.eduPersonTargetedID=UDC_IDENTIFIER
-</code></pre></div>
-<h2 id="variable-setup">Variable setup</h2>
-<p>Edit your <em>cas-vault.yml</em> file within <em>roles/cas6/vars/</em></p>
-<p>Fill in values for {{ AD_BIND_USER_0 }} and {{ AD_BIND_PASSWORD_0 }} (and the same for _1, _2, etc. if you have them).  It should now look like the following (after opening with ansible-vault edit)</p>
-<p><strong>roles/cas6/vars/cas-vault.yml</strong></p>
-<div class="highlight"><pre><span></span><code><span class="c1"># As previously mentioned - these are not my real keys</span>
-<span class="nt">dev_tgc_signing_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">WEebZqgDjfKJei0XM-owdfueb3lZ3lyKKXAL8wLUoLfc2qTFWyBmYxVQBSLslau70uJH_gGM5teTqgbDD3Xcag</span>
-<span class="nt">dev_tgc_encryption_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">zyTzo8eMzToxP9_Kmk33iFVKVFMJD8873ZGA9Z_2Fco</span>
-<span class="nt">dev_webflow_signing_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">_mUEdBjyFlfbvKaGPnAtIbQ7sEkMO2A57lCu3OKz835NeNZqcOCsVo6WmCc95TMgdmahP-aP1lXBpqjd4rU2-g</span>
-<span class="nt">dev_webflow_encryption_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">JnGirTeE8yp3Jp/Mg9Z5Pg==</span>
-
-<span class="c1"># You will have to change these for your own environment</span>
-<span class="nt">AD_SERVER_0</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">server.domain.edu</span>
-<span class="nt">AD_BASE_DN_0</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dc=subdomain,dc=domain,dc=edu</span>
-<span class="nt">AD_DN_FORMAT_0</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CN=%s,OU=active,DC=subdomain,DC=domain,DC=edu</span>
-<span class="nt">AD_BIND_USER_0</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CN=bindusername,CN=users,DC=subdomain,DC=domain,DC=edu</span>
-<span class="nt">AD_BIND_PASSWORD_0</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SomeStrongPasswordIAssume</span>
-
-<span class="c1"># If you have other servers or organizational units, you can list them here</span>
-<span class="nt">AD_SERVER_1</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">other-server.domain.edu</span>
-<span class="nt">AD_BASE_DN_1</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dc=subdomain,dc=domain,dc=edu</span>
-<span class="nt">AD_DN_FORMAT_1</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CN=%s,OU=alumni,DC=subdomain,DC=domain,DC=edu</span>
-<span class="nt">AD_BIND_USER_1</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CN=bindusername,CN=users,DC=subdomain,DC=domain,DC=edu</span>
-<span class="nt">AD_BIND_PASSWORD_1</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SomeStrongPasswordIAssume</span>
-</code></pre></div>
-<h2 id="attribute-merging">Attribute Merging</h2>
-<p>The CAS 5 guide that this documentation is modeled after references Attribute Merging - where you would find attributes from a single user in multiple directories.  I don't have any experience in doing this - as our users are in either location, not both.  You may want to see David Curry's discussion on this in the References below if you need to use attribute merging.</p>
-<h2 id="references">References</h2>
-<ul>
-<li><a href="https://dacurry-tns.github.io/deploying-apereo-cas/building_server_ldap_resolution-release_configure-attribute-resolution.html">Deploying Apereo CAS 5: Configure an attribute merging strategy</a></li>
-<li><a href="https://software.internet2.edu/eduperson/internet2-mace-dir-eduperson-201602.html">eduPerson Object Class Specification</a></li>
-<li><a href="https://apereo.github.io/cas/6.2.x/integration/Attribute-Release-Policies.html#authentication-attributes">CAS 6: Authentication Attributes</a></li>
-<li><a href="https://apereo.github.io/cas/6.2.x/integration/Attribute-Release-Caching.html#merging-strategies">CAS 6: Attribute Merging Strategies</a></li>
-</ul>
+<p>After logging in - you should see your php test page in the Duo client which will show the attributes that are resolved.</p>
                 
               
               
@@ -1207,7 +1106,7 @@ cas.authn.attributeRepository.ldap[1].attributes.eduPersonTargetedID=UDC_IDENTIF
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../configure-ldap-auth/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../update-cas-client/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1216,19 +1115,19 @@ cas.authn.attributeRepository.ldap[1].attributes.eduPersonTargetedID=UDC_IDENTIF
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                AD authentication
+                Update CAS client
               </div>
             </div>
           </a>
         
         
-          <a href="../update-service-registry/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../about/future-tasks/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Update service registry
+                Future tasks
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

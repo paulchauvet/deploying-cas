@@ -62,7 +62,7 @@ When done - the cas.log and cas_audit.log sections of log4j2.xml will look like 
             <OnStartupTriggeringPolicy />
             <SizeBasedTriggeringPolicy size="10 MB"/>
         -->
-        <TimeBasedTriggeringPolicy interval="1" module="true"/>
+        <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
     </Policies>
 </RollingFile>
 <RollingFile name="auditlogfile" fileName="${baseDir}/cas_audit.log" append="true"
@@ -73,7 +73,7 @@ When done - the cas.log and cas_audit.log sections of log4j2.xml will look like 
             <OnStartupTriggeringPolicy />
             <SizeBasedTriggeringPolicy size="10 MB"/>
         -->
-        <TimeBasedTriggeringPolicy interval="1" module="true"/>
+        <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
     </Policies>
 </RollingFile>
 ```

@@ -10,12 +10,13 @@ To add SAML 1.1 support to the CAS server, edit the {==build.gradle==} file with
 **cas-overlay-template/build.gradle**
 ``` json hl_lines="7"
 dependencies {
-    // Other CAS dependencies/modules may be listed here...
-    // implementation "org.apereo.cas:cas-server-support-json-service-registry:${casServerVersion}"
+    // Other CAS dependencies/modules may be listed here statically...
 
-    compile "org.apereo.cas:cas-server-support-json-service-registry:${project.'cas.version'}"
-    compile "org.apereo.cas:cas-server-support-ldap:${project.'cas.version'}"
-    compile "org.apereo.cas:cas-server-support-saml:${project.'cas.version'}"
+    implementation "org.apereo.cas:cas-server-webapp-init:${casServerVersion}"
+    implementation "org.apereo.cas:cas-server-support-ldap:${casServerVersion}"
+    implementation "org.apereo.cas:cas-server-support-json-service-registry:${casServerVersion}"
+    implementation "org.apereo.cas:cas-server-support-saml:${casServerVersion}"
+
 }
 ```
 

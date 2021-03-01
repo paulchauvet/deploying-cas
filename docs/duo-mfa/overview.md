@@ -6,6 +6,10 @@ Other types of MFA can be used outside of Duo of course - but I'm only focusing 
 
 I'll go over how to add Duo as a dependency, configure it in CAS (at the server-wide level, and at the service level) and within the Duo admin panel.
 
+!!! note "Note regarding Duo Universal Prompt"
+    Duo is changing over to a new login system for web apps that they call the "Universal Prompt".  Instead of the old way, where CAS (or other sites) would frame a Duo page, with the Universal Prompt, this is handled via browser redirects to a page on Duo's servers.  This is supposedly ready in CAS according to the documents I've seen on the Apereo side (https://apereo.github.io/cas/6.3.x/mfa/DuoSecurity-Authentication.html#universal-prompt) but I haven't yet been able to get this working.  I hope to get back to that and will update this documentation when I have that ready.
+
+
 ## Add the duo-mfa dependency
 To add duo-mfa support to the CAS server, edit the {==build.gradle==} file within the cas-overlay-template directory on your build host.  We're going to add a single depency to the one we already added for the json service registry.  See the highlighted line below for the addition.
 
@@ -15,10 +19,11 @@ dependencies {
     // Other CAS dependencies/modules may be listed here...
     // implementation "org.apereo.cas:cas-server-support-json-service-registry:${casServerVersion}"
 
-    compile "org.apereo.cas:cas-server-support-json-service-registry:${project.'cas.version'}"
-    compile "org.apereo.cas:cas-server-support-ldap:${project.'cas.version'}"
-    compile "org.apereo.cas:cas-server-support-saml:${project.'cas.version'}"
-    compile "org.apereo.cas:cas-server-support-duo:${project.'cas.version'}"
+    implementation "org.apereo.cas:cas-server-webapp-init:${casServerVersion}"
+    implementation "org.apereo.cas:cas-server-support-json-service-registry:${casServerVersion}"
+    implementation "org.apereo.cas:cas-server-support-ldap:${casServerVersion}"
+    implementation "org.apereo.cas:cas-server-support-saml:${casServerVersion}"
+    implementation "org.apereo.cas:cas-server-support-duo:${casServerVersion}"
   
 }
 ```
