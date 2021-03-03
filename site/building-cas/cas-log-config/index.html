@@ -244,6 +244,30 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/acknowledgements/" class="md-nav__link">
+        Acknowledgements
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/license/" class="md-nav__link">
+        License
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -1066,6 +1090,49 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9" >
+      
+      <label class="md-nav__link" for="nav-9">
+        Ticket Registry
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Ticket Registry" data-md-level="1">
+        <label class="md-nav__title" for="nav-9">
+          <span class="md-nav__icon md-icon"></span>
+          Ticket Registry
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ticket-registry/hazelcast-overview/" class="md-nav__link">
+        Hazelcast Overview
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../about/future-tasks/" class="md-nav__link">
         Future tasks
@@ -1175,7 +1242,7 @@ chmod <span class="m">750</span> /var/log/cas
 <span class="c">            &lt;OnStartupTriggeringPolicy /&gt;</span>
 <span class="c">            &lt;SizeBasedTriggeringPolicy size=&quot;10 MB&quot;/&gt;</span>
 <span class="c">        --&gt;</span>
-        <span class="nt">&lt;TimeBasedTriggeringPolicy</span> <span class="na">interval=</span><span class="s">&quot;1&quot;</span> <span class="na">module=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;TimeBasedTriggeringPolicy</span> <span class="na">interval=</span><span class="s">&quot;1&quot;</span> <span class="na">modulate=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;/Policies&gt;</span>
 <span class="nt">&lt;/RollingFile&gt;</span>
 <span class="nt">&lt;RollingFile</span> <span class="na">name=</span><span class="s">&quot;auditlogfile&quot;</span> <span class="na">fileName=</span><span class="s">&quot;${baseDir}/cas_audit.log&quot;</span> <span class="na">append=</span><span class="s">&quot;true&quot;</span>
@@ -1186,7 +1253,7 @@ chmod <span class="m">750</span> /var/log/cas
 <span class="c">            &lt;OnStartupTriggeringPolicy /&gt;</span>
 <span class="c">            &lt;SizeBasedTriggeringPolicy size=&quot;10 MB&quot;/&gt;</span>
 <span class="c">        --&gt;</span>
-        <span class="nt">&lt;TimeBasedTriggeringPolicy</span> <span class="na">interval=</span><span class="s">&quot;1&quot;</span> <span class="na">module=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;TimeBasedTriggeringPolicy</span> <span class="na">interval=</span><span class="s">&quot;1&quot;</span> <span class="na">modulate=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;/Policies&gt;</span>
 <span class="nt">&lt;/RollingFile&gt;</span>
 </code></pre></div></p>
@@ -1246,7 +1313,7 @@ chmod <span class="m">750</span> /var/log/cas
       <div class="md-footer-copyright">
         
           <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2021 Paul Chauvet, State University of New York at New Paltz
+            Copyright &copy; 2021 Paul Chauvet, State University of New York at New Paltz.  This work is licensed under a "Creative Commons Attribution-ShareAlike 4.0 International License"
           </div>
         
         Made with

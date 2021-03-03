@@ -244,6 +244,30 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/acknowledgements/" class="md-nav__link">
+        Acknowledgements
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/license/" class="md-nav__link">
+        License
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -1121,6 +1145,49 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9" >
+      
+      <label class="md-nav__link" for="nav-9">
+        Ticket Registry
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Ticket Registry" data-md-level="1">
+        <label class="md-nav__title" for="nav-9">
+          <span class="md-nav__icon md-icon"></span>
+          Ticket Registry
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ticket-registry/hazelcast-overview/" class="md-nav__link">
+        Hazelcast Overview
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../about/future-tasks/" class="md-nav__link">
         Future tasks
@@ -1242,9 +1309,10 @@
     <span class="err">//</span> <span class="err">O</span><span class="kc">t</span><span class="err">her</span> <span class="err">CAS</span> <span class="err">depe</span><span class="kc">n</span><span class="err">de</span><span class="kc">n</span><span class="err">cies/modules</span> <span class="err">may</span> <span class="err">be</span> <span class="err">lis</span><span class="kc">te</span><span class="err">d</span> <span class="err">here...</span>
     <span class="err">//</span> <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-json-service-registry:${casServerVersion}&quot;</span>
 
-    <span class="err">compile</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-json-service-registry:${project.&#39;cas.version&#39;}&quot;</span>
-<span class="hll">    <span class="err">compile</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-ldap:${project.&#39;cas.version&#39;}&quot;</span>
-</span><span class="p">}</span>
+    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-webapp-init:${casServerVersion}&quot;</span>
+<span class="hll">    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-ldap:${casServerVersion}&quot;</span>
+</span>    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-json-service-registry:${casServerVersion}&quot;</span>
+<span class="p">}</span>
 </code></pre></div>
 <h2 id="disable-static-credentials">Disable static credentials</h2>
 <p>You'll want to also remove the static test user you have specified in cas.properties.  In Ansible, this is in roles/cas6/templates/dev-cas-properties.j2</p>
@@ -1416,7 +1484,7 @@ cas.authn.ldap[1].dnFormat:             {{ AD_DN_FORMAT_1 }}
       <div class="md-footer-copyright">
         
           <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2021 Paul Chauvet, State University of New York at New Paltz
+            Copyright &copy; 2021 Paul Chauvet, State University of New York at New Paltz.  This work is licensed under a "Creative Commons Attribution-ShareAlike 4.0 International License"
           </div>
         
         Made with

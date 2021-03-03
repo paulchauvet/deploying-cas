@@ -2,7 +2,8 @@ site_name: Deploying Apereo CAS 6
 site_author: Paul Chauvet
 site_description: Guide for deploying Apereo CAS 6 - with LDAP & Delegated Azure Authentication, and Apache Tomcat.
 site_url: https://paulchauvet.github.io/deploying-cas/
-copyright: Copyright &copy; 2021 Paul Chauvet, State University of New York at New Paltz
+copyright: Copyright &copy; 2021 Paul Chauvet, State University of New York at New Paltz.  This work is licensed under a "Creative Commons Attribution-ShareAlike 4.0 International License"
+
 
 theme:
   name: material
@@ -26,6 +27,8 @@ nav:
     - About SUNY New Paltz: about/about-new-paltz.md
     - About the author: about/author-information.md
     - Architecture/design: about/architecture.md
+    - Acknowledgements: about/acknowledgements.md
+    - License: about/license.md
   - Setting up the Environment:
     - Overview: setting-up-the-environment/overview.md
     - Configure time synchronization: setting-up-the-environment/time-synchronization.md
@@ -78,7 +81,6 @@ nav:
     - Test Duo MFA: duo-mfa/testing-mfa.md
   - Ticket Registry:
     - Hazelcast Overview: ticket-registry/hazelcast-overview.md
-    - MongoDB Overview: ticket-registry/mongodb-overview.md
   - Future tasks: about/future-tasks.md
 
       

@@ -244,6 +244,30 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/acknowledgements/" class="md-nav__link">
+        Acknowledgements
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../about/license/" class="md-nav__link">
+        License
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -1032,6 +1056,49 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9" >
+      
+      <label class="md-nav__link" for="nav-9">
+        Ticket Registry
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Ticket Registry" data-md-level="1">
+        <label class="md-nav__title" for="nav-9">
+          <span class="md-nav__icon md-icon"></span>
+          Ticket Registry
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ticket-registry/hazelcast-overview/" class="md-nav__link">
+        Hazelcast Overview
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../../about/future-tasks/" class="md-nav__link">
         Future tasks
@@ -1086,9 +1153,14 @@
 <span class="c1"># you won&#39;t know what version of the Commons Daemon or Tomcat Native Library are in that Tomcat version.</span>
 <span class="c1"># My practice is when upgrading to a new version for the first time - I will download that version,</span>
 <span class="c1"># unpack it, and unpack the Tomcat Native Library and Commons Daemon to check their version.</span>
+<span class="c1"># For example, Tomcat 9.0.43 had 1.2.26 for the Tomcat Native Library, where Tomcat 9.0.41 had 1.2.25.</span>
+<span class="c1"># When my playbook &#39;failed&#39; on this - I just went and updated the variable.</span>
+<span class="c1"># Same was true where the commons daemon version updated from 1.2.3 to 1.2.4 with Tomcat 9.0.43.</span>
+<span class="c1"># If you&#39;re going to have multiple versions of Tomcat running for a while, you may want to define</span>
+<span class="c1"># these in your /etc/ansible/hosts file instead.</span>
 
-<span class="nt">tomcat_native_ver</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.2.25</span>
-<span class="nt">commons_daemon_ver</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.2.3</span>
+<span class="nt">tomcat_native_ver</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.2.26</span>
+<span class="nt">commons_daemon_ver</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.2.4</span>
 
 <span class="nt">JAVA_HOME</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/usr/lib/jvm/java-11-openjdk</span>
 </code></pre></div></p>
@@ -1147,7 +1219,7 @@
       <div class="md-footer-copyright">
         
           <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2021 Paul Chauvet, State University of New York at New Paltz
+            Copyright &copy; 2021 Paul Chauvet, State University of New York at New Paltz.  This work is licensed under a "Creative Commons Attribution-ShareAlike 4.0 International License"
           </div>
         
         Made with

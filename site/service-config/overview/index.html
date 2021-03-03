@@ -244,6 +244,30 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/acknowledgements/" class="md-nav__link">
+        Acknowledgements
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/license/" class="md-nav__link">
+        License
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -1127,6 +1151,49 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9" >
+      
+      <label class="md-nav__link" for="nav-9">
+        Ticket Registry
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Ticket Registry" data-md-level="1">
+        <label class="md-nav__title" for="nav-9">
+          <span class="md-nav__icon md-icon"></span>
+          Ticket Registry
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ticket-registry/hazelcast-overview/" class="md-nav__link">
+        Hazelcast Overview
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../about/future-tasks/" class="md-nav__link">
         Future tasks
@@ -1258,17 +1325,18 @@
 <p>There are several ways to handle service registries, including the CAS <a href="https://apereo.github.io/cas/6.3.x/services/Installing-ServicesMgmt-Webapp.html">Services Management Webapp</a>.  Because I deploy and maintain CAS via Ansible, I prefer to define my services via JSON files within /etc/cas/services and deploy via Ansible instead of using a web application.  This helps preserve history (via git) of service changes.  It's all up to you though.  This documentation will assume you're using JSON files here.</p>
 <p>To use the JSON service registry, you're going to want to edit your <strong>build.gradle</strong> file within your cas-overlay-template directory.</p>
 <h2 id="editing-buildgradle">Editing build.gradle</h2>
-<p>Look for this section, around line 72 in the build.gradle file</p>
+<p>Look for this section, around line 84 in the build.gradle file</p>
 <div class="highlight"><pre><span></span><code>dependencies {
     // Other CAS dependencies/modules may be listed here...
-    // implementation &quot;org.apereo.cas:cas-server-support-json-service-registry:${casServerVersion}&quot;
+    implementation &quot;org.apereo.cas:cas-server-webapp-init:${casServerVersion}&quot;
+
 }
 </code></pre></div>
-<p>Add the dependency <mark class="critic">compile "org.apereo.cas:cas-server-support-json-service-registry:${project.'cas.version'}"</mark> as follows there:</p>
+<p>Add the dependency <mark class="critic">implementation "org.apereo.cas:cas-server-support-json-service-registry:${casServerVersion}"</mark> as follows there:</p>
 <div class="highlight"><pre><span></span><code>dependencies {
     // Other CAS dependencies/modules may be listed here...
     // implementation &quot;org.apereo.cas:cas-server-support-json-service-registry:${casServerVersion}&quot;
-    compile &quot;org.apereo.cas:cas-server-support-json-service-registry:${project.&#39;cas.version&#39;}&quot;
+    implementation &quot;org.apereo.cas:cas-server-support-json-service-registry:${casServerVersion}&quot;
 }
 </code></pre></div>
 <h2 id="update-your-casproperties">Update your cas.properties</h2>
@@ -1425,7 +1493,7 @@ cas.serviceRegistry.json.location=file:/etc/cas/services
       <div class="md-footer-copyright">
         
           <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2021 Paul Chauvet, State University of New York at New Paltz
+            Copyright &copy; 2021 Paul Chauvet, State University of New York at New Paltz.  This work is licensed under a "Creative Commons Attribution-ShareAlike 4.0 International License"
           </div>
         
         Made with
