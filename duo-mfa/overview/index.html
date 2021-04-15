@@ -1,0 +1,1528 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Guide for deploying Apereo CAS 6 - with LDAP & Delegated Azure Authentication, and Apache Tomcat.">
+      
+      
+      
+        <meta name="author" content="Paul Chauvet">
+      
+      
+        <link rel="canonical" href="https://paulchauvet.github.io/deploying-cas/duo-mfa/overview/">
+      
+      <link rel="shortcut icon" href="../../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
+    
+    
+      
+        <title>Overview - Deploying Apereo CAS 6</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.cb6bc1d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.39b8e14a.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/newpaltz.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mfa-with-duo" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://paulchauvet.github.io/deploying-cas/" title="Deploying Apereo CAS 6" class="md-header-nav__button md-logo" aria-label="Deploying Apereo CAS 6">
+      
+  <img src="../../images/newpaltz-logo.jpg" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Deploying Apereo CAS 6
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://paulchauvet.github.io/deploying-cas/" title="Deploying Apereo CAS 6" class="md-nav__button md-logo" aria-label="Deploying Apereo CAS 6">
+      
+  <img src="../../images/newpaltz-logo.jpg" alt="logo">
+
+    </a>
+    Deploying Apereo CAS 6
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Main
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+      
+      <label class="md-nav__link" for="nav-2">
+        About
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="nav-2">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/about-new-paltz/" class="md-nav__link">
+        About SUNY New Paltz
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/author-information/" class="md-nav__link">
+        About the author
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/architecture/" class="md-nav__link">
+        Architecture/design
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/acknowledgements/" class="md-nav__link">
+        Acknowledgements
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/license/" class="md-nav__link">
+        License
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+      
+      <label class="md-nav__link" for="nav-3">
+        Setting up the Environment
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Setting up the Environment" data-md-level="1">
+        <label class="md-nav__title" for="nav-3">
+          <span class="md-nav__icon md-icon"></span>
+          Setting up the Environment
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/time-synchronization/" class="md-nav__link">
+        Configure time synchronization
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/build-environment/" class="md-nav__link">
+        Build Environment
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4" >
+      
+      <label class="md-nav__link" for="nav-3-4">
+        Tomcat
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tomcat" data-md-level="2">
+        <label class="md-nav__title" for="nav-3-4">
+          <span class="md-nav__icon md-icon"></span>
+          Tomcat
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat/tomcat-overview/" class="md-nav__link">
+        Tomcat Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat/entropy-daemon/" class="md-nav__link">
+        Install an entropy daemon
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat/java/" class="md-nav__link">
+        Install Java
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat/tomcat-install/" class="md-nav__link">
+        Install Tomcat
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat/tomcat-dependencies/" class="md-nav__link">
+        Install Tomcat dependencies
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat/tomcat-organize/" class="md-nav__link">
+        Organize the installation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat/tomcat-harden/" class="md-nav__link">
+        Harden the installation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat/asynch-request-support/" class="md-nav__link">
+        Configure asynchronous request support
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat/config-x-forwarded/" class="md-nav__link">
+        Configure X-Forwarded-For header processing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat/resource-caching/" class="md-nav__link">
+        Tune resource caching settings
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat/configure-async-logging/" class="md-nav__link">
+        Configure asynchronous logging support
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat/systemd-service/" class="md-nav__link">
+        Configure systemd to start tomcat
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-5" type="checkbox" id="nav-3-5" >
+      
+      <label class="md-nav__link" for="nav-3-5">
+        Tomcat and Ansible
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Tomcat and Ansible" data-md-level="2">
+        <label class="md-nav__title" for="nav-3-5">
+          <span class="md-nav__icon md-icon"></span>
+          Tomcat and Ansible
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat-ansible/tomcat-ansible-overview/" class="md-nav__link">
+        Ansible and Tomcat - Initial Steps
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat-ansible/variables/" class="md-nav__link">
+        Setup Variables
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat-ansible/templates/" class="md-nav__link">
+        Setup Templates
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat-ansible/handlers/" class="md-nav__link">
+        Setup Handlers
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat-ansible/tasks/" class="md-nav__link">
+        Creating tasks
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat-ansible/running-the-play/" class="md-nav__link">
+        Running the play
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6" >
+      
+      <label class="md-nav__link" for="nav-3-6">
+        Apache HTTPD
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Apache HTTPD" data-md-level="2">
+        <label class="md-nav__title" for="nav-3-6">
+          <span class="md-nav__icon md-icon"></span>
+          Apache HTTPD
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/httpd/ajp-proxy/" class="md-nav__link">
+        Use AJP to communicate with Tomcat
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+      
+      <label class="md-nav__link" for="nav-4">
+        Building CAS
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Building CAS" data-md-level="1">
+        <label class="md-nav__title" for="nav-4">
+          <span class="md-nav__icon md-icon"></span>
+          Building CAS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-cas/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-cas/create-gradle-overlay/" class="md-nav__link">
+        Create Gradle Overlay
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-cas/initial-cas-config/" class="md-nav__link">
+        Initial CAS config
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-cas/cas-log-config/" class="md-nav__link">
+        Configure CAS logs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-cas/ansible-cas/" class="md-nav__link">
+        Ansible playbook setup
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
+      
+      <label class="md-nav__link" for="nav-5">
+        Service Configuration
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Service Configuration" data-md-level="1">
+        <label class="md-nav__title" for="nav-5">
+          <span class="md-nav__icon md-icon"></span>
+          Service Configuration
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../service-config/overview/" class="md-nav__link">
+        Service Overview
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" >
+      
+      <label class="md-nav__link" for="nav-6">
+        Building CAS client
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Building CAS client" data-md-level="1">
+        <label class="md-nav__title" for="nav-6">
+          <span class="md-nav__icon md-icon"></span>
+          Building CAS client
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cas-client/overview/" class="md-nav__link">
+        CAS client overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cas-client/cas-client-pages/" class="md-nav__link">
+        Create test/example pages
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cas-client/build-cas-client/" class="md-nav__link">
+        Configure httpd to use CAS
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cas-client/test-cas-client/" class="md-nav__link">
+        Test the application
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" >
+      
+      <label class="md-nav__link" for="nav-7">
+        Adding AD support
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Adding AD support" data-md-level="1">
+        <label class="md-nav__title" for="nav-7">
+          <span class="md-nav__icon md-icon"></span>
+          Adding AD support
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/configure-ldap-auth/" class="md-nav__link">
+        AD authentication
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/ad-attribute-release/" class="md-nav__link">
+        AD attribute release
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/update-service-registry/" class="md-nav__link">
+        Update service registry
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/update-cas-client/" class="md-nav__link">
+        Update CAS client
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active-directory/test-cas-client/" class="md-nav__link">
+        Test CAS client
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" checked>
+      
+      <label class="md-nav__link" for="nav-8">
+        Duo MFA support
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Duo MFA support" data-md-level="1">
+        <label class="md-nav__title" for="nav-8">
+          <span class="md-nav__icon md-icon"></span>
+          Duo MFA support
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Overview
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Overview
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#add-the-duo-mfa-dependency" class="md-nav__link">
+    Add the duo-mfa dependency
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rebuild-cas" class="md-nav__link">
+    Rebuild CAS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-new-duo-protected-application" class="md-nav__link">
+    Create a new Duo protected application
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-duo-application-key" class="md-nav__link">
+    Create Duo application key
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-duo-properties-in-cas" class="md-nav__link">
+    Configure Duo properties in CAS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variable-setup" class="md-nav__link">
+    Variable setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../update-cas-client/" class="md-nav__link">
+        Update CAS client
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing-mfa/" class="md-nav__link">
+        Test Duo MFA
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9" >
+      
+      <label class="md-nav__link" for="nav-9">
+        Ticket Registry
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Ticket Registry" data-md-level="1">
+        <label class="md-nav__title" for="nav-9">
+          <span class="md-nav__icon md-icon"></span>
+          Ticket Registry
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ticket-registry/hazelcast-overview/" class="md-nav__link">
+        Hazelcast Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ticket-registry/testing-ticket-registry/" class="md-nav__link">
+        Testing Ticket Registry
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10" >
+      
+      <label class="md-nav__link" for="nav-10">
+        Delegating auth to Azure
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Delegating auth to Azure" data-md-level="1">
+        <label class="md-nav__title" for="nav-10">
+          <span class="md-nav__icon md-icon"></span>
+          Delegating auth to Azure
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-auth/oidc-overview/" class="md-nav__link">
+        Azure OIDC Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-auth/testing/" class="md-nav__link">
+        Testing Delegated Auth
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../azure-conditional/overview.md" class="md-nav__link">
+        Azure Conditional Access
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/future-tasks/" class="md-nav__link">
+        Future tasks
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#add-the-duo-mfa-dependency" class="md-nav__link">
+    Add the duo-mfa dependency
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rebuild-cas" class="md-nav__link">
+    Rebuild CAS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-new-duo-protected-application" class="md-nav__link">
+    Create a new Duo protected application
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-duo-application-key" class="md-nav__link">
+    Create Duo application key
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-duo-properties-in-cas" class="md-nav__link">
+    Configure Duo properties in CAS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variable-setup" class="md-nav__link">
+    Variable setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="mfa-with-duo">MFA with Duo</h1>
+<p>At New Paltz - we have Duo deployed to all students, faculty, staff, and affiliates.  It is in use on any service at the CAS level that can be used to access sensitive data, or if there are other risks or compromised.</p>
+<p>Other types of MFA can be used outside of Duo of course - but I'm only focusing on Duo in this document.  For more information on Duo - see their website, <a href="https://duo.com">duo.com</a>.</p>
+<p>I'll go over how to add Duo as a dependency, configure it in CAS (at the server-wide level, and at the service level) and within the Duo admin panel.</p>
+<div class="admonition note">
+<p class="admonition-title">Note regarding Duo Universal Prompt</p>
+<p>Duo is changing over to a new login system for web apps that they call the "Universal Prompt".  Instead of the old way, where CAS (or other sites) would frame a Duo page, with the Universal Prompt, this is handled via browser redirects to a page on Duo's servers.  This is supposedly ready in CAS according to the documents I've seen on the Apereo side (https://apereo.github.io/cas/6.3.x/mfa/DuoSecurity-Authentication.html#universal-prompt) but I haven't yet been able to get this working.  I hope to get back to that and will update this documentation when I have that ready.</p>
+</div>
+<h2 id="add-the-duo-mfa-dependency">Add the duo-mfa dependency</h2>
+<p>To add duo-mfa support to the CAS server, edit the <mark class="critic">build.gradle</mark> file within the cas-overlay-template directory on your build host.  We're going to add a single depency to the one we already added for the json service registry.  See the highlighted line below for the addition.</p>
+<p><strong>cas-overlay-template/build.gradle</strong>
+<div class="highlight"><pre><span></span><code><span class="err">depe</span><span class="kc">n</span><span class="err">de</span><span class="kc">n</span><span class="err">cies</span> <span class="p">{</span>
+    <span class="err">//</span> <span class="err">O</span><span class="kc">t</span><span class="err">her</span> <span class="err">CAS</span> <span class="err">depe</span><span class="kc">n</span><span class="err">de</span><span class="kc">n</span><span class="err">cies/modules</span> <span class="err">may</span> <span class="err">be</span> <span class="err">lis</span><span class="kc">te</span><span class="err">d</span> <span class="err">here...</span>
+    <span class="err">//</span> <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-json-service-registry:${casServerVersion}&quot;</span>
+
+    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-webapp-init:${casServerVersion}&quot;</span>
+    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-json-service-registry:${casServerVersion}&quot;</span>
+    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-ldap:${casServerVersion}&quot;</span>
+<span class="hll">    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-saml:${casServerVersion}&quot;</span>
+</span>    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-duo:${casServerVersion}&quot;</span>
+
+<span class="p">}</span>
+</code></pre></div></p>
+<h2 id="rebuild-cas">Rebuild CAS</h2>
+<p>To rebuild CAS with the newest dependency built in we'll do the same thing we did when adding the json service registry.  You'll want to go to the cas-overlay-template directory and run the following and wait a moment for it to be complete:
+<div class="highlight"><pre><span></span><code>./gradlew clean build
+</code></pre></div></p>
+<p>Your cas.war file will have been updated.  Copy it from <em>cas-overlay-template/build/libs/cas.war</em> to your <em>roles/cas6/files</em> </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You may or may not care - but this is the point I gave up on CAS 6.2 in favor of 6.3.  I could not get CAS 6.2 to build the Duo MFA module - it kept complaining about dependency issues, so I moved over to 6.3 without any issues.</p>
+</div>
+<h2 id="create-a-new-duo-protected-application">Create a new Duo protected application</h2>
+<p>This needs to be done in the Duo Administrator Console</p>
+<ol>
+<li>Login to the <a href="https://admin.duosecurity.com/">Duo Admin Console</a></li>
+<li>Go to <em>Applications</em> on the left then the <em>Protect an application</em> button</li>
+<li>Type <em>CAS</em> in the search box, then click <em>Protect</em> next to <strong>CAS (Central Authentication Service)</strong></li>
+<li>Scroll down to the Settings section and choose an application name.  This will be visible to your users when they get a push notification, so at least for your production CAS/Duo - you should choose something user friendly like "<em>YourSchool Login (DEV)</em>".</li>
+<li>Make any other changes you need for it (for example, if you want users to be able to add or remove devices after they've verified with an existing device, check the "Let users remove devices, add new devices, and reactivate Duo Mobile" check box).</li>
+<li>Click Save.</li>
+</ol>
+<p>The three values (API hostname, secret key, and integration key) will be needed shortly.</p>
+<h2 id="create-duo-application-key">Create Duo application key</h2>
+<p>The duoApplicationKey value is a string, at least 40 characters long, that is generated locally and is not shared with Duo. The CAS documentation offers the procedure below for generating this string.  Obviously - you should generate your own and don't share it.</p>
+<div class="highlight"><pre><span></span><code><span class="o">[</span>root@login6deva ~<span class="o">]</span><span class="c1"># python3</span>
+Python <span class="m">3</span>.6.8 <span class="o">(</span>default, Aug <span class="m">18</span> <span class="m">2020</span>, <span class="m">08</span>:33:21<span class="o">)</span> 
+<span class="o">[</span>GCC <span class="m">8</span>.3.1 <span class="m">20191121</span> <span class="o">(</span>Red Hat <span class="m">8</span>.3.1-5<span class="o">)]</span> on linux
+Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&quot;</span>, <span class="s2">&quot;credits&quot;</span> or <span class="s2">&quot;license&quot;</span> <span class="k">for</span> more information.
+&gt;&gt;&gt; import os, hashlib
+&gt;&gt;&gt; <span class="nv">akey</span> <span class="o">=</span> hashlib.sha1<span class="o">(</span>os.urandom<span class="o">(</span><span class="m">32</span><span class="o">))</span>.hexdigest<span class="o">()</span>
+&gt;&gt;&gt; print<span class="o">(</span>akey<span class="o">)</span>
+9941db238a6e75ec188fd12fcf6813191894f7c1
+&gt;&gt;&gt; exit<span class="o">()</span>
+</code></pre></div>
+<h2 id="configure-duo-properties-in-cas">Configure Duo properties in CAS</h2>
+<p>Add the following settings to roles/cas6/templates/dev-cas.properties.j2 in the cas-overlay-template directory on your Ansible server.  As with other sections - we're going to use variables here since some of the Duo info is sensitive, and we'll leave them as variables here (and the real values will be in the Ansible cas-vault.yml file).</p>
+<div class="highlight"><pre><span></span><code>cas.authn.mfa.duo[0].duoApiHost:        {{ DEV_DUO_API_HOST }}
+cas.authn.mfa.duo[0].duoIntegrationKey: {{ DEV_DUO_IKEY }}
+cas.authn.mfa.duo[0].duoSecretKey:      {{ DEV_DUO_SKEY }}
+cas.authn.mfa.duo[0].duoApplicationKey: {{ DEV_DUO_AKEY }}
+</code></pre></div>
+<h2 id="variable-setup">Variable setup</h2>
+<p>Edit your <em>cas-vault.yml</em> file within <em>roles/cas6/vars/</em></p>
+<p>Fill in values for {{ DEV_DUO_API_HOST }}, {{ DEV_DUO_IKEY }}, {{ DEV_DUO_SKEY }}, and {{ DEV_DUO_AKEY }}.  It should now look like the following (after opening with ansible-vault edit cas-vault.yml).</p>
+<p><strong>roles/cas6/vars/cas-vault.yml</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># As previously mentioned - these are not my real keys</span>
+<span class="nt">dev_tgc_signing_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">WEebZqgDjfKJei0XM-owdfueb3lZ3lyKKXAL8wLUoLfc2qTFWyBmYxVQBSLslau70uJH_gGM5teTqgbDD3Xcag</span>
+<span class="nt">dev_tgc_encryption_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">zyTzo8eMzToxP9_Kmk33iFVKVFMJD8873ZGA9Z_2Fco</span>
+<span class="nt">dev_webflow_signing_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">_mUEdBjyFlfbvKaGPnAtIbQ7sEkMO2A57lCu3OKz835NeNZqcOCsVo6WmCc95TMgdmahP-aP1lXBpqjd4rU2-g</span>
+<span class="nt">dev_webflow_encryption_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">JnGirTeE8yp3Jp/Mg9Z5Pg==</span>
+
+<span class="c1"># You will have to change these for your own environment</span>
+<span class="nt">AD_SERVER_0</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">server.domain.edu</span>
+<span class="nt">AD_BASE_DN_0</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dc=subdomain,dc=domain,dc=edu</span>
+<span class="nt">AD_DN_FORMAT_0</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CN=%s,OU=active,DC=subdomain,DC=domain,DC=edu</span>
+<span class="nt">AD_BIND_USER_0</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CN=bindusername,CN=users,DC=subdomain,DC=domain,DC=edu</span>
+<span class="nt">AD_BIND_PASSWORD_0</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SomeStrongPasswordIAssume</span>
+
+<span class="c1"># If you have other servers or organizational units, you can list them here</span>
+<span class="nt">AD_SERVER_1</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">other-server.domain.edu</span>
+<span class="nt">AD_BASE_DN_1</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dc=subdomain,dc=domain,dc=edu</span>
+<span class="nt">AD_DN_FORMAT_1</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CN=%s,OU=alumni,DC=subdomain,DC=domain,DC=edu</span>
+<span class="nt">AD_BIND_USER_1</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CN=bindusername,CN=users,DC=subdomain,DC=domain,DC=edu</span>
+<span class="nt">AD_BIND_PASSWORD_1</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SomeStrongPasswordIAssume</span>
+
+<span class="c1"># Duo</span>
+<span class="nt">DEV_DUO_API_HOST</span><span class="p">:</span> <span class="c1"># Your API Hostname from your application in the Duo Admin panel</span>
+<span class="nt">DEV_DUO_IKEY</span><span class="p">:</span> <span class="c1"># Your integration key from your application in the Duo Admin panel</span>
+<span class="nt">DEV_DUO_SKEY</span><span class="p">:</span> <span class="c1"># Your secret key from your application in the Duo Admin panel</span>
+<span class="nt">DEV_DUO_AKEY</span><span class="p">:</span> <span class="c1"># Your integration key from your application in the Duo Admin panel</span>
+</code></pre></div>
+<h2 id="references">References</h2>
+<p><a href="https://duo.com/docs/cas">Duo &amp; CAS</a>
+<a href="https://apereo.github.io/cas/6.3.x/mfa/Configuring-Multifactor-Authentication.html">CAS 6: Multifactor Authentication</a>
+<a href="https://fawnoos.com/2020/11/09/cas63-gettingstarted-overlay/">CAS 6: Getting Started - MFA via Duo</a></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../../active-directory/test-cas-client/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Test CAS client
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../update-cas-client/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Update CAS client
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2021 Paul Chauvet, State University of New York at New Paltz.  This work is licensed under a "Creative Commons Attribution-ShareAlike 4.0 International License"
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.9c0e82ba.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
