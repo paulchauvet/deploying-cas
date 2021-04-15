@@ -3,13 +3,11 @@ These are items which are not complete in this documentation.  Some of this will
 
 ## Items to be finished before announcing this documentation
 
-* Ticket registry
-* LDAP support
-* Duo MFA support
 * CAS UI customization/theming
+* Azure Conditional Access
 * Review documentation - especially code blocks - to ensure proper lexers are being used.
 * Change ansible templates over to use ansible.builtin (e.g. ansible.builtin.template instead of template)
-* Manually unpack war file - or fix it so it is automatically unpacked
+* Manually unpack war file - or fix it so it is automatically unpacked correctly
 * Handling cas service cleanup (i.e. removing old services).
 * Settle on where AJP documentation will go (leaning towards two places - tomcat setup for the server.xml portion, and CAS setup for httpd.conf setup)
 
