@@ -13,21 +13,21 @@
         <meta name="author" content="Paul Chauvet">
       
       
-        <link rel="canonical" href="https://paulchauvet.github.io/deploying-cas/setting-up-the-environment/tomcat/tomcat-harden/">
+        <link rel="canonical" href="https://paulchauvet.github.io/deploying-cas/ticket-registry/testing-ticket-registry/">
       
-      <link rel="shortcut icon" href="../../../images/favicon.ico">
+      <link rel="shortcut icon" href="../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
     
     
       
-        <title>Harden the installation - Deploying Apereo CAS 6</title>
+        <title>Testing Ticket Registry - Deploying Apereo CAS 6</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.cb6bc1d0.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.cb6bc1d0.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.39b8e14a.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.39b8e14a.min.css">
         
       
     
@@ -42,7 +42,7 @@
     
     
     
-      <link rel="stylesheet" href="../../../stylesheets/newpaltz.css">
+      <link rel="stylesheet" href="../../stylesheets/newpaltz.css">
     
     
       
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#harden-the-installation" class="md-skip">
+        <a href="#testing-the-ticket-registry" class="md-skip">
           Skip to content
         </a>
       
@@ -81,7 +81,7 @@
   <nav class="md-header-nav md-grid" aria-label="Header">
     <a href="https://paulchauvet.github.io/deploying-cas/" title="Deploying Apereo CAS 6" class="md-header-nav__button md-logo" aria-label="Deploying Apereo CAS 6">
       
-  <img src="../../../images/newpaltz-logo.jpg" alt="logo">
+  <img src="../../images/newpaltz-logo.jpg" alt="logo">
 
     </a>
     <label class="md-header-nav__button md-icon" for="__drawer">
@@ -97,7 +97,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              Harden the installation
+              Testing Ticket Registry
             
           </span>
         </div>
@@ -160,7 +160,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="https://paulchauvet.github.io/deploying-cas/" title="Deploying Apereo CAS 6" class="md-nav__button md-logo" aria-label="Deploying Apereo CAS 6">
       
-  <img src="../../../images/newpaltz-logo.jpg" alt="logo">
+  <img src="../../images/newpaltz-logo.jpg" alt="logo">
 
     </a>
     Deploying Apereo CAS 6
@@ -176,7 +176,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         Main
       </a>
     </li>
@@ -213,7 +213,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/about-new-paltz/" class="md-nav__link">
+      <a href="../../about/about-new-paltz/" class="md-nav__link">
         About SUNY New Paltz
       </a>
     </li>
@@ -225,7 +225,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/author-information/" class="md-nav__link">
+      <a href="../../about/author-information/" class="md-nav__link">
         About the author
       </a>
     </li>
@@ -237,7 +237,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/architecture/" class="md-nav__link">
+      <a href="../../about/architecture/" class="md-nav__link">
         Architecture/design
       </a>
     </li>
@@ -249,7 +249,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/acknowledgements/" class="md-nav__link">
+      <a href="../../about/acknowledgements/" class="md-nav__link">
         Acknowledgements
       </a>
     </li>
@@ -261,7 +261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/license/" class="md-nav__link">
+      <a href="../../about/license/" class="md-nav__link">
         License
       </a>
     </li>
@@ -280,14 +280,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
       
       <label class="md-nav__link" for="nav-3">
         Setting up the Environment
@@ -306,7 +304,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../overview/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -318,7 +316,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../time-synchronization/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/time-synchronization/" class="md-nav__link">
         Configure time synchronization
       </a>
     </li>
@@ -330,7 +328,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../build-environment/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/build-environment/" class="md-nav__link">
         Build Environment
       </a>
     </li>
@@ -340,14 +338,12 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4" >
       
       <label class="md-nav__link" for="nav-3-4">
         Tomcat
@@ -366,7 +362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tomcat-overview/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat/tomcat-overview/" class="md-nav__link">
         Tomcat Overview
       </a>
     </li>
@@ -378,7 +374,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../entropy-daemon/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat/entropy-daemon/" class="md-nav__link">
         Install an entropy daemon
       </a>
     </li>
@@ -390,7 +386,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../java/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat/java/" class="md-nav__link">
         Install Java
       </a>
     </li>
@@ -402,7 +398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tomcat-install/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat/tomcat-install/" class="md-nav__link">
         Install Tomcat
       </a>
     </li>
@@ -414,7 +410,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tomcat-dependencies/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat/tomcat-dependencies/" class="md-nav__link">
         Install Tomcat dependencies
       </a>
     </li>
@@ -426,7 +422,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tomcat-organize/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat/tomcat-organize/" class="md-nav__link">
         Organize the installation
       </a>
     </li>
@@ -436,77 +432,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Harden the installation
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../setting-up-the-environment/tomcat/tomcat-harden/" class="md-nav__link">
         Harden the installation
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#create-a-tomcat-user-and-group" class="md-nav__link">
-    Create a tomcat user and group
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#set-file-ownership-and-permissions" class="md-nav__link">
-    Set file ownership and permissions
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#remove-example-webapps" class="md-nav__link">
-    Remove example webapps
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#to-do" class="md-nav__link">
-    To do
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    References
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -516,7 +446,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../asynch-request-support/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat/asynch-request-support/" class="md-nav__link">
         Configure asynchronous request support
       </a>
     </li>
@@ -528,7 +458,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config-x-forwarded/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat/config-x-forwarded/" class="md-nav__link">
         Configure X-Forwarded-For header processing
       </a>
     </li>
@@ -540,7 +470,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../resource-caching/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat/resource-caching/" class="md-nav__link">
         Tune resource caching settings
       </a>
     </li>
@@ -552,7 +482,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configure-async-logging/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat/configure-async-logging/" class="md-nav__link">
         Configure asynchronous logging support
       </a>
     </li>
@@ -564,7 +494,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../systemd-service/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat/systemd-service/" class="md-nav__link">
         Configure systemd to start tomcat
       </a>
     </li>
@@ -604,7 +534,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tomcat-ansible/tomcat-ansible-overview/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat-ansible/tomcat-ansible-overview/" class="md-nav__link">
         Ansible and Tomcat - Initial Steps
       </a>
     </li>
@@ -616,7 +546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tomcat-ansible/variables/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat-ansible/variables/" class="md-nav__link">
         Setup Variables
       </a>
     </li>
@@ -628,7 +558,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tomcat-ansible/templates/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat-ansible/templates/" class="md-nav__link">
         Setup Templates
       </a>
     </li>
@@ -640,7 +570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tomcat-ansible/handlers/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat-ansible/handlers/" class="md-nav__link">
         Setup Handlers
       </a>
     </li>
@@ -652,7 +582,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tomcat-ansible/tasks/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat-ansible/tasks/" class="md-nav__link">
         Creating tasks
       </a>
     </li>
@@ -664,7 +594,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tomcat-ansible/running-the-play/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat-ansible/running-the-play/" class="md-nav__link">
         Running the play
       </a>
     </li>
@@ -704,7 +634,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../httpd/ajp-proxy/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/httpd/ajp-proxy/" class="md-nav__link">
         Use AJP to communicate with Tomcat
       </a>
     </li>
@@ -753,7 +683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../building-cas/overview/" class="md-nav__link">
+      <a href="../../building-cas/overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -765,7 +695,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../building-cas/create-gradle-overlay/" class="md-nav__link">
+      <a href="../../building-cas/create-gradle-overlay/" class="md-nav__link">
         Create Gradle Overlay
       </a>
     </li>
@@ -777,7 +707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../building-cas/initial-cas-config/" class="md-nav__link">
+      <a href="../../building-cas/initial-cas-config/" class="md-nav__link">
         Initial CAS config
       </a>
     </li>
@@ -789,7 +719,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../building-cas/cas-log-config/" class="md-nav__link">
+      <a href="../../building-cas/cas-log-config/" class="md-nav__link">
         Configure CAS logs
       </a>
     </li>
@@ -801,7 +731,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../building-cas/ansible-cas/" class="md-nav__link">
+      <a href="../../building-cas/ansible-cas/" class="md-nav__link">
         Ansible playbook setup
       </a>
     </li>
@@ -844,7 +774,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../service-config/overview/" class="md-nav__link">
+      <a href="../../service-config/overview/" class="md-nav__link">
         Service Overview
       </a>
     </li>
@@ -887,7 +817,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cas-client/overview/" class="md-nav__link">
+      <a href="../../cas-client/overview/" class="md-nav__link">
         CAS client overview
       </a>
     </li>
@@ -899,7 +829,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cas-client/cas-client-pages/" class="md-nav__link">
+      <a href="../../cas-client/cas-client-pages/" class="md-nav__link">
         Create test/example pages
       </a>
     </li>
@@ -911,7 +841,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cas-client/build-cas-client/" class="md-nav__link">
+      <a href="../../cas-client/build-cas-client/" class="md-nav__link">
         Configure httpd to use CAS
       </a>
     </li>
@@ -923,7 +853,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../cas-client/test-cas-client/" class="md-nav__link">
+      <a href="../../cas-client/test-cas-client/" class="md-nav__link">
         Test the application
       </a>
     </li>
@@ -966,7 +896,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../active-directory/overview/" class="md-nav__link">
+      <a href="../../active-directory/overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -978,7 +908,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../active-directory/configure-ldap-auth/" class="md-nav__link">
+      <a href="../../active-directory/configure-ldap-auth/" class="md-nav__link">
         AD authentication
       </a>
     </li>
@@ -990,7 +920,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../active-directory/ad-attribute-release/" class="md-nav__link">
+      <a href="../../active-directory/ad-attribute-release/" class="md-nav__link">
         AD attribute release
       </a>
     </li>
@@ -1002,7 +932,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../active-directory/update-service-registry/" class="md-nav__link">
+      <a href="../../active-directory/update-service-registry/" class="md-nav__link">
         Update service registry
       </a>
     </li>
@@ -1014,7 +944,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../active-directory/update-cas-client/" class="md-nav__link">
+      <a href="../../active-directory/update-cas-client/" class="md-nav__link">
         Update CAS client
       </a>
     </li>
@@ -1026,7 +956,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../active-directory/test-cas-client/" class="md-nav__link">
+      <a href="../../active-directory/test-cas-client/" class="md-nav__link">
         Test CAS client
       </a>
     </li>
@@ -1069,7 +999,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../duo-mfa/overview/" class="md-nav__link">
+      <a href="../../duo-mfa/overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -1081,7 +1011,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../duo-mfa/update-cas-client/" class="md-nav__link">
+      <a href="../../duo-mfa/update-cas-client/" class="md-nav__link">
         Update CAS client
       </a>
     </li>
@@ -1093,7 +1023,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../duo-mfa/testing-mfa/" class="md-nav__link">
+      <a href="../../duo-mfa/testing-mfa/" class="md-nav__link">
         Test Duo MFA
       </a>
     </li>
@@ -1112,12 +1042,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9" checked>
       
       <label class="md-nav__link" for="nav-9">
         Ticket Registry
@@ -1136,7 +1068,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../ticket-registry/hazelcast-overview/" class="md-nav__link">
+      <a href="../hazelcast-overview/" class="md-nav__link">
         Hazelcast Overview
       </a>
     </li>
@@ -1146,11 +1078,56 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../../ticket-registry/testing-ticket-registry/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Testing Ticket Registry
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Testing Ticket Registry
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#load-balancer-method" class="md-nav__link">
+    Load balancer method
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#taking-a-server-offline" class="md-nav__link">
+    Taking a server offline
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1191,7 +1168,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../delegated-auth/oidc-overview/" class="md-nav__link">
+      <a href="../../delegated-auth/oidc-overview/" class="md-nav__link">
         Azure OIDC Overview
       </a>
     </li>
@@ -1203,7 +1180,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../delegated-auth/testing/" class="md-nav__link">
+      <a href="../../delegated-auth/testing/" class="md-nav__link">
         Testing Delegated Auth
       </a>
     </li>
@@ -1224,7 +1201,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../azure-conditional/overview.md" class="md-nav__link">
+      <a href="../../azure-conditional/overview.md" class="md-nav__link">
         Azure Conditional Access
       </a>
     </li>
@@ -1239,7 +1216,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/future-tasks/" class="md-nav__link">
+      <a href="../../about/future-tasks/" class="md-nav__link">
         Future tasks
       </a>
     </li>
@@ -1271,36 +1248,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#create-a-tomcat-user-and-group" class="md-nav__link">
-    Create a tomcat user and group
+  <a href="#load-balancer-method" class="md-nav__link">
+    Load balancer method
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#set-file-ownership-and-permissions" class="md-nav__link">
-    Set file ownership and permissions
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#remove-example-webapps" class="md-nav__link">
-    Remove example webapps
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#to-do" class="md-nav__link">
-    To do
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    References
+  <a href="#taking-a-server-offline" class="md-nav__link">
+    Taking a server offline
   </a>
   
 </li>
@@ -1318,76 +1274,13 @@
               
                 
                 
-                <h1 id="harden-the-installation">Harden the installation</h1>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>The steps below are for the CAS servers - not the build server.  That being said - if you are going to install and maintain via Ansible - you don't need to do this manually, though it is worth seeing how to do it manually.</p>
-</div>
-<p>The <a href="https://tomcat.apache.org/tomcat-9.0-doc/security-howto.html">Tomcat Security Considerations</a> document makes several recommendations for hardening a Tomcat installation:</p>
-<ul>
-<li>
-<p>Tomcat should not be run as the root user; it should be run as a dedicated user (usually named tomcat) that has minimum operating system permissions. It should not be possible to log in remotely as the tomcat user.</p>
-</li>
-<li>
-<p>All Tomcat files should be owned by user root and group tomcat (the tomcat user’s default group should be group tomcat). File/directory permissions should be set to owner read/write, group read only, and world none. The exceptions are the logs, temp, and work directories, which should be owned by the tomcat user instead of root.</p>
-</li>
-<li>
-<p>The default and example web applications included with the Tomcat distribution should be removed if they are not needed.</p>
-</li>
-<li>
-<p>Auto-deployment should be disabled, and web applications should be deployed as exploded directories rather than web application archives (WAR files).</p>
-</li>
-</ul>
-<p>Implementing these recommendations means that, even if an attacker compromises the Tomcat process, he or she cannot change the Tomcat configuration, deploy new web applications, or modify existing web applications.</p>
-<h2 id="create-a-tomcat-user-and-group">Create a tomcat user and group</h2>
-<div class="highlight"><pre><span></span><code><span class="gp">[root@login6devb ~]# </span>groupadd -r tomcat
-<span class="gp">[root@login6devb ~]# </span>useradd -r -d /opt/tomcat -g tomcat -s /sbin/nologin tomcat
-<span class="go">    (This gives a &#39;shell&#39; of /sbin/nologin which prevents the user from logging in)</span>
-</code></pre></div>
-<h2 id="set-file-ownership-and-permissions">Set file ownership and permissions</h2>
-<p>Some of these should be owned by user:root and group:tomcat (conf and webapps).  Others (logs temp work) should be owned by user/group:tomcat.
-<div class="highlight"><pre><span></span><code>mkdir -p /opt/tomcat/latest/conf/Catalina/localhost
-
-<span class="nb">cd</span> /opt/tomcat/latest/conf
-chown -R root:tomcat .
-chmod -R u+rwX,g+rX,o<span class="o">=</span> .
-chmod -R g-w .
-
-<span class="nb">cd</span> /opt/tomcat/latest/webapps
-chown -R root:tomcat .
-chmod -R u+rwX,g+rX,o<span class="o">=</span> .
-chmod -R g-w .
-
-<span class="nb">cd</span> /opt/tomcat/latest/logs
-chown -R tomcat:tomcat .
-chmod -R u+rwX,g+rX,o<span class="o">=</span> .
-chmod -R g-w .
-
-<span class="nb">cd</span> /opt/tomcat/latest/temp
-chown -R tomcat:tomcat .
-chmod -R u+rwX,g+rX,o<span class="o">=</span> .
-chmod -R g-w .
-
-<span class="nb">cd</span> /opt/tomcat/latest/work
-chown -R tomcat:tomcat .
-chmod -R u+rwX,g+rX,o<span class="o">=</span> .
-chmod -R g-w .
-</code></pre></div></p>
-<h2 id="remove-example-webapps">Remove example webapps</h2>
-<p>Unless you have a good reason, these should all be removed.  If you do need to keep these, you'll want to heavily restrict access to them.</p>
-<div class="highlight"><pre><span></span><code><span class="gp">[root@login6devb ~]# </span><span class="nb">cd</span> /opt/tomcat/latest/
-<span class="gp">[root@login6devb latest]# </span>rm -rf temp/* work/*
-<span class="gp">[root@login6devb latest]# </span><span class="nb">cd</span> webapps/
-<span class="gp">[root@login6devb webapps]# </span>rm -rf docs examples host-manager manager
-</code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Important: The command above does not remove the ROOT web application from the webapps directory because it can be useful in a development/test environment to quickly determine whether Tomcat is working properly. However, when deploying Tomcat to production servers, the ROOT application should be removed along with the rest of the default web applications.</p>
-</div>
-<h2 id="to-do">To do</h2>
-<p>Still need to add guidance on other aspects of the Tomcat Security Considerations document, such as server.xml configuration.</p>
-<h2 id="references">References</h2>
-<p><a href="https://tomcat.apache.org/tomcat-9.0-doc/security-howto.html">Tomcat Security Considerations</a></p>
+                <h1 id="testing-the-ticket-registry">Testing the ticket registry</h1>
+<p>There's two ways I like to test the ticket registry:</p>
+<h2 id="load-balancer-method">Load balancer method</h2>
+<p>In our load balancer (F5) I make sure that only one of our DEV cas servers are active (for example, server A active, server B inactive).  I then login via the load balanced URL for CAS and make sure I log in (in an incognito or private window) without issue.  Don't log out or close that window.</p>
+<p>I then enable the <em>other</em> CAS server, and disable the first, then revist the /cas/login page.  If I'm still logged in, with server B active and server A inactive, then I can see that the ticket registry is being shared.  If you're asked to login again, your ticket registry may not be shared.</p>
+<h2 id="taking-a-server-offline">Taking a server offline</h2>
+<p>A bit more drastic - have both CAS servers online but only one active in the load balancer (i.e. server A) and login.  Once you are successful, reactivate the second server in the load balancer, and shutdown Tomcat on the first server.  Verify via /cas/login that you are still logged in.</p>
                 
               
               
@@ -1406,7 +1299,7 @@ chmod -R g-w .
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../tomcat-organize/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../hazelcast-overview/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1415,19 +1308,19 @@ chmod -R g-w .
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Organize the installation
+                Hazelcast Overview
               </div>
             </div>
           </a>
         
         
-          <a href="../asynch-request-support/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../delegated-auth/oidc-overview/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Configure asynchronous request support
+                Azure OIDC Overview
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
@@ -1458,15 +1351,15 @@ chmod -R g-w .
       
     </div>
     
-      <script src="../../../assets/javascripts/vendor.18f0862e.min.js"></script>
-      <script src="../../../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
-          base: "../../..",
+          base: "../..",
           features: [],
           search: Object.assign({
-            worker: "../../../assets/javascripts/worker/search.9c0e82ba.min.js"
+            worker: "../../assets/javascripts/worker/search.9c0e82ba.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>

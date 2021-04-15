@@ -13,14 +13,14 @@
         <meta name="author" content="Paul Chauvet">
       
       
-        <link rel="canonical" href="https://paulchauvet.github.io/deploying-cas/ticket-registry/mongodb-installation/">
+        <link rel="canonical" href="https://paulchauvet.github.io/deploying-cas/delegated-auth/oidc-overview/">
       
       <link rel="shortcut icon" href="../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
     
     
       
-        <title>Mongodb installation - Deploying Apereo CAS 6</title>
+        <title>Azure OIDC Overview - Deploying Apereo CAS 6</title>
       
     
     
@@ -65,6 +65,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#delegated-authentication-to-azure-ad-via-oidc" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -92,7 +97,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              Mongodb installation
+              Azure OIDC Overview
             
           </span>
         </div>
@@ -1061,8 +1066,20 @@
   
   
     <li class="md-nav__item">
-      <a href="../hazelcast-overview/" class="md-nav__link">
+      <a href="../../ticket-registry/hazelcast-overview/" class="md-nav__link">
         Hazelcast Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ticket-registry/testing-ticket-registry/" class="md-nav__link">
+        Testing Ticket Registry
       </a>
     </li>
   
@@ -1070,6 +1087,164 @@
           
         </ul>
       </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10" checked>
+      
+      <label class="md-nav__link" for="nav-10">
+        Delegating auth to Azure
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Delegating auth to Azure" data-md-level="1">
+        <label class="md-nav__title" for="nav-10">
+          <span class="md-nav__icon md-icon"></span>
+          Delegating auth to Azure
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Azure OIDC Overview
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Azure OIDC Overview
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#add-the-oidc-dependency" class="md-nav__link">
+    Add the oidc dependency
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rebuild-cas" class="md-nav__link">
+    Rebuild CAS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-an-application-in-azure-ad" class="md-nav__link">
+    Setup an application in Azure AD
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-oidc-properties-in-cas" class="md-nav__link">
+    Configure OIDC properties in CAS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variable-setup" class="md-nav__link">
+    Variable setup
+  </a>
+  
+    <nav class="md-nav" aria-label="Variable setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where-to-get-these-values" class="md-nav__link">
+    Where to get these values
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        Testing Delegated Auth
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../azure-conditional/overview.md" class="md-nav__link">
+        Azure Conditional Access
+      </a>
     </li>
   
 
@@ -1096,21 +1271,183 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#add-the-oidc-dependency" class="md-nav__link">
+    Add the oidc dependency
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rebuild-cas" class="md-nav__link">
+    Rebuild CAS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-an-application-in-azure-ad" class="md-nav__link">
+    Setup an application in Azure AD
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-oidc-properties-in-cas" class="md-nav__link">
+    Configure OIDC properties in CAS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variable-setup" class="md-nav__link">
+    Variable setup
+  </a>
+  
+    <nav class="md-nav" aria-label="Variable setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where-to-get-these-values" class="md-nav__link">
+    Where to get these values
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
                 
                 
-                  <h1>Mongodb installation</h1>
-                
-                <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you have SELinux enabled, and in enforcing mode, there's some extra steps needed
-I haven't yet figured out how do this in Ansible yet without it being really kludgy.
-For now, see the "Configure SELinux" section of the article below:
-https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/#install-rhel-configure-selinux</p>
+                <h1 id="delegated-authentication-to-azure-ad-via-oidc">Delegated Authentication to Azure AD via OIDC</h1>
+<div class="admonition critical">
+<p class="admonition-title">This is incomplete</p>
+<p>As of when this was published - I was able to get this MOSTLY working - and this may be good enough for your environment.  What wasn't working for me is that in our environment, all our CAS clients are expecting the username not the full email address or userPrincipalName.  For example, in the UPN username@domain.edu, our CAS clients were expecting 'username' not 'username@newpaltz.edu'.  I could not figure out (at least before getting this working via SAML) how to fix this issue.  Your mileage may vary, so I'm still including this.</p>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Optional Content</p>
+<p>This is all optional.  If you don't need to delegate authentication to Azure and all of your authentication will be against an on-prem Active Directory or other LDAP/DB, then you can skip this section.</p>
+</div>
+<p>As previously mentioned in the introduction, our goal here is to move our authentication from Azure AD to CAS.  By delegating authentication from CAS to Azure, a user only has to login via one 'login' screen, notably Azure.  This way, if you have apps which:</p>
+<ul>
+<li>only work with CAS (and not Azure)</li>
+<li>or you haven't had a chance to move over from CAS to Azure yet</li>
+</ul>
+<p>All will still work for those services.  It also lets you gradually move services from CAS to Azure AD without having to move everything at once, or make your users login via multiple systems.  What we want to avoid is a user going to our portal (and authenticating via CAS) and clicking a link to a service on Azure AD and having to login a second time.</p>
+<p>There are two ways that I'm aware of to make this happen:</p>
+<ul>
+<li></li>
+</ul>
+<h2 id="add-the-oidc-dependency">Add the oidc dependency</h2>
+<p>To add hazelcast support to the CAS server, edit the <mark class="critic">build.gradle</mark> file within the cas-overlay-template directory on your build host.  We're going to add a single depency to the one we already added for the json service registry.  See the highlighted line below for the addition.</p>
+<p><strong>cas-overlay-template/build.gradle</strong>
+<div class="highlight"><pre><span></span><code><span class="err">depe</span><span class="kc">n</span><span class="err">de</span><span class="kc">n</span><span class="err">cies</span> <span class="p">{</span>
+    <span class="err">//</span> <span class="err">CAS</span> <span class="err">depe</span><span class="kc">n</span><span class="err">de</span><span class="kc">n</span><span class="err">cies/modules</span> <span class="err">may</span> <span class="err">be</span> <span class="err">lis</span><span class="kc">te</span><span class="err">d</span> <span class="err">here</span> <span class="err">s</span><span class="kc">tat</span><span class="err">ically...</span>
+
+    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-webapp-init:${casServerVersion}&quot;</span>
+    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-json-service-registry:${casServerVersion}&quot;</span>
+    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-ldap:${casServerVersion}&quot;</span>
+    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-saml:${casServerVersion}&quot;</span>
+    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-duo:${casServerVersion}&quot;</span>
+    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-hazelcast-ticket-registry:${casServerVersion}&quot;</span>
+<span class="hll">    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-pac4j-webflow:${casServerVersion}&quot;</span>
+</span><span class="p">}</span>
+</code></pre></div></p>
+<h2 id="rebuild-cas">Rebuild CAS</h2>
+<p>To rebuild CAS with the newest dependency built in we'll do the same thing we did with previous additions.  You'll want to go to the cas-overlay-template directory and run the following and wait a moment for it to be complete:
+<div class="highlight"><pre><span></span><code>./gradlew clean build
+</code></pre></div></p>
+<p>Your cas.war file will have been updated.  Copy it from <em>cas-overlay-template/build/libs/cas.war</em> to your <em>roles/cas6/files</em> </p>
+<h2 id="setup-an-application-in-azure-ad">Setup an application in Azure AD</h2>
+<p>Azure Active Directory needs to have an application registered in order for CAS to delegate authentications to it.  This is all done via the <a href="https://aad.portal.azure.com">Azure AD portal</a>.</p>
+<ol>
+<li>Go to the <a href="https://aad.portal.azure.com">Azure AD portal</a>.</li>
+<li>Click <em>Azure Active Directory</em> then select <em>App Registrations</em></li>
+<li>Create a new application via the "New registration" button.</li>
+<li>Set a Name for the application.  This is user visible (depending on where users look) so I recommend something clear like <em>"YourSchoolLogin-Dev"</em>, <em>"YourSchoolLogin-Test"</em> or <em>"YourSchoolLogin"</em> (for prod).</li>
+<li>Leave <em>Support account types</em> as the default (<em>Accounts in this organizational directory only</em>).</li>
+<li>Set your RedirectURL as follows: https://YourCASDevDomain.domain.edu/cas/login?client_name=<whatever you chose in step 4>.  For example, if I chose NewPaltz-Dev in step 4, my RedirectURL is https://logindev.newpaltz.edu/cas/login?client_name=NewPaltzLogin-Dev then click <em>Register</em>.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note regarding application names</p>
+<p>I'd recommend not having a spaces or crazy special characters in the app name.  I have only tested with alphanumeric characters along with hypnens in the client name.  I don't know what Azure allows - that would cause issues with CAS, or CAS clients, etc, but I haven't had a reason to find out.  Stick with the basics.</p>
+</div>
+<h2 id="configure-oidc-properties-in-cas">Configure OIDC properties in CAS</h2>
+<p>Add the following settings to roles/cas6/templates/dev-cas.properties.j2 in the cas-overlay-template directory on your Ansible server.  As with other sections - we're going to use variables here since some of these properties are sensitive, and we'll leave them as variables here (and the real values will be in the Ansible cas-vault.yml file).</p>
+<p>cas.authn.pac4j.oidc[0].azure.tenant={{ AZURE_TENANT }}
+cas.authn.pac4j.oidc[0].azure.id={{ AZURE_CAS_APP_ID }}
+cas.authn.pac4j.oidc[0].azure.secret={{ AZURE_CAS_APP_SECRET }}
+cas.authn.pac4j.oidc[0].azure.clientName={{ AZURE_CAS_APP_NAME }}
+cas.authn.pac4j.oidc[0].azure.discoveryUri={{ AZURE_CAS_DISCOVERY_URI }}
+cas.authn.pac4j.oidc[0].azure.principalAttributeId=upn
+cas.authn.pac4j.oidc[0].azure.autoRedirect=false</p>
+<h2 id="variable-setup">Variable setup</h2>
+<p>Edit your <em>cas-vault.yml</em> file within <em>roles/cas6/vars/</em></p>
+<p>You'll need to add the following:
+AZURE_TENANT: 
+AZURE_CAS_APP_ID:
+AZURE_CAS_APP_SECRET:
+AZURE_CAS_APP_NAME:
+AZURE_CAS_DISCOVERY_URI:</p>
+<h3 id="where-to-get-these-values">Where to get these values</h3>
+<ul>
+<li>AZURE_TENANT: This is the main domain within Azure.  In our case, it is newpaltz.edu.<ul>
+<li>I don't have experience dealing with multiple domains for this.  For our environment, we have some users who use a different domain as their primary email address (like engineering.newpaltz.edu) - but that is only for sending or receiving email.  Those users still login to Office 365 and Azure prompts with their username@newpaltz.edu since that is their userPrincipalName.</li>
+</ul>
+</li>
+<li>AZURE_CAS_APP_ID: This is the <em>Application (client) ID</em> within the Overview of the application in Azure (Azure Active Directory -&gt; App Registrations -&gt; YourApp -&gt; Overview).</li>
+<li>AZURE_CAS_APP_SECRET: To create this - do the following:<ul>
+<li>Go to the app in Azure, then go to <em>Certificates &amp; secrets</em>.</li>
+<li>Click <em>New client secret</em></li>
+<li>Give it a name for the description field - this is not user visible but make it something clear to you like <em>CASDevClientSecret</em>.</li>
+<li>Choose <em>Never</em> for expiration (if you want - choose a 1 year or 2 year expiration - but don't forget to update/renew this in advance....).</li>
+<li>Click <em>Add</em>.</li>
+<li>You'll see the value we need for <em>AZURE_CAS_APP_SECRET</em> in the value field next to the newly created client secret.</li>
+</ul>
+</li>
+<li>AZURE_CAS_APP_NAME: This is what you chose as the name of the app in step 4 of <em>Setup an application in Azure AD</em> above.</li>
+<li>AZURE_CAS_DISCOVERY_URI: To find this - go to the <em>Overview</em> tab of your application in Azure, then click the Endpoints button.  This value is what is listed under <em>OpenID Connect metadata document</em>.  It starts with https://login.microsoftonline.com and ends with <em>/.well-known/openid-configuration</em>.</li>
+</ul>
+<h2 id="references">References</h2>
+<p><a href="https://apereo.github.io/cas/6.3.x/integration/Delegate-Authentication.html#delegated-authentication">CAS 6: Delegated Authentication</a>
+<a href="https://apereo.github.io/cas/6.3.x/integration/Delegate-Authentication-SAML.html#delegated-authentication-w-saml2">CAS 6: Delegated Authentication with SAML2</a></p>
                 
               
               
@@ -1125,6 +1462,41 @@ https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/#install-rhe
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../../ticket-registry/testing-ticket-registry/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Testing Ticket Registry
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../testing/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Testing Delegated Auth
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

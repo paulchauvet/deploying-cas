@@ -13,14 +13,14 @@
         <meta name="author" content="Paul Chauvet">
       
       
-        <link rel="canonical" href="https://paulchauvet.github.io/deploying-cas/ticket-registry/mongodb-overview/">
+        <link rel="canonical" href="https://paulchauvet.github.io/deploying-cas/delegated-auth/testing/">
       
       <link rel="shortcut icon" href="../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
     
     
       
-        <title>Setting up ticket registry - Deploying Apereo CAS 6</title>
+        <title>Testing Delegated Auth - Deploying Apereo CAS 6</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#setting-up-ticket-registry" class="md-skip">
+        <a href="#testing-delegated-authentication" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              Setting up ticket registry
+              Testing Delegated Auth
             
           </span>
         </div>
@@ -1066,8 +1066,20 @@
   
   
     <li class="md-nav__item">
-      <a href="../hazelcast-overview/" class="md-nav__link">
+      <a href="../../ticket-registry/hazelcast-overview/" class="md-nav__link">
         Hazelcast Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ticket-registry/testing-ticket-registry/" class="md-nav__link">
+        Testing Ticket Registry
       </a>
     </li>
   
@@ -1075,6 +1087,123 @@
           
         </ul>
       </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10" checked>
+      
+      <label class="md-nav__link" for="nav-10">
+        Delegating auth to Azure
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Delegating auth to Azure" data-md-level="1">
+        <label class="md-nav__title" for="nav-10">
+          <span class="md-nav__icon md-icon"></span>
+          Delegating auth to Azure
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oidc-overview/" class="md-nav__link">
+        Azure OIDC Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Testing Delegated Auth
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Testing Delegated Auth
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#application-consent" class="md-nav__link">
+    Application Consent
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#issues-experienced" class="md-nav__link">
+    Issues experienced
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../azure-conditional/overview.md" class="md-nav__link">
+        Azure Conditional Access
+      </a>
     </li>
   
 
@@ -1119,15 +1248,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#add-the-mongodb-dependency" class="md-nav__link">
-    Add the mongodb dependency
+  <a href="#application-consent" class="md-nav__link">
+    Application Consent
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    References
+  <a href="#issues-experienced" class="md-nav__link">
+    Issues experienced
   </a>
   
 </li>
@@ -1145,26 +1274,42 @@
               
                 
                 
-                <h1 id="setting-up-ticket-registry">Setting up ticket registry</h1>
-<p>CAS can be setup to use various types of ticket registries to keep track of logins.</p>
-<p>My assumption is that you will have (at least in a production environment) multiple CAS servers, sitting behind a load balancer.  In order for this to work correctly, you will need to have a shared ticket registry.  This is because a users's browser could be sent via the load balancer to one CAS server, and the CAS client (on the service they are trying to get access to) could be routed to a different CAS server.  If you don't have a shared ticket registry, then this login would fail.</p>
-<p>There are multiple options for ticket registries within CAS.  In this documentation, I'm going to be using MongoDB, a NoSQL database, for the ticket registry.  Hazelcast appears to be most common - but I haven't been able to get it working with CAS 6.x so I'm staying with what I'm comfortable with.</p>
-<h2 id="add-the-mongodb-dependency">Add the mongodb dependency</h2>
-<p>To add mongodb support to the CAS server, edit the <mark class="critic">build.gradle</mark> file within the cas-overlay-template directory on your build host.  We're going to add a single depency to the one we already added for the json service registry.  See the highlighted line below for the addition.</p>
-<p><strong>cas-overlay-template/build.gradle</strong>
-<div class="highlight"><pre><span></span><code><span class="err">depe</span><span class="kc">n</span><span class="err">de</span><span class="kc">n</span><span class="err">cies</span> <span class="p">{</span>
-    <span class="err">//</span> <span class="err">CAS</span> <span class="err">depe</span><span class="kc">n</span><span class="err">de</span><span class="kc">n</span><span class="err">cies/modules</span> <span class="err">may</span> <span class="err">be</span> <span class="err">lis</span><span class="kc">te</span><span class="err">d</span> <span class="err">here</span> <span class="err">s</span><span class="kc">tat</span><span class="err">ically...</span>
+                <h1 id="testing-delegated-authentication">Testing Delegated Authentication</h1>
+<p>To test this - go to your dev CAS page.  You should (if you still have AD logins enabled) see two sections for logins (for now at least) - one for the local AD auth, one for Azure, as in the screenshot below.  Click on the button under "<em>External Identity Providers</em>".  The name on the button is what you called the app in Azure.</p>
+<figure>
+  <img src="https://paulchauvet.github.io/deploying-cas/images/azure-delegated-1.png" alt="Screenshot showing CAS page with two login sources, one for local AD, and one for Azure AD."/>
+</figure>
 
-    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-webapp-init:${casServerVersion}&quot;</span>
-    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-json-service-registry:${casServerVersion}&quot;</span>
-    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-ldap:${casServerVersion}&quot;</span>
-    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-saml:${casServerVersion}&quot;</span>
-    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-duo:${casServerVersion}&quot;</span>
-<span class="hll">    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-hazelcast-ticket-registry:${casServerVersion}&quot;</span>
-</span><span class="p">}</span>
-</code></pre></div></p>
-<h2 id="references">References</h2>
-<p><a href="https://apereo.github.io/cas/6.3.x/ticketing/MongoDb-Ticket-Registry.html#mongodb-ticket-registry">CAS 6: MongoDB Ticket Registry</a></p>
+<p>When you click on the external identity provider, you'll be redirected to your Azure login page.  Sign in as normal there.</p>
+<figure>
+  <img src="https://paulchauvet.github.io/deploying-cas/images/azure-delegated-2.png" alt="Screenshot showing Azure login page"/>
+</figure>
+
+<h2 id="application-consent">Application Consent</h2>
+<p>If you have Admin Consent enabled in Azure - you'll see a page saying approval is required by an admin.  You will have to make the request and have an admin approve the account in Azure (unless you're logging in now via an account that is already an admin in Azure).</p>
+<figure>
+  <img src="https://paulchauvet.github.io/deploying-cas/images/azure-delegated-3.png" alt="Screenshot showing Azure admin consent request page"/>
+</figure>
+
+<p>Your Azure Admin(s) will get an email asking for approval, or they can go to <a href="https://aad.portal.azure.com">Azure Active Directory</a>, click on "Enterprise Applications" then "Admin consent requests".  The only permission requested should be "<em>Sign in and read user profile</em>".  The admin can approve.</p>
+<figure>
+  <img src="https://paulchauvet.github.io/deploying-cas/images/azure-delegated-4.png" alt="Screenshot showing Azure admin consent approval page"/>
+</figure>
+
+<p>If you want to restrict by users or groups, you can go:</p>
+<ul>
+<li>Go to Azure AD portal -&gt; Enterprise Applications -&gt; and search for your app.</li>
+<li>Go to <em>Properties</em></li>
+<li>Make sure "User assignment required* is set to yes.</li>
+<li>Go to <em>Users and groups</em></li>
+<li>Add your users or access groups (i.e. if you have groups for faculty, staff, and/or students, add them here)</li>
+</ul>
+<p>If you don't have Admin Consent enabled, presumably it would ask the user if they want to authorize the app?  Haven't tested this.</p>
+<h2 id="issues-experienced">Issues experienced</h2>
+<p>I had a heck of a time getting this working.  I want to mention a couple things that are potential issues.  This is by no means comprehensive, but they're things I ran into.</p>
+<ul>
+<li>make sure <strong>cas.server.name</strong> in your cas properties is set to your public facing URL (i.e. if your CAS servers are behind a load balancer, make sure it is the load balancer's virtual host URL, not the actual server name).  If it isn't - you'll have issues.</li>
+</ul>
                 
               
               
@@ -1179,6 +1324,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../oidc-overview/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Azure OIDC Overview
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../../about/future-tasks/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Future tasks
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

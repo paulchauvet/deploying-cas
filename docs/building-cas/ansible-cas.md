@@ -77,7 +77,7 @@ For the first include, the only tasks are:
   file:
     path: /etc/cas/config
     state: directory
-    mode: 750
+    mode: 770
     owner: root
     group: tomcat
 

@@ -83,7 +83,9 @@ nav:
     - Hazelcast Overview: ticket-registry/hazelcast-overview.md
     - Testing Ticket Registry: ticket-registry/testing-ticket-registry.md
   - Delegating auth to Azure:
-    - Azure OIDC Overview: delegated-auth/oidc-overview.md
+    - Overview: delegated-auth/overview.md
+    - SAML method: delegated-auth/azure-saml.md
+    - OIDC (incomplete): delegated-auth/azure-oidc-incomplete.md
     - Testing Delegated Auth: delegated-auth/testing.md
   - Azure Conditional Access: azure-conditional/overview.md
   - Future tasks: about/future-tasks.md

@@ -1113,6 +1113,27 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#configure-hazelcast-properties-in-cas" class="md-nav__link">
+    Configure Hazelcast properties in CAS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variable-setup" class="md-nav__link">
+    Variable setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rerun-the-playbook" class="md-nav__link">
+    Rerun the playbook
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#references" class="md-nav__link">
     References
   </a>
@@ -1127,8 +1148,90 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing-ticket-registry/" class="md-nav__link">
+        Testing Ticket Registry
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10" >
+      
+      <label class="md-nav__link" for="nav-10">
+        Delegating auth to Azure
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Delegating auth to Azure" data-md-level="1">
+        <label class="md-nav__title" for="nav-10">
+          <span class="md-nav__icon md-icon"></span>
+          Delegating auth to Azure
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-auth/oidc-overview/" class="md-nav__link">
+        Azure OIDC Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../delegated-auth/testing/" class="md-nav__link">
+        Testing Delegated Auth
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../azure-conditional/overview.md" class="md-nav__link">
+        Azure Conditional Access
+      </a>
     </li>
   
 
@@ -1187,6 +1290,27 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#configure-hazelcast-properties-in-cas" class="md-nav__link">
+    Configure Hazelcast properties in CAS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variable-setup" class="md-nav__link">
+    Variable setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rerun-the-playbook" class="md-nav__link">
+    Rerun the playbook
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#references" class="md-nav__link">
     References
   </a>
@@ -1225,10 +1349,41 @@
 </span><span class="p">}</span>
 </code></pre></div></p>
 <h2 id="rebuild-cas">Rebuild CAS</h2>
-<p>To rebuild CAS with the newest dependency built in we'll do the same thing we did when adding the json service registry.  You'll want to go to the cas-overlay-template directory and run the following and wait a moment for it to be complete:
+<p>To rebuild CAS with the newest dependency built in we'll do the same thing we did with previous additions.  You'll want to go to the cas-overlay-template directory and run the following and wait a moment for it to be complete:
 <div class="highlight"><pre><span></span><code>./gradlew clean build
 </code></pre></div></p>
 <p>Your cas.war file will have been updated.  Copy it from <em>cas-overlay-template/build/libs/cas.war</em> to your <em>roles/cas6/files</em> </p>
+<h2 id="configure-hazelcast-properties-in-cas">Configure Hazelcast properties in CAS</h2>
+<p>Add the following settings to roles/cas6/templates/dev-cas.properties.j2 in the cas-overlay-template directory on your Ansible server.  As with other sections - we're going to use variables here since some of the Hazelcast info is sensitive, and we'll leave them as variables here (and the real values will be in the Ansible cas-vault.yml file).</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Hazelcast Ticket Registry</span>
+<span class="nt">cas.ticket.registry.hazelcast.cluster.members</span><span class="p">:</span>              <span class="p p-Indicator">{{</span> <span class="nv">DEV_CAS_SERVERS</span> <span class="p p-Indicator">}}</span>
+<span class="nt">cas.ticket.registry.hazelcast.mapName</span><span class="p">:</span>                      <span class="l l-Scalar l-Scalar-Plain">tickets</span>
+<span class="c1"># The asyncBackupCount should be set to n-1 where n is the number of servers in the cluster</span>
+<span class="nt">cas.ticket.registry.hazelcast.cluster.asyncBackupCount</span><span class="p">:</span>     <span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="nt">cas.ticket.registry.hazelcast.cluster.tcpipEnabled</span><span class="p">:</span>         <span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="c1"># You&#39;ll want to make sure a range of ports, let&#39;s say 5701 through 5704 or so, are open between</span>
+<span class="c1"># your different CAS servers (i.e. all the dev cas servers can talk to each other)</span>
+<span class="nt">cas.ticket.registry.hazelcast.cluster.port</span><span class="p">:</span>                 <span class="l l-Scalar l-Scalar-Plain">5701</span>
+<span class="nt">cas.ticket.registry.hazelcast.cluster.portAutoIncrement</span><span class="p">:</span>    <span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">cas.ticket.registry.hazelcast.cluster.multicastEnabled</span><span class="p">:</span>     <span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">cas.ticket.registry.hazelcast.cluster.logging-type</span><span class="p">:</span>         <span class="l l-Scalar l-Scalar-Plain">slf4j</span>
+<span class="nt">cas.ticket.registry.hazelcast.cluster.instanceName</span><span class="p">:</span>         <span class="l l-Scalar l-Scalar-Plain">cas6dev</span>
+<span class="nt">cas.ticket.registry.hazelcast.crypto.signing.key</span><span class="p">:</span>           <span class="p p-Indicator">{{</span> <span class="nv">DEV_CAS_HAZELCAST_SIGNING_KEY</span> <span class="p p-Indicator">}}</span>           
+<span class="nt">cas.ticket.registry.hazelcast.crypto.signing.keySize</span><span class="p">:</span>       <span class="l l-Scalar l-Scalar-Plain">512</span>
+<span class="nt">cas.ticket.registry.hazelcast.crypto.encryption.key</span><span class="p">:</span>        <span class="p p-Indicator">{{</span> <span class="nv">DEV_CAS_HAZELCAST_ENCRYPTION_KEY</span> <span class="p p-Indicator">}}</span>
+<span class="nt">cas.ticket.registry.hazelcast.crypto.encryption.keySize</span><span class="p">:</span>    <span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="nt">cas.ticket.registry.hazelcast.crypto.alg</span><span class="p">:</span>                   <span class="l l-Scalar l-Scalar-Plain">AES</span>
+</code></pre></div>
+<h2 id="variable-setup">Variable setup</h2>
+<p>Edit your <em>cas-vault.yml</em> file within <em>roles/cas6/vars/</em></p>
+<p>You'll need to fill out the following:
+DEV_CAS_SERVERS: <comma separated list if IPs or DNS names for your servers in this tier>
+DEV_CAS_HAZELCAST_SIGNING_KEY: <see generating singing key section below>
+DEV_CAS_HAZELCAST_ENCRYPTION_KEY: <see generating encryption key section below></p>
+<h2 id="rerun-the-playbook">Rerun the playbook</h2>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">[</span><span class="nv">chauvetp@ansible templates</span><span class="p p-Indicator">]</span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook ~/ansible/site.yml --ask-vault-pass --limit &lt;your_CAS_server&gt;</span>
+<span class="l l-Scalar l-Scalar-Plain">Vault password</span><span class="p p-Indicator">:</span> 
+</code></pre></div>
 <h2 id="references">References</h2>
 <ul>
 <li><a href="https://apereo.github.io/cas/6.3.x/ticketing/Hazelcast-Ticket-Registry.html">CAS 6: Hazelcast Ticket Registry</a></li>
@@ -1268,13 +1423,13 @@
           </a>
         
         
-          <a href="../../about/future-tasks/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../testing-ticket-registry/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Future tasks
+                Testing Ticket Registry
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

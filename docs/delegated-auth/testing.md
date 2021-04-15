@@ -32,12 +32,11 @@ If you want to restrict by users or groups, you can go:
 * Go to *Properties*
 * Make sure "User assignment required* is set to yes.
 * Go to *Users and groups*
-* Add your users or access groups (i.e. if you have groups for faculty, staff, and/or students, add them here)
-
-If you don't have Admin Consent enabled, presumably it would ask the user if they want to authorize the app?  Haven't tested this.
+* Add your users or access groups (i.e. if you have groups for faculty, staff, students, alumni, etc., add them here)
 
 
 ## Issues experienced
 I had a heck of a time getting this working.  I want to mention a couple things that are potential issues.  This is by no means comprehensive, but they're things I ran into.
 
 * make sure **cas.server.name** in your cas properties is set to your public facing URL (i.e. if your CAS servers are behind a load balancer, make sure it is the load balancer's virtual host URL, not the actual server name).  If it isn't - you'll have issues.
+* At least when you're testing this with Azure - you'll need a real commercial cert.  I'm using Let's Encrypt for these when possible so I don't have to pay for certs (at least in DEV).
