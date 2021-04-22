@@ -25,7 +25,7 @@ Authentication will be against either:
 
 * On-prem Active Directory (for alumni)
 * Azure Active Directory (for active faculty/staff/students, and retirees)
-      * Note: we may eventually have all alumni in Azure - but that's for a later date.  For now - they are only on-prem and really are only kept active for a couple systems
+      * Note: we may eventually have all alumni in Azure - still working on that.
 
 In each case - the hosts sit behind a load balancer (in our case, F5 Big IP, though HA Proxy or basically any other load balancer should work.  We're not doing anything crazy at the LB level).
 
@@ -38,9 +38,16 @@ Using CAS to delegate authentication to Azure, we can:
 * and will let us keep applications that only support CAS on CAS.
 * centralize logins for almost all college systems in a single place making incident response, and troubleshooting, easier.
 
-Limitations:
+### Limitations:
 
 * Any application still authenticating against CAS will still have CAS as a point of failure.  You can reduce this by having CAS load balanced and in multiple sites (on-prem, off-site, in the cloud, etc.).
 * Since Azure will see CAS as a single application, you are left to either:
       * exclude CAS from Azure conditional access policies and use CAS to implement MFA
       * include CAS from Azure conditional access policies but there are no 'exceptions' (i.e. that one service that really doesn't do anything sensitive or important and you don't want to turn MFA on for will still have it)
+      
+### Rationale
+Azure itself hasn't been the most reliable service at times.  The total 'downtime' for Azure authentication has been far higher than our on-prem environment - but even so I have confidence in it.  If it breaks - Microsoft folks will fix it - usually pretty quickly.
+
+On the other hand - I've learned over the year that CAS is complex.  I can train people here on it - but if I'm unavailable or we have issues which others cannot solve - we have issues.  If you're in a similar boat, you may want to do what we're doing.  You may also want to look at other companies like Unicon who can provide technical support and assistance as a service for CAS and other open source products.
+
+We will have outages on-prem (or even in the cloud if we just run CAS and AD in the cloud).  Over time - reliability will strongly favor a large service like Azure over what I personally can setup.

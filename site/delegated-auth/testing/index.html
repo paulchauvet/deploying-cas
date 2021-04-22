@@ -1123,8 +1123,32 @@
   
   
     <li class="md-nav__item">
-      <a href="../oidc-overview/" class="md-nav__link">
-        Azure OIDC Overview
+      <a href="../overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../azure-saml/" class="md-nav__link">
+        SAML method
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../azure-oidc-incomplete/" class="md-nav__link">
+        OIDC (incomplete)
       </a>
     </li>
   
@@ -1302,13 +1326,13 @@
 <li>Go to <em>Properties</em></li>
 <li>Make sure "User assignment required* is set to yes.</li>
 <li>Go to <em>Users and groups</em></li>
-<li>Add your users or access groups (i.e. if you have groups for faculty, staff, and/or students, add them here)</li>
+<li>Add your users or access groups (i.e. if you have groups for faculty, staff, students, alumni, etc., add them here)</li>
 </ul>
-<p>If you don't have Admin Consent enabled, presumably it would ask the user if they want to authorize the app?  Haven't tested this.</p>
 <h2 id="issues-experienced">Issues experienced</h2>
 <p>I had a heck of a time getting this working.  I want to mention a couple things that are potential issues.  This is by no means comprehensive, but they're things I ran into.</p>
 <ul>
 <li>make sure <strong>cas.server.name</strong> in your cas properties is set to your public facing URL (i.e. if your CAS servers are behind a load balancer, make sure it is the load balancer's virtual host URL, not the actual server name).  If it isn't - you'll have issues.</li>
+<li>At least when you're testing this with Azure - you'll need a real commercial cert.  I'm using Let's Encrypt for these when possible so I don't have to pay for certs (at least in DEV).</li>
 </ul>
                 
               
@@ -1328,7 +1352,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../oidc-overview/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../azure-oidc-incomplete/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1337,7 +1361,7 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Azure OIDC Overview
+                OIDC (incomplete)
               </div>
             </div>
           </a>
