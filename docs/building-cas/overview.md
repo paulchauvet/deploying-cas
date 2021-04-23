@@ -9,7 +9,7 @@ We will be building from source, using the Gradle WAR overlay method.  As per Mi
 !!! quote "CAS 6.0.x Deployment - WAR Overlays"
     Overlays are a strategy to combat repetitive code and/or resources. Rather than downloading the CAS codebase and building it from source, overlays allow you to download a pre-built vanilla CAS web application server provided by the project itself, override/insert specific behavior into it and then merge it all back together to produce the final (web application) artifact.
 
-If you've used CAS 5.x, you may have used the Maven WAR overlay template instead, but as of CAS 6 this was deprecated and the Gradle WAR overlay method is used instead.
+If you've used CAS 5.x, you may have used the Maven WAR overlay template instead, but as of CAS 6 this was deprecated and the Gradle WAR overlay method is recommended instead.
 
 ## Before you get started
 

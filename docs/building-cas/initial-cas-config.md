@@ -1,6 +1,6 @@
 # Initial CAS Configuration
 
-By default, CAS expects to find its configuration files in the operating system directory /etc/cas.  Almost every aspect of CAS server configuration is controlled via settings stored in the cas.properties file located in the /etc/cas/config directory.  **We're going to start with a simple config - and enhance it as features are added.**
+By default, CAS expects to find its configuration files in the operating system directory /etc/cas (with subdirectories of config and services).  Almost every aspect of CAS server configuration is controlled via settings stored in the cas.properties file located in the /etc/cas/config directory.  **We're going to start with a simple config - and enhance it as features are added.**
 
 Tomcat will also expect the .war file to be placed within /opt/tomcat/latest/webapps (aka /var/lib/tomcat which is where that symlink points to).  We'll be handling both the config and the cas.war file in this page.
 
@@ -21,7 +21,7 @@ defaults  files  handlers  meta  README.md  tasks  templates  tests  vars
 
 ## Start creating configuration files
 
-Create a new file called 'dev-cas.properties.j2' (j2 indicates a *Jinja2* template file).  We're going to have variables in these files that we are NOT going to want to keep in the properties file - at least not in a git repository.
+Create a new file called 'dev-cas.properties.j2' (j2 indicates a *Jinja2* template file).  We're going to have variables in these files that we are NOT going to want to keep in the properties file - at least not unencrypted in a git repository.
 
 I recommend one file for each of your environments (dev-cas.properties.j2, test-cas.properties.j2, prod-cas.properties.j2).  All will eventually just be /etc/cas/config/cas.properties on their respective servers though.  It's going to have some variables which we're going to fill in later.
 
@@ -50,7 +50,7 @@ cas.authn.accept.users=YourTestUser::YourTestPassword
 ```
 
 !!! caution
-    Within this file - the 'cas.authn.accept.users' value has been set.  This is for testing only!  It should be removed long before you are ready to go with production!
+    Within this file - the 'cas.authn.accept.users' value has been set.  This is for testing only!  It should be removed long before you are ready to go into production!
 
 
 Within the file - you'll notice a few areas with \{\{ variables_in_curly_brackets \}\}.  These are variables.  Many of them are sensitive values that you don't want unencrypted in a git repository (or not in a git repository at all).

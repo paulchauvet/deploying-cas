@@ -2,7 +2,7 @@
 
 I prefer, for a number of reasons, to put Apache httpd in front of Tomcat (even though there's a load balancer in front of the CAS servers as well.  I'm sure there's ways around this, but I like the flexibility that it provides me, and I also have had other applications on the CAS servers that are not running on Tomcat and still need to be accessible (including SimpleSAML for applications we haven't moved to Azure or directly into CAS yet).
 
-For now, I'm not going to go over full configuration of Apache httpd here.  I will *eventually* (hopefully by end of March 2021) put up my steps and Ansible playbooks to get httpd running, but for now - I'll mention the Tomcat/httpd specific portion.
+For now, I'm not going to go over full configuration of Apache httpd here.  I will *eventually* (hopefully by end of Spring 2021) put up my steps and Ansible playbooks to get httpd running, but for now - I'll mention the Tomcat/httpd specific portion.
 
 We use AJP for communication between Apache httpd and Apache Tomcat.  Configuring this is in two steps, one on the httpd server and one on Tomcat.
 

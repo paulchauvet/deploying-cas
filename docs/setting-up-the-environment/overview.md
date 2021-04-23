@@ -11,7 +11,7 @@ We at New Paltz have a three-tiered CAS consisting of:
 * Test: This is used for test applications/environments which still need authentication such as Banner Test.  Since there are a number of IT staff and end users testing these applications, changes here can still impact users though far less than production.
 * Production: The actual public facing CAS.
 
-Within each tier, you will want one or more servers.  We do something similar to:
+Within each tier, you will want one or more servers.  We do something similar to the following:
 
 * Development
     * login6deva
@@ -25,7 +25,8 @@ Within each tier, you will want one or more servers.  We do something similar to
 
 * Production
     * login6proda
-    * login6proda
+    * login6prodb
+    * login6prodc
     * login: Public-facing load balanced virtual host
 
 Each of these servers for us are RHEL 8 hosts, with:

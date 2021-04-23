@@ -10,6 +10,7 @@ These are items which are not complete in this documentation.  Some of this will
 * Manually unpack war file - or fix it so it is automatically unpacked correctly
 * Handling cas service cleanup (i.e. removing old services).
 * Settle on where AJP documentation will go (leaning towards two places - tomcat setup for the server.xml portion, and CAS setup for httpd.conf setup)
+* Incorporate better generation of keys within initial cas config page
 
 # Items to be finished after announcing this docuemntation
 

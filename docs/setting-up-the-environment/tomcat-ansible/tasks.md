@@ -35,7 +35,7 @@ If you use this, the 'jdk_version" needs to be specified in your ansible hosts f
 ``` yaml
 
 - name: Setup prerequisite dnf packages (RHEL 8 & JDK 11)
-  dnf:
+  ansible.builtin.dnf:
     name:
       - epel-release
       - java-11-openjdk
@@ -49,11 +49,11 @@ If you use this, the 'jdk_version" needs to be specified in your ansible hosts f
   when: ansible_distribution == 'RedHat' and ansible_distribution_major_version == '8' and jdk_version == 11
 
 - name: Add tomcat group
-  group:
+  ansible.builtin.group:
     name: tomcat
 
 - name: Add tomcat user
-  user:
+  ansible.builtin.user:
     name: tomcat
     group: tomcat
     home: /opt/tomcat
@@ -78,39 +78,39 @@ The following section checks if the target version of APR is already installed. 
 ``` yaml
 
 - name: Check if APR {{ apr_ver }} is already installed
-  stat:
+  ansible.builtin.stat:
     path: /opt/apr/apr-{{ apr_ver }}/bin/apr-1-config
   register: apr_binary
 
 - name: Create base APR directory if it doesn't exist
-  file:
+  ansible.builtin.file:
     path: /opt/apr
     state: directory
     owner: root
     group: root
 
 - name: Create APR {{ apr_ver }} directory if it doesn't exist
-  file:
+  ansible.builtin.file:
     path: /opt/apr/apr-{{ apr_ver }}
     state: directory
     owner: root
     group: root   
 
 - name: Check if APR {{ apr_ver }} is already downloaded
-  stat:
+  ansible.builtin.stat:
     path: /root/apr-{{ apr_ver }}.tar.gz
   register: apr_tarball
 
 # Only download APR if APR {{ apr_ver }} isn't already installed, and the tarball isn't downloaded
 - name: Download APR
-  get_url:
+  ansible.builtin.get_url:
     url: "{{ apr_archive_url }}"
     dest: "{{ apr_archive_dest }}"
   when: apr_tarball.stat.exists == False and apr_binary.stat.exists == False
 
 # Only unpack apr archive if the apr binary doesn't already exist
 - name: Unpack APR archive
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ apr_archive_dest }}"
     dest: /root/
     owner: root
@@ -120,27 +120,27 @@ The following section checks if the target version of APR is already installed. 
  
 # Only reconfigure if the APR directory for the version didn't already exist
 - name: Configure APR source
-  command: ./configure --prefix=/opt/apr/apr-{{ apr_ver }}
+  ansible.builtin.command: ./configure --prefix=/opt/apr/apr-{{ apr_ver }}
   args:
     chdir: "/root/apr-{{ apr_ver }}"
   when: apr_binary.stat.exists == False
 
 # Only make if the APR directory for the version didn't already exist
 - name: Compile/install APR
-  shell: make && make install
+  ansible.builtin.shell: make && make install
   args:
     chdir: "/root/apr-{{ apr_ver }}"
   when: apr_binary.stat.exists == False
 
 ## Handle APR symlink creation or repointing
 - name: Check if apr latest symlink exists
-  stat:
+  ansible.builtin.stat:
     path: /opt/apr/latest
   register: apr_symlink
 
 # Create symlink if none exists, or repoint it if it is pointing to an older version
 - name: Create apr latest symlink to point to newly installed version
-  file:
+  ansible.builtin.file:
     src: "/opt/apr/apr-{{ apr_ver }}"
     dest: "/opt/apr/latest"
     owner: root
@@ -150,12 +150,12 @@ The following section checks if the target version of APR is already installed. 
 
 # Cleanup
 - name: Remove apr source directory
-  file:
+  ansible.builtin.file:
     path: /root/apr-{{ apr_ver }}
     state: absent
 
 - name: Remove apr source tarball
-  file:
+  ansible.builtin.file:
     path: /root/apr-{{ apr_ver }}.tar.gz
     state: absent
 ```
@@ -174,23 +174,23 @@ It will also setup the systemd unit file so it can eventually be started and set
 
 ``` yaml
 - name: Check if Tomcat {{ tomcat_ver }} directory exists
-  stat:
+  ansible.builtin.stat:
     path: /opt/tomcat/apache-tomcat-{{ tomcat_ver }}
   register: tomcat_directory
 
 - name: Check if Tomcat {{ tomcat_ver }} tarball exists
-  stat:
+  ansible.builtin.stat:
     path: "{{ tomcat_archive_dest }}"
   register: tomcat_tarball
 
 - name: Download Tomcat 8.5.x
-  get_url:
+  ansible.builtin.get_url:
     url: https://archive.apache.org/dist/tomcat/tomcat-8/v{{ tomcat_ver }}/bin/apache-tomcat-{{ tomcat_ver }}.tar.gz
     dest: "{{ tomcat_archive_dest }}"
   when: tomcat_tarball.stat.exists == False and tomcat_directory.stat.exists == False and tomcat_major_ver == 8.5
 
 - name: Download Tomcat 9.0.x
-  get_url:
+  ansible.builtin.get_url:
     url: https://archive.apache.org/dist/tomcat/tomcat-9/v{{ tomcat_ver }}/bin/apache-tomcat-{{ tomcat_ver }}.tar.gz
     dest: "{{ tomcat_archive_dest }}"
   when: tomcat_tarball.stat.exists == False and tomcat_directory.stat.exists == False and tomcat_major_ver == 9.0
@@ -199,7 +199,7 @@ It will also setup the systemd unit file so it can eventually be started and set
 # Only unpack tomcat archive if the unpacked directory does not exist.
 # This cannot be used to install the same version without deletion of the old one
 - name: Unpack tomcat archive
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ tomcat_archive_dest }}"
     dest: /opt/tomcat
     owner: tomcat
@@ -210,7 +210,7 @@ It will also setup the systemd unit file so it can eventually be started and set
 
 # Create the permanent tomcat conf, log, temp, webapps, work directories for later symlinking
 - name: Create Tomcat permanent conf directory
-  file:
+  ansible.builtin.file:
     path: /etc/tomcat
     state: directory
     owner: root
@@ -218,7 +218,7 @@ It will also setup the systemd unit file so it can eventually be started and set
     mode: "u=rwx,g=rx"
 
 - name: Create Tomcat permanent log directory
-  file:
+  ansible.builtin.file:
     path: /var/log/tomcat
     state: directory
     owner: tomcat
@@ -226,7 +226,7 @@ It will also setup the systemd unit file so it can eventually be started and set
     mode: "u=rwx,g=rx"
 
 - name: Create Tomcat permanent temp directory
-  file:
+  ansible.builtin.file:
     path: /var/cache/tomcat/temp
     state: directory        
     owner: tomcat
@@ -234,7 +234,7 @@ It will also setup the systemd unit file so it can eventually be started and set
     mode: "u=rwx,g=rx"
 
 - name: Create Tomcat permanent webapps directory
-  file: 
+  ansible.builtin.file: 
     path: /var/lib/tomcat
     state: directory
     owner: tomcat
@@ -242,7 +242,7 @@ It will also setup the systemd unit file so it can eventually be started and set
     mode: "u=rwx,g=rx"
 
 - name: Create Tomcat permanent work directory
-  file:
+  ansible.builtin.file:
     path: /var/cache/tomcat/work
     state: directory
     owner: tomcat
@@ -254,12 +254,12 @@ It will also setup the systemd unit file so it can eventually be started and set
 # - If so - don't change it
 # - If not, assume it hasn't been populated and copy the new Tomcat's /conf to /etc/tomcat/
 - name: Check if server.xml exists
-  stat:
+  ansible.builtin.stat:
     path: /etc/tomcat/server.xml
   register: server_xml
 
 - name: Copy files from conf directory
-  copy:
+  ansible.builtin.copy:
     src: /opt/tomcat/apache-tomcat-{{ tomcat_ver }}/conf/
     dest: /etc/tomcat/
     remote_src: yes
@@ -271,12 +271,12 @@ It will also setup the systemd unit file so it can eventually be started and set
 # - If not, assume it hasn't been populated and copy the new Tomcat's ROOT over
 # - This needs to be updated to handle version updates of ROOT
 - name: Check ROOT exists
-  stat:
+  ansible.builtin.stat:
     path: /var/lib/tomcat/ROOT
   register: root_webapps
 
 - name: Copy ROOT webapp directory
-  copy:
+  ansible.builtin.copy:
     src: /opt/tomcat/apache-tomcat-{{ tomcat_ver }}/webapps/ROOT
     dest: /var/lib/tomcat/
     remote_src: yes
@@ -286,18 +286,18 @@ It will also setup the systemd unit file so it can eventually be started and set
 ## remove directories (conf, logs, temp, webapps, work) and recreate as symlinks
 # conf
 - name: check {{ tomcat_ver }} conf directory
-  stat:
+  ansible.builtin.stat:
     path: /opt/tomcat/apache-tomcat-{{ tomcat_ver }}/conf
   register: tomcat_conf_dir
 
 - name: Remove conf directory
-  file:
+  ansible.builtin.file:
     path: /opt/tomcat/apache-tomcat-{{ tomcat_ver }}/conf
     state: absent
   when: tomcat_conf_dir.stat.isdir
 
 - name: Create conf symlink
-  file:
+  ansible.builtin.file:
     src: /etc/tomcat
     dest: /opt/tomcat/apache-tomcat-{{ tomcat_ver }}/conf
     owner: root
@@ -307,18 +307,18 @@ It will also setup the systemd unit file so it can eventually be started and set
 
 # logs
 - name: check {{ tomcat_ver }} logs directory
-  stat:
+  ansible.builtin.stat:
     path: /opt/tomcat/apache-tomcat-{{ tomcat_ver }}/logs
   register: tomcat_logs_dir
 
 - name: Remove logs directory
-  file:
+  ansible.builtin.file:
     path: /opt/tomcat/apache-tomcat-{{ tomcat_ver }}/logs
     state: absent
   when: tomcat_logs_dir.stat.isdir
 
 - name: Create logs symlink
-  file:
+  ansible.builtin.file:
     src: /var/log/tomcat
     dest: /opt/tomcat/apache-tomcat-{{ tomcat_ver }}/logs
     owner: tomcat
@@ -328,18 +328,18 @@ It will also setup the systemd unit file so it can eventually be started and set
 
 # temp
 - name: check {{ tomcat_ver }} temp directory
-  stat:
+  ansible.builtin.stat:
     path: /opt/tomcat/apache-tomcat-{{ tomcat_ver }}/temp
   register: tomcat_temp_dir
 
 - name: Remove temp directory
-  file:
+  ansible.builtin.file:
     path: /opt/tomcat/apache-tomcat-{{ tomcat_ver }}/temp
     state: absent
   when: tomcat_temp_dir.stat.isdir
 
 - name: Create temp symlink
-  file:
+  ansible.builtin.file:
     src: /var/cache/tomcat/temp
     dest: /opt/tomcat/apache-tomcat-{{ tomcat_ver }}/temp
     owner: tomcat
@@ -349,18 +349,18 @@ It will also setup the systemd unit file so it can eventually be started and set
 
 # webapps
 - name: check {{ tomcat_ver }} webapps directory
-  stat:
+  ansible.builtin.stat:
     path: /opt/tomcat/apache-tomcat-{{ tomcat_ver }}/webapps
   register: tomcat_webapps_dir
 
 - name: Remove webapps directory
-  file:
+  ansible.builtin.file:
     path: /opt/tomcat/apache-tomcat-{{ tomcat_ver }}/webapps    
     state: absent
   when: tomcat_webapps_dir.stat.isdir
 
 - name: Create webapps symlink
-  file:
+  ansible.builtin.file:
     src: /var/lib/tomcat
     dest: /opt/tomcat/apache-tomcat-{{ tomcat_ver }}/webapps
     owner: root
@@ -370,18 +370,18 @@ It will also setup the systemd unit file so it can eventually be started and set
 
 # work
 - name: check {{ tomcat_ver }} work directory
-  stat:
+  ansible.builtin.stat:
     path: /opt/tomcat/apache-tomcat-{{ tomcat_ver }}/work
   register: tomcat_work_dir
 
 - name: Remove webapps directory
-  file:
+  ansible.builtin.file:
     path: /opt/tomcat/apache-tomcat-{{ tomcat_ver }}/work
     state: absent
   when: tomcat_work_dir.stat.isdir
 
 - name: Create work symlink
-  file:
+  ansible.builtin.file:
     src: /var/cache/tomcat/work
     dest: /opt/tomcat/apache-tomcat-{{ tomcat_ver }}/work
     owner: tomcat
@@ -391,7 +391,7 @@ It will also setup the systemd unit file so it can eventually be started and set
 
 # Setup systemd startup/shutdown script
 - name: Setup systemd startup/shutdown script
-  template:
+  ansible.builtin.template:
     src: tomcat.service.j2
     dest: /etc/systemd/system/tomcat.service
     mode: 0644
@@ -400,11 +400,11 @@ It will also setup the systemd unit file so it can eventually be started and set
   register: tomcat_service
 
 - name: Apply new SELinux file context to tomcat.service
-  command: restorecon /etc/systemd/system/tomcat.service
+  ansible.builtin.command: restorecon /etc/systemd/system/tomcat.service
   when: tomcat_service.changed
 
 - name: Reload systemd daemons after service update
-  command: systemctl daemon-reload
+  ansible.builtin.command: systemctl daemon-reload
   when: tomcat_service.changed
 
 ```
@@ -416,13 +416,13 @@ This is where the Tomcat Native Library (if not already installed) gets unpacked
 **roles/apache-tomcat/tasks/setup-tomcat-native.yml:**
 ``` yaml
 - name: Check if Tomcat Native Library {{ tomcat_native_ver }} is already installed
-  stat:
+  ansible.builtin.stat:
     path: /opt/tomcat/apache-tomcat-{{ tomcat_ver }}/lib/libtcnative-1.so
   register: tomcat_native_library
 
 # Untar tomcat native library
 - name: Unpack tomcat native library archive
-  unarchive:
+  ansible.builtin.unarchive:
     src: "/opt/tomcat/apache-tomcat-{{ tomcat_ver }}/bin/tomcat-native.tar.gz"
     dest: /opt/tomcat/apache-tomcat-{{ tomcat_ver }}/bin/
     owner: tomcat
@@ -432,21 +432,21 @@ This is where the Tomcat Native Library (if not already installed) gets unpacked
 
 # Only configure if the Tomcat Native Library directory for the version didn't already exist
 - name: Configure Tomcat Native Library (RHEL8)
-  command: "./configure --with-java-home={{ JAVA_HOME }} --with-apr=/opt/apr/latest/bin/apr-1-config --with-ssl=yes --prefix=/opt/tomcat/apache-tomcat-{{ tomcat_ver }}"
+  ansible.builtin.command: "./configure --with-java-home={{ JAVA_HOME }} --with-apr=/opt/apr/latest/bin/apr-1-config --with-ssl=yes --prefix=/opt/tomcat/apache-tomcat-{{ tomcat_ver }}"
   args:
     chdir: "/opt/tomcat/apache-tomcat-{{ tomcat_ver }}/bin/tomcat-native-{{ tomcat_native_ver }}-src/native"
   when: tomcat_native_library.stat.exists == False and ansible_distribution == 'RedHat' and ansible_distribution_major_version == '8'
 
 # Only make if the Tomcat Native Library directory for the version didn't already exist
 - name: Compile/install Tomcat Native Library
-  shell: make && make install
+  ansible.builtin.shell: make && make install
   args:
       chdir: "/opt/tomcat/apache-tomcat-{{ tomcat_ver }}/bin/tomcat-native-{{ tomcat_native_ver }}-src/native"
   when: tomcat_native_library.stat.exists == False
 
 # Cleanup
 - name: Remove tomcat native source directory
-  file:
+  ansible.builtin.file:
     path: /opt/tomcat/apache-tomcat-{{ tomcat_ver }}/bin/tomcat-native-{{ tomcat_native_ver }}-src
     state: absent
 
@@ -459,13 +459,13 @@ This is where the Tomcat Commons Daemon (if not already installed) gets unpacked
 **roles/apache-tomcat/tasks/setup-commons-daemon.yml:**
 ``` yaml
 - name: Check if Apache Tomcat Commons Daemon {{ commons_daemon_ver }} is already installed
-  stat:
+  ansible.builtin.stat:
     path: /opt/tomcat/apache-tomcat-{{ tomcat_ver }}/bin/jsvc
   register: commons_daemon_jsvc
 
 # Untar tomcat native library
 - name: Unpack Tomcat Commons Daemon native library
-  unarchive:
+  ansible.builtin.unarchive:
     src: "/opt/tomcat/apache-tomcat-{{ tomcat_ver }}/bin/commons-daemon-native.tar.gz"
     dest: "/opt/tomcat/apache-tomcat-{{ tomcat_ver }}/bin/"
     owner: tomcat
@@ -475,28 +475,20 @@ This is where the Tomcat Commons Daemon (if not already installed) gets unpacked
 
 # Only configure if the Tomcat Native Library directory for the version didn't already exist
 - name: Configure Tomcat Commons Daemon native library (JDK 11)
-  command: "./configure --with-java={{ JAVA_HOME }}"
+  ansible.builtin.command: "./configure --with-java={{ JAVA_HOME }}"
   args:
     chdir: "/opt/tomcat/apache-tomcat-{{ tomcat_ver }}/bin/commons-daemon-{{ commons_daemon_ver }}-native-src/unix"
   when: commons_daemon_jsvc.stat.exists == False and jdk_version == 11
-
-# Only configure if the Tomcat Native Library directory for the version didn't already exist
-- name: Configure Tomcat Commons Daemon native library (JDK 8)
-  command: "./configure --with-java={{ JAVA_8_HOME }}"
-  args:
-    chdir: "/opt/tomcat/apache-tomcat-{{ tomcat_ver }}/bin/commons-daemon-{{ commons_daemon_ver }}-native-src/unix"
-  when: commons_daemon_jsvc.stat.exists == False and jdk_version == 8
-
-       
+      
 # Only make if the Tomcat Native Library directory for the version didn't already exist
 - name: Compile Tomcat Commons Daemon native library
-  shell: make
+  ansible.builtin.shell: make
   args:
     chdir: "/opt/tomcat/apache-tomcat-{{ tomcat_ver }}/bin/commons-daemon-{{ commons_daemon_ver }}-native-src/unix"
   when: commons_daemon_jsvc.stat.exists == False
 
 - name: Move jsvc file
-  copy:
+  ansible.builtin.copy:
     src: "/opt/tomcat/apache-tomcat-{{ tomcat_ver }}/bin/commons-daemon-{{ commons_daemon_ver }}-native-src/unix/jsvc"
     dest: "/opt/tomcat/apache-tomcat-{{ tomcat_ver }}/bin/"
     remote_src: yes
@@ -508,7 +500,7 @@ This is where the Tomcat Commons Daemon (if not already installed) gets unpacked
 
 # Cleanup
 - name: Remove commons-daemon source directory
-  file:
+  ansible.builtin.file:
     path: /opt/tomcat/apache-tomcat-{{ tomcat_ver }}/bin/commons-daemon-{{ commons_daemon_ver }}-native-src
     state: absent
 
@@ -525,7 +517,7 @@ This is basically just configuring the various files in /etc/tomcat.  To initial
 ``` yaml
 
 - name: Setup catalina.properties
-  template:
+  ansible.builtin.template:
     src: cas6-catalina.properties.j2
     dest: /etc/tomcat/catalina.properties
     mode: 0640
@@ -535,7 +527,7 @@ This is basically just configuring the various files in /etc/tomcat.  To initial
   notify: restart tomcat
 
 - name: Setup context.xml
-  template:
+  ansible.builtin.template:
     src: cas6-context.xml.j2
     dest: /etc/tomcat/context.xml
     mode: 0640
@@ -545,17 +537,16 @@ This is basically just configuring the various files in /etc/tomcat.  To initial
   notify: restart tomcat
 
 - name: Setup server.xml
-  template:
+  ansible.builtin.template:
     src: cas6-server.xml.j2
     dest: /etc/tomcat/server.xml
     mode: 0640
     owner: root
     group: tomcat
   when: ("login" in inventory_hostname)
-  notify: restart tomcat
 
 - name: Setup web.xml
-  template:
+  ansible.builtin.template:
     src: cas6-web.xml.j2
     dest: /etc/tomcat/web.xml
     mode: 0640
@@ -573,7 +564,7 @@ If the installation fails (errors, not warnings) at any point - it won't get to 
 ``` yaml
 
 - name: Setup Apache Tomcat {{ tomcat_ver }} symlink
-  file:
+  ansible.builtin.file:
     src: /opt/tomcat/apache-tomcat-{{ tomcat_ver }}
     dest: /opt/tomcat/latest
     owner: root
@@ -583,7 +574,7 @@ If the installation fails (errors, not warnings) at any point - it won't get to 
 
 # Cleanup
 - name: Remove tomcat tarball
-  file:
+  ansible.builtin.file:
     path: /root/apache-tomcat-{{ tomcat_ver }}.tar.gz
     state: absent
 

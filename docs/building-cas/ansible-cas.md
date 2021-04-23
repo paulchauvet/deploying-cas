@@ -74,7 +74,7 @@ For the first include, the only tasks are:
 - include_vars: cas-vault.yml
 
 - name: Ensure base CAS config directory exists
-  file:
+  ansible.builtin.file:
     path: /etc/cas/config
     state: directory
     mode: 770
@@ -82,7 +82,7 @@ For the first include, the only tasks are:
     group: tomcat
 
 - name: Ensure base CAS services directory exists
-  file:
+  ansible.builtin.file:
     path: /etc/cas/services
     state: directory
     mode: 750
@@ -90,7 +90,7 @@ For the first include, the only tasks are:
     group: tomcat
 
 - name: Ensure base CAS log directory exists
-  file:
+  ansible.builtin.file:
     path: /var/log/cas
     state: directory
     mode: 0750
@@ -101,7 +101,7 @@ For the first include, the only tasks are:
 # a different config file for each.  The 'when' on inventory_hostname is used to
 # differentiate here.
 - name: Configure cas.properties file (dev)
-  template:
+  ansible.builtin.template:
     src: dev-cas.properties.j2
     dest: /etc/cas/config/cas.properties
     mode: 0640
@@ -147,7 +147,7 @@ This is what handles the connections on Apache httpd's side from Apache Tomcat. 
 ---
 
 - name: "Copy CAS Apache AJP proxy config"
-  template:
+  ansible.builtin.template:
     src: cas-ajp.conf.j2
     dest: /etc/httpd/conf.d/cas-ajp.conf
     owner: root

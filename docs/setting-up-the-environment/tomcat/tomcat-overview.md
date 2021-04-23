@@ -29,6 +29,13 @@ Then - within /opt/tomcat/apache-tomcat-9.0.x, you'll have symlinks to where thi
 
 
 ## Prerequisites
-gcc
-make
- **dnf install gcc make**
+
+* gcc
+* libtool
+* make
+* policycoreutils-python
+
+
+```
+dnf install gcc libtool make policycoreutils-python
+```

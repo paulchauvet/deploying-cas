@@ -40,6 +40,8 @@ scp build/libs/cas.war root@<One-of-Your-CAS-Hosts>:/opt/tomcat/latest/webapps/
 
 Once you do that, if Tomcat is running and you wait a minute or two, you'll have CAS up and running - though not in a really useful way (no authentication backends, no external services, no ticket registry, no theme, etc.).  It won't work to login - there's not even a configuration deployed - but it's just an initial test.
 
+I recommend testing at each stage as functionality is added to CAS - so making sure the base install starts is good!
+
 <figure>
   <img src="https://paulchauvet.github.io/deploying-cas/images/cas-default-login.png" alt="Screenshot showing default CAS login page"/>
 </figure>

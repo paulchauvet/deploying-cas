@@ -49,3 +49,7 @@ ssh root@cas6dev1
 ```
 
 If successful - you'll be logged in without a username or password.  If this is the first time you are connecting via SSH from the build host to the CAS host, you'll be warned that the authenticity of the host cannot be established, and you'll be prompted to enter *yes* to continue connecting.
+
+!!! note "Don't forget to commit changes"
+    I'm not going to mention committing changes into Git during the rest of this documentation.  It's up to you as to when you commit - but I usually recommend as you're getting things setup after each 'phase' of the install.
+

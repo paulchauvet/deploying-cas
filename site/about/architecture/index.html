@@ -281,6 +281,26 @@
     Design
   </a>
   
+    <nav class="md-nav" aria-label="Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    Limitations:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale" class="md-nav__link">
+    Rationale
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1283,6 +1303,26 @@
     Design
   </a>
   
+    <nav class="md-nav" aria-label="Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    Limitations:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale" class="md-nav__link">
+    Rationale
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1320,7 +1360,7 @@
 <ul>
 <li>On-prem Active Directory (for alumni)</li>
 <li>Azure Active Directory (for active faculty/staff/students, and retirees)<ul>
-<li>Note: we may eventually have all alumni in Azure - but that's for a later date.  For now - they are only on-prem and really are only kept active for a couple systems</li>
+<li>Note: we may eventually have all alumni in Azure - still working on that.</li>
 </ul>
 </li>
 </ul>
@@ -1333,7 +1373,7 @@
 <li>and will let us keep applications that only support CAS on CAS.</li>
 <li>centralize logins for almost all college systems in a single place making incident response, and troubleshooting, easier.</li>
 </ul>
-<p>Limitations:</p>
+<h3 id="limitations">Limitations:</h3>
 <ul>
 <li>Any application still authenticating against CAS will still have CAS as a point of failure.  You can reduce this by having CAS load balanced and in multiple sites (on-prem, off-site, in the cloud, etc.).</li>
 <li>Since Azure will see CAS as a single application, you are left to either:<ul>
@@ -1342,6 +1382,10 @@
 </ul>
 </li>
 </ul>
+<h3 id="rationale">Rationale</h3>
+<p>Azure itself hasn't been the most reliable service at times.  The total 'downtime' for Azure authentication has been far higher than our on-prem environment - but even so I have confidence in it.  If it breaks - Microsoft folks will fix it - usually pretty quickly.</p>
+<p>On the other hand - I've learned over the year that CAS is complex.  I can train people here on it - but if I'm unavailable or we have issues which others cannot solve - we have issues.  If you're in a similar boat, you may want to do what we're doing.  You may also want to look at other companies like Unicon who can provide technical support and assistance as a service for CAS and other open source products.</p>
+<p>We will have outages on-prem (or even in the cloud if we just run CAS and AD in the cloud).  Over time - reliability will strongly favor a large service like Azure over what I personally can setup.</p>
                 
               
               

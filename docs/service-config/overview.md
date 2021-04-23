@@ -61,6 +61,9 @@ For simplicity (and to avoid worrying about the details of the service registry 
 }
 ```
 
+!!! warning
+    Make sure to get rid of this wildcard service before moving into production....
+
 The CAS documentation recommends the following naming convention for JSON service definition files:
 
 ```
@@ -69,7 +72,7 @@ JSON filename = serviceName + "-" + serviceNumericId + ".json"
 
 Therefore, the filename for the wildcard service definition above should be: **HTTPSWildcard-1614029117.json**
 
-### Wait - where'd those crazy number come from?
+### Wait - where'd those crazy numbers come from?
 Techincally the id number just needs to be something unique.  One way to do this is with the {==date +%s==} command in Linux, which will give you the date/time as the number of seconds in the unix epoch.  The 'evaluationOrder' is set really high here since it will process anything here - but you want a wildcard like this to run last.
 
 The fields we've used so far are defined as:
@@ -108,7 +111,7 @@ This will ensure whatever is in your templates/dev-services directory will be re
 ---
 
 - name: Ensure service files are populated from templates
-  template:
+  ansible.builtin.template:
     src: '{{ item.src }}'
     dest: '/etc/cas/services/{{ item.path }}'
     owner: root
@@ -119,7 +122,7 @@ This will ensure whatever is in your templates/dev-services directory will be re
 
 This is a way of getting a whole directory copied over instead of a single file.  Otherwise you'd have to define an ansible template for each service you have - which could get pretty large (though is okay if you prefer it!).
 
-With this in place - any services that are defined in the dev-services directory will be copied over.  Note: it will not DELETE services.  This is still to be done.
+With this in place - any services that are defined in the dev-services directory will be copied over.  Note: it will not DELETE services.  This is still to be implemented.
 
 
 ## Rebuild and redeploy CAS

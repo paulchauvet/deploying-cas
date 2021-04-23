@@ -10,7 +10,7 @@ These steps are recommended but not required.
 Make a copy of the file etc/cas/config/log4j2.xml in the cas-overlay-template directory from your build server, and copy it into the *files* subdirectory of your CAS Ansible role.  Find the line that defines the cas.log.dir property (around line 5) and change its value from /var/log to /var/log/cas.
 
 Initial config:
-``` xml hl_lines="7"
+``` xml hl_lines="5"
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- Specify the refresh internal in seconds. -->
 <Configuration monitorInterval="5" packages="org.apereo.cas.logging">
@@ -23,7 +23,7 @@ Initial config:
 ```
 
 Altered config with /var/log/cas as the directory:
-``` xml hl_lines="7"
+``` xml hl_lines="5"
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- Specify the refresh internal in seconds. -->
 <Configuration monitorInterval="5" packages="org.apereo.cas.logging">
