@@ -76,7 +76,7 @@ Then you'll create 'setup-cas-client.yml'.  It will do the following:
 ---
 
 - name: Setup prerequisite dnf packages
-  dnf:
+  ansible.builtin.dnf:
     name:
       - gcc
       - httpd
@@ -91,19 +91,19 @@ Then you'll create 'setup-cas-client.yml'.  It will do the following:
     state: present
 
 - name: Check if CAS client is already installed
-  stat:
+  ansible.builtin.stat:
     path: /etc/httpd/modules/mod_auth_cas.so
   register: cas_client
 
 - name: Check if cas client zip file exists
-  stat:
+  ansible.builtin.stat:
     path: "/tmp/cas-client.zip"
   register: cas_client_zip
 
 # Only download source zip if it isn't already downloaded
 # and the CAS client isn't already installed
 - name: Download source zip when it doesn't already exist
-  get_url:
+  ansible.builtin.get_url:
     url: https://github.com/apereo/mod_auth_cas/archive/master.zip
     dest: /tmp/cas-client.zip
     mode: 0600
@@ -112,7 +112,7 @@ Then you'll create 'setup-cas-client.yml'.  It will do the following:
 # Only unpack archive if the cas_client isn't already installed
 # and the CAS client isn't already installed
 - name: Unpack cas-client source archive
-  unarchive:
+  ansible.builtin.unarchive:
     src: "/tmp/cas-client.zip"
     dest: /tmp/
     remote_src: yes
@@ -120,32 +120,32 @@ Then you'll create 'setup-cas-client.yml'.  It will do the following:
 
 # Only do this if the cas_client isn't already installed
 - name: Run autoreconf for CAS client
-  command: "autoreconf -ivf"
+  ansible.builtin.command: "autoreconf -ivf"
   args:
     chdir: "/tmp/mod_auth_cas-master"
   when: cas_client.stat.exists == False
 
 - name: Run configure for CAS client
-  command: "./configure"
+  ansible.builtin.command: "./configure"
   args:
     chdir: "/tmp/mod_auth_cas-master"
   when: cas_client.stat.exists == False
 
 - name: Run make for CAS client
-  command: "make"
+  ansible.builtin.command: "make"
   args:
     chdir: "/tmp/mod_auth_cas-master"
   when: cas_client.stat.exists == False
 
 - name: Install CAS client
-  command: "make install"
+  ansible.builtin.command: "make install"
   args:
     chdir: "/tmp/mod_auth_cas-master"
   when: cas_client.stat.exists == False
   notify: reload httpd
 
 - name: Ensure CAS cookie directory exists
-  file:
+  ansible.builtin.file:
     path: /var/cache/httpd/mod_auth_cas
     state: directory
     owner: apache
@@ -155,7 +155,7 @@ Then you'll create 'setup-cas-client.yml'.  It will do the following:
 # Replace "login6dev" with whatever you are using in your dev hosts
 # We use login6deva and login6devb as our dev cas servers so it will catch both of those
 - name: Setup Apache CAS config file
-  template:
+  ansible.builtin.template:
     src: dev-cas-client.conf.j2
     dest: /etc/httpd/conf.d/cas-client.conf
     mode: 0644
@@ -181,7 +181,7 @@ The following are the contents of setup-test-pages.yml, which were created on th
 ---
 
 - name: Setup CAS test index page
-  template:
+  ansible.builtin.template:
     src: main-index.php
     dest: /var/www/html/index.php
     mode: 0755
@@ -190,7 +190,7 @@ The following are the contents of setup-test-pages.yml, which were created on th
   when: ("login6dev" in inventory_hostname)
 
 - name: Ensure secured-by-cas directory exists
-  file:
+  ansible.builtin.file:
     path: /var/www/html/secured-by-cas
     state: directory
     owner: root
@@ -199,7 +199,7 @@ The following are the contents of setup-test-pages.yml, which were created on th
   when: ("login6dev" in inventory_hostname)
 
 - name: Setup basic 'secured-by-cas' test index page
-  template:
+  ansible.builtin.template:
     src: basic-cas-check-index.php
     dest: /var/www/html/secured-by-cas/index.php
     mode: 0755
@@ -219,7 +219,7 @@ You'll need to reference the file name variable in CAS_DEV_CERT_FILE in vars/mai
 # The 'source' here - should be your self signed cert if you're using one
 # In our case here - this is our local certificate authority
 - name: Setup self-signed cert
-  template:
+  ansible.builtin.template:
     # Make sure to define CAS_DEV_CERT_FILE in vars/main.yml
     src: {{ CAS_DEV_CERT_FILE }}.crt
     dest: /etc/pki/tls/certs/{{ CAS_DEV_CERT_FILE }}.crt

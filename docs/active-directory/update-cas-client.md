@@ -173,7 +173,7 @@ Edit the *setup-test-pages.yml* file in *roles/cas-client/tasks* to ensure the d
 ---
 
 - name: Setup CAS test index page
-  template:
+  ansible.builtin.template:
     src: main-index.php
     dest: /var/www/html/index.php
     mode: 0755
@@ -182,7 +182,7 @@ Edit the *setup-test-pages.yml* file in *roles/cas-client/tasks* to ensure the d
   when: ("login6dev" in inventory_hostname)
 
 - name: Ensure secured-by-cas directory exists
-  file:
+  ansible.builtin.file:
     path: /var/www/html/secured-by-cas
     state: directory
     owner: root
@@ -191,7 +191,7 @@ Edit the *setup-test-pages.yml* file in *roles/cas-client/tasks* to ensure the d
   when: ("login6dev" in inventory_hostname)
 
 - name: Setup basic 'secured-by-cas' test index page
-  template:
+  ansible.builtin.template:
     src: basic-cas-check-index.php
     dest: /var/www/html/secured-by-cas/index.php
     mode: 0755
@@ -200,7 +200,7 @@ Edit the *setup-test-pages.yml* file in *roles/cas-client/tasks* to ensure the d
   when: ("login6dev" in inventory_hostname)
 
 - name: Ensure return-all directory exists
-  file:
+  ansible.builtin.file:
     path: /var/www/html/return-all
     state: directory
     owner: root
@@ -209,7 +209,7 @@ Edit the *setup-test-pages.yml* file in *roles/cas-client/tasks* to ensure the d
   when: ("login6dev" in inventory_hostname)
 
 - name: Setup return-all index page
-  template:
+  ansible.builtin.template:
     src: return-all-index.php
     dest: /var/www/html/return-all/index.php
     mode: 0755
@@ -218,7 +218,7 @@ Edit the *setup-test-pages.yml* file in *roles/cas-client/tasks* to ensure the d
   when: ("login6dev" in inventory_hostname)
 
 - name: Ensure return-mapped directory exists
-  file:
+  ansible.builtin.file:
     path: /var/www/html/return-mapped
     state: directory
     owner: root
@@ -227,7 +227,7 @@ Edit the *setup-test-pages.yml* file in *roles/cas-client/tasks* to ensure the d
   when: ("login6dev" in inventory_hostname)
 
 - name: Setup return-mapped index page
-  template:
+  ansible.builtin.template:
     src: return-mapped-index.php
     dest: /var/www/html/return-mapped/index.php
     mode: 0755

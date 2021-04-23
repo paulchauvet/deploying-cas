@@ -49,7 +49,6 @@ cas.authn.attributeRepository.ldap[0].attributes.eduPersonPrimaryAffiliation=edu
 cas.authn.attributeRepository.ldap[0].attributes.eduPersonPrincipalName=eduPersonPrincipalName
 cas.authn.attributeRepository.ldap[0].attributes.eduPersonTargetedID=UDC_IDENTIFIER
 
-
 cas.authn.attributeRepository.ldap[1].order=1
 cas.authn.attributeRepository.ldap[1].ldapUrl=ldaps://{{ AD_SERVER_1 }}
 cas.authn.attributeRepository.ldap[1].validatePeriod=270
@@ -99,9 +98,12 @@ AD_BIND_USER_1: CN=bindusername,CN=users,DC=subdomain,DC=domain,DC=edu
 AD_BIND_PASSWORD_1: SomeStrongPasswordIAssume
 ```
 
+!!! note
+    Later - this guide will show you how to delegate authentication to Azure.  If you do this - you can still do attribute resolution against your regular (non-Azure) AD.  As of yet I haven't done any attribute resolution against Azure AD so I cannot speak to that.
+
+
 ## Attribute Merging
 The CAS 5 guide that this documentation is modeled after references Attribute Merging - where you would find attributes from a single user in multiple directories.  I don't have any experience in doing this - as our users are in either location, not both.  You may want to see David Curry's discussion on this in the References below if you need to use attribute merging.
-
 
 
 ## References

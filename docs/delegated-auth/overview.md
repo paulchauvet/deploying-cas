@@ -16,7 +16,7 @@ There are two ways that I'm aware of to make this happen:
 * OIDC (OpenID Connect)
 * SAML (Security Assertion Markup Language)
 
-I've created documents for both in this section.  Getting this all working was a pain in the neck (due to either insufficiently clear documentation, my lack of understanding of that documentation, or some combination of both!).  I ended up getting the OIDC method mostly working, but had issues with usernames (where Azure would send over the userPrincipalName, not just the CN).  I was able to deal with this with SAML so I'm proceeding with that method.  I'll leave both documents up though - but only the SAML method will be complete.
+I've created documents for both in this section.  Getting this all working was a pain in the neck (due to either insufficiently detailed documentation, my lack of understanding of that documentation, or some combination of both!).  I ended up getting the OIDC method mostly working, but had issues with usernames (where Azure would send over the userPrincipalName, not just the CN).  I was able to deal with this with SAML so I'm proceeding with that method (and I'm more experience with SAML than OIDC).  I'll leave both documents up though - but only the SAML method will be complete.
 
 The steps below are the same for both methods.
 

@@ -4,7 +4,7 @@ CAS can be setup to use various types of ticket registries to keep track of logi
 
 My assumption is that you will have (at least in a production environment) multiple CAS servers, sitting behind a load balancer.  In order for this to work correctly, you will need to have a shared ticket registry.  This is because a users's browser could be sent via the load balancer to one CAS server, and the CAS client (on the service they are trying to get access to) could be routed to a different CAS server.  If you don't have a shared ticket registry, then this login would fail.
 
-There are multiple options for ticket registries within CAS.  For CAS 5.x, I used the MongoDB ticket registry - but ran into issues when I moved from 5.2.x to 5.3.x where the tickets were not getting cleaned up.  I ended up writing a script to connect to Mongo and clean these up - but I'd rather not go that route again for CAS 6.x, so I'm going to be going with Hazelcast instead.
+There are multiple options for ticket registries within CAS.  For CAS 5.x, I used the MongoDB ticket registry - but [ran into issues](https://groups.google.com/a/apereo.org/g/cas-user/c/UNie5Nu7Tdo/m/z1aCVUs2BgAJ) when I moved from 5.2.x to 5.3.x where the tickets were not getting cleaned up.  I ended up writing a script to connect to Mongo and clean these up - but I'd rather not go that route again for CAS 6.x, so I'm going to be going with Hazelcast instead.
 
 
 ## Add the hazelcast dependency
@@ -78,4 +78,4 @@ Vault password:
 
 * [CAS 6: Hazelcast Ticket Registry](https://apereo.github.io/cas/6.3.x/ticketing/Hazelcast-Ticket-Registry.html)
 * [CAS 6: Hazelcast Configuration](https://apereo.github.io/cas/6.3.x/configuration/Configuration-Properties-Common.html#hazelcast-configuration)
-* [CAS 6: MongoDb Ticket Registry](https://apereo.github.io/cas/6.3.x/ticketing/MongoDb-Ticket-Registry.html)
+* [CAS 6: MongoDb Ticket Registry](https://apereo.github.io/cas/6.3.x/ticketing/MongoDb-Ticket-Registry.html) - though I didn't use this for CAS 6 - you may want to!

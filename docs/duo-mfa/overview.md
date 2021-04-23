@@ -9,12 +9,20 @@ I'll go over how to add Duo as a dependency, configure it in CAS (at the server-
 !!! note "Note regarding Duo Universal Prompt"
     Duo is changing over to a new login system for web apps that they call the "Universal Prompt".  Instead of the old way, where CAS (or other sites) would frame a Duo page, with the Universal Prompt, this is handled via browser redirects to a page on Duo's servers.  This is supposedly ready in CAS according to the documents I've seen on the Apereo side (https://apereo.github.io/cas/6.3.x/mfa/DuoSecurity-Authentication.html#universal-prompt) but I haven't yet been able to get this working.  I hope to get back to that and will update this documentation when I have that ready.
 
+!!! caution "Note regarding Duo in Azure and at CAS"
+    If you are eventually going to delegate authentication to Azure - you may have an issue with Duo.  You can either:
+
+     - Enable MFA at the Azure level via conditional access and NOT at the service level in CAS (if that's the case - you will want to make sure that you only allow delegated auth so users can't use local AD auth to bypass MFA).
+     - Enable MFA at the CAS level - and set conditional access on Azure to exclude your CAS app from requiring MFA since Duo is doing it.
+
+    If you enable MFA at both levels - users will have to MFA twice in a row if they are going through delegated auth (once prompted by CAS - once prompted by Azure Conditional Access).
+
 
 ## Add the duo-mfa dependency
 To add duo-mfa support to the CAS server, edit the {==build.gradle==} file within the cas-overlay-template directory on your build host.  We're going to add a single depency to the one we already added for the json service registry.  See the highlighted line below for the addition.
 
 **cas-overlay-template/build.gradle**
-``` json hl_lines="8"
+``` json hl_lines="9"
 dependencies {
     // Other CAS dependencies/modules may be listed here...
     // implementation "org.apereo.cas:cas-server-support-json-service-registry:${casServerVersion}"
@@ -116,6 +124,7 @@ DEV_DUO_AKEY: # Your integration key from your application in the Duo Admin pane
 
 
 ## References
-[Duo & CAS](https://duo.com/docs/cas)
-[CAS 6: Multifactor Authentication](https://apereo.github.io/cas/6.3.x/mfa/Configuring-Multifactor-Authentication.html)
-[CAS 6: Getting Started - MFA via Duo](https://fawnoos.com/2020/11/09/cas63-gettingstarted-overlay/)
+
+* [Duo & CAS](https://duo.com/docs/cas)
+* [CAS 6: Multifactor Authentication](https://apereo.github.io/cas/6.3.x/mfa/Configuring-Multifactor-Authentication.html)
+* [CAS 6: Getting Started - MFA via Duo](https://fawnoos.com/2020/11/09/cas63-gettingstarted-overlay/)

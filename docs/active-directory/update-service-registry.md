@@ -90,7 +90,7 @@ As with the last service, get output of {==date +%s==} for the filename and id. 
 ```
 The 'allowedAttributes' section is needed when you use the ReturnMappedAttributeReleasePolicy as shown above, to define which attributes are released.
 
-Feel free to put your own attributes here - just make sure they've been listed in cas.properties.  You can alter them though on a per service basis.  Let's say service provider 'x' wants the displayName attribute as fullName - you can do so as I've done above.
+Feel free to put your own attributes here - just make sure they've been listed in cas.properties.  Trying to release an attribute in a service definition that hasn't been exposed in cas.properties won't work.  You can alter them though on a per service basis.  Let's say service provider 'x' wants the displayName attribute as fullName - you can do so as I've done above.
 
 
 ## References

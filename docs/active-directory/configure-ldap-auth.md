@@ -82,7 +82,7 @@ cas.authn.ldap[1].dnFormat:             {{ AD_DN_FORMAT_1 }}
 
 
 ## Fill in variables
-You'll want to edit your cas-vault.yml file - since we're going to want to save some sensitive variables.  When done - it will look something like:
+You'll want to edit your cas-vault.yml file (*ansible-vault edit cas-vault.yml*) - since we're going to want to save some sensitive variables.  When done - it will look something like:
 
 ``` yaml
 # As previously mentioned - these are not my real keys
