@@ -34,7 +34,14 @@ cas.authn.pac4j.saml[0].serviceProviderMetadataPath=/etc/cas/config/sp-metadata.
 cas.authn.pac4j.saml[0].identityProviderMetadataPath={{ DEV_AZURE_METADATA_PATH }}
 cas.authn.pac4j.saml[0].clientName={{ DEV_AZURE_APP_NAME }}
 cas.authn.pac4j.saml[0].use-name-qualifier=false
+# cas.authn.pac4j.saml[0].autoRedirect=true
 ```
+
+!!! tip "Automatic redirect"
+    Once you are done testing - if you ONLY want to delegate authentication (i.e. no local AD or LDAP auth) you
+    may want to use the autoRedirect setting that I have commented out above.
+    This will cause anyone who goes to CAS (either directly or via a redirect from a service) to be automatically redirected to the specified external identity provider.
+
 
 ### Variable setup
 Edit your *cas-vault.yml* file within *roles/cas6/vars/*
