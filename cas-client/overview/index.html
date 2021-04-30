@@ -1239,7 +1239,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../azure-conditional/overview.md" class="md-nav__link">
+      <a href="../../azure-conditional/overview/" class="md-nav__link">
         Azure Conditional Access
       </a>
     </li>
@@ -1327,13 +1327,13 @@
                 
                 
                 <h1 id="cas-client-overview">CAS Client Overview</h1>
-<p>To make it easier to develop and test CAS - we should have a CAS client application.  For my development environment, I just install this on our CAS development servers, within Apache httpd.</p>
+<p>To make it easier to develop and test CAS - we should have a CAS client application.  For my development environment, I just use the mod_auth_cas plugin on our CAS development servers, within Apache httpd.</p>
 <p>We'll use this CAS client to test as we go along - including as we build out extra functionality such as MFA, attribute release, service restrictions by group or other attributes, etc.</p>
 <div class="admonition note">
-<p>As you probably noticed - I'm assuming you're using Ansible at this point.  My hope is that even if you're not - what I'm providing here is still usable (and you can still read what the Ansible tasks are doing)</p>
+<p>As you probably noticed - I'm assuming use of Ansible at this point.  My hope is that even if you're not - what I'm providing here is still usable (and you can still read what the Ansible tasks are doing)</p>
 </div>
 <h2 id="configuring-httpd-to-use-cas">Configuring HTTPD to use CAS</h2>
-<p>The mod_auth_cas plugin allows an Apache web server to interact with a CAS server via the CAS protocol.  Red Hat does not offer this plugin for installation via yum however, so it must be downloaded and built from source code.   We'll build the plugin via Ansible as we've done for other tasks.  To start with, we'll (you guessed it) build another role so that this can be applied independently of the CAS servers.</p>
+<p>The mod_auth_cas plugin allows an Apache web server to interact with a CAS server via the CAS protocol.  Red Hat does not offer this plugin for installation via yum however, so it must be downloaded and built from source code.   We'll build the plugin via Ansible as we've done for other tasks.  To start with, we'll (you guessed it) build another role so that this can be applied independently of the CAS servers.  You could also use a modified version of this role if you have Apache servers that have content you want to protect via CAS (that aren't running an app that speaks CAS natively).</p>
 <h2 id="create-ansible-role">Create Ansible role</h2>
 <div class="highlight"><pre><span></span><code><span class="gp">[chauvetp@ansible ~]$ </span><span class="nb">cd</span> ansible/roles/
 <span class="gp">[chauvetp@ansible roles]$ </span>ansible-galaxy init cas-client

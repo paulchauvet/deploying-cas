@@ -1280,7 +1280,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../azure-conditional/overview.md" class="md-nav__link">
+      <a href="../../azure-conditional/overview/" class="md-nav__link">
         Azure Conditional Access
       </a>
     </li>
@@ -1505,12 +1505,12 @@ cas.authn.ldap[1].dnFormat:             {{ AD_DN_FORMAT_1 }}
 </tbody>
 </table>
 <h2 id="fill-in-variables">Fill in variables</h2>
-<p>You'll want to edit your cas-vault.yml file - since we're going to want to save some sensitive variables.  When done - it will look something like:</p>
+<p>You'll want to edit your cas-vault.yml file (<em>ansible-vault edit cas-vault.yml</em>) - since we're going to want to save some sensitive variables.  When done - it will look something like:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># As previously mentioned - these are not my real keys</span>
-<span class="nt">dev_tgc_signing_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">WEebZqgDjfKJei0XM-owdfueb3lZ3lyKKXAL8wLUoLfc2qTFWyBmYxVQBSLslau70uJH_gGM5teTqgbDD3Xcag</span>
-<span class="nt">dev_tgc_encryption_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">zyTzo8eMzToxP9_Kmk33iFVKVFMJD8873ZGA9Z_2Fco</span>
-<span class="nt">dev_webflow_signing_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">_mUEdBjyFlfbvKaGPnAtIbQ7sEkMO2A57lCu3OKz835NeNZqcOCsVo6WmCc95TMgdmahP-aP1lXBpqjd4rU2-g</span>
-<span class="nt">dev_webflow_encryption_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">JnGirTeE8yp3Jp/Mg9Z5Pg==</span>
+<span class="nt">DEV_TGC_SIGNING_KEY</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">WEebZqgDjfKJei0XM-owdfueb3lZ3lyKKXAL8wLUoLfc2qTFWyBmYxVQBSLslau70uJH_gGM5teTqgbDD3Xcag</span>
+<span class="nt">DEV_TGC_ENCRYPTION_KEY</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">zyTzo8eMzToxP9_Kmk33iFVKVFMJD8873ZGA9Z_2Fco</span>
+<span class="nt">DEV_WEBFLOW_SIGNING_KEY</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">_mUEdBjyFlfbvKaGPnAtIbQ7sEkMO2A57lCu3OKz835NeNZqcOCsVo6WmCc95TMgdmahP-aP1lXBpqjd4rU2-g</span>
+<span class="nt">DEV_WEBFLOW_ENCRYPTION_KEY</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">JnGirTeE8yp3Jp/Mg9Z5Pg==</span>
 
 <span class="c1"># You will have to change these for your own environment</span>
 <span class="nt">AD_SERVER_0</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">server.domain.edu</span>

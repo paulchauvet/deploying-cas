@@ -1225,7 +1225,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../azure-conditional/overview.md" class="md-nav__link">
+      <a href="../../azure-conditional/overview/" class="md-nav__link">
         Azure Conditional Access
       </a>
     </li>
@@ -1314,7 +1314,7 @@
 <li>OIDC (OpenID Connect)</li>
 <li>SAML (Security Assertion Markup Language)</li>
 </ul>
-<p>I've created documents for both in this section.  Getting this all working was a pain in the neck (due to either insufficiently clear documentation, my lack of understanding of that documentation, or some combination of both!).  I ended up getting the OIDC method mostly working, but had issues with usernames (where Azure would send over the userPrincipalName, not just the CN).  I was able to deal with this with SAML so I'm proceeding with that method.  I'll leave both documents up though - but only the SAML method will be complete.</p>
+<p>I've created documents for both in this section.  Getting this all working was a pain in the neck (due to either insufficiently detailed documentation, my lack of understanding of that documentation, or some combination of both!).  I ended up getting the OIDC method mostly working, but had issues with usernames (where Azure would send over the userPrincipalName, not just the CN).  I was able to deal with this with SAML so I'm proceeding with that method (and I'm more experience with SAML than OIDC).  I'll leave both documents up though - but only the SAML method will be complete.</p>
 <p>The steps below are the same for both methods.</p>
 <h2 id="add-the-pac4j-dependency">Add the pac4j dependency</h2>
 <p>To add delegated SAML support to the CAS server, edit the <mark class="critic">build.gradle</mark> file within the cas-overlay-template directory on your build host.  We're going to add a single depency for the pac4j-webflow to the one we already added for the json service registry.  See the highlighted line below for the addition.</p>

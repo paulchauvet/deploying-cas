@@ -1218,7 +1218,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../azure-conditional/overview.md" class="md-nav__link">
+      <a href="../../azure-conditional/overview/" class="md-nav__link">
         Azure Conditional Access
       </a>
     </li>
@@ -1296,7 +1296,7 @@
 <li>Test: This is used for test applications/environments which still need authentication such as Banner Test.  Since there are a number of IT staff and end users testing these applications, changes here can still impact users though far less than production.</li>
 <li>Production: The actual public facing CAS.</li>
 </ul>
-<p>Within each tier, you will want one or more servers.  We do something similar to:</p>
+<p>Within each tier, you will want one or more servers.  We do something similar to the following:</p>
 <ul>
 <li>
 <p>Development</p>
@@ -1318,7 +1318,8 @@
 <p>Production</p>
 <ul>
 <li>login6proda</li>
-<li>login6proda</li>
+<li>login6prodb</li>
+<li>login6prodc</li>
 <li>login: Public-facing load balanced virtual host</li>
 </ul>
 </li>

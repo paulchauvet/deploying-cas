@@ -1272,7 +1272,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../azure-conditional/overview.md" class="md-nav__link">
+      <a href="../../azure-conditional/overview/" class="md-nav__link">
         Azure Conditional Access
       </a>
     </li>
@@ -1453,7 +1453,7 @@
 <div class="highlight"><pre><span></span><code><span class="nn">---</span>
 
 <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Setup prerequisite dnf packages</span>
-  <span class="nt">dnf</span><span class="p">:</span>
+  <span class="nt">ansible.builtin.dnf</span><span class="p">:</span>
     <span class="nt">name</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">gcc</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">httpd</span>
@@ -1468,19 +1468,19 @@
     <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
 
 <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Check if CAS client is already installed</span>
-  <span class="nt">stat</span><span class="p">:</span>
+  <span class="nt">ansible.builtin.stat</span><span class="p">:</span>
     <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/httpd/modules/mod_auth_cas.so</span>
   <span class="nt">register</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cas_client</span>
 
 <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Check if cas client zip file exists</span>
-  <span class="nt">stat</span><span class="p">:</span>
+  <span class="nt">ansible.builtin.stat</span><span class="p">:</span>
     <span class="nt">path</span><span class="p">:</span> <span class="s">&quot;/tmp/cas-client.zip&quot;</span>
   <span class="nt">register</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cas_client_zip</span>
 
 <span class="c1"># Only download source zip if it isn&#39;t already downloaded</span>
 <span class="c1"># and the CAS client isn&#39;t already installed</span>
 <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Download source zip when it doesn&#39;t already exist</span>
-  <span class="nt">get_url</span><span class="p">:</span>
+  <span class="nt">ansible.builtin.get_url</span><span class="p">:</span>
     <span class="nt">url</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://github.com/apereo/mod_auth_cas/archive/master.zip</span>
     <span class="nt">dest</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/tmp/cas-client.zip</span>
     <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0600</span>
@@ -1489,7 +1489,7 @@
 <span class="c1"># Only unpack archive if the cas_client isn&#39;t already installed</span>
 <span class="c1"># and the CAS client isn&#39;t already installed</span>
 <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Unpack cas-client source archive</span>
-  <span class="nt">unarchive</span><span class="p">:</span>
+  <span class="nt">ansible.builtin.unarchive</span><span class="p">:</span>
     <span class="nt">src</span><span class="p">:</span> <span class="s">&quot;/tmp/cas-client.zip&quot;</span>
     <span class="nt">dest</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/tmp/</span>
     <span class="nt">remote_src</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
@@ -1497,32 +1497,32 @@
 
 <span class="c1"># Only do this if the cas_client isn&#39;t already installed</span>
 <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Run autoreconf for CAS client</span>
-  <span class="nt">command</span><span class="p">:</span> <span class="s">&quot;autoreconf</span><span class="nv"> </span><span class="s">-ivf&quot;</span>
+  <span class="nt">ansible.builtin.command</span><span class="p">:</span> <span class="s">&quot;autoreconf</span><span class="nv"> </span><span class="s">-ivf&quot;</span>
   <span class="nt">args</span><span class="p">:</span>
     <span class="nt">chdir</span><span class="p">:</span> <span class="s">&quot;/tmp/mod_auth_cas-master&quot;</span>
   <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cas_client.stat.exists == False</span>
 
 <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Run configure for CAS client</span>
-  <span class="nt">command</span><span class="p">:</span> <span class="s">&quot;./configure&quot;</span>
+  <span class="nt">ansible.builtin.command</span><span class="p">:</span> <span class="s">&quot;./configure&quot;</span>
   <span class="nt">args</span><span class="p">:</span>
     <span class="nt">chdir</span><span class="p">:</span> <span class="s">&quot;/tmp/mod_auth_cas-master&quot;</span>
   <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cas_client.stat.exists == False</span>
 
 <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Run make for CAS client</span>
-  <span class="nt">command</span><span class="p">:</span> <span class="s">&quot;make&quot;</span>
+  <span class="nt">ansible.builtin.command</span><span class="p">:</span> <span class="s">&quot;make&quot;</span>
   <span class="nt">args</span><span class="p">:</span>
     <span class="nt">chdir</span><span class="p">:</span> <span class="s">&quot;/tmp/mod_auth_cas-master&quot;</span>
   <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cas_client.stat.exists == False</span>
 
 <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Install CAS client</span>
-  <span class="nt">command</span><span class="p">:</span> <span class="s">&quot;make</span><span class="nv"> </span><span class="s">install&quot;</span>
+  <span class="nt">ansible.builtin.command</span><span class="p">:</span> <span class="s">&quot;make</span><span class="nv"> </span><span class="s">install&quot;</span>
   <span class="nt">args</span><span class="p">:</span>
     <span class="nt">chdir</span><span class="p">:</span> <span class="s">&quot;/tmp/mod_auth_cas-master&quot;</span>
   <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cas_client.stat.exists == False</span>
   <span class="nt">notify</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">reload httpd</span>
 
 <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ensure CAS cookie directory exists</span>
-  <span class="nt">file</span><span class="p">:</span>
+  <span class="nt">ansible.builtin.file</span><span class="p">:</span>
     <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/cache/httpd/mod_auth_cas</span>
     <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">directory</span>
     <span class="nt">owner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">apache</span>
@@ -1532,7 +1532,7 @@
 <span class="c1"># Replace &quot;login6dev&quot; with whatever you are using in your dev hosts</span>
 <span class="c1"># We use login6deva and login6devb as our dev cas servers so it will catch both of those</span>
 <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Setup Apache CAS config file</span>
-  <span class="nt">template</span><span class="p">:</span>
+  <span class="nt">ansible.builtin.template</span><span class="p">:</span>
     <span class="nt">src</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dev-cas-client.conf.j2</span>
     <span class="nt">dest</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/httpd/conf.d/cas-client.conf</span>
     <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0644</span>
@@ -1553,7 +1553,7 @@
 <div class="highlight"><pre><span></span><code><span class="nn">---</span>
 
 <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Setup CAS test index page</span>
-  <span class="nt">template</span><span class="p">:</span>
+  <span class="nt">ansible.builtin.template</span><span class="p">:</span>
     <span class="nt">src</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">main-index.php</span>
     <span class="nt">dest</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/www/html/index.php</span>
     <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0755</span>
@@ -1562,7 +1562,7 @@
   <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">(&quot;login6dev&quot; in inventory_hostname)</span>
 
 <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ensure secured-by-cas directory exists</span>
-  <span class="nt">file</span><span class="p">:</span>
+  <span class="nt">ansible.builtin.file</span><span class="p">:</span>
     <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/www/html/secured-by-cas</span>
     <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">directory</span>
     <span class="nt">owner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
@@ -1571,7 +1571,7 @@
   <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">(&quot;login6dev&quot; in inventory_hostname)</span>
 
 <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Setup basic &#39;secured-by-cas&#39; test index page</span>
-  <span class="nt">template</span><span class="p">:</span>
+  <span class="nt">ansible.builtin.template</span><span class="p">:</span>
     <span class="nt">src</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">basic-cas-check-index.php</span>
     <span class="nt">dest</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/www/html/secured-by-cas/index.php</span>
     <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0755</span>
@@ -1586,7 +1586,7 @@
 <div class="highlight"><pre><span></span><code><span class="c1"># The &#39;source&#39; here - should be your self signed cert if you&#39;re using one</span>
 <span class="c1"># In our case here - this is our local certificate authority</span>
 <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Setup self-signed cert</span>
-  <span class="nt">template</span><span class="p">:</span>
+  <span class="nt">ansible.builtin.template</span><span class="p">:</span>
     <span class="c1"># Make sure to define CAS_DEV_CERT_FILE in vars/main.yml</span>
     <span class="nt">src</span><span class="p">:</span> <span class="p p-Indicator">{{</span> <span class="nv">CAS_DEV_CERT_FILE</span> <span class="p p-Indicator">}}</span><span class="l l-Scalar l-Scalar-Plain">.crt</span>
     <span class="nt">dest</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/pki/tls/certs/{{ CAS_DEV_CERT_FILE }}.crt</span>

@@ -1260,7 +1260,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../azure-conditional/overview.md" class="md-nav__link">
+      <a href="../../azure-conditional/overview/" class="md-nav__link">
         Azure Conditional Access
       </a>
     </li>
@@ -1376,6 +1376,15 @@
 <p class="admonition-title">Note regarding Duo Universal Prompt</p>
 <p>Duo is changing over to a new login system for web apps that they call the "Universal Prompt".  Instead of the old way, where CAS (or other sites) would frame a Duo page, with the Universal Prompt, this is handled via browser redirects to a page on Duo's servers.  This is supposedly ready in CAS according to the documents I've seen on the Apereo side (https://apereo.github.io/cas/6.3.x/mfa/DuoSecurity-Authentication.html#universal-prompt) but I haven't yet been able to get this working.  I hope to get back to that and will update this documentation when I have that ready.</p>
 </div>
+<div class="admonition caution">
+<p class="admonition-title">Note regarding Duo in Azure and at CAS</p>
+<p>If you are eventually going to delegate authentication to Azure - you may have an issue with Duo.  You can either:</p>
+<ul>
+<li>Enable MFA at the Azure level via conditional access and NOT at the service level in CAS (if that's the case - you will want to make sure that you only allow delegated auth so users can't use local AD auth to bypass MFA).</li>
+<li>Enable MFA at the CAS level - and set conditional access on Azure to exclude your CAS app from requiring MFA since Duo is doing it.</li>
+</ul>
+<p>If you enable MFA at both levels - users will have to MFA twice in a row if they are going through delegated auth (once prompted by CAS - once prompted by Azure Conditional Access).</p>
+</div>
 <h2 id="add-the-duo-mfa-dependency">Add the duo-mfa dependency</h2>
 <p>To add duo-mfa support to the CAS server, edit the <mark class="critic">build.gradle</mark> file within the cas-overlay-template directory on your build host.  We're going to add a single depency to the one we already added for the json service registry.  See the highlighted line below for the addition.</p>
 <p><strong>cas-overlay-template/build.gradle</strong>
@@ -1386,9 +1395,9 @@
     <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-webapp-init:${casServerVersion}&quot;</span>
     <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-json-service-registry:${casServerVersion}&quot;</span>
     <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-ldap:${casServerVersion}&quot;</span>
-<span class="hll">    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-saml:${casServerVersion}&quot;</span>
-</span>    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-duo:${casServerVersion}&quot;</span>
-
+    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-saml:${casServerVersion}&quot;</span>
+<span class="hll">    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-duo:${casServerVersion}&quot;</span>
+</span>
 <span class="p">}</span>
 </code></pre></div></p>
 <h2 id="rebuild-cas">Rebuild CAS</h2>
@@ -1435,10 +1444,10 @@ cas.authn.mfa.duo[0].duoApplicationKey: {{ DEV_DUO_AKEY }}
 <p>Fill in values for {{ DEV_DUO_API_HOST }}, {{ DEV_DUO_IKEY }}, {{ DEV_DUO_SKEY }}, and {{ DEV_DUO_AKEY }}.  It should now look like the following (after opening with ansible-vault edit cas-vault.yml).</p>
 <p><strong>roles/cas6/vars/cas-vault.yml</strong></p>
 <div class="highlight"><pre><span></span><code><span class="c1"># As previously mentioned - these are not my real keys</span>
-<span class="nt">dev_tgc_signing_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">WEebZqgDjfKJei0XM-owdfueb3lZ3lyKKXAL8wLUoLfc2qTFWyBmYxVQBSLslau70uJH_gGM5teTqgbDD3Xcag</span>
-<span class="nt">dev_tgc_encryption_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">zyTzo8eMzToxP9_Kmk33iFVKVFMJD8873ZGA9Z_2Fco</span>
-<span class="nt">dev_webflow_signing_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">_mUEdBjyFlfbvKaGPnAtIbQ7sEkMO2A57lCu3OKz835NeNZqcOCsVo6WmCc95TMgdmahP-aP1lXBpqjd4rU2-g</span>
-<span class="nt">dev_webflow_encryption_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">JnGirTeE8yp3Jp/Mg9Z5Pg==</span>
+<span class="nt">DEV_TGC_SIGNING_KEY</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">WEebZqgDjfKJei0XM-owdfueb3lZ3lyKKXAL8wLUoLfc2qTFWyBmYxVQBSLslau70uJH_gGM5teTqgbDD3Xcag</span>
+<span class="nt">DEV_TGC_ENCRYPTION_KEY</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">zyTzo8eMzToxP9_Kmk33iFVKVFMJD8873ZGA9Z_2Fco</span>
+<span class="nt">DEV_WEBFLOW_SIGNING_KEY</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">_mUEdBjyFlfbvKaGPnAtIbQ7sEkMO2A57lCu3OKz835NeNZqcOCsVo6WmCc95TMgdmahP-aP1lXBpqjd4rU2-g</span>
+<span class="nt">DEV_WEBFLOW_ENCRYPTION_KEY</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">JnGirTeE8yp3Jp/Mg9Z5Pg==</span>
 
 <span class="c1"># You will have to change these for your own environment</span>
 <span class="nt">AD_SERVER_0</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">server.domain.edu</span>
@@ -1461,9 +1470,11 @@ cas.authn.mfa.duo[0].duoApplicationKey: {{ DEV_DUO_AKEY }}
 <span class="nt">DEV_DUO_AKEY</span><span class="p">:</span> <span class="c1"># Your integration key from your application in the Duo Admin panel</span>
 </code></pre></div>
 <h2 id="references">References</h2>
-<p><a href="https://duo.com/docs/cas">Duo &amp; CAS</a>
-<a href="https://apereo.github.io/cas/6.3.x/mfa/Configuring-Multifactor-Authentication.html">CAS 6: Multifactor Authentication</a>
-<a href="https://fawnoos.com/2020/11/09/cas63-gettingstarted-overlay/">CAS 6: Getting Started - MFA via Duo</a></p>
+<ul>
+<li><a href="https://duo.com/docs/cas">Duo &amp; CAS</a></li>
+<li><a href="https://apereo.github.io/cas/6.3.x/mfa/Configuring-Multifactor-Authentication.html">CAS 6: Multifactor Authentication</a></li>
+<li><a href="https://fawnoos.com/2020/11/09/cas63-gettingstarted-overlay/">CAS 6: Getting Started - MFA via Duo</a></li>
+</ul>
                 
               
               

@@ -1127,6 +1127,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#generating-hazelcast-keys" class="md-nav__link">
+    Generating Hazelcast keys
+  </a>
+  
+    <nav class="md-nav" aria-label="Generating Hazelcast keys">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate-the-signing-key" class="md-nav__link">
+    Generate the signing key
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-the-encryption-key" class="md-nav__link">
+    Generate the encryption key
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#rerun-the-playbook" class="md-nav__link">
     Rerun the playbook
   </a>
@@ -1253,7 +1280,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../azure-conditional/overview.md" class="md-nav__link">
+      <a href="../../azure-conditional/overview/" class="md-nav__link">
         Azure Conditional Access
       </a>
     </li>
@@ -1328,6 +1355,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#generating-hazelcast-keys" class="md-nav__link">
+    Generating Hazelcast keys
+  </a>
+  
+    <nav class="md-nav" aria-label="Generating Hazelcast keys">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate-the-signing-key" class="md-nav__link">
+    Generate the signing key
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-the-encryption-key" class="md-nav__link">
+    Generate the encryption key
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#rerun-the-playbook" class="md-nav__link">
     Rerun the playbook
   </a>
@@ -1357,7 +1411,7 @@
                 <h1 id="setting-up-ticket-registry">Setting up ticket registry</h1>
 <p>CAS can be setup to use various types of ticket registries to keep track of logins.</p>
 <p>My assumption is that you will have (at least in a production environment) multiple CAS servers, sitting behind a load balancer.  In order for this to work correctly, you will need to have a shared ticket registry.  This is because a users's browser could be sent via the load balancer to one CAS server, and the CAS client (on the service they are trying to get access to) could be routed to a different CAS server.  If you don't have a shared ticket registry, then this login would fail.</p>
-<p>There are multiple options for ticket registries within CAS.  For CAS 5.x, I used the MongoDB ticket registry - but ran into issues when I moved from 5.2.x to 5.3.x where the tickets were not getting cleaned up.  I ended up writing a script to connect to Mongo and clean these up - but I'd rather not go that route again for CAS 6.x, so I'm going to be going with Hazelcast instead.</p>
+<p>There are multiple options for ticket registries within CAS.  For CAS 5.x, I used the MongoDB ticket registry - but <a href="https://groups.google.com/a/apereo.org/g/cas-user/c/UNie5Nu7Tdo/m/z1aCVUs2BgAJ">ran into issues</a> when I moved from 5.2.x to 5.3.x where the tickets were not getting cleaned up.  I ended up writing a script to connect to Mongo and clean these up - but I'd rather not go that route again for CAS 6.x, so I'm going to be going with Hazelcast instead.</p>
 <h2 id="add-the-hazelcast-dependency">Add the hazelcast dependency</h2>
 <p>To add hazelcast support to the CAS server, edit the <mark class="critic">build.gradle</mark> file within the cas-overlay-template directory on your build host.  We're going to add a single depency to the one we already added for the json service registry.  See the highlighted line below for the addition.</p>
 <p><strong>cas-overlay-template/build.gradle</strong>
@@ -1402,8 +1456,21 @@
 <p>Edit your <em>cas-vault.yml</em> file within <em>roles/cas6/vars/</em></p>
 <p>You'll need to fill out the following:
 DEV_CAS_SERVERS: <comma separated list if IPs or DNS names for your servers in this tier>
-DEV_CAS_HAZELCAST_SIGNING_KEY: <see generating singing key section below>
-DEV_CAS_HAZELCAST_ENCRYPTION_KEY: <see generating encryption key section below></p>
+DEV_CAS_HAZELCAST_SIGNING_KEY: <see generating hazelcast keys section below>
+DEV_CAS_HAZELCAST_ENCRYPTION_KEY: <see generating hazelcast keys section below></p>
+<h2 id="generating-hazelcast-keys">Generating Hazelcast keys</h2>
+<p>The <em>Generating all necessary keys</em> section near the bottom of the <a href="../../building-cas/initial-cas-config/">Initial CAS Config</a> section of this document covers generating these keys.  They are the last two keys generated in that section.  You will still need the <a href="https://raw.githubusercontent.com/apereo/cas/master/etc/jwk-gen.jar">key generation tool</a>.  You can see that section or the two subsections below for generating the signing and encryption keys.</p>
+<p>Either way - place these keys in your Ansible vault variable file or directly in your cas.properties file.</p>
+<h3 id="generate-the-signing-key">Generate the signing key</h3>
+<ol>
+<li>Run: <strong>java -jar jwk-gen.jar -t oct -s 512 | grep k.: | cut -f4 -d\"</strong></li>
+<li>Enter the output as your <em>DEV_CAS_HAZELCAST_SIGNING_KEY</em> in your Ansible vault (or if not using Ansible vault - just put it directly as the value for <em>cas.ticket.registry.hazelcast.crypto.signing.key</em> in your cas.properties file.)</li>
+</ol>
+<h3 id="generate-the-encryption-key">Generate the encryption key</h3>
+<ol>
+<li>Run: <strong>openssl rand -base64 16</strong></li>
+<li>Enter the output as your <em>DEV_CAS_HAZELCAST_ENCRYPTION_KEY</em> in your Ansible vault (or if not using Ansible vault - just put it directly as the value for <em>cas.ticket.registry.hazelcast.crypto.encryption.key</em> in your cas.properties file.)</li>
+</ol>
 <h2 id="rerun-the-playbook">Rerun the playbook</h2>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">[</span><span class="nv">chauvetp@ansible templates</span><span class="p p-Indicator">]</span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook ~/ansible/site.yml --ask-vault-pass --limit &lt;your_CAS_server&gt;</span>
 <span class="l l-Scalar l-Scalar-Plain">Vault password</span><span class="p p-Indicator">:</span> 
@@ -1412,7 +1479,7 @@ DEV_CAS_HAZELCAST_ENCRYPTION_KEY: <see generating encryption key section below><
 <ul>
 <li><a href="https://apereo.github.io/cas/6.3.x/ticketing/Hazelcast-Ticket-Registry.html">CAS 6: Hazelcast Ticket Registry</a></li>
 <li><a href="https://apereo.github.io/cas/6.3.x/configuration/Configuration-Properties-Common.html#hazelcast-configuration">CAS 6: Hazelcast Configuration</a></li>
-<li><a href="https://apereo.github.io/cas/6.3.x/ticketing/MongoDb-Ticket-Registry.html">CAS 6: MongoDb Ticket Registry</a></li>
+<li><a href="https://apereo.github.io/cas/6.3.x/ticketing/MongoDb-Ticket-Registry.html">CAS 6: MongoDb Ticket Registry</a> - though I didn't use this for CAS 6 - you may want to!</li>
 </ul>
                 
               

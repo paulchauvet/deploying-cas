@@ -782,15 +782,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#to-generate-the-first-key-castgccryptosigningkey" class="md-nav__link">
-    To generate the first key (cas.tgc.crypto.signing.key):
+  <a href="#generate-the-first-key-castgccryptosigningkey" class="md-nav__link">
+    Generate the first key (cas.tgc.crypto.signing.key)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#to-generate-the-second-key-castgccryptoencryptionkey" class="md-nav__link">
-    To generate the second key (cas.tgc.crypto.encryption.key):
+  <a href="#generate-the-second-key-castgccryptoencryptionkey" class="md-nav__link">
+    Generate the second key (cas.tgc.crypto.encryption.key)
   </a>
   
 </li>
@@ -810,14 +810,34 @@
         
           <li class="md-nav__item">
   <a href="#generate-the-first-key-caswebflowcryptosigningkey" class="md-nav__link">
-    Generate the first key (cas.webflow.crypto.signing.key):
+    Generate the first key (cas.webflow.crypto.signing.key)
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#generate-the-second-key-caswebflowcryptoencryptionkey" class="md-nav__link">
-    Generate the second key (cas.webflow.crypto.encryption.key):
+    Generate the second key (cas.webflow.crypto.encryption.key)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generating-all-necessary-keys" class="md-nav__link">
+    Generating all necessary keys
+  </a>
+  
+    <nav class="md-nav" aria-label="Generating all necessary keys">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-of-output" class="md-nav__link">
+    Example of output
   </a>
   
 </li>
@@ -1313,7 +1333,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../azure-conditional/overview.md" class="md-nav__link">
+      <a href="../../azure-conditional/overview/" class="md-nav__link">
         Azure Conditional Access
       </a>
     </li>
@@ -1402,15 +1422,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#to-generate-the-first-key-castgccryptosigningkey" class="md-nav__link">
-    To generate the first key (cas.tgc.crypto.signing.key):
+  <a href="#generate-the-first-key-castgccryptosigningkey" class="md-nav__link">
+    Generate the first key (cas.tgc.crypto.signing.key)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#to-generate-the-second-key-castgccryptoencryptionkey" class="md-nav__link">
-    To generate the second key (cas.tgc.crypto.encryption.key):
+  <a href="#generate-the-second-key-castgccryptoencryptionkey" class="md-nav__link">
+    Generate the second key (cas.tgc.crypto.encryption.key)
   </a>
   
 </li>
@@ -1430,14 +1450,34 @@
         
           <li class="md-nav__item">
   <a href="#generate-the-first-key-caswebflowcryptosigningkey" class="md-nav__link">
-    Generate the first key (cas.webflow.crypto.signing.key):
+    Generate the first key (cas.webflow.crypto.signing.key)
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#generate-the-second-key-caswebflowcryptoencryptionkey" class="md-nav__link">
-    Generate the second key (cas.webflow.crypto.encryption.key):
+    Generate the second key (cas.webflow.crypto.encryption.key)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generating-all-necessary-keys" class="md-nav__link">
+    Generating all necessary keys
+  </a>
+  
+    <nav class="md-nav" aria-label="Generating all necessary keys">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-of-output" class="md-nav__link">
+    Example of output
   </a>
   
 </li>
@@ -1475,7 +1515,7 @@
                 
                 
                 <h1 id="initial-cas-configuration">Initial CAS Configuration</h1>
-<p>By default, CAS expects to find its configuration files in the operating system directory /etc/cas.  Almost every aspect of CAS server configuration is controlled via settings stored in the cas.properties file located in the /etc/cas/config directory.  <strong>We're going to start with a simple config - and enhance it as features are added.</strong></p>
+<p>By default, CAS expects to find its configuration files in the operating system directory /etc/cas (with subdirectories of config and services).  Almost every aspect of CAS server configuration is controlled via settings stored in the cas.properties file located in the /etc/cas/config directory.  <strong>We're going to start with a simple config - and enhance it as features are added.</strong></p>
 <p>Tomcat will also expect the .war file to be placed within /opt/tomcat/latest/webapps (aka /var/lib/tomcat which is where that symlink points to).  We'll be handling both the config and the cas.war file in this page.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -1490,7 +1530,7 @@
 <span class="go">defaults  files  handlers  meta  README.md  tasks  templates  tests  vars</span>
 </code></pre></div>
 <h2 id="start-creating-configuration-files">Start creating configuration files</h2>
-<p>Create a new file called 'dev-cas.properties.j2' (j2 indicates a <em>Jinja2</em> template file).  We're going to have variables in these files that we are NOT going to want to keep in the properties file - at least not in a git repository.</p>
+<p>Create a new file called 'dev-cas.properties.j2' (j2 indicates a <em>Jinja2</em> template file).  We're going to have variables in these files that we are NOT going to want to keep in the properties file - at least not unencrypted in a git repository.</p>
 <p>I recommend one file for each of your environments (dev-cas.properties.j2, test-cas.properties.j2, prod-cas.properties.j2).  All will eventually just be /etc/cas/config/cas.properties on their respective servers though.  It's going to have some variables which we're going to fill in later.</p>
 <h3 id="dev-caspropertiesj2-creation">dev-cas.properties.j2 creation</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># Replace this with your public facing cas server name.  If you&#39;re using a load balancer</span>
@@ -1504,18 +1544,18 @@
 <span class="l l-Scalar l-Scalar-Plain">cas.serviceRegistry.json.location=file:/etc/cas/services</span>
 
 <span class="nt">cas.tgc.secure</span><span class="p">:</span>                         <span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="nt">cas.tgc.crypto.signing.key</span><span class="p">:</span>             <span class="p p-Indicator">{{</span> <span class="nv">dev_tgc_signing_key</span> <span class="p p-Indicator">}}</span>
-<span class="nt">cas.tgc.crypto.encryption.key</span><span class="p">:</span>          <span class="p p-Indicator">{{</span> <span class="nv">dev_tgc_encryption_key</span> <span class="p p-Indicator">}}</span>
+<span class="nt">cas.tgc.crypto.signing.key</span><span class="p">:</span>             <span class="p p-Indicator">{{</span> <span class="nv">DEV_TGC_SIGNING_KEY</span> <span class="p p-Indicator">}}</span>
+<span class="nt">cas.tgc.crypto.encryption.key</span><span class="p">:</span>          <span class="p p-Indicator">{{</span> <span class="nv">DEV_TGC_ENCRYPTION_KEY</span> <span class="p p-Indicator">}}</span>
 
-<span class="nt">cas.webflow.crypto.signing.key</span><span class="p">:</span>         <span class="p p-Indicator">{{</span> <span class="nv">dev_webflow_signing_key</span> <span class="p p-Indicator">}}</span>
-<span class="nt">cas.webflow.crypto.encryption.key</span><span class="p">:</span>      <span class="p p-Indicator">{{</span> <span class="nv">dev_webflow_encryption_key</span> <span class="p p-Indicator">}}</span>
+<span class="nt">cas.webflow.crypto.signing.key</span><span class="p">:</span>         <span class="p p-Indicator">{{</span> <span class="nv">DEV_WEBFLOW_SIGNING_KEY</span> <span class="p p-Indicator">}}</span>
+<span class="nt">cas.webflow.crypto.encryption.key</span><span class="p">:</span>      <span class="p p-Indicator">{{</span> <span class="nv">DEV_WEBFLOW_ENCRYPTION_KEY</span> <span class="p p-Indicator">}}</span>
 
 <span class="c1"># Default handler - enable only for testing - leave blank (not commented out) to disable</span>
 <span class="l l-Scalar l-Scalar-Plain">cas.authn.accept.users=YourTestUser::YourTestPassword</span>
 </code></pre></div>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
-<p>Within this file - the 'cas.authn.accept.users' value has been set.  This is for testing only!  It should be removed long before you are ready to go with production!</p>
+<p>Within this file - the 'cas.authn.accept.users' value has been set.  This is for testing only!  It should be removed long before you are ready to go into production!</p>
 </div>
 <p>Within the file - you'll notice a few areas with {{ variables_in_curly_brackets }}.  These are variables.  Many of them are sensitive values that you don't want unencrypted in a git repository (or not in a git repository at all).</p>
 <p>There's two ways to handle this:</p>
@@ -1531,63 +1571,127 @@ You can combine these (i.e. using ansible vault and still using gitignore to not
 </code></pre></div>
 You'll be prompted to enter, and re-enter, a password/passphrase.  Choose something good - and store that password somewhere like your password manager.</p>
 <p>It will then bring you into your system's default editor (if you're on Linux, vi by default).  You can put placeholders for the variables we need there:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">dev_tgc_signing_key</span><span class="p">:</span> 
-<span class="nt">dev_tgc_encryption_key</span><span class="p">:</span> 
-<span class="nt">dev_webflow_signing_key</span><span class="p">:</span> 
-<span class="nt">dev_webflow_encryption_key</span><span class="p">:</span> 
+<div class="highlight"><pre><span></span><code><span class="nt">DEV_TGC_SIGNING_KEY</span><span class="p">:</span> 
+<span class="nt">DEV_TGC_ENCRYPTION_KEY</span><span class="p">:</span> 
+<span class="nt">DEV_WEBFLOW_SIGNING_KEY</span><span class="p">:</span> 
+<span class="nt">DEV_WEBFLOW_ENCRYPTION_KEY</span><span class="p">:</span> 
 </code></pre></div>
 <p>Save the file for now.  You can edit again via the following (you'll be prompted for your password):</p>
 <div class="highlight"><pre><span></span><code><span class="go">ansible-vault edit vars/cas-vault.yml</span>
 </code></pre></div>
 <h2 id="configure-ticket-granting-cookie-encryption">Configure ticket granting cookie encryption</h2>
-<p>The CAS server uses a ticket granting cookie in the browser to maintain login state during single sign-on sessions. A client can present this cookie to CAS in lieu of primary credentials and, provided it is valid, will be authenticated. The contents of the cookie should be encrypted to protect them, and when running in a multi-node environment, all of the nodes must use the same keys.  These are defined in our cas.properties sample above as <em>cas.tgc.crypto.signing.key</em> and <em>cas.tgc.crypto.encryption.key</em></p>
-<h3 id="to-generate-the-first-key-castgccryptosigningkey">To generate the first key (cas.tgc.crypto.signing.key):</h3>
+<p>The CAS server uses a ticket granting cookie (tgc) in the browser to maintain login state during single sign-on sessions. A client can present this cookie to CAS in lieu of primary credentials and, provided it is valid, will be authenticated. The contents of the cookie should be encrypted to protect them, and when running in a multi-node environment, all of the nodes must use the same keys.  These are defined in our cas.properties sample above as <em>cas.tgc.crypto.signing.key</em> and <em>cas.tgc.crypto.encryption.key</em></p>
+<p>To start with - we'll need a key generation tool.  The Apereo project has one that we can use.  This doesn't have to be done on the CAS hosts - just somewhere with Java.</p>
+<div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/apereo/cas/master/etc/jwk-gen.jar
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Skip ahead for a script to generate all these keys</p>
+<p>There's a script to generate all these keys ahead - feel free to skip to it in the "Generating all necessary keys" section near the end of this page.</p>
+</div>
+<h3 id="generate-the-first-key-castgccryptosigningkey">Generate the first key (cas.tgc.crypto.signing.key)</h3>
 <ol>
-<li>Now visit the <a href="https://mkjwk.org/">JSON Web Key Generator</a>.</li>
-<li>Click on the <em>oct</em> tab.</li>
-<li>Set <em>Key Size</em> to 512, <em>Key Use</em> to Signature, and <em>Algorithm</em> to HS256.</li>
-<li>Click <em>Generate</em>.</li>
-<li>You'll see a <em>Shared Key</em> box.  Find the value for "k" there, and copy it.</li>
-<li>Enter that as your <em>dev_tgc_signing_key</em> in your Ansible vault (or if not using Ansible vault - just put it directly as the value for <em>cas.tgc.crypto.signing.key</em>)</li>
+<li>Run: <strong>java -jar jwk-gen.jar -t oct -s 256 | grep k.: | cut -f4 -d\"</strong></li>
+<li>Enter the output as your <em>DEV_TGC_SIGNING_KEY</em> in your Ansible vault (or if not using Ansible vault - just put it directly as the value for <em>cas.tgc.crypto.signing.key</em> within your cas.properties file.)</li>
 </ol>
-<h3 id="to-generate-the-second-key-castgccryptoencryptionkey">To generate the second key (cas.tgc.crypto.encryption.key):</h3>
-<p>While still at the <a href="https://mkjwk.org/">JSON Web Key Generator</a> in the 'oct' tab:</p>
+<h3 id="generate-the-second-key-castgccryptoencryptionkey">Generate the second key (cas.tgc.crypto.encryption.key)</h3>
 <ol>
-<li>Set <em>Key Size</em> to 256, and keep the other settings, <em>Key Use</em> to Signature, and <em>Algorithm</em> to HS256, the same.</li>
-<li>Click <em>Generate</em>.</li>
-<li>You'll see a <em>Shared Key</em> box.  Find the value for "k" there, and copy it.</li>
-<li>Enter that as your <em>dev_tgc_encryption_key</em> in your Ansible vault (or if not using Ansible vault - just put it directly as the value for <em>cas.tgc.crypto.encryption.key</em>)</li>
+<li>Run: <strong>java -jar jwk-gen.jar -t oct -s 512 | grep k.: | cut -f4 -d\"</strong></li>
+<li>Enter the output as your <em>DEV_TGC_ENCRYPTION_KEY</em> in your Ansible vault (or if not using Ansible vault - just put it directly as the value for <em>cas.tgc.crypto.encryption.key</em> in cas.properties file.)</li>
 </ol>
 <h2 id="configure-spring-webflow-encryption">Configure Spring Webflow encryption</h2>
-<p>CAS uses Spring Webflow to manage the authentication sequence, and this also needs to be encrypted.</p>
-<h3 id="generate-the-first-key-caswebflowcryptosigningkey">Generate the first key (cas.webflow.crypto.signing.key):</h3>
-<p>While still at the <a href="https://mkjwk.org/">JSON Web Key Generator</a> in the 'oct' tab:</p>
+<p>CAS uses Spring Webflow to manage the authentication sequence, and this also needs to be encrypted.  We'll use the same jwk-gen.jar tool to generate the webflow.crypto.signing.key as we used to generate the two tgc keys but will use openssl and a random function for the webflow encryption key.</p>
+<h3 id="generate-the-first-key-caswebflowcryptosigningkey">Generate the first key (cas.webflow.crypto.signing.key)</h3>
 <ol>
-<li>Set <em>Key Size</em> to 512, and keep the other settings, <em>Key Use</em> to Signature, and <em>Algorithm</em> to HS256, the same.</li>
-<li>Click <em>Generate</em>.</li>
-<li>You'll see a <em>Shared Key</em> box.  Find the value for "k" there, and copy it.</li>
-<li>Enter that as your <em>dev_webflow_signing_key</em> in your Ansible vault (or if not using Ansible vault - just put it directly as the value for <em>cas.webflow.crypto.signing.key</em>)</li>
+<li>Run: <strong>java -jar jwk-gen.jar -t oct -s 512 | grep k.: | cut -f4 -d\"</strong></li>
+<li>Enter the output as your <em>DEV_WEBFLOW_SIGNING_KEY</em> in your Ansible vault (or if not using Ansible vault - just put it directly as the value for <em>cas.webflow.crypto.signing.key</em> in your cas.properties file.)</li>
 </ol>
-<h3 id="generate-the-second-key-caswebflowcryptoencryptionkey">Generate the second key (cas.webflow.crypto.encryption.key):</h3>
+<h3 id="generate-the-second-key-caswebflowcryptoencryptionkey">Generate the second key (cas.webflow.crypto.encryption.key)</h3>
 <p>This one is different.  Unlike the ticket granting cookie encryption key above, the encryption key for Spring WebFlow is not a JSON Web Key. Rather, it’s a randomly-generated string of 16 (by default) octets, Base64-encoded. An easy way to generate this key is to use openssl:</p>
-<p><div class="highlight"><pre><span></span><code><span class="gp">[chauvetp@login6deva tmp]$ </span>openssl rand -base64 <span class="m">16</span>
-<span class="go">NwriHAJ1Li2YnKxBbhUEVw==</span>
-<span class="gp">[chauvetp@login6deva tmp]$ </span>
-</code></pre></div>
-Enter that as your <em>dev_webflow_encryption_key</em> in your Ansible vault (or if not using Ansible vault - just put it directly as the value for <em>cas.webflow.crypto.encryption.key</em>)</p>
+<ol>
+<li>Run: <strong>openssl rand -base64 16</strong></li>
+<li>Enter the output of that as your <em>DEV_WEBFLOW_ENCRYPTION_KEY</em> in your Ansible vault (or if not using Ansible vault - just put it directly as the value for <em>cas.webflow.crypto.encryption.key</em> in your cas.properties file.)</li>
+</ol>
 <div class="admonition note">
-<p>The online JSON Web Key Generator, which point to to generate keys, is provided by the Mitre Corporation and the MIT Kerberos and Internet Trust Consortium, and is simply a web-based interface to the json-web-key-generator project, also provided by Mitre/MIT. The project can be cloned from GitHub and built locally if you don’t trust the online generator, or you can download and use a pre-built copy from the CAS project by running the command:</p>
-<div class="highlight"><pre><span></span><code>curl -LO https://raw.githubusercontent.com/apereo/cas/master/etc/jwk-gen.jar
-</code></pre></div>
-<p>Keys can then be generated using the command
-<div class="highlight"><pre><span></span><code>java -jar jwk-gen.jar -t oct -s [size]
-</code></pre></div></p>
+<p>You can also use the JSON Web Key Generator, which point to to generate keys, is provided by the Mitre Corporation and the MIT Kerberos and Internet Trust Consortium, and is simply a web-based interface to the json-web-key-generator project, also provided by Mitre/MIT. The project can be cloned from GitHub and built locally if you don’t trust the online generator.  I was using that method - but I've found the above method from my colleague Bill Jojo in his <a href="https://programmingby.design/knowledge-base/a-cas-primer/">CAS Primer</a>:</p>
 </div>
+<h2 id="generating-all-necessary-keys">Generating all necessary keys</h2>
+<p>I have a script to generate the necessary keys instead of doing them one by one.  Note: there are ticket encryption keys which are not needed yet - but I put them all in this script.  You'll need them in the ticket registry section of this guide for the Hazelcast ticket registry.</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/bash</span>
+
+<span class="nb">echo</span> <span class="s2">&quot;Specify the environment that you are generating keys for (DEV/TEST/PROD): &quot;</span>
+<span class="nb">read</span> CAS_ENV
+
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$CAS_ENV</span> -eq <span class="s2">&quot;DEV&quot;</span> <span class="o">]]</span> <span class="o">||</span> <span class="o">[[</span> <span class="nv">$CAS_ENV</span> -eq <span class="s2">&quot;TEST&quot;</span> <span class="o">]]</span> <span class="o">||</span> <span class="o">[[</span> <span class="nv">$CAS_ENV</span> -eq <span class="s2">&quot;PROD&quot;</span> <span class="o">]]</span>
+<span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;# cas.tgc.crypto.signing.key:&quot;</span>
+        <span class="nv">tgcSigning</span><span class="o">=</span><span class="k">$(</span>java -jar jwk-gen.jar -t oct -s <span class="m">512</span> <span class="p">|</span> grep k.: <span class="p">|</span> cut -f4 -d<span class="se">\&quot;</span><span class="k">)</span>
+        <span class="nv">tgcSigningOutput</span><span class="o">=</span><span class="nv">$CAS_ENV</span><span class="s2">&quot;_TGC_SIGNING_KEY: &quot;</span><span class="nv">$tgcSigning</span>
+    <span class="nb">echo</span> <span class="nv">$tgcSigningOutput</span>
+    <span class="nb">echo</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="nb">echo</span> <span class="s2">&quot;# cas.tgc.crypto.encryption.key:&quot;</span>
+    <span class="nv">tgcEncryption</span><span class="o">=</span><span class="k">$(</span>java -jar jwk-gen.jar -t oct -s <span class="m">256</span> <span class="p">|</span> grep k.: <span class="p">|</span> cut -f4 -d<span class="se">\&quot;</span><span class="k">)</span>
+    <span class="nv">tgcEncryptionOutput</span><span class="o">=</span><span class="nv">$CAS_ENV</span><span class="s2">&quot;_TGC_ENCRYPTION_KEY: &quot;</span><span class="nv">$tgcEncryption</span>
+    <span class="nb">echo</span> <span class="nv">$tgcEncryptionOutput</span>
+    <span class="nb">echo</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="nb">echo</span> <span class="s2">&quot;# cas.webflow.crypto.signing.key:&quot;</span>
+    <span class="nv">webflowSigning</span><span class="o">=</span><span class="k">$(</span>java -jar jwk-gen.jar -t oct -s <span class="m">512</span> <span class="p">|</span> grep k.: <span class="p">|</span> cut -f4 -d<span class="se">\&quot;</span><span class="k">)</span>
+    <span class="nv">webflowSigningOutput</span><span class="o">=</span><span class="nv">$CAS_ENV</span><span class="s2">&quot;_WEBFLOW_SIGNING_KEY: &quot;</span><span class="nv">$webflowSigning</span>
+    <span class="nb">echo</span> <span class="nv">$webflowSigningOutput</span>
+    <span class="nb">echo</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="nb">echo</span> <span class="s2">&quot;# cas.webflow.crypto.encryption.key:&quot;</span>
+    <span class="nv">webflowEncryption</span><span class="o">=</span><span class="k">$(</span>openssl rand -base64 <span class="m">16</span><span class="k">)</span>
+    <span class="nv">webflowEncryptionOutput</span><span class="o">=</span><span class="nv">$CAS_ENV</span><span class="s2">&quot;_WEBFLOW_ENCRYPTION_KEY: &quot;</span><span class="nv">$webflowEncryption</span>
+    <span class="nb">echo</span> <span class="nv">$webflowEncryptionOutput</span>
+    <span class="nb">echo</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="nb">echo</span> <span class="s2">&quot;# cas.ticket.registry.hazelcast.crypto.signing.key:&quot;</span>
+    <span class="nv">ticketSigning</span><span class="o">=</span><span class="k">$(</span>java -jar jwk-gen.jar -t oct -s <span class="m">512</span> <span class="p">|</span> grep k.: <span class="p">|</span> cut -f4 -d<span class="se">\&quot;</span><span class="k">)</span>
+    <span class="nv">ticketSigningOutput</span><span class="o">=</span><span class="nv">$CAS_ENV</span><span class="s2">&quot;_CAS_HAZELCAST_SIGNING_KEY: &quot;</span><span class="nv">$ticketSigning</span>
+    <span class="nb">echo</span> <span class="nv">$ticketSigningOutput</span>
+    <span class="nb">echo</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="nb">echo</span> <span class="s2">&quot;# cas.ticket.registry.hazelcast.crypto.encryption.key&quot;</span>
+    <span class="nv">ticketEncryption</span><span class="o">=</span><span class="k">$(</span>openssl rand -base64 <span class="m">16</span><span class="k">)</span>
+    <span class="nv">ticketEncryptionOutput</span><span class="o">=</span><span class="nv">$CAS_ENV</span><span class="s2">&quot;_CAS_HAZELCAST_ENCRYPTION_KEY: &quot;</span><span class="nv">$ticketEncryption</span>
+    <span class="nb">echo</span> <span class="nv">$ticketEncryptionOutput</span>
+    <span class="nb">echo</span> <span class="s2">&quot;&quot;</span>
+
+<span class="k">else</span>
+    <span class="nb">echo</span> <span class="s2">&quot;Enter DEV, TEST, or PROD for environment&quot;</span>
+<span class="k">fi</span>
+</code></pre></div>
+<h3 id="example-of-output">Example of output</h3>
+<p>As previously noted - these are of course not my real keys.</p>
+<div class="highlight"><pre><span></span><code><span class="gp">[chauvetp@login6deva ~]$ </span>./generate-keys.sh 
+<span class="go">Specify the environment that you are generating keys for (DEV/TEST/PROD): </span>
+<span class="go">DEV</span>
+<span class="gp"># </span>cas.tgc.crypto.signing.key:
+<span class="go">DEV_TGC_SIGNING_KEY: 9v5s2DnNgGMK5dAsa3morDuUB7haZJ2yTX9XBZbu9fLJYoTfg1_OOyLMe-oTAx8UMmonVkYoT8mcgMBuUAoTag</span>
+
+<span class="gp"># </span>cas.tgc.crypto.encryption.key:
+<span class="go">DEV_TGC_ENCRYPTION_KEY: dJTxu7LkM6TQcm2_Y4qF7NfLzmgNXyFrWk1jgFg4e6s</span>
+
+<span class="gp"># </span>cas.webflow.crypto.signing.key:
+<span class="go">DEV_WEBFLOW_SIGNING_KEY: NJ52ZvKqWa_gRhcwYUONOD4YIlldz_gapiGmufv0hebWxEkAv_ZOGcQfkYiXW7-BbOzh9At_gzTTF-5cyfOAdg</span>
+
+<span class="gp"># </span>cas.webflow.crypto.encryption.key:
+<span class="go">DEV_WEBFLOW_ENCRYPTION_KEY: QRMYFG1NwIAQW5J7OxddwA==</span>
+
+<span class="gp"># </span>cas.ticket.registry.hazelcast.crypto.signing.key:
+<span class="go">DEV_CAS_HAZELCAST_SIGNING_KEY: i3stPkvGFo86nuXHX2Y4AIaU__Cop1O0maBQe2bVRk1sVC_QYAq0nGlksnv6EcJAcDY3sf5Yzk-Ye9Oe3Hw_lQ</span>
+
+<span class="gp"># </span>cas.ticket.registry.hazelcast.crypto.encryption.key
+<span class="go">DEV_CAS_HAZELCAST_ENCRYPTION_KEY: Au9CEFNrOPItYbGNFSDQUw==</span>
+</code></pre></div>
 <h2 id="save-your-vault-file">Save your vault file</h2>
 <p>That's it for the vault file for now - save it.</p>
 <h2 id="references">References</h2>
 <ul>
 <li><a href="https://docs.ansible.com/ansible/latest/user_guide/vault.html">Encrypting content with Ansible Vault</a></li>
+<li><a href="https://programmingby.design/knowledge-base/a-cas-primer/">William Jojo's CAS Primer</a></li>
 </ul>
                 
               

@@ -1269,7 +1269,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../azure-conditional/overview.md" class="md-nav__link">
+      <a href="../../azure-conditional/overview/" class="md-nav__link">
         Azure Conditional Access
       </a>
     </li>
@@ -1397,10 +1397,10 @@
 <p>Make sure not to ever let your real values for these end up in a public git repo.  The ones shown here I generated just for this article and are not what are in use in my environment.</p>
 </div>
 <p><strong>roles/cas6/vars/cas-vault.yml:</strong>
-<div class="highlight"><pre><span></span><code><span class="nt">dev_tgc_signing_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dYffipMGbhIoyUsSHwzEDcBk5nbETZtH-lR3R776wNavS4koAHyQkDdK_rJIWrYYgZZ2TsLW5NXfcDI_Ivn4Uw</span>
-<span class="nt">dev_tgc_encryption_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Gpy6fxMnh5RhmFUJWVcJL9WIAuFODzTlPIaQOTq9-jM</span>
-<span class="nt">dev_webflow_signing_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">xoWJ9S2vmTgvB_CdZeddb1qmqPihBGIw5Op27MsNxfR8KWgPgrx4VXpssTTM3IcXkLJVoxTylg_hSxvH65M88g</span>
-<span class="nt">dev_webflow_encryption_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">qnHUX0kyFHc718oh/f+ebw==</span>
+<div class="highlight"><pre><span></span><code><span class="nt">DEV_TGC_SIGNING_KEY</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dYffipMGbhIoyUsSHwzEDcBk5nbETZtH-lR3R776wNavS4koAHyQkDdK_rJIWrYYgZZ2TsLW5NXfcDI_Ivn4Uw</span>
+<span class="nt">DEV_TGC_ENCRYPTION_KEY</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Gpy6fxMnh5RhmFUJWVcJL9WIAuFODzTlPIaQOTq9-jM</span>
+<span class="nt">DEV_WEBFLOW_SIGNING_KEY</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">xoWJ9S2vmTgvB_CdZeddb1qmqPihBGIw5Op27MsNxfR8KWgPgrx4VXpssTTM3IcXkLJVoxTylg_hSxvH65M88g</span>
+<span class="nt">DEV_WEBFLOW_ENCRYPTION_KEY</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">qnHUX0kyFHc718oh/f+ebw==</span>
 </code></pre></div></p>
 <h2 id="setup-templates">Setup templates</h2>
 <p>To start - the only template files we need are:</p>
@@ -1453,7 +1453,7 @@
 <span class="p p-Indicator">-</span> <span class="nt">include_vars</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cas-vault.yml</span>
 
 <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ensure base CAS config directory exists</span>
-  <span class="nt">file</span><span class="p">:</span>
+  <span class="nt">ansible.builtin.file</span><span class="p">:</span>
     <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/cas/config</span>
     <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">directory</span>
     <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">770</span>
@@ -1461,7 +1461,7 @@
     <span class="nt">group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
 
 <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ensure base CAS services directory exists</span>
-  <span class="nt">file</span><span class="p">:</span>
+  <span class="nt">ansible.builtin.file</span><span class="p">:</span>
     <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/cas/services</span>
     <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">directory</span>
     <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">750</span>
@@ -1469,7 +1469,7 @@
     <span class="nt">group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
 
 <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ensure base CAS log directory exists</span>
-  <span class="nt">file</span><span class="p">:</span>
+  <span class="nt">ansible.builtin.file</span><span class="p">:</span>
     <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/log/cas</span>
     <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">directory</span>
     <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0750</span>
@@ -1480,7 +1480,7 @@
 <span class="c1"># a different config file for each.  The &#39;when&#39; on inventory_hostname is used to</span>
 <span class="c1"># differentiate here.</span>
 <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Configure cas.properties file (dev)</span>
-  <span class="nt">template</span><span class="p">:</span>
+  <span class="nt">ansible.builtin.template</span><span class="p">:</span>
     <span class="nt">src</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dev-cas.properties.j2</span>
     <span class="nt">dest</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/cas/config/cas.properties</span>
     <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0640</span>
@@ -1522,7 +1522,7 @@
 <div class="highlight"><pre><span></span><code><span class="nn">---</span>
 
 <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;Copy</span><span class="nv"> </span><span class="s">CAS</span><span class="nv"> </span><span class="s">Apache</span><span class="nv"> </span><span class="s">AJP</span><span class="nv"> </span><span class="s">proxy</span><span class="nv"> </span><span class="s">config&quot;</span>
-  <span class="nt">template</span><span class="p">:</span>
+  <span class="nt">ansible.builtin.template</span><span class="p">:</span>
     <span class="nt">src</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cas-ajp.conf.j2</span>
     <span class="nt">dest</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/httpd/conf.d/cas-ajp.conf</span>
     <span class="nt">owner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>

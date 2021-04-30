@@ -1227,7 +1227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../azure-conditional/overview.md" class="md-nav__link">
+      <a href="../../../azure-conditional/overview/" class="md-nav__link">
         Azure Conditional Access
       </a>
     </li>
@@ -1302,7 +1302,7 @@
                 
                 <h1 id="setting-up-apache-httpd-in-front-of-tomcat">Setting up Apache HTTPD in front of Tomcat</h1>
 <p>I prefer, for a number of reasons, to put Apache httpd in front of Tomcat (even though there's a load balancer in front of the CAS servers as well.  I'm sure there's ways around this, but I like the flexibility that it provides me, and I also have had other applications on the CAS servers that are not running on Tomcat and still need to be accessible (including SimpleSAML for applications we haven't moved to Azure or directly into CAS yet).</p>
-<p>For now, I'm not going to go over full configuration of Apache httpd here.  I will <em>eventually</em> (hopefully by end of March 2021) put up my steps and Ansible playbooks to get httpd running, but for now - I'll mention the Tomcat/httpd specific portion.</p>
+<p>For now, I'm not going to go over full configuration of Apache httpd here.  I will <em>eventually</em> (hopefully by end of Spring 2021) put up my steps and Ansible playbooks to get httpd running, but for now - I'll mention the Tomcat/httpd specific portion.</p>
 <p>We use AJP for communication between Apache httpd and Apache Tomcat.  Configuring this is in two steps, one on the httpd server and one on Tomcat.</p>
 <h2 id="on-the-httpd-server">On the httpd server</h2>
 <p>Create a configuration file in /etc/httpd/conf.d.  We call ours 'cas-ajp.conf' but it doesn't matter as long as it ends in .conf.  The contents of which are below:</p>

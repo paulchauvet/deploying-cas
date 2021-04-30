@@ -829,8 +829,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#wait-whered-those-crazy-number-come-from" class="md-nav__link">
-    Wait - where'd those crazy number come from?
+  <a href="#wait-whered-those-crazy-numbers-come-from" class="md-nav__link">
+    Wait - where'd those crazy numbers come from?
   </a>
   
 </li>
@@ -1286,7 +1286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../azure-conditional/overview.md" class="md-nav__link">
+      <a href="../../azure-conditional/overview/" class="md-nav__link">
         Azure Conditional Access
       </a>
     </li>
@@ -1355,8 +1355,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#wait-whered-those-crazy-number-come-from" class="md-nav__link">
-    Wait - where'd those crazy number come from?
+  <a href="#wait-whered-those-crazy-numbers-come-from" class="md-nav__link">
+    Wait - where'd those crazy numbers come from?
   </a>
   
 </li>
@@ -1465,11 +1465,15 @@ cas.serviceRegistry.json.location=file:/etc/cas/services
   <span class="nt">&quot;evaluationOrder&quot;</span> <span class="p">:</span>   <span class="mi">99999</span>
 <span class="p">}</span>
 </code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Make sure to get rid of this wildcard service before moving into production....</p>
+</div>
 <p>The CAS documentation recommends the following naming convention for JSON service definition files:</p>
 <div class="highlight"><pre><span></span><code>JSON filename = serviceName + &quot;-&quot; + serviceNumericId + &quot;.json&quot;
 </code></pre></div>
 <p>Therefore, the filename for the wildcard service definition above should be: <strong>HTTPSWildcard-1614029117.json</strong></p>
-<h3 id="wait-whered-those-crazy-number-come-from">Wait - where'd those crazy number come from?</h3>
+<h3 id="wait-whered-those-crazy-numbers-come-from">Wait - where'd those crazy numbers come from?</h3>
 <p>Techincally the id number just needs to be something unique.  One way to do this is with the <mark class="critic">date +%s</mark> command in Linux, which will give you the date/time as the number of seconds in the unix epoch.  The 'evaluationOrder' is set really high here since it will process anything here - but you want a wildcard like this to run last.</p>
 <p>The fields we've used so far are defined as:</p>
 <table>
@@ -1516,7 +1520,7 @@ cas.serviceRegistry.json.location=file:/etc/cas/services
 <div class="highlight"><pre><span></span><code><span class="nn">---</span>
 
 <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ensure service files are populated from templates</span>
-  <span class="nt">template</span><span class="p">:</span>
+  <span class="nt">ansible.builtin.template</span><span class="p">:</span>
     <span class="nt">src</span><span class="p">:</span> <span class="s">&#39;{{</span><span class="nv"> </span><span class="s">item.src</span><span class="nv"> </span><span class="s">}}&#39;</span>
     <span class="nt">dest</span><span class="p">:</span> <span class="s">&#39;/etc/cas/services/{{</span><span class="nv"> </span><span class="s">item.path</span><span class="nv"> </span><span class="s">}}&#39;</span>
     <span class="nt">owner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
@@ -1525,7 +1529,7 @@ cas.serviceRegistry.json.location=file:/etc/cas/services
   <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">item.state == &#39;file&#39; and &#39;login6dev&#39; in inventory_hostname</span>
 </code></pre></div></p>
 <p>This is a way of getting a whole directory copied over instead of a single file.  Otherwise you'd have to define an ansible template for each service you have - which could get pretty large (though is okay if you prefer it!).</p>
-<p>With this in place - any services that are defined in the dev-services directory will be copied over.  Note: it will not DELETE services.  This is still to be done.</p>
+<p>With this in place - any services that are defined in the dev-services directory will be copied over.  Note: it will not DELETE services.  This is still to be implemented.</p>
 <h2 id="rebuild-and-redeploy-cas">Rebuild and redeploy CAS</h2>
 <p>To rebuild CAS with this dependency built in, you'll want to go to the cas-overlay-template directory and run the following and wait a moment for it to be complete:
 <div class="highlight"><pre><span></span><code>./gradlew clean build

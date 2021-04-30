@@ -1225,7 +1225,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../azure-conditional/overview.md" class="md-nav__link">
+      <a href="../../azure-conditional/overview/" class="md-nav__link">
         Azure Conditional Access
       </a>
     </li>
@@ -1309,19 +1309,19 @@
 <span class="c">&lt;!-- Specify the refresh internal in seconds. --&gt;</span>
 <span class="nt">&lt;Configuration</span> <span class="na">monitorInterval=</span><span class="s">&quot;5&quot;</span> <span class="na">packages=</span><span class="s">&quot;org.apereo.cas.logging&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;Properties&gt;</span>
-        <span class="nt">&lt;Property</span> <span class="na">name=</span><span class="s">&quot;baseDir&quot;</span><span class="nt">&gt;</span>/var/log<span class="nt">&lt;/Property&gt;</span>
-
-<span class="hll">        <span class="nt">&lt;Property</span> <span class="na">name=</span><span class="s">&quot;cas.log.level&quot;</span><span class="nt">&gt;</span>info<span class="nt">&lt;/Property&gt;</span>
-</span></code></pre></div></p>
+<span class="hll">        <span class="nt">&lt;Property</span> <span class="na">name=</span><span class="s">&quot;baseDir&quot;</span><span class="nt">&gt;</span>/var/log<span class="nt">&lt;/Property&gt;</span>
+</span>
+        <span class="nt">&lt;Property</span> <span class="na">name=</span><span class="s">&quot;cas.log.level&quot;</span><span class="nt">&gt;</span>info<span class="nt">&lt;/Property&gt;</span>
+</code></pre></div></p>
 <p>Altered config with /var/log/cas as the directory:
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span>
 <span class="c">&lt;!-- Specify the refresh internal in seconds. --&gt;</span>
 <span class="nt">&lt;Configuration</span> <span class="na">monitorInterval=</span><span class="s">&quot;5&quot;</span> <span class="na">packages=</span><span class="s">&quot;org.apereo.cas.logging&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;Properties&gt;</span>
-        <span class="nt">&lt;Property</span> <span class="na">name=</span><span class="s">&quot;baseDir&quot;</span><span class="nt">&gt;</span>/var/log/cas<span class="nt">&lt;/Property&gt;</span>
-
-<span class="hll">        <span class="nt">&lt;Property</span> <span class="na">name=</span><span class="s">&quot;cas.log.level&quot;</span><span class="nt">&gt;</span>info<span class="nt">&lt;/Property&gt;</span>
-</span></code></pre></div></p>
+<span class="hll">        <span class="nt">&lt;Property</span> <span class="na">name=</span><span class="s">&quot;baseDir&quot;</span><span class="nt">&gt;</span>/var/log/cas<span class="nt">&lt;/Property&gt;</span>
+</span>
+        <span class="nt">&lt;Property</span> <span class="na">name=</span><span class="s">&quot;cas.log.level&quot;</span><span class="nt">&gt;</span>info<span class="nt">&lt;/Property&gt;</span>
+</code></pre></div></p>
 <p>You'll also need to ensure that /var/log/cas exists, and is owned by tomcat (though you can skip this as our Ansible playbook will handle this):</p>
 <div class="highlight"><pre><span></span><code>mkdir /var/log/cas
 chown tomcat:tomcat /var/log/cas
