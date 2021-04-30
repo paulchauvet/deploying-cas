@@ -62,8 +62,23 @@ Edit your *cas-vault.yml* file within *roles/cas6/vars/*
 
 You'll need to fill out the following:
 DEV_CAS_SERVERS: <comma separated list if IPs or DNS names for your servers in this tier>
-DEV_CAS_HAZELCAST_SIGNING_KEY: <see generating singing key section below>
-DEV_CAS_HAZELCAST_ENCRYPTION_KEY: <see generating encryption key section below>
+DEV_CAS_HAZELCAST_SIGNING_KEY: <see generating hazelcast keys section below>
+DEV_CAS_HAZELCAST_ENCRYPTION_KEY: <see generating hazelcast keys section below>
+
+
+## Generating Hazelcast keys
+The *Generating all necessary keys* section near the bottom of the [Initial CAS Config](../building-cas/initial-cas-config.md) section of this document covers generating these keys.  They are the last two keys generated in that section.  You will still need the [key generation tool](https://raw.githubusercontent.com/apereo/cas/master/etc/jwk-gen.jar).  You can see that section or the two subsections below for generating the signing and encryption keys.
+
+Either way - place these keys in your Ansible vault variable file or directly in your cas.properties file.
+
+### Generate the signing key
+1. Run: **java -jar jwk-gen.jar -t oct -s 512 | grep k.: | cut -f4 -d\"**
+2. Enter the output as your *DEV_CAS_HAZELCAST_SIGNING_KEY* in your Ansible vault (or if not using Ansible vault - just put it directly as the value for *cas.ticket.registry.hazelcast.crypto.signing.key* in your cas.properties file.)
+
+### Generate the encryption key
+1. Run: **openssl rand -base64 16**
+2. Enter the output as your *DEV_CAS_HAZELCAST_ENCRYPTION_KEY* in your Ansible vault (or if not using Ansible vault - just put it directly as the value for *cas.ticket.registry.hazelcast.crypto.encryption.key* in your cas.properties file.)
+
 
 
 ## Rerun the playbook

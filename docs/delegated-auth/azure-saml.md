@@ -8,8 +8,8 @@ Azure Active Directory needs to have an application registered in order for CAS 
 
 1. Go to the [Azure AD portal](https://aad.portal.azure.com).
 2. Click *Enterprise Applications*.
-3. At the top, click *Create your own application*
-4. Select *Integrate any other application you don't find in the gallery (Non-gallery)*, then give your app a name.  This name is, at least by default, user visible (depending on where users look) so I recommend something clear like *"YourSchoolLogin-Dev"*, *"YourSchoolLogin-Test"* or *"YourSchoolLogin"* (for prod).
+3. At the top, click *New application* then *Create your own application* near the top left.
+4. Select *Integrate any other application you don't find in the gallery (Non-gallery)*, then give your app a name.  This name is, at least by default, user visible (depending on where users look) so I recommend something clear like *"Your School Login-Dev"*, *"Your School Login-Test"* or *"Your School Login"* (for prod).
 5. Click Users and groups on the left.  Use this section to add any users or groups who need access - though you may want to start with one or more test users.
 6. Click *Single sign-on* on the left, then SAML.
 7. Copy the *App Federation Metadata URL* - you'll need this for the DEV_AZURE_METADATA_PATH later.
@@ -186,6 +186,7 @@ There's a few remaining things to do in Azure.
 * Have the sp-metadata.xml file available from CAS then go back to the application you created earlier in Azure (Azure AAD -> Enterprise Applications -> Search for your app)
 * Go to the Single sign-on tab
 * Click *Upload metadata file* near the top and navigate to the sp-metadata.xml file then click *Add* then *Save*
+* Optional: Within the Properties section - you may want to set "Visible to Users" to *no*.
 
 ### Transform username
 !!! note "Environment specific"

@@ -88,6 +88,8 @@ nav:
     - OIDC (incomplete): delegated-auth/azure-oidc-incomplete.md
     - Testing Delegated Auth: delegated-auth/testing.md
   - Azure Conditional Access: azure-conditional/overview.md
+  - Themes: theming/overview.md
+  - Final tasks: final-setup/overview.md
   - Future tasks: about/future-tasks.md
 
       
