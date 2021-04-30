@@ -116,6 +116,7 @@ First update main.yml and include a reference to a new sub-task:
     mode: 0600
     owner: tomcat
     group: tomcat
+  ignore_errors: yes        
   when: ("login6dev" in inventory_hostname)
   notify: restart tomcat
 
@@ -126,6 +127,7 @@ First update main.yml and include a reference to a new sub-task:
     mode: 0600
     owner: tomcat
     group: tomcat
+  ignore_errors: yes    
   when: ("login6dev" in inventory_hostname)
   notify: restart tomcat
 
@@ -136,6 +138,7 @@ First update main.yml and include a reference to a new sub-task:
     mode: 0600
     owner: tomcat
     group: tomcat
+  ignore_errors: yes    
   when: ("login6dev" in inventory_hostname)
   notify: restart tomcat
 
@@ -147,6 +150,7 @@ First update main.yml and include a reference to a new sub-task:
     owner: tomcat
     group: tomcat
   when: ("login6dev" in inventory_hostname)
+  ignore_errors: yes    
   notify: restart tomcat
 
 - name: Ensure samlKeystore.jks (DEV) is up-to-date
@@ -157,8 +161,14 @@ First update main.yml and include a reference to a new sub-task:
     owner: tomcat
     group: tomcat
   when: ("login6dev" in inventory_hostname)
+  ignore_errors: yes    
   notify: restart tomcat
 ``` 
+
+!!! note "Why the ignore_errors setting?"
+    This is the only place so far that the 'ignore_errors' is used - and it's used for all the tasks here.  You may be wondering why?
+
+    The reason for this - is that when the CAS6 playbook is first being run - those files will not exist.  You'll run this on one server, start up CAS, and go to the CAS login page.  That will cause these files (samlKeystore.jks, sp-metadata.xml, and the various saml-signing-certs) to be created.  Once you have them created on one host in a tier, you can copy them from that host to your Ansible files directory (and encrypt them if you're going to have them in git)
 
 ## Rerun the playbook
 

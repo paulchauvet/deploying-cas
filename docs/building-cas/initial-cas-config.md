@@ -39,11 +39,11 @@ logging.config: file:/etc/cas/config/log4j2.xml
 cas.serviceRegistry.json.location=file:/etc/cas/services
 
 cas.tgc.secure:                         true
-cas.tgc.crypto.signing.key:             {{ dev_tgc_signing_key }}
-cas.tgc.crypto.encryption.key:          {{ dev_tgc_encryption_key }}
+cas.tgc.crypto.signing.key:             {{ DEV_TGC_SIGNING_KEY }}
+cas.tgc.crypto.encryption.key:          {{ DEV_TGC_ENCRYPTION_KEY }}
 
-cas.webflow.crypto.signing.key:         {{ dev_webflow_signing_key }}
-cas.webflow.crypto.encryption.key:      {{ dev_webflow_encryption_key }}
+cas.webflow.crypto.signing.key:         {{ DEV_WEBFLOW_SIGNING_KEY }}
+cas.webflow.crypto.encryption.key:      {{ DEV_WEBFLOW_ENCRYPTION_KEY }}
 
 # Default handler - enable only for testing - leave blank (not commented out) to disable
 cas.authn.accept.users=YourTestUser::YourTestPassword
@@ -75,10 +75,10 @@ You'll be prompted to enter, and re-enter, a password/passphrase.  Choose someth
 It will then bring you into your system's default editor (if you're on Linux, vi by default).  You can put placeholders for the variables we need there:
 
 ``` yaml
-dev_tgc_signing_key: 
-dev_tgc_encryption_key: 
-dev_webflow_signing_key: 
-dev_webflow_encryption_key: 
+DEV_TGC_SIGNING_KEY: 
+DEV_TGC_ENCRYPTION_KEY: 
+DEV_WEBFLOW_SIGNING_KEY: 
+DEV_WEBFLOW_ENCRYPTION_KEY: 
 ```
 
 Save the file for now.  You can edit again via the following (you'll be prompted for your password):
@@ -97,7 +97,7 @@ The CAS server uses a ticket granting cookie in the browser to maintain login st
 3. Set *Key Size* to 512, *Key Use* to Signature, and *Algorithm* to HS256.
 4. Click *Generate*.
 5. You'll see a *Shared Key* box.  Find the value for "k" there, and copy it.
-6. Enter that as your *dev_tgc_signing_key* in your Ansible vault (or if not using Ansible vault - just put it directly as the value for *cas.tgc.crypto.signing.key*)
+6. Enter that as your *DEV_TGC_SIGNING_KEY* in your Ansible vault (or if not using Ansible vault - just put it directly as the value for *cas.tgc.crypto.signing.key*)
 
 ### To generate the second key (cas.tgc.crypto.encryption.key):
 
@@ -106,7 +106,7 @@ While still at the [JSON Web Key Generator](https://mkjwk.org/) in the 'oct' tab
 1. Set *Key Size* to 256, and keep the other settings, *Key Use* to Signature, and *Algorithm* to HS256, the same.
 2. Click *Generate*.
 3. You'll see a *Shared Key* box.  Find the value for "k" there, and copy it.
-4. Enter that as your *dev_tgc_encryption_key* in your Ansible vault (or if not using Ansible vault - just put it directly as the value for *cas.tgc.crypto.encryption.key*)
+4. Enter that as your *DEV_TGC_ENCRYPTION_KEY* in your Ansible vault (or if not using Ansible vault - just put it directly as the value for *cas.tgc.crypto.encryption.key*)
 
 ## Configure Spring Webflow encryption
 CAS uses Spring Webflow to manage the authentication sequence, and this also needs to be encrypted.
@@ -117,7 +117,7 @@ While still at the [JSON Web Key Generator](https://mkjwk.org/) in the 'oct' tab
 1. Set *Key Size* to 512, and keep the other settings, *Key Use* to Signature, and *Algorithm* to HS256, the same.
 2. Click *Generate*.
 3. You'll see a *Shared Key* box.  Find the value for "k" there, and copy it.
-4. Enter that as your *dev_webflow_signing_key* in your Ansible vault (or if not using Ansible vault - just put it directly as the value for *cas.webflow.crypto.signing.key*)
+4. Enter that as your *DEV_WEBFLOW_SIGNING_KEY* in your Ansible vault (or if not using Ansible vault - just put it directly as the value for *cas.webflow.crypto.signing.key*)
 
 ### Generate the second key (cas.webflow.crypto.encryption.key):
 This one is different.  Unlike the ticket granting cookie encryption key above, the encryption key for Spring WebFlow is not a JSON Web Key. Rather, it’s a randomly-generated string of 16 (by default) octets, Base64-encoded. An easy way to generate this key is to use openssl:
@@ -127,7 +127,7 @@ This one is different.  Unlike the ticket granting cookie encryption key above, 
 NwriHAJ1Li2YnKxBbhUEVw==
 [chauvetp@login6deva tmp]$ 
 ```
-Enter that as your *dev_webflow_encryption_key* in your Ansible vault (or if not using Ansible vault - just put it directly as the value for *cas.webflow.crypto.encryption.key*)
+Enter that as your *DEV_WEBFLOW_ENCRYPTION_KEY* in your Ansible vault (or if not using Ansible vault - just put it directly as the value for *cas.webflow.crypto.encryption.key*)
 
 
 !!! note ""

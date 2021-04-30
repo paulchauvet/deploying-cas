@@ -86,10 +86,10 @@ You'll want to edit your cas-vault.yml file (*ansible-vault edit cas-vault.yml*)
 
 ``` yaml
 # As previously mentioned - these are not my real keys
-dev_tgc_signing_key: WEebZqgDjfKJei0XM-owdfueb3lZ3lyKKXAL8wLUoLfc2qTFWyBmYxVQBSLslau70uJH_gGM5teTqgbDD3Xcag
-dev_tgc_encryption_key: zyTzo8eMzToxP9_Kmk33iFVKVFMJD8873ZGA9Z_2Fco
-dev_webflow_signing_key: _mUEdBjyFlfbvKaGPnAtIbQ7sEkMO2A57lCu3OKz835NeNZqcOCsVo6WmCc95TMgdmahP-aP1lXBpqjd4rU2-g
-dev_webflow_encryption_key: JnGirTeE8yp3Jp/Mg9Z5Pg==
+DEV_TGC_SIGNING_KEY: WEebZqgDjfKJei0XM-owdfueb3lZ3lyKKXAL8wLUoLfc2qTFWyBmYxVQBSLslau70uJH_gGM5teTqgbDD3Xcag
+DEV_TGC_ENCRYPTION_KEY: zyTzo8eMzToxP9_Kmk33iFVKVFMJD8873ZGA9Z_2Fco
+DEV_WEBFLOW_SIGNING_KEY: _mUEdBjyFlfbvKaGPnAtIbQ7sEkMO2A57lCu3OKz835NeNZqcOCsVo6WmCc95TMgdmahP-aP1lXBpqjd4rU2-g
+DEV_WEBFLOW_ENCRYPTION_KEY: JnGirTeE8yp3Jp/Mg9Z5Pg==
 
 # You will have to change these for your own environment
 AD_SERVER_0: server.domain.edu

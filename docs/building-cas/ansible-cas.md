@@ -6,10 +6,10 @@ If you setup the four variables we needed in the encrypted vault file, you're re
 
 **roles/cas6/vars/cas-vault.yml:**
 ``` yaml
-dev_tgc_signing_key: dYffipMGbhIoyUsSHwzEDcBk5nbETZtH-lR3R776wNavS4koAHyQkDdK_rJIWrYYgZZ2TsLW5NXfcDI_Ivn4Uw
-dev_tgc_encryption_key: Gpy6fxMnh5RhmFUJWVcJL9WIAuFODzTlPIaQOTq9-jM
-dev_webflow_signing_key: xoWJ9S2vmTgvB_CdZeddb1qmqPihBGIw5Op27MsNxfR8KWgPgrx4VXpssTTM3IcXkLJVoxTylg_hSxvH65M88g
-dev_webflow_encryption_key: qnHUX0kyFHc718oh/f+ebw==
+DEV_TGC_SIGNING_KEY: dYffipMGbhIoyUsSHwzEDcBk5nbETZtH-lR3R776wNavS4koAHyQkDdK_rJIWrYYgZZ2TsLW5NXfcDI_Ivn4Uw
+DEV_TGC_ENCRYPTION_KEY: Gpy6fxMnh5RhmFUJWVcJL9WIAuFODzTlPIaQOTq9-jM
+DEV_WEBFLOW_SIGNING_KEY: xoWJ9S2vmTgvB_CdZeddb1qmqPihBGIw5Op27MsNxfR8KWgPgrx4VXpssTTM3IcXkLJVoxTylg_hSxvH65M88g
+DEV_WEBFLOW_ENCRYPTION_KEY: qnHUX0kyFHc718oh/f+ebw==
 ```
                                                 
 ## Setup templates
