@@ -13,14 +13,14 @@
         <meta name="author" content="Paul Chauvet">
       
       
-        <link rel="canonical" href="https://paulchauvet.github.io/deploying-cas/cas-client/overview/">
+        <link rel="canonical" href="https://paulchauvet.github.io/deploying-cas/final-setup/overview/">
       
       <link rel="shortcut icon" href="../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
     
     
       
-        <title>CAS client overview - Deploying Apereo CAS 6</title>
+        <title>Final tasks - Deploying Apereo CAS 6</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#cas-client-overview" class="md-skip">
+        <a href="#final-tasks" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              CAS client overview
+              Final tasks
             
           </span>
         </div>
@@ -793,14 +793,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" >
       
       <label class="md-nav__link" for="nav-6">
         Building CAS client
@@ -817,70 +815,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          CAS client overview
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../cas-client/overview/" class="md-nav__link">
         CAS client overview
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#configuring-httpd-to-use-cas" class="md-nav__link">
-    Configuring HTTPD to use CAS
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-ansible-role" class="md-nav__link">
-    Create Ansible role
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#variable-setup" class="md-nav__link">
-    Variable setup
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#handler-setup" class="md-nav__link">
-    Handler setup
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -890,7 +829,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cas-client-pages/" class="md-nav__link">
+      <a href="../../cas-client/cas-client-pages/" class="md-nav__link">
         Create test/example pages
       </a>
     </li>
@@ -902,7 +841,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../build-cas-client/" class="md-nav__link">
+      <a href="../../cas-client/build-cas-client/" class="md-nav__link">
         Configure httpd to use CAS
       </a>
     </li>
@@ -914,7 +853,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../test-cas-client/" class="md-nav__link">
+      <a href="../../cas-client/test-cas-client/" class="md-nav__link">
         Test the application
       </a>
     </li>
@@ -1267,11 +1206,20 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../final-setup/overview/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Final tasks
       </a>
+      
     </li>
   
 
@@ -1309,42 +1257,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#configuring-httpd-to-use-cas" class="md-nav__link">
-    Configuring HTTPD to use CAS
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-ansible-role" class="md-nav__link">
-    Create Ansible role
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#variable-setup" class="md-nav__link">
-    Variable setup
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#handler-setup" class="md-nav__link">
-    Handler setup
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1356,45 +1268,44 @@
               
                 
                 
-                <h1 id="cas-client-overview">CAS Client Overview</h1>
-<p>To make it easier to develop and test CAS - we should have a CAS client application.  For my development environment, I just use the mod_auth_cas plugin on our CAS development servers, within Apache httpd.</p>
-<p>We'll use this CAS client to test as we go along - including as we build out extra functionality such as MFA, attribute release, service restrictions by group or other attributes, etc.</p>
-<div class="admonition note">
-<p>As you probably noticed - I'm assuming use of Ansible at this point.  My hope is that even if you're not - what I'm providing here is still usable (and you can still read what the Ansible tasks are doing)</p>
-</div>
-<h2 id="configuring-httpd-to-use-cas">Configuring HTTPD to use CAS</h2>
-<p>The mod_auth_cas plugin allows an Apache web server to interact with a CAS server via the CAS protocol.  Red Hat does not offer this plugin for installation via yum however, so it must be downloaded and built from source code.   We'll build the plugin via Ansible as we've done for other tasks.  To start with, we'll (you guessed it) build another role so that this can be applied independently of the CAS servers.  You could also use a modified version of this role if you have Apache servers that have content you want to protect via CAS (that aren't running an app that speaks CAS natively).</p>
-<h2 id="create-ansible-role">Create Ansible role</h2>
-<div class="highlight"><pre><span></span><code><span class="gp">[chauvetp@ansible ~]$ </span><span class="nb">cd</span> ansible/roles/
-<span class="gp">[chauvetp@ansible roles]$ </span>ansible-galaxy init cas-client
-<span class="go">- Role cas-client was created successfully</span>
-<span class="gp">[chauvetp@ansible roles]$ </span>ls casclient/
-<span class="go">defaults  files  handlers  meta  README.md  tasks  templates  tests  vars</span>
-</code></pre></div>
-<h2 id="variable-setup">Variable setup</h2>
-<p>The only variable we're using here is {{ CAS_DEV_URL }}, though you can fill in the rest if you're using it on other hosts.  If your cas servers are behind a load balancer, this is the load balancer's virtual host, not the individual servers.</p>
-<p><strong>roles/cas-client/vars/main.yml:</strong>
-<div class="highlight"><pre><span></span><code><span class="nt">CAS_DEV_URL</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">your_dev_hostname.domain.edu</span>
-<span class="nt">CAS_TEST_URL</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">your_test_hostname.domain.edu</span>
-<span class="nt">CAS_PROD_URL</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">your_prod_hostname.domain.edu</span>
+                <h1 id="final-tasks">Final Tasks</h1>
+<p>So I've got way too many pages here.  I've gone through enough steps here that I'm glad I documented them for myself, even if no one else uses this!</p>
+<p>Here are the steps I've taken to move from using a development environment for CAS, to moving to TEST.  In our environment, TEST is not just for testing CAS.  It's for authentication for non-production applications.  These steps will be replicated for production.</p>
+<ol>
+<li>Update your /etc/ansible/hosts to refer to your new systems.  Here are mine as an example (note - you don't need the vmware_name or vmware_folder stuff here for the CAS/Tomcat stuff.  They are used in other playbooks I have, like those that take snapshots in VMWare before patching or major changes).
+<div class="highlight"><pre><span></span><code><span class="err">logi</span><span class="kc">n</span><span class="mi">6</span><span class="kc">testa</span> <span class="err">vmware_</span><span class="kc">na</span><span class="err">me=</span><span class="s2">&quot;Login6TestA (CAS 6 Test 1)&quot;</span> <span class="err">vmware_</span><span class="kc">f</span><span class="err">older=</span><span class="s2">&quot;/Computer Services/vm/CAS Authentication Servers&quot;</span> <span class="err">a</span><span class="kc">ns</span><span class="err">ible_py</span><span class="kc">t</span><span class="err">ho</span><span class="kc">n</span><span class="err">_i</span><span class="kc">nter</span><span class="err">pre</span><span class="kc">ter</span><span class="err">=/usr/libexec/pla</span><span class="kc">tf</span><span class="err">orm</span><span class="mi">-</span><span class="err">py</span><span class="kc">t</span><span class="err">ho</span><span class="kc">n</span> <span class="err">apache_domai</span><span class="kc">ns</span><span class="err">=</span><span class="s2">&quot;logintest.newpaltz.edu login6testa.newpaltz.edu&quot;</span> <span class="kc">t</span><span class="err">omca</span><span class="kc">t</span><span class="err">_major_ver=</span><span class="mf">9.0</span> <span class="kc">t</span><span class="err">omca</span><span class="kc">t</span><span class="err">_ver=</span><span class="mf">9.0.45</span> <span class="err">jdk_versio</span><span class="kc">n</span><span class="err">=</span><span class="mi">11</span> 
 
-<span class="c1"># The following is needed if you&#39;re using self-signed or other non-commercially signed certs</span>
-<span class="c1"># for your dev CAS server or the load balancer in front of it</span>
-<span class="nt">CAS_DEV_CERT_FILE</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">your_cert_file_name</span> 
-</code></pre></div></p>
-<h2 id="handler-setup">Handler setup</h2>
-<p><strong>roles/cas-client/handlers/main.yml:</strong>
-<div class="highlight"><pre><span></span><code><span class="c1"># handlers file for cas-client</span>
-  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">restart httpd</span>
-    <span class="nt">service</span><span class="p">:</span>
-      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;httpd&quot;</span>
-      <span class="nt">state</span><span class="p">:</span> <span class="s">&quot;restarted&quot;</span>
-
-  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">reload httpd</span>
-    <span class="nt">service</span><span class="p">:</span>
-      <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;httpd&quot;</span>
-      <span class="nt">state</span><span class="p">:</span> <span class="s">&quot;reloaded&quot;</span>
-</code></pre></div></p>
+<span class="err">logi</span><span class="kc">n</span><span class="mi">6</span><span class="kc">test</span><span class="err">b</span> <span class="err">vmware_</span><span class="kc">na</span><span class="err">me=</span><span class="s2">&quot;Login6TestB (CAS 6 Test 2)&quot;</span> <span class="err">vmware_</span><span class="kc">f</span><span class="err">older=</span><span class="s2">&quot;/Computer Services/vm/CAS Authentication Servers&quot;</span> <span class="err">a</span><span class="kc">ns</span><span class="err">ible_py</span><span class="kc">t</span><span class="err">ho</span><span class="kc">n</span><span class="err">_i</span><span class="kc">nter</span><span class="err">pre</span><span class="kc">ter</span><span class="err">=/usr/libexec/pla</span><span class="kc">tf</span><span class="err">orm</span><span class="mi">-</span><span class="err">py</span><span class="kc">t</span><span class="err">ho</span><span class="kc">n</span> <span class="err">apache_domai</span><span class="kc">ns</span><span class="err">=</span><span class="s2">&quot;logintest.newpaltz.edu login6testb.newpaltz.edu&quot;</span> <span class="kc">t</span><span class="err">omca</span><span class="kc">t</span><span class="err">_major_ver=</span><span class="mf">9.0</span> <span class="kc">t</span><span class="err">omca</span><span class="kc">t</span><span class="err">_ver=</span><span class="mf">9.0.45</span> <span class="err">jdk_versio</span><span class="kc">n</span><span class="err">=</span><span class="mi">11</span> 
+</code></pre></div></li>
+<li>
+<p>Build two or more new hosts.  For our test environment, I call these 'login6testa' and 'login6testb'.  Use whatever your existing build process for them is.  For us - we use Ansible to build VMs via Kickstart.  Maybe I'll get into that in the future here.</p>
+</li>
+<li>
+<p>Set your site.yml to include the roles you want to use.  For my environment, I use a few that aren't covered here (such as for security hardening, setting content-security-policies, or setting up apache-http), but those that are relevant for CAS are:</p>
+<ul>
+<li>apache-tomcat</li>
+<li>cas6</li>
+<li>cas6-client (not needed in production - but I still use this in test)</li>
+</ul>
+</li>
+<li>Generate the various keys (see the Generating all necessary keys section near the bottom of the <a href="../../building-cas/initial-cas-config/">initial CAS config</a>) and place them in your cas-vault.yml file.</li>
+<li>Create your Azure app as per the <a href="../../delegated-auth/azure-saml/">Azure SAML</a> page.  Get the metadata URL and put it in your cas-vault.yml</li>
+<li>Ensure you have created a test-cas.properties.j2 file - and set the variable names correctly (changing DEV_ to TEST_ in variable names when appropriate, and setting cas.server.name to your load balanced virtual host).</li>
+<li>Populate at least one service into your <em>roles/cas6/templates/test-services</em> directory</li>
+<li>Ensure your playbooks have sections for TEST configs - not just DEV</li>
+<li>Run your Ansible playbook on ONE of the servers.
+<div class="highlight"><pre><span></span><code><span class="go">ansible-playbook site.yml --ask-vault-pass --limit login6testa</span>
+</code></pre></div></li>
+<li>Place only one of the servers as active in your load balancer - then visit the site.  It will generate the various saml-signing-cert files, sp-metadata.xml, and samlKeystore.jks</li>
+<li>Copy these files to your <em>roles/cas6/files</em> directory - but rename the sp-metadata.xml and samlKeystore.jks to be tier specific (i.e. sp-metadata-TEST.xml and samlKeystore-TEST.jks).  You can then re-run the playbook on the other server(s) this will now push the sp-metadata.xml, samlKeystore, and saml-signing-cert files that were generated on the first host so they are the same in others in the tier.
+<div class="highlight"><pre><span></span><code><span class="go">ansible-playbook site.yml --ask-vault-pass --limit login6testa</span>
+</code></pre></div></li>
+<li>Finish your Azure setup (see "Finish Azure config" section of the <a href="../../delegated-auth/azure-saml/">Azure SAML</a> page).</li>
+<li>Restart tomcat on both hosts (not sure this is necessary - but it's a one time thing).</li>
+<li>Delegated auth should work now on your new tier.</li>
+</ol>
+<p>Is this really easier than doing it without Ansible?  To do it once - definitely not.  To make it repeatable and to maintain configs, service settings, Tomcat upgrades, and more - for me at least make Ansible essential for this.</p>
+<p>Maybe that's because I have too much work - but I'm sure I'm not the only one reading this who has too much work!</p>
                 
               
               
@@ -1413,7 +1324,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../../service-config/overview/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../theming/overview/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1422,19 +1333,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Service Overview
+                Themes
               </div>
             </div>
           </a>
         
         
-          <a href="../cas-client-pages/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../about/future-tasks/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Create test/example pages
+                Future tasks
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

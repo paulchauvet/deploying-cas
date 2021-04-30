@@ -1341,6 +1341,36 @@
   
   
     <li class="md-nav__item">
+      <a href="../../theming/overview/" class="md-nav__link">
+        Themes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../final-setup/overview/" class="md-nav__link">
+        Final tasks
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../about/future-tasks/" class="md-nav__link">
         Future tasks
       </a>
@@ -1510,8 +1540,8 @@
 <ol>
 <li>Go to the <a href="https://aad.portal.azure.com">Azure AD portal</a>.</li>
 <li>Click <em>Enterprise Applications</em>.</li>
-<li>At the top, click <em>Create your own application</em></li>
-<li>Select <em>Integrate any other application you don't find in the gallery (Non-gallery)</em>, then give your app a name.  This name is, at least by default, user visible (depending on where users look) so I recommend something clear like <em>"YourSchoolLogin-Dev"</em>, <em>"YourSchoolLogin-Test"</em> or <em>"YourSchoolLogin"</em> (for prod).</li>
+<li>At the top, click <em>New application</em> then <em>Create your own application</em> near the top left.</li>
+<li>Select <em>Integrate any other application you don't find in the gallery (Non-gallery)</em>, then give your app a name.  This name is, at least by default, user visible (depending on where users look) so I recommend something clear like <em>"Your School Login-Dev"</em>, <em>"Your School Login-Test"</em> or <em>"Your School Login"</em> (for prod).</li>
 <li>Click Users and groups on the left.  Use this section to add any users or groups who need access - though you may want to start with one or more test users.</li>
 <li>Click <em>Single sign-on</em> on the left, then SAML.</li>
 <li>Copy the <em>App Federation Metadata URL</em> - you'll need this for the DEV_AZURE_METADATA_PATH later.</li>
@@ -1663,6 +1693,7 @@ This will cause anyone who goes to CAS (either directly or via a redirect from a
 <li>Have the sp-metadata.xml file available from CAS then go back to the application you created earlier in Azure (Azure AAD -&gt; Enterprise Applications -&gt; Search for your app)</li>
 <li>Go to the Single sign-on tab</li>
 <li>Click <em>Upload metadata file</em> near the top and navigate to the sp-metadata.xml file then click <em>Add</em> then <em>Save</em></li>
+<li>Optional: Within the Properties section - you may want to set "Visible to Users" to <em>no</em>.</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Environment specific</p>
