@@ -9,6 +9,7 @@ I'd like to thank all those who contributed to this - whether via their public d
 * Ken Runyon of [SUNY System Administration](https://suny.edu)
 * Matt Adkins of [Liberty University](https://liberty.edu)
 * Richard Schneider of [Harding University](https://harding.edu)
+* Ray Bon of [University of Victoria](https://uvic.ca)
 * David Campman of [Forsyte IT](https://forsyteit.com)
 * Misagh Moayyed [Fawnoos](https://fawnoos.com)
 * My CIO (John Reina) and Vice-President (Michele Halstead) here at [New Paltz](https://newpaltz.edu) for not only giving me the time to work on this documentation - but also encouraging me to release it publicly for the higher ed community.
