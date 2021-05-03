@@ -13,21 +13,21 @@
         <meta name="author" content="Paul Chauvet">
       
       
-        <link rel="canonical" href="https://paulchauvet.github.io/deploying-cas/">
+        <link rel="canonical" href="https://paulchauvet.github.io/deploying-cas/about/ansible-playbooks/">
       
-      <link rel="icon" href="images/favicon.ico">
+      <link rel="icon" href="../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.3">
     
     
       
-        <title>Deploying Apereo CAS 6</title>
+        <title>Ansible Playbooks - Deploying Apereo CAS 6</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.e35208c4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e35208c4.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ef6f36e2.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ef6f36e2.min.css">
         
       
     
@@ -42,7 +42,7 @@
     
     
     
-      <link rel="stylesheet" href="stylesheets/newpaltz.css">
+      <link rel="stylesheet" href="../../stylesheets/newpaltz.css">
     
     
       
@@ -59,7 +59,7 @@
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
   
     
-    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#deploying-apereo-cas" class="md-skip">
+        <a href="#ansible-playbooks" class="md-skip">
           Skip to content
         </a>
       
@@ -78,9 +78,9 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Deploying Apereo CAS 6" class="md-header__button md-logo" aria-label="Deploying Apereo CAS 6" data-md-component="logo">
+    <a href="../.." title="Deploying Apereo CAS 6" class="md-header__button md-logo" aria-label="Deploying Apereo CAS 6" data-md-component="logo">
       
-  <img src="images/newpaltz-logo.jpg" alt="logo">
+  <img src="../../images/newpaltz-logo.jpg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Main
+              Ansible Playbooks
             
           </span>
         </div>
@@ -157,9 +157,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Deploying Apereo CAS 6" class="md-nav__button md-logo" aria-label="Deploying Apereo CAS 6" data-md-component="logo">
+    <a href="../.." title="Deploying Apereo CAS 6" class="md-nav__button md-logo" aria-label="Deploying Apereo CAS 6" data-md-component="logo">
       
-  <img src="images/newpaltz-logo.jpg" alt="logo">
+  <img src="../../images/newpaltz-logo.jpg" alt="logo">
 
     </a>
     Deploying Apereo CAS 6
@@ -173,87 +173,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Main
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
         Main
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#deploying-apereo-cas" class="md-nav__link">
-    Deploying Apereo CAS
-  </a>
-  
-    <nav class="md-nav" aria-label="Deploying Apereo CAS">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#copyright-and-licensing" class="md-nav__link">
-    Copyright and Licensing
-  </a>
-  
-    <nav class="md-nav" aria-label="Copyright and Licensing">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#documentation-content" class="md-nav__link">
-    Documentation Content
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#site-template" class="md-nav__link">
-    Site Template
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#author-information" class="md-nav__link">
-    Author Information
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -264,12 +188,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       <label class="md-nav__link" for="__nav_2">
         About
@@ -287,7 +213,7 @@
   
   
     <li class="md-nav__item">
-      <a href="about/about-new-paltz/" class="md-nav__link">
+      <a href="../about-new-paltz/" class="md-nav__link">
         About SUNY New Paltz
       </a>
     </li>
@@ -299,7 +225,7 @@
   
   
     <li class="md-nav__item">
-      <a href="about/author-information/" class="md-nav__link">
+      <a href="../author-information/" class="md-nav__link">
         About the author
       </a>
     </li>
@@ -311,7 +237,7 @@
   
   
     <li class="md-nav__item">
-      <a href="about/architecture/" class="md-nav__link">
+      <a href="../architecture/" class="md-nav__link">
         Architecture/design
       </a>
     </li>
@@ -323,7 +249,7 @@
   
   
     <li class="md-nav__item">
-      <a href="about/acknowledgements/" class="md-nav__link">
+      <a href="../acknowledgements/" class="md-nav__link">
         Acknowledgements
       </a>
     </li>
@@ -335,7 +261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="about/license/" class="md-nav__link">
+      <a href="../license/" class="md-nav__link">
         License
       </a>
     </li>
@@ -345,11 +271,47 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="about/ansible-playbooks/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Ansible Playbooks
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Ansible Playbooks
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ansible-playbooks" class="md-nav__link">
+    Ansible Playbooks
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -389,7 +351,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setting-up-the-environment/overview/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -401,7 +363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setting-up-the-environment/time-synchronization/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/time-synchronization/" class="md-nav__link">
         Configure time synchronization
       </a>
     </li>
@@ -413,7 +375,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setting-up-the-environment/build-environment/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/build-environment/" class="md-nav__link">
         Build Environment
       </a>
     </li>
@@ -446,7 +408,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setting-up-the-environment/tomcat/tomcat-overview/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat/tomcat-overview/" class="md-nav__link">
         Tomcat Overview
       </a>
     </li>
@@ -458,7 +420,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setting-up-the-environment/tomcat/entropy-daemon/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat/entropy-daemon/" class="md-nav__link">
         Install an entropy daemon
       </a>
     </li>
@@ -470,7 +432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setting-up-the-environment/tomcat/java/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat/java/" class="md-nav__link">
         Install Java
       </a>
     </li>
@@ -482,7 +444,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setting-up-the-environment/tomcat/tomcat-install/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat/tomcat-install/" class="md-nav__link">
         Install Tomcat
       </a>
     </li>
@@ -494,7 +456,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setting-up-the-environment/tomcat/tomcat-dependencies/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat/tomcat-dependencies/" class="md-nav__link">
         Install Tomcat dependencies
       </a>
     </li>
@@ -506,7 +468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setting-up-the-environment/tomcat/tomcat-organize/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat/tomcat-organize/" class="md-nav__link">
         Organize the installation
       </a>
     </li>
@@ -518,7 +480,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setting-up-the-environment/tomcat/tomcat-harden/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat/tomcat-harden/" class="md-nav__link">
         Harden the installation
       </a>
     </li>
@@ -530,7 +492,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setting-up-the-environment/tomcat/asynch-request-support/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat/asynch-request-support/" class="md-nav__link">
         Configure asynchronous request support
       </a>
     </li>
@@ -542,7 +504,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setting-up-the-environment/tomcat/config-x-forwarded/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat/config-x-forwarded/" class="md-nav__link">
         Configure X-Forwarded-For header processing
       </a>
     </li>
@@ -554,7 +516,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setting-up-the-environment/tomcat/resource-caching/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat/resource-caching/" class="md-nav__link">
         Tune resource caching settings
       </a>
     </li>
@@ -566,7 +528,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setting-up-the-environment/tomcat/configure-async-logging/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat/configure-async-logging/" class="md-nav__link">
         Configure asynchronous logging support
       </a>
     </li>
@@ -578,7 +540,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setting-up-the-environment/tomcat/systemd-service/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat/systemd-service/" class="md-nav__link">
         Configure systemd to start tomcat
       </a>
     </li>
@@ -617,7 +579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setting-up-the-environment/tomcat-ansible/tomcat-ansible-overview/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat-ansible/tomcat-ansible-overview/" class="md-nav__link">
         Ansible and Tomcat - Initial Steps
       </a>
     </li>
@@ -629,7 +591,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setting-up-the-environment/tomcat-ansible/variables/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat-ansible/variables/" class="md-nav__link">
         Setup Variables
       </a>
     </li>
@@ -641,7 +603,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setting-up-the-environment/tomcat-ansible/templates/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat-ansible/templates/" class="md-nav__link">
         Setup Templates
       </a>
     </li>
@@ -653,7 +615,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setting-up-the-environment/tomcat-ansible/handlers/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat-ansible/handlers/" class="md-nav__link">
         Setup Handlers
       </a>
     </li>
@@ -665,7 +627,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setting-up-the-environment/tomcat-ansible/tasks/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat-ansible/tasks/" class="md-nav__link">
         Creating tasks
       </a>
     </li>
@@ -677,7 +639,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setting-up-the-environment/tomcat-ansible/running-the-play/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/tomcat-ansible/running-the-play/" class="md-nav__link">
         Running the play
       </a>
     </li>
@@ -716,7 +678,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setting-up-the-environment/httpd/ajp-proxy/" class="md-nav__link">
+      <a href="../../setting-up-the-environment/httpd/ajp-proxy/" class="md-nav__link">
         Use AJP to communicate with Tomcat
       </a>
     </li>
@@ -764,7 +726,7 @@
   
   
     <li class="md-nav__item">
-      <a href="building-cas/overview/" class="md-nav__link">
+      <a href="../../building-cas/overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -776,7 +738,7 @@
   
   
     <li class="md-nav__item">
-      <a href="building-cas/create-gradle-overlay/" class="md-nav__link">
+      <a href="../../building-cas/create-gradle-overlay/" class="md-nav__link">
         Create Gradle Overlay
       </a>
     </li>
@@ -788,7 +750,7 @@
   
   
     <li class="md-nav__item">
-      <a href="building-cas/initial-cas-config/" class="md-nav__link">
+      <a href="../../building-cas/initial-cas-config/" class="md-nav__link">
         Initial CAS config
       </a>
     </li>
@@ -800,7 +762,7 @@
   
   
     <li class="md-nav__item">
-      <a href="building-cas/cas-log-config/" class="md-nav__link">
+      <a href="../../building-cas/cas-log-config/" class="md-nav__link">
         Configure CAS logs
       </a>
     </li>
@@ -812,7 +774,7 @@
   
   
     <li class="md-nav__item">
-      <a href="building-cas/ansible-cas/" class="md-nav__link">
+      <a href="../../building-cas/ansible-cas/" class="md-nav__link">
         Ansible playbook setup
       </a>
     </li>
@@ -854,7 +816,7 @@
   
   
     <li class="md-nav__item">
-      <a href="service-config/overview/" class="md-nav__link">
+      <a href="../../service-config/overview/" class="md-nav__link">
         Service Overview
       </a>
     </li>
@@ -896,7 +858,7 @@
   
   
     <li class="md-nav__item">
-      <a href="cas-client/overview/" class="md-nav__link">
+      <a href="../../cas-client/overview/" class="md-nav__link">
         CAS client overview
       </a>
     </li>
@@ -908,7 +870,7 @@
   
   
     <li class="md-nav__item">
-      <a href="cas-client/cas-client-pages/" class="md-nav__link">
+      <a href="../../cas-client/cas-client-pages/" class="md-nav__link">
         Create test/example pages
       </a>
     </li>
@@ -920,7 +882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="cas-client/build-cas-client/" class="md-nav__link">
+      <a href="../../cas-client/build-cas-client/" class="md-nav__link">
         Configure httpd to use CAS
       </a>
     </li>
@@ -932,7 +894,7 @@
   
   
     <li class="md-nav__item">
-      <a href="cas-client/test-cas-client/" class="md-nav__link">
+      <a href="../../cas-client/test-cas-client/" class="md-nav__link">
         Test the application
       </a>
     </li>
@@ -974,7 +936,7 @@
   
   
     <li class="md-nav__item">
-      <a href="active-directory/overview/" class="md-nav__link">
+      <a href="../../active-directory/overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -986,7 +948,7 @@
   
   
     <li class="md-nav__item">
-      <a href="active-directory/configure-ldap-auth/" class="md-nav__link">
+      <a href="../../active-directory/configure-ldap-auth/" class="md-nav__link">
         AD authentication
       </a>
     </li>
@@ -998,7 +960,7 @@
   
   
     <li class="md-nav__item">
-      <a href="active-directory/ad-attribute-release/" class="md-nav__link">
+      <a href="../../active-directory/ad-attribute-release/" class="md-nav__link">
         AD attribute release
       </a>
     </li>
@@ -1010,7 +972,7 @@
   
   
     <li class="md-nav__item">
-      <a href="active-directory/update-service-registry/" class="md-nav__link">
+      <a href="../../active-directory/update-service-registry/" class="md-nav__link">
         Update service registry
       </a>
     </li>
@@ -1022,7 +984,7 @@
   
   
     <li class="md-nav__item">
-      <a href="active-directory/update-cas-client/" class="md-nav__link">
+      <a href="../../active-directory/update-cas-client/" class="md-nav__link">
         Update CAS client
       </a>
     </li>
@@ -1034,7 +996,7 @@
   
   
     <li class="md-nav__item">
-      <a href="active-directory/test-cas-client/" class="md-nav__link">
+      <a href="../../active-directory/test-cas-client/" class="md-nav__link">
         Test CAS client
       </a>
     </li>
@@ -1076,7 +1038,7 @@
   
   
     <li class="md-nav__item">
-      <a href="duo-mfa/overview/" class="md-nav__link">
+      <a href="../../duo-mfa/overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -1088,7 +1050,7 @@
   
   
     <li class="md-nav__item">
-      <a href="duo-mfa/update-cas-client/" class="md-nav__link">
+      <a href="../../duo-mfa/update-cas-client/" class="md-nav__link">
         Update CAS client
       </a>
     </li>
@@ -1100,7 +1062,7 @@
   
   
     <li class="md-nav__item">
-      <a href="duo-mfa/testing-mfa/" class="md-nav__link">
+      <a href="../../duo-mfa/testing-mfa/" class="md-nav__link">
         Test Duo MFA
       </a>
     </li>
@@ -1142,7 +1104,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ticket-registry/hazelcast-overview/" class="md-nav__link">
+      <a href="../../ticket-registry/hazelcast-overview/" class="md-nav__link">
         Hazelcast Overview
       </a>
     </li>
@@ -1154,7 +1116,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ticket-registry/testing-ticket-registry/" class="md-nav__link">
+      <a href="../../ticket-registry/testing-ticket-registry/" class="md-nav__link">
         Testing Ticket Registry
       </a>
     </li>
@@ -1196,7 +1158,7 @@
   
   
     <li class="md-nav__item">
-      <a href="delegated-auth/overview/" class="md-nav__link">
+      <a href="../../delegated-auth/overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -1208,7 +1170,7 @@
   
   
     <li class="md-nav__item">
-      <a href="delegated-auth/azure-saml/" class="md-nav__link">
+      <a href="../../delegated-auth/azure-saml/" class="md-nav__link">
         SAML method
       </a>
     </li>
@@ -1220,7 +1182,7 @@
   
   
     <li class="md-nav__item">
-      <a href="delegated-auth/azure-oidc-incomplete/" class="md-nav__link">
+      <a href="../../delegated-auth/azure-oidc-incomplete/" class="md-nav__link">
         OIDC (incomplete)
       </a>
     </li>
@@ -1232,7 +1194,7 @@
   
   
     <li class="md-nav__item">
-      <a href="delegated-auth/testing/" class="md-nav__link">
+      <a href="../../delegated-auth/testing/" class="md-nav__link">
         Testing Delegated Auth
       </a>
     </li>
@@ -1253,7 +1215,7 @@
   
   
     <li class="md-nav__item">
-      <a href="azure-conditional/overview/" class="md-nav__link">
+      <a href="../../azure-conditional/overview/" class="md-nav__link">
         Azure Conditional Access
       </a>
     </li>
@@ -1268,7 +1230,7 @@
   
   
     <li class="md-nav__item">
-      <a href="about/future-tasks/" class="md-nav__link">
+      <a href="../future-tasks/" class="md-nav__link">
         Future tasks
       </a>
     </li>
@@ -1299,49 +1261,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#deploying-apereo-cas" class="md-nav__link">
-    Deploying Apereo CAS
+  <a href="#ansible-playbooks" class="md-nav__link">
+    Ansible Playbooks
   </a>
-  
-    <nav class="md-nav" aria-label="Deploying Apereo CAS">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#copyright-and-licensing" class="md-nav__link">
-    Copyright and Licensing
-  </a>
-  
-    <nav class="md-nav" aria-label="Copyright and Licensing">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#documentation-content" class="md-nav__link">
-    Documentation Content
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#site-template" class="md-nav__link">
-    Site Template
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#author-information" class="md-nav__link">
-    Author Information
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1358,29 +1280,14 @@
               
                 
                 
-                  <h1>Main</h1>
+                  <h1>Ansible Playbooks</h1>
                 
-                <h2 id="deploying-apereo-cas">Deploying Apereo CAS</h2>
-<p><strong><em>Deploying Apereo CAS</em></strong> provides step-by-step instructions for setting up Apereo CAS 6 with a goal of deploying and maintaining both CAS and the application server (Tomcat) via Ansible.  The goal of this is to make deploying and maintaining CAS and Tomcat easy.  The idea for creating this (and some of the content) is based on the amazing <a href="https://dacurry-tns.github.io/deploying-apereo-cas">Deploying Apereo CAS</a> documentation created for CAS 5, created by David Curry of The New School.  It is meant to supplement, not replace, the documentation created by Apereo for CAS.</p>
-<p>This is my first foray into using Github pages, or making documentation for deploying an application like this (my documentation has either been end user facing or for internal staff up until now) - so apologies for any rough edges on it.  It's incomplete as of now but my goal is to document as I deploy into test and later into production.  It should be <em>mostly</em> complete by the end of March 2021.</p>
-<p>It was created in my work at the State University of New York at New Paltz but I wanted to give back to the CAS community for the great information I've found from so many.</p>
-<h3 id="copyright-and-licensing">Copyright and Licensing</h3>
-<h4 id="documentation-content">Documentation Content</h4>
-<p>All documentation content is Copyright &copy; 2021, SUNY New Paltz. It is licensed under the <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
-<h4 id="site-template">Site Template</h4>
-<p>This site was created with MkDocs using the <a href="https://github.com/squidfunk/mkdocs-material">Material Theme</a>.</p>
-<h3 id="author-information">Author Information</h3>
-<p>Paul Chauvet<br/>
-Information Security Officer<br/>
-State University of New York at New Paltz<br/>
-chauvetp@newpaltz.edu<br/></p>
-<div class="admonition danger">
-<p class="admonition-title">DISCLAIMER</p>
-<p>The instructions and settings provided in this document may not be the only way to do things.  They are the way that has worked for us at New Paltz, and I've tried to document them as well as possible - but there may be better/cleaner ways of doing things.  They may not work at all for your environment.  Heck - I may have made some big mistakes here.</p>
-<p>As always - test test test.  You should not go running into this on a production environment without ample testing AND understanding of the setup (both Tomcat, and CAS).</p>
-<p>No warranty express or implied.  No support guaranteed.</p>
-<p>If you use this - and find it useful - let me know!  If you use it and find errors or would suggest changes - sure - let me know those too!  If you have suggestions as to how to do this (insert some completely different way) - you may want to fork this or create your own site from scratch for it.</p>
-</div>
+                <h2 id="ansible-playbooks">Ansible Playbooks</h2>
+<p>I've put a copy of my ansible playbooks that are used in this document at:
+(https://github.com/paulchauvet/ansible-playbooks)</p>
+<p>These are copied from my production ansible host - so there's at least some things that aren't relevant here - like references to RHEL 7 hosts.</p>
+<p>I haven't yet copied over all my Ansible playbooks to github yet (I usually use an on-site git repo for this) - but I'll move some other Ansible roles in here at some point when I have time to review/santize/generalize them.</p>
+<p>As with everything else I've posted - there is no warranty or guarantee for any of this.  Use at your own risk.</p>
                 
               
               
@@ -1399,14 +1306,28 @@ chauvetp@newpaltz.edu<br/></p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
+        <a href="../license/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              License
+            </div>
+          </div>
+        </a>
       
-        <a href="about/about-new-paltz/" class="md-footer__link md-footer__link--next" rel="next">
+      
+        <a href="../../setting-up-the-environment/overview/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              About SUNY New Paltz
+              Overview
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -1439,10 +1360,10 @@ chauvetp@newpaltz.edu<br/></p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.4ea5477f.min.js"></script>
+      <script src="../../assets/javascripts/bundle.4ea5477f.min.js"></script>
       
     
   </body>
