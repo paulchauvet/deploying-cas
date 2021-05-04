@@ -11,7 +11,7 @@ I'd like to thank all those who contributed to this - whether via their public d
 * Richard Schneider of [Harding University](https://harding.edu)
 * Ray Bon of [University of Victoria](https://uvic.ca)
 * David Campman of [Forsyte IT](https://forsyteit.com)
-* Misagh Moayyed [Fawnoos](https://fawnoos.com)
+* Misagh Moayyed of [Fawnoos](https://fawnoos.com) and the CAS project.
 * My CIO (John Reina) and Vice-President (Michele Halstead) here at [New Paltz](https://newpaltz.edu) for not only giving me the time to work on this documentation - but also encouraging me to release it publicly for the higher ed community.
 * And all the developers who have contributed to the [Apereo CAS](https://www.apereo.org/projects/cas) project and who contribute in the [CAS Community](https://apereo.github.io/cas/Mailing-Lists.html#cas-community-list-cas-userapereoorg).
 
