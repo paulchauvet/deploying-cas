@@ -96,12 +96,12 @@ If this works - you'll see a few differences - but only if you go to the service
 
 ### Before
 <figure>
-  <img src="/images/cas-default-theme.png" alt="Screenshot showing the default CAS theme with the drawer and notifications buttons which are NOT in the new theme."/>
+  <img src="https://paulchauvet.github.io/deploying-cas/images/cas-default-theme.png" alt="Screenshot showing the default CAS theme with the drawer and notifications buttons which are NOT in the new theme."/>
 </figure>
 
 ### After
 <figure>
-  <img src="/images/cas-example-theme.png" alt="Screenshot showing our new example theme - without the notifications and drawer buttons, the test logo, and new color scheme."/>
+  <img src="https://paulchauvet.github.io/deploying-cas/images/cas-example-theme.png" alt="Screenshot showing our new example theme - without the notifications and drawer buttons, the test logo, and new color scheme."/>
 </figure>
 
 ## What's next?
