@@ -268,6 +268,18 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/ansible-playbooks/" class="md-nav__link">
+        Ansible Playbooks
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -1201,9 +1213,107 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Themes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Themes
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#start-with-the-example-theme" class="md-nav__link">
+    Start with the example theme
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-an-example-theme-created" class="md-nav__link">
+    Getting an example theme created
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rebuild-cas" class="md-nav__link">
+    Rebuild CAS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#edit-one-or-more-services-to-start-with-to-point-to-this-theme" class="md-nav__link">
+    Edit one or more services (to start with) to point to this theme
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rerun-the-playbook" class="md-nav__link">
+    Rerun the playbook
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test" class="md-nav__link">
+    Test
+  </a>
+  
+    <nav class="md-nav" aria-label="Test">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#before" class="md-nav__link">
+    Before
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after" class="md-nav__link">
+    After
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-next" class="md-nav__link">
+    What's next?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1257,6 +1367,90 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#start-with-the-example-theme" class="md-nav__link">
+    Start with the example theme
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-an-example-theme-created" class="md-nav__link">
+    Getting an example theme created
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rebuild-cas" class="md-nav__link">
+    Rebuild CAS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#edit-one-or-more-services-to-start-with-to-point-to-this-theme" class="md-nav__link">
+    Edit one or more services (to start with) to point to this theme
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rerun-the-playbook" class="md-nav__link">
+    Rerun the playbook
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test" class="md-nav__link">
+    Test
+  </a>
+  
+    <nav class="md-nav" aria-label="Test">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#before" class="md-nav__link">
+    Before
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after" class="md-nav__link">
+    After
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-next" class="md-nav__link">
+    What's next?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1269,7 +1463,110 @@
                 
                 
                 <h1 id="theming-info-coming-soon">Theming info coming soon</h1>
-<p>Note: This is the part I'm outsourcing to someone who actually knows how to design web content - which is not me!  I'll reference her assistance when it's done.</p>
+<p>Note: This is the part I'm outsourcing to someone who actually knows how to design web content - which is not me!  I'll reference her assistance when it's done.  The information below, so far at least, is based on what I used to get CAS ready for theming.</p>
+<div class="admonition note">
+<p class="admonition-title">Optional Content</p>
+<p>This is all optional - especially if you're doing a redirection to a delegated external identity provider as we are planning to do with Azure &amp; setting <strong>cas.authn.pac4j.saml[0].autoRedirect=true</strong>.  In theory then - the 'default' CAS page will only flash by before a user is redirected to the Azure login page.  But - there are some scenarios where that is not good enough.  For example - if the user is restricted from accessing the service via CAS service restrictions - then CAS - not Azure - will provide the error.  For this - I still prefer to theme the site.</p>
+</div>
+<h2 id="start-with-the-example-theme">Start with the example theme</h2>
+<p>My intention in adding this was that, in theory, an example theme would be added for structure.  That didn't happen so this <em>may</em> not be needed.  What I did instead was the following:</p>
+<p><strong>cas-overlay-template/build.gradle</strong>
+<div class="highlight"><pre><span></span><code><span class="err">depe</span><span class="kc">n</span><span class="err">de</span><span class="kc">n</span><span class="err">cies</span> <span class="p">{</span>
+    <span class="err">//</span> <span class="err">CAS</span> <span class="err">depe</span><span class="kc">n</span><span class="err">de</span><span class="kc">n</span><span class="err">cies/modules</span> <span class="err">may</span> <span class="err">be</span> <span class="err">lis</span><span class="kc">te</span><span class="err">d</span> <span class="err">here</span> <span class="err">s</span><span class="kc">tat</span><span class="err">ically...</span>
+
+    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-webapp-init:${casServerVersion}&quot;</span>
+    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-json-service-registry:${casServerVersion}&quot;</span>
+    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-ldap:${casServerVersion}&quot;</span>
+    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-saml:${casServerVersion}&quot;</span>
+    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-duo:${casServerVersion}&quot;</span>
+    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-hazelcast-ticket-registry:${casServerVersion}&quot;</span>
+    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-pac4j-webflow:${casServerVersion}&quot;</span>
+<span class="hll">    <span class="err">impleme</span><span class="kc">ntat</span><span class="err">io</span><span class="kc">n</span> <span class="s2">&quot;org.apereo.cas:cas-server-support-themes-collection:${casServerVersion}&quot;</span>
+</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h2 id="getting-an-example-theme-created">Getting an example theme created</h2>
+<ul>
+<li>Within the <em>cas-overlay-template/src</em> directory - I created a set of sub directories (to match the 'example' theme at (https://github.com/apereo/cas/tree/6.3.x/support/cas-server-support-themes-collection/src/main/resources/static/themes/example)):<ul>
+<li><strong>cas-overlay-template/src/main/resources/static/themes/newpaltz</strong></li>
+<li><strong>cas-overlay-template/src/main/resources/static/themes/newpaltz/css</strong></li>
+<li><strong>cas-overlay-template/src/main/resources/static/themes/newpaltz/images</strong></li>
+<li><strong>cas-overlay-template/src/main/resources/static/themes/newpaltz/jss</strong></li>
+</ul>
+</li>
+<li>Within <em>cas-overlay-template/src/main/resources/</em> I downloaded <a href="https://github.com/apereo/cas/tree/6.3.x/support/cas-server-support-themes-collection/src/main/resources">example.properties</a> but renamed it as <em>newpaltz.properties</em>.</li>
+<li>I then added the files from (https://github.com/apereo/cas/tree/6.3.x/support/cas-server-support-themes-collection/src/main/resources/static/themes/example) to these directories as a starting point - just to make sure these themes were even working.</li>
+<li>I edited <em>newpaltz.properties</em> to reflect that it was the 'newpaltz' teheme instead of the <em>example</em> theme.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">cas.</span><span class="kc">t</span><span class="err">heme.</span><span class="kc">na</span><span class="err">me=</span><span class="kc">ne</span><span class="err">wpal</span><span class="kc">t</span><span class="err">z</span>
+<span class="err">cas.</span><span class="kc">t</span><span class="err">heme.descrip</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">=New</span> <span class="err">Pal</span><span class="kc">t</span><span class="err">z</span> <span class="err">Theme</span>
+
+<span class="err">cas.s</span><span class="kc">tan</span><span class="err">dard.css.</span><span class="kc">f</span><span class="err">ile=/</span><span class="kc">t</span><span class="err">hemes/</span><span class="kc">ne</span><span class="err">wpal</span><span class="kc">t</span><span class="err">z/css/cas.css</span>
+<span class="err">cas.s</span><span class="kc">tan</span><span class="err">dard.js.</span><span class="kc">f</span><span class="err">ile=/</span><span class="kc">t</span><span class="err">hemes/</span><span class="kc">ne</span><span class="err">wpal</span><span class="kc">t</span><span class="err">z/js/cas.js</span>
+<span class="err">cas.logo.</span><span class="kc">f</span><span class="err">ile=/</span><span class="kc">t</span><span class="err">hemes/</span><span class="kc">ne</span><span class="err">wpal</span><span class="kc">t</span><span class="err">z/images/logo.p</span><span class="kc">n</span><span class="err">g</span>
+<span class="err">cas.</span><span class="kc">fa</span><span class="err">vico</span><span class="kc">n</span><span class="err">.</span><span class="kc">f</span><span class="err">ile=/</span><span class="kc">t</span><span class="err">hemes/</span><span class="kc">ne</span><span class="err">wpal</span><span class="kc">t</span><span class="err">z/images/</span><span class="kc">fa</span><span class="err">vico</span><span class="kc">n</span><span class="err">.ico</span>
+
+<span class="err">cas.drawer</span><span class="mi">-</span><span class="err">me</span><span class="kc">nu</span><span class="err">.e</span><span class="kc">na</span><span class="err">bled=</span><span class="kc">false</span>
+<span class="err">cas.</span><span class="kc">n</span><span class="err">o</span><span class="kc">t</span><span class="err">i</span><span class="kc">f</span><span class="err">ica</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="mi">-</span><span class="err">me</span><span class="kc">nu</span><span class="err">.e</span><span class="kc">na</span><span class="err">bled=</span><span class="kc">false</span>
+</code></pre></div>
+<h2 id="rebuild-cas">Rebuild CAS</h2>
+<p>To rebuild CAS with the newest dependency <em>AND</em> theme built in we'll do the same thing we did with previous additions.  You'll want to go to the cas-overlay-template directory and run the following and wait a moment for it to be complete:
+<div class="highlight"><pre><span></span><code>./gradlew clean build
+</code></pre></div></p>
+<p>Your cas.war file will have been updated.  Copy it from <em>cas-overlay-template/build/libs/cas.war</em> to your <em>roles/cas6/files</em> </p>
+<h2 id="edit-one-or-more-services-to-start-with-to-point-to-this-theme">Edit one or more services (to start with) to point to this theme</h2>
+<p>I chose to use one of our test services - the one that returns all attributes - for this purpose.  I added the 'theme' line below.  Make your edits to the Ansible definition of the service.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;@class&quot;</span> <span class="p">:</span> <span class="s2">&quot;org.apereo.cas.services.RegexRegisteredService&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;serviceId&quot;</span> <span class="p">:</span> <span class="s2">&quot;^https://logindev.newpaltz.edu/return-all(\\z|/.*)&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Apache Test - full attribute release&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span> <span class="p">:</span> <span class="mi">1614354496</span><span class="p">,</span>
+    <span class="nt">&quot;description&quot;</span> <span class="p">:</span> <span class="s2">&quot;Apache Test - full attribute release&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;attributeReleasePolicy&quot;</span> <span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;@class&quot;</span> <span class="p">:</span> <span class="s2">&quot;org.apereo.cas.services.ReturnAllAttributeReleasePolicy&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;evaluationOrder&quot;</span> <span class="p">:</span> <span class="mi">95000</span><span class="p">,</span>
+<span class="hll">    <span class="nt">&quot;theme&quot;</span><span class="p">:</span> <span class="s2">&quot;newpaltz&quot;</span>
+</span><span class="p">}</span>
+</code></pre></div>
+<h2 id="rerun-the-playbook">Rerun the playbook</h2>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">[</span><span class="nv">chauvetp@ansible templates</span><span class="p p-Indicator">]</span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook ~/ansible/site.yml --ask-vault-pass --limit &lt;your_CAS_server&gt;</span>
+<span class="l l-Scalar l-Scalar-Plain">Vault password</span><span class="p p-Indicator">:</span> 
+</code></pre></div>
+<h2 id="test">Test</h2>
+<p>If this works - you'll see a few differences - but only if you go to the service that you changed.</p>
+<ul>
+<li>The <em>logo.png</em> file from the git repo is there now instead of the CAS logo</li>
+<li>Slight color scheme differences.</li>
+<li>Due to <em>cas.drawer-menu.enabled</em> and <em>cas.notifications-menu.enabled=false</em> you'll see the menu drawer and notification button gone.</li>
+</ul>
+<h3 id="before">Before</h3>
+<figure>
+  <img src="/images/cas-default-theme.png" alt="Screenshot showing the default CAS theme with the drawer and notifications buttons which are NOT in the new theme."/>
+</figure>
+
+<h3 id="after">After</h3>
+<figure>
+  <img src="/images/cas-example-theme.png" alt="Screenshot showing our new example theme - without the notifications and drawer buttons, the test logo, and new color scheme."/>
+</figure>
+
+<h2 id="whats-next">What's next?</h2>
+<p>Well this is the part I can't do but I may be able to fill in more on soon.  I'm going to do the following:</p>
+<ul>
+<li>Make sure only one <em>DEV</em> tier host is active in our load balancer.</li>
+<li>Shutdown Tomcat on that host.</li>
+<li>Delete cas.war (leaving the unpacked cas directory within Tomcat's webapps directory).</li>
+<li>Give access to our web designer/developer to the CAS Dev site and have her work her magic.  I will ask her to document any files she edits or new files she adds.</li>
+<li>As she develops - she'll have to restart tomcat to make any changes show (I'll give her sudo access to do so).</li>
+<li>When she's done - I can then place all her shared files in the appropriate locations within <em>cas-overlay-template/src/main/resources/static/themes/newpaltz</em> and rebuild CAS.  Those changes will now end up in all of the servers.</li>
+<li>Once the theme is 'done' we can make it the default theme (not just by setting it per-service) by altering cas.properties to include the following lines:<ul>
+<li>cas.theme.paramName=newpaltz</li>
+<li>cas.theme.defaultThemeName=newpaltz</li>
+</ul>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<p><a href="https://apereo.github.io/cas/6.3.x/ux/User-Interface-Customization-Themes.html">Apereo CAS 6.3 User Interface Customization</a></p>
                 
               
               

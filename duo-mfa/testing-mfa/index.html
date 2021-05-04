@@ -268,6 +268,18 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/ansible-playbooks/" class="md-nav__link">
+        Ansible Playbooks
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -1273,12 +1285,12 @@
                 <h1 id="testing-duo-mfa">Testing Duo MFA</h1>
 <p>First - go to your CAS client index page and select the <em>Duo MFA</em> test link.</p>
 <figure>
-  <img src="https://paulchauvet.github.io/deploying-cas/images/duo-mfa-0.png" alt="Screenshot showing CAS test client index page"/>
+  <img src="/images/duo-mfa-0.png" alt="Screenshot showing CAS test client index page"/>
 </figure>
 
 <p>Then, login with a user that exists in your directory and exists in Duo.  You should note the specific Duo test service name (<em>Apache Test - Duo MFA</em> in my example).  If you don't see that - you may have an error in your service or in your Apache config, causing another service to pick up instead.</p>
 <figure>
-  <img src="https://paulchauvet.github.io/deploying-cas/images/duo-mfa-1.png" alt="Screenshot showing CAS login page"/>
+  <img src="/images/duo-mfa-1.png" alt="Screenshot showing CAS login page"/>
 </figure>
 
 <p>You should, if all is working correctly, see the Duo prompt framed within the CAS window.  In the screenshot below, I'm prompted for three options of second factor.
@@ -1287,7 +1299,7 @@
 * The blue "Use your Security Key to login" message is because I also have a Yubikey Security Key, acting as a Fido U2F (Universal Two Factor).  </p>
 <p>I can use any of these to login - but what options you or your users have depends on how you are using Duo.</p>
 <figure>
-  <img src="https://paulchauvet.github.io/deploying-cas/images/duo-mfa-2.png" alt="Screenshot of Duo prompt with push, passcode, and security key options"/>
+  <img src="/images/duo-mfa-2.png" alt="Screenshot of Duo prompt with push, passcode, and security key options"/>
 </figure>
 
 <p>After logging in - you should see your php test page in the Duo client which will show the attributes that are resolved.</p>
