@@ -43,7 +43,7 @@ Once you do that, if Tomcat is running and you wait a minute or two, you'll have
 I recommend testing at each stage as functionality is added to CAS - so making sure the base install starts is good!
 
 <figure>
-  <img src="https://paulchauvet.github.io/deploying-cas/images/cas-default-login.png" alt="Screenshot showing default CAS login page"/>
+  <img src="/images/cas-default-login.png" alt="Screenshot showing default CAS login page"/>
 </figure>
 
 

@@ -67,5 +67,5 @@ Tomcat provides a temp directory for web applications to store temporary files i
 Your layout should look like the following:
 
 <figure>
-  <img src="https://paulchauvet.github.io/deploying-cas/images/tomcat-symlinks.png" alt="Screenshot showing output of ls -l /opt/tomcat/latest/ - confirming the symlinks we created."/>
+  <img src="/images/tomcat-symlinks.png" alt="Screenshot showing output of ls -l /opt/tomcat/latest/ - confirming the symlinks we created."/>
 </figure>

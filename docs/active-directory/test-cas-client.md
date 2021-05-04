@@ -4,12 +4,12 @@ You'll want to go to your CAS test client page - and check the result of the *re
 
 
 <figure>
-  <img src="https://paulchauvet.github.io/deploying-cas/images/return-all-attributes-example.png" alt="Screenshot showing output of return all attributes test"/>
+  <img src="/images/return-all-attributes-example.png" alt="Screenshot showing output of return all attributes test"/>
 </figure>
 
 
 ## Return mapped attributes
 
 <figure>
-  <img src="https://paulchauvet.github.io/deploying-cas/images/return-all-attributes-example.png" alt="Screenshot showing output of return mapped attributes test"/>
+  <img src="/images/return-all-attributes-example.png" alt="Screenshot showing output of return mapped attributes test"/>
 </figure>

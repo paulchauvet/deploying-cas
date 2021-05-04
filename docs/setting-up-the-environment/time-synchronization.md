@@ -18,7 +18,7 @@ If you're looking for more about the differences between chronyd and ntpd, see [
 If chrony is running, you'll see something like:
 
 <figure>
-  <img src="https://paulchauvet.github.io/deploying-cas/images/chrony-service-running.png" alt="Screenshot showing output of systemctl status chronyd where the service is running"/>
+  <img src="/images/chrony-service-running.png" alt="Screenshot showing output of systemctl status chronyd where the service is running"/>
 </figure>
 
 If the one you check is not installed - you'll see a message like:
