@@ -29,6 +29,7 @@ nav:
     - Architecture/design: about/architecture.md
     - Acknowledgements: about/acknowledgements.md
     - License: about/license.md
+    - Ansible Playbooks: about/ansible-playbooks.md
   - Setting up the Environment:
     - Overview: setting-up-the-environment/overview.md
     - Configure time synchronization: setting-up-the-environment/time-synchronization.md
