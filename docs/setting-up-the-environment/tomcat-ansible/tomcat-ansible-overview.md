@@ -1,6 +1,9 @@
 # Using Ansible to put it all together
 
-Okay - now that I've covered all the steps that are done to get Tomcat working - you should realize I never do them manually anymore.  I have way too much to do to be manually doing all that.  When I initially started doing this for CAS 5, I had a combination of shell and python scripts to streamline this - but as I've gotten to use Ansible more over the past few years, I moved it all there.
+Okay - now that I've covered all the steps that are done to get Tomcat working - you should realize I never do them manually anymore.  I have way too much to do to be manually doing all that.  When I initially started doing this for CAS 5, I had a combination of shell and python scripts to streamline this - but as I've gotten to use Ansible more over the past few years, I moved it all there.  The only thing I'm not doing with Ansible really is generating encryption/signing keys, setting up the Azure side of things, and building CAS itself.
+
+I've put a copy of my ansible playbooks that are used in this document at:
+(https://github.com/paulchauvet/ansible-playbooks)
 
 !!! danger
     Before you start with Ansible - you will really want to think about how to lock it down.  Your Ansible host - whether you use it for CAS servers alone, or for managing other applications, OS updates, etc., has a LOT of access.  Consider at the very least ensuring your Ansible hosts are only accessible inbound from a VPN - or possibly even dedicated bastion hosts - and is configured with Duo or some other form of MFA for SSH access.  You don't want your system management tool to be a vector for attack.

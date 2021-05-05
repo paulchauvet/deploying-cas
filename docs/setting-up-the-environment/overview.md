@@ -38,3 +38,6 @@ Each of these servers for us are RHEL 8 hosts, with:
 For the official requirements, see the Apereo CAS [Installation Requirements](https://apereo.github.io/cas/6.3.x/planning/Installation-Requirements.html) document.
 
 I will document both how to set these up manually, as well as my Ansible playbooks which handle deployment (of Apache, Apache Tomcat, and CAS itself).
+
+I've put a copy of my ansible playbooks that are used in this document at:
+(https://github.com/paulchauvet/ansible-playbooks).
