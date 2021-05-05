@@ -34,6 +34,9 @@ cas.authn.pac4j.saml[0].serviceProviderMetadataPath=/etc/cas/config/sp-metadata.
 cas.authn.pac4j.saml[0].identityProviderMetadataPath={{ DEV_AZURE_METADATA_PATH }}
 cas.authn.pac4j.saml[0].clientName={{ DEV_AZURE_APP_NAME }}
 cas.authn.pac4j.saml[0].use-name-qualifier=false
+# Set the following to match Azure otherwise you're going to have issues with errors on CAS like "Authentication issue instant is too old or in the future"
+cas.authn.pac4j.saml[0].maximum-authentication-lifetime=8640000
+# Use the following if you ONLY are going to use Azure for authentication and not a local source like on-prem AD
 # cas.authn.pac4j.saml[0].autoRedirect=true
 ```
 
@@ -42,6 +45,14 @@ cas.authn.pac4j.saml[0].use-name-qualifier=false
     may want to use the autoRedirect setting that I have commented out above.
     This will cause anyone who goes to CAS (either directly or via a redirect from a service) to be automatically redirected to the specified external identity provider.
 
+!!! caution "maximum-authentication-lifetime"
+    Azure has REALLY long lived sessions by default (and you can only change this via conditional access).  Without this in place - any user with a long-lived session will get errors unless they completely log out of Office 365/Azure.
+
+    One fix is setting the maximum-authentication-lifetime to 90 days as shown above.  I don't like this though - but I'm still looking at options.
+    See the following for more info:
+    
+    * [SAML - Authentication issue instant is too old or in the future](https://support.cloudbees.com/hc/en-us/articles/115000087231-SAML-Authentication-issue-instant-is-too-old-or-in-the-future?page=45) - not CAS specific but same pac4j core in use.
+    * [Configure authentication session management with Conditional Access](https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/howto-conditional-access-session-lifetime)
 
 ### Variable setup
 Edit your *cas-vault.yml* file within *roles/cas6/vars/*
