@@ -1129,6 +1129,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#generating-hazelcast-keys" class="md-nav__link">
+    Generating Hazelcast keys
+  </a>
+  
+    <nav class="md-nav" aria-label="Generating Hazelcast keys">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate-the-signing-key" class="md-nav__link">
+    Generate the signing key
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-the-encryption-key" class="md-nav__link">
+    Generate the encryption key
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#rerun-the-playbook" class="md-nav__link">
     Rerun the playbook
   </a>
@@ -1269,6 +1296,36 @@
   
   
     <li class="md-nav__item">
+      <a href="../../theming/overview/" class="md-nav__link">
+        Themes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../final-setup/overview/" class="md-nav__link">
+        Final tasks
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../about/future-tasks/" class="md-nav__link">
         Future tasks
       </a>
@@ -1326,6 +1383,33 @@
   <a href="#variable-setup" class="md-nav__link">
     Variable setup
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generating-hazelcast-keys" class="md-nav__link">
+    Generating Hazelcast keys
+  </a>
+  
+    <nav class="md-nav" aria-label="Generating Hazelcast keys">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate-the-signing-key" class="md-nav__link">
+    Generate the signing key
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-the-encryption-key" class="md-nav__link">
+    Generate the encryption key
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1404,8 +1488,21 @@
 <p>Edit your <em>cas-vault.yml</em> file within <em>roles/cas6/vars/</em></p>
 <p>You'll need to fill out the following:
 DEV_CAS_SERVERS: <comma separated list if IPs or DNS names for your servers in this tier>
-DEV_CAS_HAZELCAST_SIGNING_KEY: <see generating singing key section below>
-DEV_CAS_HAZELCAST_ENCRYPTION_KEY: <see generating encryption key section below></p>
+DEV_CAS_HAZELCAST_SIGNING_KEY: <see generating hazelcast keys section below>
+DEV_CAS_HAZELCAST_ENCRYPTION_KEY: <see generating hazelcast keys section below></p>
+<h2 id="generating-hazelcast-keys">Generating Hazelcast keys</h2>
+<p>The <em>Generating all necessary keys</em> section near the bottom of the <a href="../../building-cas/initial-cas-config/">Initial CAS Config</a> section of this document covers generating these keys.  They are the last two keys generated in that section.  You will still need the <a href="https://raw.githubusercontent.com/apereo/cas/master/etc/jwk-gen.jar">key generation tool</a>.  You can see that section or the two subsections below for generating the signing and encryption keys.</p>
+<p>Either way - place these keys in your Ansible vault variable file or directly in your cas.properties file.</p>
+<h3 id="generate-the-signing-key">Generate the signing key</h3>
+<ol>
+<li>Run: <strong>java -jar jwk-gen.jar -t oct -s 512 | grep k.: | cut -f4 -d\"</strong></li>
+<li>Enter the output as your <em>DEV_CAS_HAZELCAST_SIGNING_KEY</em> in your Ansible vault (or if not using Ansible vault - just put it directly as the value for <em>cas.ticket.registry.hazelcast.crypto.signing.key</em> in your cas.properties file.)</li>
+</ol>
+<h3 id="generate-the-encryption-key">Generate the encryption key</h3>
+<ol>
+<li>Run: <strong>openssl rand -base64 16</strong></li>
+<li>Enter the output as your <em>DEV_CAS_HAZELCAST_ENCRYPTION_KEY</em> in your Ansible vault (or if not using Ansible vault - just put it directly as the value for <em>cas.ticket.registry.hazelcast.crypto.encryption.key</em> in your cas.properties file.)</li>
+</ol>
 <h2 id="rerun-the-playbook">Rerun the playbook</h2>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">[</span><span class="nv">chauvetp@ansible templates</span><span class="p p-Indicator">]</span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook ~/ansible/site.yml --ask-vault-pass --limit &lt;your_CAS_server&gt;</span>
 <span class="l l-Scalar l-Scalar-Plain">Vault password</span><span class="p p-Indicator">:</span> 

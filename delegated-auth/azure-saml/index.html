@@ -1349,6 +1349,36 @@
   
   
     <li class="md-nav__item">
+      <a href="../../theming/overview/" class="md-nav__link">
+        Themes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../final-setup/overview/" class="md-nav__link">
+        Final tasks
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../about/future-tasks/" class="md-nav__link">
         Future tasks
       </a>
@@ -1526,8 +1556,8 @@
 <ol>
 <li>Go to the <a href="https://aad.portal.azure.com">Azure AD portal</a>.</li>
 <li>Click <em>Enterprise Applications</em>.</li>
-<li>At the top, click <em>Create your own application</em></li>
-<li>Select <em>Integrate any other application you don't find in the gallery (Non-gallery)</em>, then give your app a name.  This name is, at least by default, user visible (depending on where users look) so I recommend something clear like <em>"YourSchoolLogin-Dev"</em>, <em>"YourSchoolLogin-Test"</em> or <em>"YourSchoolLogin"</em> (for prod).</li>
+<li>At the top, click <em>New application</em> then <em>Create your own application</em> near the top left.</li>
+<li>Select <em>Integrate any other application you don't find in the gallery (Non-gallery)</em>, then give your app a name.  This name is, at least by default, user visible (depending on where users look) so I recommend something clear like <em>"Your School Login-Dev"</em>, <em>"Your School Login-Test"</em> or <em>"Your School Login"</em> (for prod).</li>
 <li>Click Users and groups on the left.  Use this section to add any users or groups who need access - though you may want to start with one or more test users.</li>
 <li>Click <em>Single sign-on</em> on the left, then SAML.</li>
 <li>Copy the <em>App Federation Metadata URL</em> - you'll need this for the DEV_AZURE_METADATA_PATH later.</li>
@@ -1549,6 +1579,9 @@
 <span class="err">cas.au</span><span class="kc">t</span><span class="err">h</span><span class="kc">n</span><span class="err">.pac</span><span class="mi">4</span><span class="err">j.saml</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="err">.ide</span><span class="kc">nt</span><span class="err">i</span><span class="kc">t</span><span class="err">yProviderMe</span><span class="kc">ta</span><span class="err">da</span><span class="kc">ta</span><span class="err">Pa</span><span class="kc">t</span><span class="err">h=</span><span class="p">{{</span> <span class="err">DEV_AZURE_METADATA_PATH</span> <span class="p">}}</span>
 <span class="err">cas.au</span><span class="kc">t</span><span class="err">h</span><span class="kc">n</span><span class="err">.pac</span><span class="mi">4</span><span class="err">j.saml</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="err">.clie</span><span class="kc">nt</span><span class="err">Name=</span><span class="p">{{</span> <span class="err">DEV_AZURE_APP_NAME</span> <span class="p">}}</span>
 <span class="err">cas.au</span><span class="kc">t</span><span class="err">h</span><span class="kc">n</span><span class="err">.pac</span><span class="mi">4</span><span class="err">j.saml</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="err">.use</span><span class="mi">-</span><span class="kc">na</span><span class="err">me</span><span class="mi">-</span><span class="err">quali</span><span class="kc">f</span><span class="err">ier=</span><span class="kc">false</span>
+<span class="err">#</span> <span class="err">Se</span><span class="kc">t</span> <span class="kc">t</span><span class="err">he</span> <span class="kc">f</span><span class="err">ollowi</span><span class="kc">n</span><span class="err">g</span> <span class="kc">t</span><span class="err">o</span> <span class="err">ma</span><span class="kc">t</span><span class="err">ch</span> <span class="err">Azure</span> <span class="err">o</span><span class="kc">t</span><span class="err">herwise</span> <span class="err">you&#39;re</span> <span class="err">goi</span><span class="kc">n</span><span class="err">g</span> <span class="kc">t</span><span class="err">o</span> <span class="err">have</span> <span class="err">issues</span> <span class="err">wi</span><span class="kc">t</span><span class="err">h</span> <span class="err">errors</span> <span class="err">o</span><span class="kc">n</span> <span class="err">CAS</span> <span class="err">like</span> <span class="s2">&quot;Authentication issue instant is too old or in the future&quot;</span>
+<span class="err">cas.au</span><span class="kc">t</span><span class="err">h</span><span class="kc">n</span><span class="err">.pac</span><span class="mi">4</span><span class="err">j.saml</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="err">.maximum</span><span class="mi">-</span><span class="err">au</span><span class="kc">t</span><span class="err">he</span><span class="kc">nt</span><span class="err">ica</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="mi">-</span><span class="err">li</span><span class="kc">fet</span><span class="err">ime=</span><span class="mi">8640000</span>
+<span class="err">#</span> <span class="err">Use</span> <span class="kc">t</span><span class="err">he</span> <span class="kc">f</span><span class="err">ollowi</span><span class="kc">n</span><span class="err">g</span> <span class="err">i</span><span class="kc">f</span> <span class="err">you</span> <span class="err">ONLY</span> <span class="err">are</span> <span class="err">goi</span><span class="kc">n</span><span class="err">g</span> <span class="kc">t</span><span class="err">o</span> <span class="err">use</span> <span class="err">Azure</span> <span class="kc">f</span><span class="err">or</span> <span class="err">au</span><span class="kc">t</span><span class="err">he</span><span class="kc">nt</span><span class="err">ica</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span> <span class="err">a</span><span class="kc">n</span><span class="err">d</span> <span class="kc">n</span><span class="err">o</span><span class="kc">t</span> <span class="err">a</span> <span class="err">local</span> <span class="err">source</span> <span class="err">like</span> <span class="err">o</span><span class="kc">n</span><span class="mi">-</span><span class="err">prem</span> <span class="err">AD</span>
 <span class="err">#</span> <span class="err">cas.au</span><span class="kc">t</span><span class="err">h</span><span class="kc">n</span><span class="err">.pac</span><span class="mi">4</span><span class="err">j.saml</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="err">.au</span><span class="kc">t</span><span class="err">oRedirec</span><span class="kc">t</span><span class="err">=</span><span class="kc">true</span>
 </code></pre></div></p>
 <div class="admonition tip">
@@ -1556,6 +1589,16 @@
 <p>Once you are done testing - if you ONLY want to delegate authentication (i.e. no local AD or LDAP auth) you
 may want to use the autoRedirect setting that I have commented out above.
 This will cause anyone who goes to CAS (either directly or via a redirect from a service) to be automatically redirected to the specified external identity provider.</p>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">maximum-authentication-lifetime</p>
+<p>Azure has REALLY long lived sessions by default (and you can only change this via conditional access).  Without this in place - any user with a long-lived session will get errors unless they completely log out of Office 365/Azure.</p>
+<p>One fix is setting the maximum-authentication-lifetime to 90 days as shown above.  I don't like this though - but I'm still looking at options.
+See the following for more info:</p>
+<ul>
+<li><a href="https://support.cloudbees.com/hc/en-us/articles/115000087231-SAML-Authentication-issue-instant-is-too-old-or-in-the-future?page=45">SAML - Authentication issue instant is too old or in the future</a> - not CAS specific but same pac4j core in use.</li>
+<li><a href="https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/howto-conditional-access-session-lifetime">Configure authentication session management with Conditional Access</a></li>
+</ul>
 </div>
 <h3 id="variable-setup">Variable setup</h3>
 <p>Edit your <em>cas-vault.yml</em> file within <em>roles/cas6/vars/</em></p>
@@ -1615,6 +1658,7 @@ This will cause anyone who goes to CAS (either directly or via a redirect from a
     <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0600</span>
     <span class="nt">owner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
     <span class="nt">group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
+  <span class="nt">ignore_errors</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>        
   <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">(&quot;login6dev&quot; in inventory_hostname)</span>
   <span class="nt">notify</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">restart tomcat</span>
 
@@ -1625,6 +1669,7 @@ This will cause anyone who goes to CAS (either directly or via a redirect from a
     <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0600</span>
     <span class="nt">owner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
     <span class="nt">group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
+  <span class="nt">ignore_errors</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>    
   <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">(&quot;login6dev&quot; in inventory_hostname)</span>
   <span class="nt">notify</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">restart tomcat</span>
 
@@ -1635,6 +1680,7 @@ This will cause anyone who goes to CAS (either directly or via a redirect from a
     <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0600</span>
     <span class="nt">owner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
     <span class="nt">group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
+  <span class="nt">ignore_errors</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>    
   <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">(&quot;login6dev&quot; in inventory_hostname)</span>
   <span class="nt">notify</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">restart tomcat</span>
 
@@ -1646,6 +1692,7 @@ This will cause anyone who goes to CAS (either directly or via a redirect from a
     <span class="nt">owner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
     <span class="nt">group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
   <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">(&quot;login6dev&quot; in inventory_hostname)</span>
+  <span class="nt">ignore_errors</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>    
   <span class="nt">notify</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">restart tomcat</span>
 
 <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ensure samlKeystore.jks (DEV) is up-to-date</span>
@@ -1656,8 +1703,14 @@ This will cause anyone who goes to CAS (either directly or via a redirect from a
     <span class="nt">owner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
     <span class="nt">group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tomcat</span>
   <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">(&quot;login6dev&quot; in inventory_hostname)</span>
+  <span class="nt">ignore_errors</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>    
   <span class="nt">notify</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">restart tomcat</span>
 </code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Why the ignore_errors setting?</p>
+<p>This is the only place so far that the 'ignore_errors' is used - and it's used for all the tasks here.  You may be wondering why?</p>
+<p>The reason for this - is that when the CAS6 playbook is first being run - those files will not exist.  You'll run this on one server, start up CAS, and go to the CAS login page.  That will cause these files (samlKeystore.jks, sp-metadata.xml, and the various saml-signing-certs) to be created.  Once you have them created on one host in a tier, you can copy them from that host to your Ansible files directory (and encrypt them if you're going to have them in git)</p>
+</div>
 <h2 id="rerun-the-playbook">Rerun the playbook</h2>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">[</span><span class="nv">chauvetp@ansible templates</span><span class="p p-Indicator">]</span><span class="l l-Scalar l-Scalar-Plain">$ ansible-playbook ~/ansible/site.yml --ask-vault-pass --limit &lt;your_CAS_server&gt;</span>
 <span class="l l-Scalar l-Scalar-Plain">Vault password</span><span class="p p-Indicator">:</span> 
@@ -1669,6 +1722,7 @@ This will cause anyone who goes to CAS (either directly or via a redirect from a
 <li>Have the sp-metadata.xml file available from CAS then go back to the application you created earlier in Azure (Azure AAD -&gt; Enterprise Applications -&gt; Search for your app)</li>
 <li>Go to the Single sign-on tab</li>
 <li>Click <em>Upload metadata file</em> near the top and navigate to the sp-metadata.xml file then click <em>Add</em> then <em>Save</em></li>
+<li>Optional: Within the Properties section - you may want to set "Visible to Users" to <em>no</em>.</li>
 </ul>
 <h3 id="transform-username">Transform username</h3>
 <div class="admonition note">

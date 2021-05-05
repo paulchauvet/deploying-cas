@@ -13,14 +13,14 @@
         <meta name="author" content="Paul Chauvet">
       
       
-        <link rel="canonical" href="https://paulchauvet.github.io/deploying-cas/about/license/">
+        <link rel="canonical" href="https://paulchauvet.github.io/deploying-cas/final-setup/overview/">
       
       <link rel="icon" href="../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.3">
     
     
       
-        <title>License - Deploying Apereo CAS 6</title>
+        <title>Final tasks - Deploying Apereo CAS 6</title>
       
     
     
@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#license" class="md-skip">
+        <a href="#final-tasks" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              License
+              Final tasks
             
           </span>
         </div>
@@ -188,14 +188,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
       
       <label class="md-nav__link" for="__nav_2">
         About
@@ -213,7 +211,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../about-new-paltz/" class="md-nav__link">
+      <a href="../../about/about-new-paltz/" class="md-nav__link">
         About SUNY New Paltz
       </a>
     </li>
@@ -225,7 +223,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../author-information/" class="md-nav__link">
+      <a href="../../about/author-information/" class="md-nav__link">
         About the author
       </a>
     </li>
@@ -237,7 +235,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../architecture/" class="md-nav__link">
+      <a href="../../about/architecture/" class="md-nav__link">
         Architecture/design
       </a>
     </li>
@@ -249,7 +247,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../acknowledgements/" class="md-nav__link">
+      <a href="../../about/acknowledgements/" class="md-nav__link">
         Acknowledgements
       </a>
     </li>
@@ -259,21 +257,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../about/license/" class="md-nav__link">
         License
       </a>
-      
     </li>
   
 
@@ -283,7 +271,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ansible-playbooks/" class="md-nav__link">
+      <a href="../../about/ansible-playbooks/" class="md-nav__link">
         Ansible Playbooks
       </a>
     </li>
@@ -1217,11 +1205,21 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../final-setup/overview/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Final tasks
       </a>
+      
     </li>
   
 
@@ -1234,7 +1232,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../future-tasks/" class="md-nav__link">
+      <a href="../../about/future-tasks/" class="md-nav__link">
         Future tasks
       </a>
     </li>
@@ -1271,9 +1269,44 @@
               
                 
                 
-                <h1 id="license">License</h1>
-<p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a></p>
-<p>See (https://creativecommons.org/licenses/by-sa/4.0/) for more details.</p>
+                <h1 id="final-tasks">Final Tasks</h1>
+<p>So I've got way too many pages here.  I've gone through enough steps here that I'm glad I documented them for myself, even if no one else uses this!</p>
+<p>Here are the steps I've taken to move from using a development environment for CAS, to moving to TEST.  In our environment, TEST is not just for testing CAS.  It's for authentication for non-production applications.  These steps will be replicated for production.</p>
+<ol>
+<li>Update your /etc/ansible/hosts to refer to your new systems.  Here are mine as an example (note - you don't need the vmware_name or vmware_folder stuff here for the CAS/Tomcat stuff.  They are used in other playbooks I have, like those that take snapshots in VMWare before patching or major changes).
+<div class="highlight"><pre><span></span><code><span class="err">logi</span><span class="kc">n</span><span class="mi">6</span><span class="kc">testa</span> <span class="err">vmware_</span><span class="kc">na</span><span class="err">me=</span><span class="s2">&quot;Login6TestA (CAS 6 Test 1)&quot;</span> <span class="err">vmware_</span><span class="kc">f</span><span class="err">older=</span><span class="s2">&quot;/Computer Services/vm/CAS Authentication Servers&quot;</span> <span class="err">a</span><span class="kc">ns</span><span class="err">ible_py</span><span class="kc">t</span><span class="err">ho</span><span class="kc">n</span><span class="err">_i</span><span class="kc">nter</span><span class="err">pre</span><span class="kc">ter</span><span class="err">=/usr/libexec/pla</span><span class="kc">tf</span><span class="err">orm</span><span class="mi">-</span><span class="err">py</span><span class="kc">t</span><span class="err">ho</span><span class="kc">n</span> <span class="err">apache_domai</span><span class="kc">ns</span><span class="err">=</span><span class="s2">&quot;logintest.newpaltz.edu login6testa.newpaltz.edu&quot;</span> <span class="kc">t</span><span class="err">omca</span><span class="kc">t</span><span class="err">_major_ver=</span><span class="mf">9.0</span> <span class="kc">t</span><span class="err">omca</span><span class="kc">t</span><span class="err">_ver=</span><span class="mf">9.0.45</span> <span class="err">jdk_versio</span><span class="kc">n</span><span class="err">=</span><span class="mi">11</span> 
+
+<span class="err">logi</span><span class="kc">n</span><span class="mi">6</span><span class="kc">test</span><span class="err">b</span> <span class="err">vmware_</span><span class="kc">na</span><span class="err">me=</span><span class="s2">&quot;Login6TestB (CAS 6 Test 2)&quot;</span> <span class="err">vmware_</span><span class="kc">f</span><span class="err">older=</span><span class="s2">&quot;/Computer Services/vm/CAS Authentication Servers&quot;</span> <span class="err">a</span><span class="kc">ns</span><span class="err">ible_py</span><span class="kc">t</span><span class="err">ho</span><span class="kc">n</span><span class="err">_i</span><span class="kc">nter</span><span class="err">pre</span><span class="kc">ter</span><span class="err">=/usr/libexec/pla</span><span class="kc">tf</span><span class="err">orm</span><span class="mi">-</span><span class="err">py</span><span class="kc">t</span><span class="err">ho</span><span class="kc">n</span> <span class="err">apache_domai</span><span class="kc">ns</span><span class="err">=</span><span class="s2">&quot;logintest.newpaltz.edu login6testb.newpaltz.edu&quot;</span> <span class="kc">t</span><span class="err">omca</span><span class="kc">t</span><span class="err">_major_ver=</span><span class="mf">9.0</span> <span class="kc">t</span><span class="err">omca</span><span class="kc">t</span><span class="err">_ver=</span><span class="mf">9.0.45</span> <span class="err">jdk_versio</span><span class="kc">n</span><span class="err">=</span><span class="mi">11</span> 
+</code></pre></div></li>
+<li>
+<p>Build two or more new hosts.  For our test environment, I call these 'login6testa' and 'login6testb'.  Use whatever your existing build process for them is.  For us - we use Ansible to build VMs via Kickstart.  Maybe I'll get into that in the future here.</p>
+</li>
+<li>
+<p>Set your site.yml to include the roles you want to use.  For my environment, I use a few that aren't covered here (such as for security hardening, setting content-security-policies, or setting up apache-http), but those that are relevant for CAS are:</p>
+<ul>
+<li>apache-tomcat</li>
+<li>cas6</li>
+<li>cas6-client (not needed in production - but I still use this in test)</li>
+</ul>
+</li>
+<li>Generate the various keys (see the Generating all necessary keys section near the bottom of the <a href="../../building-cas/initial-cas-config/">initial CAS config</a>) and place them in your cas-vault.yml file.</li>
+<li>Create your Azure app as per the <a href="../../delegated-auth/azure-saml/">Azure SAML</a> page.  Get the metadata URL and put it in your cas-vault.yml</li>
+<li>Ensure you have created a test-cas.properties.j2 file - and set the variable names correctly (changing DEV_ to TEST_ in variable names when appropriate, and setting cas.server.name to your load balanced virtual host).</li>
+<li>Populate at least one service into your <em>roles/cas6/templates/test-services</em> directory</li>
+<li>Ensure your playbooks have sections for TEST configs - not just DEV</li>
+<li>Run your Ansible playbook on ONE of the servers.
+<div class="highlight"><pre><span></span><code><span class="go">ansible-playbook site.yml --ask-vault-pass --limit login6testa</span>
+</code></pre></div></li>
+<li>Place only one of the servers as active in your load balancer - then visit the site.  It will generate the various saml-signing-cert files, sp-metadata.xml, and samlKeystore.jks</li>
+<li>Copy these files to your <em>roles/cas6/files</em> directory - but rename the sp-metadata.xml and samlKeystore.jks to be tier specific (i.e. sp-metadata-TEST.xml and samlKeystore-TEST.jks).  You can then re-run the playbook on the other server(s) this will now push the sp-metadata.xml, samlKeystore, and saml-signing-cert files that were generated on the first host so they are the same in others in the tier.
+<div class="highlight"><pre><span></span><code><span class="go">ansible-playbook site.yml --ask-vault-pass --limit login6testa</span>
+</code></pre></div></li>
+<li>Finish your Azure setup (see "Finish Azure config" section of the <a href="../../delegated-auth/azure-saml/">Azure SAML</a> page).</li>
+<li>Restart tomcat on both hosts (not sure this is necessary - but it's a one time thing).</li>
+<li>Delegated auth should work now on your new tier.</li>
+</ol>
+<p>Is this really easier than doing it without Ansible?  To do it once - definitely not.  To make it repeatable and to maintain configs, service settings, Tomcat upgrades, and more - for me at least make Ansible essential for this.</p>
+<p>Maybe that's because I have too much work - but I'm sure I'm not the only one reading this who has too much work!</p>
                 
               
               
@@ -1292,7 +1325,7 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../acknowledgements/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../../theming/overview/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1301,19 +1334,19 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Acknowledgements
+              Themes
             </div>
           </div>
         </a>
       
       
-        <a href="../ansible-playbooks/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../../about/future-tasks/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Ansible Playbooks
+              Future tasks
             </div>
           </div>
           <div class="md-footer__button md-icon">
