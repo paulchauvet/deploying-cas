@@ -1266,8 +1266,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#items-to-be-finished-before-announcing-this-documentation" class="md-nav__link">
-    Items to be finished before announcing this documentation
+  <a href="#items-to-be-finished-or-improved" class="md-nav__link">
+    Items to be finished or improved
   </a>
   
 </li>
@@ -1305,8 +1305,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#items-to-be-finished-before-announcing-this-documentation" class="md-nav__link">
-    Items to be finished before announcing this documentation
+  <a href="#items-to-be-finished-or-improved" class="md-nav__link">
+    Items to be finished or improved
   </a>
   
 </li>
@@ -1326,25 +1326,15 @@
                 
                 <h1 id="future-tasks">Future tasks</h1>
 <p>These are items which are not complete in this documentation.  Some of this will be complete before I advertise this documentation (and are only here for my own notes).  Others will be finished later.</p>
-<h2 id="items-to-be-finished-before-announcing-this-documentation">Items to be finished before announcing this documentation</h2>
+<h2 id="items-to-be-finished-or-improved">Items to be finished or improved</h2>
 <ul>
-<li>CAS UI customization/theming</li>
-<li>Azure Conditional Access</li>
-<li>Review documentation - especially code blocks - to ensure proper lexers are being used.</li>
-<li>Change ansible templates over to use ansible.builtin (e.g. ansible.builtin.template instead of template)</li>
-<li>Manually unpack war file - or fix it so it is automatically unpacked correctly</li>
-<li>Handling cas service cleanup (i.e. removing old services).</li>
-<li>Settle on where AJP documentation will go (leaning towards two places - tomcat setup for the server.xml portion, and CAS setup for httpd.conf setup)</li>
-<li>Incorporate better generation of keys within initial cas config page</li>
-</ul>
-<h1 id="items-to-be-finished-after-announcing-this-docuemntation">Items to be finished after announcing this docuemntation</h1>
-<ul>
+<li>CAS UI customization/theming (started - not completed)</li>
+<li>Handling cas service cleanup (i.e. removing old services).  For now - this is manual.</li>
+<li>Add some service examples to the github repo</li>
 <li>Make sure this works on a vanilla RHEL 8 system <ul>
 <li>my VMs are typically built via Ansible triggering vCenter and a RedHat Kickstart.  I will need to deploy a vanilla, unaltered VM that is just built from the ISO and with the public key of the Ansible server added to it, to see if I've missed any dependencies.</li>
 </ul>
 </li>
-<li>Add better git documentation here</li>
-<li>Add full ansible playbooks for the roles used here (Apache Tomcat, Apache HTTPD, CAS, and CAS client) into a separate github project.  Need to take some time to go through and ensure they are sanitized beforehand (we use an internal git repo here for our development and anything sensitive 'should' be in vault files, but just want to be certain).  Link to them from the various areas.</li>
 </ul>
                 
               
