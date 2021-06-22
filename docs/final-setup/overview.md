@@ -35,7 +35,9 @@ ansible-playbook site.yml --ask-vault-pass --limit login6testa
 13. Restart tomcat on both hosts (not sure this is necessary - but it's a one time thing).
 14. Delegated auth should work now on your new tier.
 
-Is this really easier than doing it without Ansible?  To do it once - definitely not.  To make it repeatable and to maintain configs, service settings, Tomcat upgrades, and more - for me at least make Ansible essential for this.
+## Is using Ansible worth it?
+
+Is this really easier than doing it without Ansible?  If you're only doing this all once - doing it without Ansible may be easier - especially if you don't already use it in some form.   To make it repeatable and to maintain configs, service settings, Tomcat upgrades, and more - for me at least make Ansible essential for this.  I've made a TON of changes to configs, Tomcat versions, etc., while building this doc.  All I've needed to do is update a couple variables, maybe a config here and there, and redeploy.
 
 Maybe that's because I have too much work - but I'm sure I'm not the only one reading this who has too much work!
 

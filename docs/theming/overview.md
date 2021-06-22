@@ -30,7 +30,28 @@ dependencies {
 
 ## Getting an example theme created
 
-* Within the *cas-overlay-template/src* directory - I created a set of sub directories (to match the 'example' theme at (https://github.com/apereo/cas/tree/6.3.x/support/cas-server-support-themes-collection/src/main/resources/static/themes/example)):
+To get some of the base files - the easiest thing to do is to use gradle to explode the war file (i.e. explicilty create files that otherwise wouldn't be there).
+
+```
+# I did the following in a clone of the cas-overlay-template directory so as to not mess with what I have
+
+./gradlew explodeWar
+```
+
+When you do that - you'll have files in cas-overlay-template/build/cas-resources.  Specifically:
+
+* cas-overlay-template/build/cas-resources/ has the messages.properties file which you can use to adjust error messages or other strings.  The messages_XX.properties files are for non-English translations and may need to be updated if you use those.
+* cas-overlay-template/build/cas-resources/templates has the .html files that you may want to change.  For example, I update *casGenericSuccessView.html* to remove the display of the attributes that are resolved for a user.
+* cas-overlay-template/build/cas-resources/static/css has the base cas.css stylesheet.
+* cas-overlay-template/build/cas-resources/static/images has base images used by CAS.
+* cas-overlay-template/build/cas-resources/static/js has base javascript files used by cas.
+
+!!! note
+    You don't need to override all of these!  Only copy the files you need to alter into your theme.
+    If you do alter the .html files in cas-overlay-template/build/cas-resources/templates they should be placed in *cas-overlay-template/src/main/resources/templates/newpaltz* (obviously replacing 'newpaltz' with your theme name)
+
+
+* Within the *cas-overlay-template/src* directory - I created a set of sub directories (to match the 'example' theme:
     * **cas-overlay-template/src/main/resources/static/themes/newpaltz**
     * **cas-overlay-template/src/main/resources/static/themes/newpaltz/css**
     * **cas-overlay-template/src/main/resources/static/themes/newpaltz/images**
