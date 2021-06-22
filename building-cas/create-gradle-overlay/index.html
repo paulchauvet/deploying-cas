@@ -1383,6 +1383,11 @@
 <p>When that's complete - you will have a <strong>cas.war</strong> file created within the build/libs subdirectory.  As a quick test, you can copy that over to one of your CAS/Tomcat development hosts:
 <div class="highlight"><pre><span></span><code>scp build/libs/cas.war root@&lt;One-of-Your-CAS-Hosts&gt;:/opt/tomcat/latest/webapps/
 </code></pre></div></p>
+<div class="admonition caution">
+<p class="admonition-title">Clear old cas.war file before building</p>
+<p>I don't know if I'm doing something wrong - but a couple times I've run into issues where gradle didn't actually appear to create a new cas.war file that incorporated the changes I've made.  Because of this - before I build with gradle, I clear any old cas.war files from build/libs before rebuilding via <em>gradlew clean build</em>.</p>
+<p>This may be a sign that I'm doing something wrong - but for now doing a removal of the old cas.war file has been sufficient.</p>
+</div>
 <p>Once you do that, if Tomcat is running and you wait a minute or two, you'll have CAS up and running - though not in a really useful way (no authentication backends, no external services, no ticket registry, no theme, etc.).  It won't work to login - there's not even a configuration deployed - but it's just an initial test.</p>
 <p>I recommend testing at each stage as functionality is added to CAS - so making sure the base install starts is good!</p>
 <figure>
